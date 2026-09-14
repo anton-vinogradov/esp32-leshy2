@@ -6,13 +6,13 @@
   "reviewed_on": "2026-08-31",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
-    "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
+    "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
     "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
     "hardware/product-design/generated/H1-R2-placement-audit.json": "55b104bc6b398ad874f7c03cda265b7291566d3f0ce25cd7a2803074c4c06a09",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "090d12547495e35bde564d7b5eb569a9a562ed6cd8f90ee33da2778e9194e8e9",
-    "hardware/verification/generated/H3-R2-digital-interfaces.json": "07d3a794ff1fb2f938812d3ccbf8e3913f038a7830316349ccfbd056648f3818",
-    "hardware/verification/generated/H3-R2-analog-corners.json": "9873d267791ad7519a779aeaf6c901ad3a3581aa0b7ea208bb42bedb339b5116",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "3f1b935053ece74f1944225056d7ef2640bdcf7738ed83f8648bd871becc57c2",
+    "hardware/verification/generated/H3-R2-power-state-register.json": "c1fba584032410ba3df65ddb3a95d671d5971f91021bdc2e9e12d81be12efa5a",
+    "hardware/verification/generated/H3-R2-digital-interfaces.json": "88388bcf5542d8f20c7e3f3c24871225aa0e26bb22c7f5b91d7d968519d2effd",
+    "hardware/verification/generated/H3-R2-analog-corners.json": "82af7b88cad0e3934625bc617202ab8d76c4d19a1d1635efdecd70d33a9d683f",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "6a2d2c23574115f3cb90160d152b275719b35ef69091d8f9aca25775b3c4e209",
     "hardware/verification/h3_r2_rf_coexistence.py": "cbba248305b60671a662246b7e730eb3fda0ac6978af5c8efa613ee9faa03a14",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
@@ -512,13 +512,13 @@
     "battery_energization_authorized": false,
     "source_sha256": {
       "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
-      "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
+      "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
       "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
       "hardware/product-design/generated/H1-R2-placement-audit.json": "55b104bc6b398ad874f7c03cda265b7291566d3f0ce25cd7a2803074c4c06a09",
-      "hardware/verification/generated/H3-R2-power-state-register.json": "090d12547495e35bde564d7b5eb569a9a562ed6cd8f90ee33da2778e9194e8e9",
-      "hardware/verification/generated/H3-R2-digital-interfaces.json": "07d3a794ff1fb2f938812d3ccbf8e3913f038a7830316349ccfbd056648f3818",
-      "hardware/verification/generated/H3-R2-analog-corners.json": "9873d267791ad7519a779aeaf6c901ad3a3581aa0b7ea208bb42bedb339b5116",
-      "hardware/verification/generated/H3-R2-parameter-provenance.json": "3f1b935053ece74f1944225056d7ef2640bdcf7738ed83f8648bd871becc57c2",
+      "hardware/verification/generated/H3-R2-power-state-register.json": "c1fba584032410ba3df65ddb3a95d671d5971f91021bdc2e9e12d81be12efa5a",
+      "hardware/verification/generated/H3-R2-digital-interfaces.json": "88388bcf5542d8f20c7e3f3c24871225aa0e26bb22c7f5b91d7d968519d2effd",
+      "hardware/verification/generated/H3-R2-analog-corners.json": "82af7b88cad0e3934625bc617202ab8d76c4d19a1d1635efdecd70d33a9d683f",
+      "hardware/verification/generated/H3-R2-parameter-provenance.json": "6a2d2c23574115f3cb90160d152b275719b35ef69091d8f9aca25775b3c4e209",
       "hardware/verification/h3_r2_rf_coexistence.py": "cbba248305b60671a662246b7e730eb3fda0ac6978af5c8efa613ee9faa03a14",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }

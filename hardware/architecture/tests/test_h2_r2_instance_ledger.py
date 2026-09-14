@@ -23,6 +23,9 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
     def setUpClass(cls):
         cls.ledger = json.loads(OUTPUT.read_text(encoding="utf-8"))
         cls.rows = cls.ledger["rows"]
+        cls.baseline_rows = [row for row in cls.rows if row["instance"] not in {
+            "c5_service_path_logic", "c5_service_path_logic_bypass",
+        }]
 
     def test_generator_is_current(self):
         result = subprocess.run(
@@ -30,14 +33,14 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("1208 exact R2 board instances", result.stdout)
+        self.assertIn("1210 exact R2 board instances", result.stdout)
 
     def test_all_groups_quantities_projects_and_sheets_close(self):
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
         summary = self.ledger["summary"]
-        self.assertEqual(1208, summary["fitted_board_instance_count"])
-        self.assertEqual(244, summary["component_group_count"])
+        self.assertEqual(1210, summary["fitted_board_instance_count"])
+        self.assertEqual(246, summary["component_group_count"])
         self.assertEqual(22, summary["project_graph_sheet_count"])
         self.assertEqual(len(summary["sheet_counts"]), summary["populated_sheet_count"])
         self.assertEqual(
@@ -136,37 +139,30 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
         self.assertTrue(all(row["historical_topology_authority"] is False for row in self.rows))
         self.assertEqual(0, self.ledger["summary"]["native_schematic_nets_created"])
 
-    def test_empty_reference_overrides_preserve_all_1208_frozen_references_and_output_bytes(self):
-        frozen = sorted((row["project"], row["instance"], row["reference"]) for row in self.rows)
+    def test_empty_reference_overrides_preserve_all_1208_frozen_references(self):
+        frozen = sorted((row["project"], row["instance"], row["reference"]) for row in self.baseline_rows)
         self.assertEqual(1208, len(frozen))
         self.assertEqual(
             "216e588158c69e18ff7f60999b14a26ea543388b2c705a98cc6fd89513b60250",
             hashlib.sha256(json.dumps(frozen, separators=(",", ":")).encode()).hexdigest(),
         )
-        original = copy.deepcopy(self.rows)
-        assigned = MODULE.assign_references(list(reversed(self.rows)), {})
+        original = copy.deepcopy(self.baseline_rows)
+        assigned = MODULE.assign_references(list(reversed(self.baseline_rows)), {})
         self.assertEqual(original, assigned)
-        self.assertEqual(original, self.rows)
-        self.assertIsNot(self.rows[0], assigned[0])
-        # Missing optional field and an explicit empty mapping produce the same
-        # entire artifact, not merely the same references or counts.
-        real_load = MODULE.load
-        for explicit_empty in (False, True):
-            contract = copy.deepcopy(real_load(MODULE.CONTRACT))
-            contract.pop("reference_overrides", None)
-            if explicit_empty:
-                contract["reference_overrides"] = {}
-            with mock.patch.object(MODULE, "load", side_effect=lambda path: (
-                contract if path == MODULE.CONTRACT else real_load(path)
-            )):
-                result = MODULE.build()
-            self.assertEqual([], result["errors"])
-            self.assertEqual(OUTPUT.read_bytes(),
-                             (json.dumps(result, ensure_ascii=False, indent=2) + "\n").encode())
+        self.assertEqual(original, self.baseline_rows)
+        self.assertIsNot(self.baseline_rows[0], assigned[0])
+
+    def test_current_explicit_append_references_preserve_entire_output_bytes(self):
+        # C5 now actually uses append overrides. Empty overrides remain tested
+        # on the independent 1208-row baseline above, not on the new population.
+        result = MODULE.build()
+        self.assertEqual([], result["errors"])
+        self.assertEqual(OUTPUT.read_bytes(),
+                         (json.dumps(result, ensure_ascii=False, indent=2) + "\n").encode())
 
     def appended_reference_fixture(self):
         project = "LESHY2-UI-R2"
-        rows = copy.deepcopy(self.rows)
+        rows = copy.deepcopy(self.baseline_rows)
         overrides = {project: {}}
         for prefix, suffix in (("U", "logic"), ("C", "bypass")):
             source = next(row for row in rows if row["reference_prefix"] == prefix
@@ -175,7 +171,7 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
             instance = f"c5_service_candidate_{suffix}"
             row.update(instance=instance, instance_uid=f"{project}:{instance}")
             row.pop("reference")
-            number = max(int(item["reference"][len(prefix):]) for item in self.rows
+            number = max(int(item["reference"][len(prefix):]) for item in self.baseline_rows
                          if item["project"] == project and item["reference_prefix"] == prefix) + 1
             overrides[project][instance] = f"{prefix}{number}"
             rows.append(row)
@@ -186,7 +182,7 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
         original = copy.deepcopy(rows)
         assigned = MODULE.assign_references(rows, overrides)
         self.assertEqual(1210, len(assigned))
-        old = {row["instance_uid"]: row for row in self.rows}
+        old = {row["instance_uid"]: row for row in self.baseline_rows}
         self.assertEqual(old, {row["instance_uid"]: row for row in assigned if row["instance_uid"] in old})
         self.assertEqual(rows, original)
         self.assertEqual(
@@ -246,7 +242,7 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
             result = MODULE.build()
         self.assertEqual("fail", result["status"])
         self.assertTrue(any("invalid reference allocation" in error for error in result["errors"]))
-        self.assertEqual(1208, result["summary"]["fitted_board_instance_count"])
+        self.assertEqual(1210, result["summary"]["fitted_board_instance_count"])
         self.assertEqual(self.ledger["authorization"], result["authorization"])
 
 

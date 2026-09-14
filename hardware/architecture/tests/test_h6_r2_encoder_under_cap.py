@@ -22,6 +22,25 @@ BASELINE_CONTRACT_SHA = "caedfdf37c1546feb18969396706e1f922c02f09cadf667027ff9f7
 IDENTITY_BEFORE_NETS_SHA = "b5b5ce1a3ebb87d96a14c85a734819ed57cf395a8065c7daf89203a54732f128"
 PAIR_BASELINE_SHA = "4a126b13bfbb361b7872886a1a6bb1838b8dc03ed533d08848e92ce29ef86a32"
 UNCHANGED_SOURCE_SHA = "e42d7151007f52c98b53a707137144cf2d7a0671a5229266f6bb5517153316c9"
+# The later 2026-09-14 C5 reset ECO intersects this historical 106-part RF
+# review at Q6 only. Preserve every frozen identity/pose/pad-net digest above;
+# accept only this exact current identity, not a general MPN waiver. The two
+# other replaced reset packages are on UI and outside this RF review.
+IDENTITY_KEYS = ("instance", "device_id", "mpn", "footprint")
+Q6_HISTORICAL_IDENTITY = {
+    "instance": "safe_reset_sink_b", "device_id": "diodes_2n7002dw_7_f",
+    "mpn": "Diodes Incorporated 2N7002DW-7-F",
+    "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+}
+Q6_CURRENT_IDENTITY = {
+    **Q6_HISTORICAL_IDENTITY, "device_id": "nexperia_nx3008nbks_115",
+    "mpn": "NX3008NBKS,115",
+}
+Q6_CURRENT_PINS = {
+    "1": ("S1", "POWER_GROUND"), "2": ("G1", "POWER_GROUND"),
+    "3": ("D2", "RF_RP_RESET_N"), "4": ("S2", "POWER_GROUND"),
+    "5": ("G2", "RF_RESET_KILL_GATE"), "6": ("D1", None),
+}
 EXPECTED_REFS = frozenset("""
     C114 C122 C125 C130 C131 C132 C136 C142 C144 C145 C149 C195 C199 C230
     C244 C245 C250 C251 C252 C253 C256 C257 C258 C264 C265 C266 C268 C271
@@ -118,6 +137,34 @@ def coordinates(value):
     return value
 
 
+def current_identity(row):
+    identity = {key: row[key] for key in IDENTITY_KEYS}
+    if row["reference"] == "Q6":
+        assert identity == Q6_HISTORICAL_IDENTITY
+        assert row["after"] == dict(anchor_mm=[2.65, 60.675], rotation_deg=0, side="B.Cu")
+        return Q6_CURRENT_IDENTITY
+    return identity
+
+
+def validate_q6_reset_eco(ledger, nets):
+    current = ledger["Q6"]
+    assert {key: current[key] for key in IDENTITY_KEYS} == Q6_CURRENT_IDENTITY
+    assert current["project"] == PROJECT
+    assert current["sheet"] == "RF_50_TX_SAFETY_EVIDENCE"
+    assert current["reference_prefix"] == "Q" and current["bom_excluded"] is False
+    assert current["symbol_id"] == "Leshy2_R2:nexperia_nx3008nbks_115"
+    rows = [r for r in nets if r["project"] == PROJECT and r["reference"] == "Q6"]
+    assert len(rows) == len(Q6_CURRENT_PINS) == 6
+    assert {r["physical"] for r in rows} == set(Q6_CURRENT_PINS)
+    for row in rows:
+        contact, net = Q6_CURRENT_PINS[row["physical"]]
+        assert row["instance"] == "safe_reset_sink_b"
+        assert row["device_id"] == "nexperia_nx3008nbks_115"
+        assert row["contact"] == contact and row["endpoint"] == f"safe_reset_sink_b.{contact}"
+        assert row["net"] == net
+        assert row["disposition"] == ("no_connect" if net is None else "connected")
+
+
 def validate_source(review, contract, instances, nets):
     assert review["schema_version"] == 1 and review["project"] == PROJECT
     assert review["baseline_board_sha256"] == BASELINE_BOARD_SHA
@@ -132,10 +179,11 @@ def validate_source(review, contract, instances, nets):
     ledger_rows = [r for r in instances if r["project"] == PROJECT]
     ledger = {r["reference"]: r for r in ledger_rows}
     assert len(ledger) == len(ledger_rows)
+    validate_q6_reset_eco(ledger, nets)
     by_ref = {r["reference"]: r for r in rows}
     overrides = contract["placement_overrides"]
     for ref, row in by_ref.items():
-        assert all(row[k] == ledger[ref][k] for k in ("instance", "device_id", "mpn", "footprint")), ref
+        assert current_identity(row) == {k: ledger[ref][k] for k in IDENTITY_KEYS}, ref
         after = row["after"]
         target = overrides[row["instance"]]
         assert after["side"] == ("F.Cu" if ref == "SW3" else "B.Cu"), ref
@@ -251,6 +299,54 @@ class EncoderUnderCapSourceTests(unittest.TestCase):
             with self.subTest(change=change), self.assertRaises(AssertionError):
                 validate_source(review, contract, instances, self.nets)
 
+    def test_q6_reset_eco_accepts_no_other_identity_or_geometry_change(self):
+        for key, value in (("mpn", "substitute"), ("device_id", "substitute"),
+                           ("mpn", Q6_HISTORICAL_IDENTITY["mpn"]),
+                           ("footprint", "Package_TO_SOT_SMD:SOT-23"),
+                           ("reference_prefix", "U"), ("bom_excluded", True),
+                           ("symbol_id", "Leshy2_R2:diodes_2n7002dw_7_f")):
+            instances = copy.deepcopy(self.instances)
+            next(r for r in instances if r["project"] == PROJECT and r["reference"] == "Q6")[key] = value
+            with self.subTest(key=key, value=value), self.assertRaises(AssertionError):
+                validate_source(self.review, self.contract, instances, self.nets)
+        for change in ("regold_identity", "pad_hash", "move", "rotate", "flip"):
+            review, contract = copy.deepcopy(self.review), copy.deepcopy(self.contract)
+            row = next(r for r in review["placement_rows"] if r["reference"] == "Q6")
+            target = contract["placement_overrides"]["safe_reset_sink_b"]
+            if change == "regold_identity": row.update(Q6_CURRENT_IDENTITY)
+            elif change == "pad_hash": row["pad_number_net_multiset_sha256"] = "0" * 64
+            elif change == "move":
+                target["anchor_mm"][0] += 1
+                row["after"]["anchor_mm"][0] += 1
+            elif change == "rotate":
+                target["rotation_deg"] += 90
+                row["after"]["rotation_deg"] += 90
+            else:
+                target["frame"], row["after"]["side"] = "rear-outer", "F.Cu"
+            with self.subTest(change=change), self.assertRaises(AssertionError):
+                validate_source(review, contract, self.instances, self.nets)
+
+    def test_q6_reset_eco_preserves_exact_six_physical_roles_and_kill_path(self):
+        for change in ("kill", "old_half_name", "wrong_pad", "missing", "duplicate", "extra", "nc"):
+            nets = copy.deepcopy(self.nets)
+            rows = [r for r in nets if r["project"] == PROJECT and r["reference"] == "Q6"]
+            gate = next(r for r in rows if r["physical"] == "5")
+            if change == "kill": gate["net"] = "POWER_GROUND"
+            elif change == "old_half_name":
+                gate["contact"], gate["endpoint"] = "G1", "safe_reset_sink_b.G1"
+            elif change == "wrong_pad": gate["physical"] = "2"
+            elif change == "missing": nets.remove(gate)
+            elif change == "duplicate": nets.append(copy.deepcopy(gate))
+            elif change == "extra":
+                extra = copy.deepcopy(gate)
+                extra["physical"] = "7"
+                nets.append(extra)
+            else:
+                unused = next(r for r in rows if r["physical"] == "6")
+                unused["net"], unused["disposition"] = "POWER_GROUND", "connected"
+            with self.subTest(change=change), self.assertRaises(AssertionError):
+                validate_source(self.review, self.contract, self.instances, nets)
+
     def test_hidden_remote_audio_regression_bad_cell_or_qualification_is_rejected(self):
         for change in ("missing_pair", "duplicate_pair", "hide_span", "bad_local", "net", "authority", "limits"):
             review = copy.deepcopy(self.review)
@@ -297,8 +393,9 @@ class EncoderUnderCapNativeTests(unittest.TestCase):
 
     def assert_identity(self, ref):
         fp, row = self.fps[ref], self.rows[ref]
-        self.assertEqual(row["mpn"], fp.GetValue(), ref)
-        self.assertEqual(row["footprint"], fp.GetFPIDAsString(), ref)
+        expected = current_identity(row)
+        self.assertEqual(expected["mpn"], fp.GetValue(), ref)
+        self.assertEqual(expected["footprint"], fp.GetFPIDAsString(), ref)
         self.assertEqual(row["pad_number_net_multiset_sha256"],
             digest(sorted([p.GetNumber(), p.GetNetname()] for p in fp.Pads())), ref)
 

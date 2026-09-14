@@ -18,14 +18,19 @@ class ElectricalSemanticsFreshnessTests(unittest.TestCase):
         coverage = json.loads(semantics.OUTPUT.read_text(encoding="utf-8"))["coverage"]
         pins = coverage["reviewed_unique_pins"]
         devices = coverage["reviewed_devices"]
+        groups = coverage["device_count"]
         expected = {
-            "md": f"{pins:,} reviewed pin types across {devices}",
-            "ru.md": f"{pins:,}".replace(",", " ") + f" проверенных типов выводов в {devices}",
+            "md": (f"{pins:,} reviewed pin types across {devices}",
+                   f"inventory of {groups} current board groups"),
+            "ru.md": (f"{pins:,}".replace(",", " ") + f" проверенных типов выводов в {devices}",
+                      f"инвентаре из {groups} текущих групп деталей плат"),
         }
-        for suffix, statement in expected.items():
+        for suffix, statements in expected.items():
             with self.subTest(language=suffix):
                 document = semantics.ROOT / "docs" / f"h6-r2-electrical-semantics.{suffix}"
-                self.assertIn(statement, document.read_text(encoding="utf-8"))
+                text = document.read_text(encoding="utf-8")
+                for statement in statements:
+                    self.assertIn(statement, text)
 
     def test_checked_in_evidence_matches_actual_files_without_native_replay(self):
         # Unlike fixture tests below, this must use real filesystem hashes.

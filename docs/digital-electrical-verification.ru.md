@@ -15,7 +15,7 @@
 | USB / сервис | review_required | Проверено наличие ветвей данных; управление SEL/OE C5 и восстановление при KILL не квалифицированы |
 | C5 BOOT | топология проверена | GPIO28/U14.15 → C5_BOOT_N, R76/R79/SW18; GPIO27 подтянут вверх. Медь и удержание strap 3 мс после EN ещё требуют проверки |
 | M1 | PASS | 80/80 pin parity; 9 true NC; USB and Hub-RF groups are ground-bounded |
-| Loading | PASS | point-to-point fast buses; FSUSB42 bandwidth is 18x the 40-MHz SDIO clock |
+| Loading | provisional screen | point-to-point buses; TS3USB221E typical bandwidth/40-MHz ratio = 25; not a minimum bandwidth or SDIO timing guarantee |
 
 ## Почему 20 МГц
 

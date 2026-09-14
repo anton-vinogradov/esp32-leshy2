@@ -66,7 +66,7 @@ def composed_c5_pin_map(g2f: dict, c5_mux: dict) -> list[dict]:
             "muxed_with_usb": mux["muxed_with_usb"],
             "strap_role": mux["strap_role"],
             "endpoint": (
-                "Hub RP native 4-bit SDIO through FSUSB42 service mux"
+                "Hub RP native 4-bit SDIO through TS3USB221E service mux"
                 if mux["muxed_with_usb"] else "Hub RP native 4-bit SDIO"
             ),
         })

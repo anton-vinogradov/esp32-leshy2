@@ -7,9 +7,9 @@
   "expected": {
     "projects": 2,
     "sheets": 22,
-    "fitted_symbols": 1208,
-    "physical_pins": 4305,
-    "canonical_nets": 788,
+    "fitted_symbols": 1210,
+    "physical_pins": 4321,
+    "canonical_nets": 789,
     "domains": 6,
     "controller_pins": 173,
     "cross_project_nets": 34,

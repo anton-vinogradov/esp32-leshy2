@@ -17,28 +17,35 @@ class H3R2MethodContractTests(unittest.TestCase):
     def test_complete_method_and_rule_surface(self):
         summary = self.result["summary"]
         self.assertEqual("pass", self.result["status"])
-        self.assertEqual(250, summary["parameter_rows"])
-        self.assertEqual(250, summary["assigned_parameter_rows"])
+        self.assertEqual(252, summary["parameter_rows"])
+        self.assertEqual(252, summary["assigned_parameter_rows"])
         self.assertEqual(9, summary["parameter_classes"])
         self.assertEqual(7, summary["workstreams"])
         self.assertEqual(9, summary["methods"])
         self.assertEqual(12, summary["pass_fail_rules"])
-        # The retired JAE group is gone; the shared GCT group now has a
-        # manufacturer-backed structured seed. Neither is an extraction gap.
-        self.assertEqual(172, summary["explicit_unresolved_until_extraction"])
+        # Post-USB172 minus retired HC20's extraction-queue row. Current TS,
+        # LV and NX each have a structured seed, not qualification of corners.
+        self.assertEqual(171, summary["explicit_unresolved_until_extraction"])
         self.assertEqual(0, summary["open_method_questions"])
         self.assertEqual(0, summary["errors"])
 
     def test_every_assignment_is_fail_closed_and_owned(self):
         known = {row["id"] for row in self.result["methods"]}
         assignments = self.result["parameter_method_assignments"]
-        self.assertEqual(250, len(assignments))
+        self.assertEqual(252, len(assignments))
         for row in assignments:
             self.assertTrue(row["owner_workstreams"], row["device_id"])
             self.assertTrue(row["method_ids"], row["device_id"])
             self.assertTrue(set(row["method_ids"]).issubset(known), row["device_id"])
             if row["parameter_state"] == "explicit_extraction_queue":
                 self.assertEqual("unresolved_fail", row["missing_parameter_disposition"])
+
+    def test_c5_replacement_seeds_still_require_corner_evaluation(self):
+        rows = {row["device_id"]: row for row in self.result["parameter_method_assignments"]}
+        self.assertNotIn("nexperia_74hc20pw_118", rows)
+        for device_id in ("ti_ts3usb221erser", "ti_sn74lv20apwr", "nexperia_nx3008nbks_115"):
+            self.assertEqual("structured_seed_present", rows[device_id]["parameter_state"])
+            self.assertEqual("evaluate_authoritative_corners", rows[device_id]["missing_parameter_disposition"])
 
     def test_reproducibility_and_authorization_are_fail_closed(self):
         self.assertTrue(self.result["toolchain"]["runtime_accepted"])
@@ -56,7 +63,7 @@ class H3R2MethodContractTests(unittest.TestCase):
         for relative in ("docs/verification-methods.md", "docs/verification-methods.ru.md"):
             page = (ROOT / relative).read_text(encoding="utf-8")
             self.assertIn("H3-R2.0.3", page, relative)
-            self.assertIn("250", page, relative)
+            self.assertIn("252", page, relative)
             self.assertNotIn("historical R1", page, relative)
 
 

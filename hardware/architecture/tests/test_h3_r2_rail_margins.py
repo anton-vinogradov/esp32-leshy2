@@ -24,10 +24,14 @@ class H3R2RailMarginTest(unittest.TestCase):
 
     def test_every_load_line_has_one_owner(self):
         summary = self.manifest["ownership_summary"]
-        self.assertEqual(629, summary["physical_and_external_lines"])
-        self.assertEqual(629, summary["numeric_or_deferred_owner_lines"])
+        self.assertEqual(631, summary["physical_and_external_lines"])
+        self.assertEqual(631, summary["numeric_or_deferred_owner_lines"])
         self.assertEqual(0, summary["unowned_lines"])
         self.assertEqual(0, summary["hidden_miscellaneous_allowances"])
+        for instance in ("c5_service_path_logic", "c5_service_path_logic_bypass"):
+            uid = "LESHY2-UI-R2:" + instance
+            owners = [owner for owner, rows in summary["owner_instance_uids"].items() if uid in rows]
+            self.assertEqual(["aon_common"], owners)
 
     def test_provisional_algebra_is_not_qualified_current_power(self):
         self.assertEqual("fail", self.manifest["worst_current_by_rail"]["3V3_MAIN"]["numerical_status"])

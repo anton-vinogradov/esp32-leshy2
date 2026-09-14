@@ -55,13 +55,13 @@
     "m1_ui_plug.P36": "S3_RESET_KILL_GATE",
     "s3_reset_gate_pullup.END_1": "3V3_MAIN",
     "s3_reset_gate_pullup.END_2": "S3_RESET_KILL_GATE",
-    "safe_reset_sink_a.G1": "S3_RESET_KILL_GATE",
-    "safe_reset_sink_a.D1": "S3_RESET_N",
+    "safe_reset_sink_a.G2": "S3_RESET_KILL_GATE",
+    "safe_reset_sink_a.D2": "S3_RESET_N",
     "safe_c5_fault_reset_buffer.A": "FAULT_ASSERT_N",
     "safe_c5_fault_reset_buffer.Y": "C5_RESET_N",
     "safe_fault_reset_buffer.1A": "FAULT_ASSERT_N",
     "safe_fault_reset_buffer.1Y": "RF_RP_RESET_N",
-    "safe_reset_sink_b.D1": "RF_RP_RESET_N"
+    "safe_reset_sink_b.D2": "RF_RP_RESET_N"
   },
   "required_net_members": {
     "FAULT_KILL": [
@@ -75,7 +75,7 @@
       "m1_rf_receptacle.P36",
       "m1_ui_plug.P36",
       "s3_reset_gate_pullup.END_2",
-      "safe_reset_sink_a.G1"
+      "safe_reset_sink_a.G2"
     ],
     "FAULT_ASSERT_N": [
       "safety_fault_request_iso.Y",

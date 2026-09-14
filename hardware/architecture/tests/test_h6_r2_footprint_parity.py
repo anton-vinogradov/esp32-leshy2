@@ -37,8 +37,8 @@ class FootprintParityTests(unittest.TestCase):
     def test_published_report_is_hash_bound_to_actual_native_boards(self):
         data = json.loads(audit.OUTPUT.read_text())
         self.assertEqual([], data["errors"])
-        self.assertEqual(1216, data["summary"]["native_footprints"])
-        self.assertEqual(1216, data["summary"]["checked_footprints"])
+        self.assertEqual(1218, data["summary"]["native_footprints"])
+        self.assertEqual(1218, data["summary"]["checked_footprints"])
         for board in data["boards"]:
             self.assertEqual(board["board_sha256"], hashlib.sha256((ROOT/board["board"]).read_bytes()).hexdigest())
             self.assertEqual(board["native_footprint_count"], len(set(board["checked_references"])))

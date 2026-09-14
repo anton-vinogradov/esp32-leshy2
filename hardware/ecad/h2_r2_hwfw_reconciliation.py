@@ -165,14 +165,14 @@ def build() -> tuple[dict, dict]:
     expected_native_summary = {
         "project_count": 2,
         "project_graph_sheet_count": 22,
-        "fitted_symbol_instance_count": 1208,
-        "physical_symbol_pin_count": 4305,
+        "fitted_symbol_instance_count": 1210,
+        "physical_symbol_pin_count": 4321,
         # Both RP2354 QSPI_IOVDD pins are supply inputs on 3V3_MAIN;
         # only the internal-flash QSPI signal pins remain no-connect.
         # C5 GPIO28/U14.15 is the physical BOOT input, not a reserved NC.
-        "connected_physical_pin_count": 4071,
-        "explicit_no_connect_physical_pin_count": 234,
-        "canonical_net_count": 788,
+        "connected_physical_pin_count": 4085,
+        "explicit_no_connect_physical_pin_count": 236,
+        "canonical_net_count": 789,
     }
     for key, value in expected_native_summary.items():
         if native["summary"].get(key) != value:

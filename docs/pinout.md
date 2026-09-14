@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](pinout.ru.md) · [Hardware](hardware.md)
 
-This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. It still does not authorize fabrication: the live FSUSB42MUX/C11355 route, exact service-VBUS detector/latch/release implementation and TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff boundary are reviewed and materialized in accepted native R2 ECAD H2-R2.1.5.
+This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. The current C5 join is TS3USB221ERSER/C129313 plus two SN74LV20APWR/C2862070 (explicit Pre-order, not stock): an engineering schematic selection, not native, temperature/power-transition, timing or recovery qualification. The 2026-08-30 FSUSB42/HC20 closures are retained only as history. TCA9803DGKR/C2687966 remains the separate Pack/Safety powered-off-Ioff boundary. KILL policy is unchanged; fabrication is not authorized.
 
 > Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Pin-map artifact marker: **`H1-R2.31`**; current physical-design marker: **`H1-R2.39`**.
 
@@ -25,8 +25,8 @@ Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety
 | `8` | `C5_SDIO_CMD` | `io` | `PIO1_SM1_2_C5_SDIO` | direct pull-up/series branch -> C5 GPIO10 / module pad 12 | input/high-Z; branch-local 10-kohm pull-up; C5 and Hub held reset |
 | `9` | `C5_SDIO_D0` | `io` | `PIO1_SM1_2_C5_SDIO` | direct pull-up/series branch -> C5 GPIO8 / module pad 10 | input/high-Z; branch-local 10-kohm pull-up; C5 and Hub held reset |
 | `10` | `C5_SDIO_D1` | `io` | `PIO1_SM1_2_C5_SDIO` | direct pull-up/series branch -> C5 GPIO7 / module pad 9 | input/high-Z; branch-local 10-kohm pull-up also fixes the JTAG-source strap; C5 and Hub held reset |
-| `11` | `C5_SDIO_D2` | `io` | `PIO1_SM1_2_C5_SDIO` | FSUSB42 HSD2+ -> D+ common -> C5 GPIO14 / module pad 14 | input/high-Z; 10-kohm HSD2 branch pull-up disconnected from C5 in service mode |
-| `12` | `C5_SDIO_D3` | `io` | `PIO1_SM1_2_C5_SDIO` | FSUSB42 HSD2- -> D- common -> C5 GPIO13 / module pad 13 | input/high-Z; 10-kohm HSD2 branch pull-up disconnected from C5 in service mode |
+| `11` | `C5_SDIO_D2` | `io` | `PIO1_SM1_2_C5_SDIO` | TS3USB221E 2D+ -> D+ common -> C5 GPIO14 / module pad 14 | input/high-Z; 10-kohm 2D branch pull-up disconnected from C5 in service mode |
+| `12` | `C5_SDIO_D3` | `io` | `PIO1_SM1_2_C5_SDIO` | TS3USB221E 2D- -> D- common -> C5 GPIO13 / module pad 13 | input/high-Z; 10-kohm 2D branch pull-up disconnected from C5 in service mode |
 | `13` | `HUB_RF_SCK` | `out` | `PIO2_SM0_RF_SPI` | M1.24 -> RF RP GPIO26 | input/high-Z; external pull-down |
 | `14` | `HUB_RF_MOSI` | `out` | `PIO2_SM0_RF_SPI` | M1.26 -> RF RP GPIO24 | input/high-Z; external pull-down |
 | `15` | `HUB_RF_MISO` | `in` | `PIO2_SM0_RF_SPI` | M1.27 <- RF RP GPIO27 | input; external pull-down |
@@ -160,12 +160,13 @@ ROM UART recovery on the fixture, GPIO-matrix 40 MHz link timing and power-up/re
 - Simultaneous three-nRF RX/TX/mix, microSD, S3-Hub, Hub-C5 and Hub-RF traffic must pass emulator/dev-board timing before fabrication and HIL after assembly.
 - Reset-state voltage and no-back-power behavior must be measured for every switched/isolated branch.
 - The exact TCA9803DGKR/C2687966 Pack/Safety boundary is closed: two 2.2-kohm pull-ups terminate the MAIN A-side, while the AON B-side uses only the device's 3.3-mA current sources and forbids external pull-ups.
-- Native R2 ECAD must instantiate the reviewed H2-R2.0.1, H2-R2.0.2 and H2-R2.0.3 circuits exactly; this H1 authority still does not authorize fabrication or ordering.
+- The 2026-08-30 resolved_h2_gates and empty remaining_h2_gates are historical pre-ECAD checkpoint records, not current C5 acceptance. Current C5 uses TS3USB221ERSER 1D USB / 2D SDIO and two SN74LV20APWR NAND packages with an explicit Pre-order route, joined to the current C5 contract. Native topology, full-temperature levels, ramps, detector/latch behavior, switching timing and recovery still require verification; KILL policy is unchanged and this source join does not authorize fabrication or ordering.
 - The exact-one signed U214/U219 profile must pass received-unit pin continuity, protected-power, RF-switch, VNA and RX/NFC HIL before the U219 branch can be enabled.
 
-## Exact dual-NMOS pin map
+## Historical G2F dual-NMOS pin map
 
-`Diodes Incorporated 2N7002DW-7-F` / JLC `C83571` keeps the exact physical SOT-363 top-view mapping.
+The retained historical G2F map below does not define current reset sinks: three reset instances are being replaced by NX3008NBKS,115 with exchanged half names and preserved physical nets; the two Pack instances remain 2N7002DW. Current contacts are defined by the device register and native ledger.
+Historical `Diodes Incorporated 2N7002DW-7-F` / JLC `C83571` physical SOT-363 top-view mapping:
 
 | Physical pin | Terminal |
 |---:|---|

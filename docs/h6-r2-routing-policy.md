@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-routing-policy.ru.md)
 
-**Status:** 🟡 all 822 physical nets across both boards (788 canonical) are assigned to 13 classes. This page preserves the accepted `GENERAL_CONTROL`, all 12 crystal/oscillator nets and `SAFETY_CONTROL` slice on the former 75-mm geometry as historical evidence. The live 80-mm board state is published by the separate H6.0.3 checkpoint.
+**Status:** 🟡 all 823 physical nets across both boards (789 canonical) are assigned to 13 classes. This page preserves the accepted `GENERAL_CONTROL`, all 12 crystal/oscillator nets and `SAFETY_CONTROL` slice on the former 75-mm geometry as historical evidence. The live 80-mm board state is published by the separate H6.0.3 checkpoint.
 
 | Class | Nets | Method | Geometry release |
 | --- | ---: | --- | --- |
@@ -17,8 +17,8 @@
 | `CLOCKED_DIGITAL` | 142 | manual | `H6.0.4` |
 | `SAFETY_CONTROL` | 111 | manual | `H6.0.2` |
 | `SERIAL_CONTROL` | 74 | manual | `H6.0.4` |
-| `ANALOG_AUDIO_SENSE` | 143 | manual | `H6.0.2` |
-| `GENERAL_CONTROL` | 162 | automatic proposal + manual review | `H6.0.2` |
+| `ANALOG_AUDIO_SENSE` | 142 | manual | `H6.0.2` |
+| `GENERAL_CONTROL` | 164 | automatic proposal + manual review | `H6.0.2` |
 
 ## What is locked
 
@@ -33,7 +33,7 @@
 
 ## Disposable helper workspace
 
-`hardware/layout/h6_r2_routing_workspace.py` exports temporary DSNs without the protected net definitions. Pads and components remain as physical obstacles, but Freerouting can see only `GENERAL_CONTROL` nets: `59` on the UI board and `103` on the RF/power board. This explicit filter is required because Freerouting 2.3.0 parses ignore-class and layer-active settings in headless mode but applies them only in the GUI loader. The disposable DSN therefore also declares `In1.Cu`/`In4.Cu` as non-signal layers. Generated DSNs and sessions are review inputs, never source or release artifacts. The helper may use only `F.Cu`, `In2.Cu`, `In3.Cu` and `B.Cu`; `In1.Cu`/`In4.Cu` remain uninterrupted reference planes, and the via cost is raised to `250`.
+`hardware/layout/h6_r2_routing_workspace.py` exports temporary DSNs without the protected net definitions. Pads and components remain as physical obstacles, but Freerouting can see only `GENERAL_CONTROL` nets: `61` on the UI board and `103` on the RF/power board. This explicit filter is required because Freerouting 2.3.0 parses ignore-class and layer-active settings in headless mode but applies them only in the GUI loader. The disposable DSN therefore also declares `In1.Cu`/`In4.Cu` as non-signal layers. Generated DSNs and sessions are review inputs, never source or release artifacts. The helper may use only `F.Cu`, `In2.Cu`, `In3.Cu` and `B.Cu`; `In1.Cu`/`In4.Cu` remain uninterrupted reference planes, and the via cost is raised to `250`.
 
 ## Accepted H6.0.2 slice
 

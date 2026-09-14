@@ -199,10 +199,19 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
         self.assertIn("U219 CC1101 GDO0", rf[41]["endpoint"])
         self.assertIn("U219 CC1101_CS_N", rf[47]["endpoint"])
 
-    def test_all_pre_ecad_electrical_gates_are_closed_without_claiming_export(self):
+    def test_historical_gate_closure_is_not_current_c5_qualification(self):
         audit = MODULE.build(self.source, self.h0)
         self.assertFalse(audit["authority"]["r2_h2_authorized"])
-        self.assertIn("closed", audit["authority"]["c5_electrical_join_status"])
+        self.assertEqual("engineering_schematic_join_not_functionally_qualified",
+                         audit["authority"]["c5_electrical_join_status"])
+        self.assertEqual("historical_2026-08-30_not_current_C5_qualification",
+                         audit["authority"]["h2_gate_history_scope"])
+        current = audit["authority"]["current_c5_join"]
+        self.assertEqual("TS3USB221ERSER", current["mux_mpn"])
+        self.assertEqual("SN74LV20APWR", current["nand_mpn"])
+        self.assertEqual(2, current["nand_package_count"])
+        self.assertEqual("explicit JLCPCB Pre-order", current["nand_route"])
+        self.assertTrue(all(value is False for value in current["qualification"].values()))
         resolved = " ".join(audit["authority"]["resolved_h2_gates"])
         self.assertIn("C11355", resolved)
         self.assertIn("SN74LVC1G74DCUR", resolved)
@@ -211,12 +220,56 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
         c5 = [row for row in self.source["hub_rp"]["pin_map"] if row["net"].startswith("C5_SDIO_")]
         self.assertEqual(6, len(c5))
         self.assertIn("C5 GPIO9 / module pad 11", c5[0]["endpoint"])
-        self.assertIn("FSUSB42 HSD2+", c5[4]["endpoint"])
-        self.assertIn("FSUSB42 HSD2-", c5[5]["endpoint"])
+        self.assertIn("TS3USB221E 2D+", c5[4]["endpoint"])
+        self.assertIn("TS3USB221E 2D-", c5[5]["endpoint"])
         hub = {row["gpio"]: row for row in self.source["hub_rp"]["pin_map"]}
         self.assertIn("TCA9803DGKR SDAA", hub[42]["endpoint"])
         self.assertIn("TCA9803DGKR SCLA", hub[43]["endpoint"])
         self.assertIn("no external B-side pull-up", hub[42]["reset"])
+
+    def test_c5_join_rejects_retired_branch_and_false_current_acceptance(self):
+        c5, u219 = MODULE.load(MODULE.C5_MUX), MODULE.load(MODULE.U219)
+        for gpio in (11, 12):
+            broken = copy.deepcopy(self.source)
+            broken["hub_rp"]["pin_map"][gpio]["endpoint"] = broken["hub_rp"]["pin_map"][gpio]["endpoint"].replace("TS3USB221E 2D", "FSUSB42 HSD2")
+            self.assertTrue(MODULE.validate(broken, self.h0, c5, u219))
+        for key, wrong in (("c5_electrical_join_status", "closed and materialized"),
+                           ("h2_gate_history_scope", "current_closed"),
+                           ("current_c5_join", {})):
+            broken = copy.deepcopy(self.source)
+            broken["authority_chain"][key] = wrong
+            self.assertTrue(MODULE.validate(broken, self.h0, c5, u219))
+        for key in self.source["authority_chain"]["current_c5_join"]["qualification"]:
+            for wrong in (True, 0):
+                broken = copy.deepcopy(self.source)
+                broken["authority_chain"]["current_c5_join"]["qualification"][key] = wrong
+                self.assertTrue(MODULE.validate(broken, self.h0, c5, u219))
+
+    def test_c5_join_reuses_actual_control_and_procurement_validation(self):
+        c5, u219 = MODULE.load(MODULE.C5_MUX), MODULE.load(MODULE.U219)
+        broken = copy.deepcopy(c5)
+        broken["production_mux_route"]["candidate"]["mpn"] = "FSUSB42MUX"
+        self.assertTrue(MODULE.validate(self.source, self.h0, broken, u219))
+        broken = copy.deepcopy(c5)
+        broken["ownership"]["control_mapping"]["equations"]["SEL"] = "!O&R"
+        self.assertTrue(MODULE.validate(self.source, self.h0, broken, u219))
+        broken = copy.deepcopy(c5)
+        qualifier = broken["ownership"]["detector_latch_implementation"]["release_qualifier"]
+        qualifier["live_inventory"]["explicit_preorder_offered"] = False
+        self.assertTrue(MODULE.validate(self.source, self.h0, broken, u219))
+
+    def test_current_render_does_not_requalify_retired_c5_or_reset_map(self):
+        candidate = MODULE.load(MODULE.G2F)
+        for russian in (False, True):
+            page = MODULE.render_public(self.source, candidate, russian)
+            self.assertIn("TS3USB221ERSER/C129313", page)
+            self.assertIn("SN74LV20APWR/C2862070", page)
+            self.assertIn("Pre-order", page)
+            self.assertIn("2026-08-30", page)
+            self.assertIn("NX3008NBKS,115", page)
+            self.assertNotIn("FSUSB42 HSD2", page)
+            self.assertNotIn("materialized in accepted native", page)
+            self.assertNotIn("материализованы в принятой native", page)
 
     def test_pin_or_budget_regression_fails_closed(self):
         broken = copy.deepcopy(self.source)
@@ -284,7 +337,7 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
         candidate = json.loads(MODULE.G2F.read_text(encoding="utf-8"))
         self.assertEqual(MODULE.render_public(self.source, candidate, False), MODULE.DOC_EN.read_text(encoding="utf-8"))
         self.assertEqual(MODULE.render_public(self.source, candidate, True), MODULE.DOC_RU.read_text(encoding="utf-8"))
-        self.assertIn("FSUSB42MUX/C11355", MODULE.DOC_EN.read_text(encoding="utf-8"))
+        self.assertIn("TS3USB221ERSER/C129313", MODULE.DOC_EN.read_text(encoding="utf-8"))
         self.assertIn("TCA9803DGKR/C2687966", MODULE.DOC_EN.read_text(encoding="utf-8"))
         self.assertIn("S3 GPIO7 through GPIO matrix", MODULE.DOC_EN.read_text(encoding="utf-8"))
         self.assertIn("Dedicated S3 ROM-UART routing", MODULE.DOC_EN.read_text(encoding="utf-8"))

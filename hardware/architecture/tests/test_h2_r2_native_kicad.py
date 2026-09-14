@@ -41,7 +41,7 @@ class H2R2NativeKiCadTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("2 native projects, 22 sheets, 1208 symbols, 4305 pins", result.stdout)
+        self.assertIn("2 native projects, 22 sheets, 1210 symbols, 4321 pins", result.stdout)
 
     def test_exact_project_sheet_instance_and_pin_totals_close(self):
         self.assertEqual("pass", self.manifest["status"])
@@ -50,12 +50,12 @@ class H2R2NativeKiCadTests(unittest.TestCase):
         self.assertEqual(2, summary["project_count"])
         self.assertEqual(22, summary["project_graph_sheet_count"])
         self.assertEqual(18, summary["populated_sheet_count"])
-        self.assertEqual(1208, summary["fitted_symbol_instance_count"])
-        self.assertEqual(4305, summary["physical_symbol_pin_count"])
-        self.assertEqual(4071, summary["connected_physical_pin_count"])
-        self.assertEqual(234, summary["explicit_no_connect_physical_pin_count"])
+        self.assertEqual(1210, summary["fitted_symbol_instance_count"])
+        self.assertEqual(4321, summary["physical_symbol_pin_count"])
+        self.assertEqual(4085, summary["connected_physical_pin_count"])
+        self.assertEqual(236, summary["explicit_no_connect_physical_pin_count"])
         self.assertEqual(5, summary["external_module_interface_annotation_count"])
-        self.assertEqual(788, summary["canonical_net_count"])
+        self.assertEqual(789, summary["canonical_net_count"])
 
     def test_every_controlled_physical_pin_has_one_connected_or_nc_target(self):
         rows_by_instance = {}
@@ -80,7 +80,34 @@ class H2R2NativeKiCadTests(unittest.TestCase):
                     no_connect += 1
                     self.assertEqual("no_connect", disposition)
                     self.assertIsNone(net)
-        self.assertEqual((4305, 4071, 234), (physical, connected, no_connect))
+        self.assertEqual((4321, 4085, 236), (physical, connected, no_connect))
+
+    def test_c5_ti_rse_identity_has_ten_real_pins_and_exact_common_pair(self):
+        instances = [row for row in self.instances if row["instance"] == "c5_service_usb_switch"]
+        self.assertEqual(1, len(instances))
+        self.assertEqual(
+            ("LESHY2-UI-R2", "U22", "ti_ts3usb221erser", "TS3USB221ERSER",
+             "Package_DFN_QFN:Texas_UQFN-10_1.5x2mm_P0.5mm", False),
+            tuple(instances[0][key] for key in ("project", "reference", "device_id", "mpn", "footprint", "bom_excluded")))
+        symbol_pins = self.symbols["ti_ts3usb221erser"]["pin_map"]
+        self.assertEqual([str(pin) for pin in range(1, 11)],
+                         sorted((pin["number"] for pin in symbol_pins), key=int))
+        pins = {
+            "HSD1_PLUS": ("1", "C5_SERVICE_USB_DP_BRANCH"),
+            "HSD1_MINUS": ("2", "C5_SERVICE_USB_DM_BRANCH"),
+            "HSD2_PLUS": ("3", "HUB_C5_SDIO_DAT2_BRANCH"),
+            "HSD2_MINUS": ("4", "HUB_C5_SDIO_DAT3_BRANCH"),
+            "GND": ("5", "POWER_GROUND"), "OE": ("6", "C5_MUX_DISABLE"),
+            "D_MINUS": ("7", "C5_GPIO13_COMMON"), "D_PLUS": ("8", "C5_GPIO14_COMMON"),
+            "SEL": ("9", "C5_MUX_SEL_REQUEST"), "VCC": ("10", "3V3_MAIN"),
+        }
+        rows = [row for row in self.nets if row["instance"] == "c5_service_usb_switch"]
+        self.assertEqual(10, len(rows))
+        self.assertEqual(set(pins), {row["contact"] for row in rows})
+        for row in rows:
+            role = "power" if row["contact"] in ("VCC", "GND") else "signal"
+            self.assertEqual(("LESHY2-UI-R2", "U22", "ti_ts3usb221erser", *pins[row["contact"]], role, "connected"),
+                             tuple(row[key] for key in ("project", "reference", "device_id", "physical", "net", "role", "disposition")))
 
     def test_module_receptacles_are_annotations_not_false_pcb_pins(self):
         external = [
@@ -102,7 +129,7 @@ class H2R2NativeKiCadTests(unittest.TestCase):
 
     def test_two_schematic_projects_are_complete_and_h2_manifest_stops_before_pcb(self):
         expected = {
-            "LESHY2-UI-R2": (9, 428),
+            "LESHY2-UI-R2": (9, 430),
             "LESHY2-RF-R2": (13, 780),
         }
         actual = {row["id"]: (row["sheet_count"], row["instance_count"]) for row in self.manifest["projects"]}

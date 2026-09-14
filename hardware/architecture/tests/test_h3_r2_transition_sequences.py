@@ -1,3 +1,5 @@
+import copy
+import importlib.util
 import json
 import subprocess
 import unittest
@@ -7,12 +9,45 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = ROOT / "hardware/verification/h3_r2_transition_sequences.py"
 OUTPUT = ROOT / "hardware/verification/generated/H3-R2-transition-sequences.json"
+SPEC = importlib.util.spec_from_file_location("h3_transition_test", SCRIPT)
+MODULE = importlib.util.module_from_spec(SPEC)
+assert SPEC.loader is not None
+SPEC.loader.exec_module(MODULE)
 
 
 class H3R2TransitionSequenceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.report = json.loads(OUTPUT.read_text(encoding="utf-8"))
+        # Source-only replay; the separate --check test still binds published outputs.
+        _, cls.report = MODULE.build()
+
+    def test_nx_halves_preserve_exact_physical_reset_nets(self):
+        nets = MODULE.load(MODULE.NETS)["rows"]
+        instances = MODULE.load(MODULE.INSTANCES)["rows"]
+        devices = MODULE.load(MODULE.DEVICES)["devices"]
+        checks = MODULE.reset_sink_physical_checks(nets, instances, devices)
+        self.assertEqual(17, len(checks))
+        self.assertTrue(all(checks.values()), checks)
+        contract = MODULE.load(MODULE.CONTRACT)
+        self.assertEqual("S3_RESET_KILL_GATE", contract["required_endpoints"]["safe_reset_sink_a.G2"])
+        self.assertNotIn("safe_reset_sink_a.G1", contract["required_net_members"]["S3_RESET_KILL_GATE"])
+        for name in ("safe_reset_sink_a", "safe_reset_sink_b"):
+            actual = [row for row in nets if row["instance"] == name]
+            # A name-only change cannot pass if either the physical pad or net
+            # is wrong; a duplicated endpoint must not disappear into a dict.
+            for row in actual:
+                for key, wrong in (("physical", "99"), ("net", "WRONG_NET"),
+                                   ("device_id", "diodes_2n7002dw_7_f"), ("reference", "Q2")):
+                    broken = copy.deepcopy(nets)
+                    next(value for value in broken if value["endpoint"] == row["endpoint"])[key] = wrong
+                    self.assertFalse(all(MODULE.reset_sink_physical_checks(broken, instances, devices).values()))
+            broken = nets + [copy.deepcopy(actual[0])]
+            self.assertFalse(all(MODULE.reset_sink_physical_checks(broken, instances, devices).values()))
+        old_pin_map = copy.deepcopy(devices)
+        contacts = old_pin_map["nexperia_nx3008nbks_115"]["contacts"]
+        for left, right in (("G1", "G2"), ("D1", "D2"), ("S1", "S2")):
+            contacts[left]["physical"], contacts[right]["physical"] = contacts[right]["physical"], contacts[left]["physical"]
+        self.assertFalse(all(MODULE.reset_sink_physical_checks(nets, instances, old_pin_map).values()))
 
     def test_generator_is_current(self):
         result = subprocess.run(

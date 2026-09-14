@@ -8,13 +8,13 @@ Open: `startup current exceeds minimum hardware limit on 3V3_MAIN`; `load-step e
 
 [Machine evidence](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
 
-The generator accounts for **132** fitted capacitors from the current R2 net ledger and applies the stated capacitance tolerances. Separate calculations for five protected outputs are retained. MAIN, voice and external 5-V paths use nominal slew arithmetic with minimum control capacitance; AON is treated as a current-limited start.
+The generator accounts for **133** fitted capacitors from the current R2 net ledger and applies the stated capacitance tolerances. Separate calculations for five protected outputs are retained. MAIN, voice and external 5-V paths use nominal slew arithmetic with minimum control capacitance; AON is treated as a current-limited start.
 
 ## Capacitance, load and provisional headroom
 
 | Rail | C max, µF | Worst load, mA | Capacitive inrush, mA | Margin to model protection minimum, mA | Numerical comparison |
 |---|---:|---:|---:|---:|---|
-| `AON_SAFE_3V3` | 42.710000 | 72.100 | 92.900 | 0.000 | pass |
+| `AON_SAFE_3V3` | 42.820000 | 72.100 | 92.900 | 0.000 | pass |
 | `3V3_MAIN` | 91.110000 | 3046.000 | 71.079 | -44.118 | fail |
 | `VVOICE_4V` | 12.000000 | 750.000 | 9.362 | 790.638 | pass |
 | `5V_U214_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | pass |

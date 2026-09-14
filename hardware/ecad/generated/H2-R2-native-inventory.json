@@ -10,7 +10,7 @@
     },
     "pin_map": {
       "path": "hardware/architecture/h1-r2-dual-rp-pinout.json",
-      "sha256": "a146ebd096894794ec123031c7e35bfe4cb509db98d120409065bdd30c084e15"
+      "sha256": "e483852c3f4b260d676255fdf0b3ad250281032dba728c982b947033e3cce33b"
     },
     "physical": {
       "path": "hardware/product-design/h1-r2-placement.json",
@@ -22,7 +22,7 @@
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9"
+      "sha256": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e"
     },
     "component_groups": {
       "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
@@ -34,7 +34,7 @@
     },
     "c5_mux_and_service_vbus": {
       "path": "hardware/architecture/c5-sdio-service-mux-contract.json",
-      "sha256": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3"
+      "sha256": "d172126591118bf78bbb9b8c24cdedfe037e4ec7179b2898a38ffbaa93cfae3d"
     },
     "pack_safety_boundary": {
       "path": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
@@ -279,8 +279,8 @@
     "project_count": 2,
     "sheet_count": 22,
     "domain_count": 6,
-    "component_group_count": 250,
-    "component_quantity_per_product": 1218,
+    "component_group_count": 252,
+    "component_quantity_per_product": 1220,
     "external_antenna_group_count": 8,
     "external_antenna_count": 12,
     "unresolved_pre_ecad_prerequisites": 0,
@@ -543,7 +543,7 @@
     {
       "device_id": "diodes_2n7002dw_7_f",
       "mpn": "Diodes Incorporated 2N7002DW-7-F",
-      "quantity_per_product": 5,
+      "quantity_per_product": 2,
       "scope": "base_product",
       "role": "pack_hold;pack_status_buffer;safe_reset_sink_a;safe_reset_sink_b",
       "ecad_disposition": "schematic_component_group",
@@ -554,9 +554,9 @@
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": null,
       "bom_excluded": false,
-      "r2_adjustment": "independent Hub reset sinks for global safety and C5 service ownership",
+      "r2_adjustment": "replace only safe_reset_sink_a/b with NX3008NBKS; retain Pack hold/status Q2/Q3 as separately unqualified existing circuits; C5 Hub reset sink is allocated in the new NX group",
       "r2_sheet_assignment": [
-        "UI_20_C5_WIFI_IR_SERVICE"
+        "RF_02_PACK_SAFETY_AON"
       ]
     },
     {
@@ -1835,24 +1835,6 @@
       ]
     },
     {
-      "device_id": "nexperia_74hc20pw_118",
-      "mpn": "74HC20PW,118",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "dual four-input NAND for qualified ownership release and asynchronous mux disconnect",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "accepted_exact_service_release_qualifier",
-      "lifecycle": "active_orderable_factory_stocked",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C546719",
-      "accepted_identity_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
-      "historical_cost_route_only": null,
-      "bom_excluded": false,
-      "r2_sheet_assignment": [
-        "UI_20_C5_WIFI_IR_SERVICE"
-      ]
-    },
-    {
       "device_id": "nexperia_74lvc126apw_118",
       "mpn": "Nexperia 74LVC126APW,118",
       "quantity_per_product": 8,
@@ -1931,6 +1913,24 @@
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": null,
       "bom_excluded": false
+    },
+    {
+      "device_id": "nexperia_nx3008nbks_115",
+      "mpn": "NX3008NBKS,115",
+      "quantity_per_product": 3,
+      "scope": "base_product",
+      "role": "c5_service_hub_reset_sink,safe_reset_sink_a,safe_reset_sink_b",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "engineering_candidate_not_electrically_or_hil_qualified",
+      "lifecycle": "active_catalog_part_stocked_at_capture",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C396098",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "bom_excluded": false,
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE"
+      ]
     },
     {
       "device_id": "nexperia_pesd24vy1bsf",
@@ -2040,7 +2040,7 @@
     {
       "device_id": "onsemi_fsusb42_mux",
       "mpn": "onsemi FSUSB42MUX",
-      "quantity_per_product": 3,
+      "quantity_per_product": 2,
       "scope": "base_product",
       "role": "c5_service_usb_switch;rp_service_usb_switch",
       "ecad_disposition": "schematic_component_group",
@@ -2050,7 +2050,12 @@
       "jlcpcb_part_number": null,
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": null,
-      "bom_excluded": false
+      "bom_excluded": false,
+      "r2_adjustment": "replace only c5_service_usb_switch with TI TS3USB221ERSER; both RP service switches retain FSUSB42",
+      "r2_sheet_assignment": [
+        "UI_30_HUB_RP_CORE_SERVICE",
+        "RF_10_RP2354_CORE_SERVICE"
+      ]
     },
     {
       "device_id": "panasonic_erj_2rkf22r0x",
@@ -2626,6 +2631,24 @@
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": null,
       "bom_excluded": false
+    },
+    {
+      "device_id": "ti_sn74lv20apwr",
+      "mpn": "SN74LV20APWR",
+      "quantity_per_product": 2,
+      "scope": "base_product",
+      "role": "c5_service_release_logic,c5_service_path_logic",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "engineering_candidate_not_electrically_or_hil_qualified",
+      "lifecycle": "active_catalog_part_explicit_preorder_route",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C2862070",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "bom_excluded": false,
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE"
+      ]
     },
     {
       "device_id": "ti_sn74lvc08a_pwr",
@@ -3217,6 +3240,24 @@
       "bom_excluded": false
     },
     {
+      "device_id": "ti_ts3usb221erser",
+      "mpn": "TS3USB221ERSER",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "c5_service_usb_switch",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "engineering_candidate_not_electrically_or_hil_qualified",
+      "lifecycle": "active_catalog_part_stocked_at_capture",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C129313",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "bom_excluded": false,
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE"
+      ]
+    },
+    {
       "device_id": "ti_ts5a63157_dckr",
       "mpn": "Texas Instruments TS5A63157DCKR",
       "quantity_per_product": 3,
@@ -3602,7 +3643,7 @@
     {
       "device_id": "yageo_cc0402krx7r9bb104",
       "mpn": "Yageo CC0402KRX7R9BB104",
-      "quantity_per_product": 173,
+      "quantity_per_product": 174,
       "scope": "base_product",
       "role": "aon_efuse_input_cap;audio_capture_buffer_bypass;audio_capture_selector_bypass;audio_rx_mux_bypass;audio_safe_gate_bypass;audio_speaker_selector_bypass;audio_tx_selector_bypass;backlight_efuse_input_cap;backlight_efuse_output_hf;c5_detector_bypass;c5_service_usb_switch_bypass;cc_avdd11_bypass;cc_avdd14_bypass;cc_avdd15_bypass;cc_avdd9_bypass;cc_backup_gate_bypass;cc_band_buffer_bypass;cc_dcoupl_cap;cc_detector_bypass;cc_dvdd_bypass;cc_host_buffer_bypass;cc_return_buffer_bypass;charger_pmid_hf_cap;charger_sys_hf_cap;charger_vbus_hf_cap;codec_avdd_bypass;codec_dvdd_bypass;codec_i2c_iso_bypass;codec_i2s_bclk_iso_bypass;codec_i2s_din_boot_gate_bypass;codec_i2s_din_iso_bypass;codec_i2s_dout_iso_bypass;codec_i2s_ws_iso_bypass;codec_pvdd_bypass;codec_supervisor_bypass;display_logic_hf_cap;evidence_cmp_a_bypass;evidence_cmp_b_bypass;evidence_cmp_voice_bypass;evidence_cmp_voice_v_bypass;evidence_main_isolator_bypass;evidence_mask_bypass;ext_branch_gate_bypass;ext_buck_hf_input_cap;ext_evidence_buffer_bypass;ext_request_or_bypass;headset_control_io_bypass;headset_mic_selector_bypass;ir_evidence_amp_bypass;ir_evidence_vref_cap;ir_power_output_bypass;ir_return_buffer_bypass;ir_safe_gate_bypass;main_hf_input_cap;nrf0_detector_bypass;nrf0_host_buffer_bypass;nrf0_module_hf_cap;nrf0_return_buffer_bypass;nrf1_detector_bypass;nrf1_host_buffer_bypass;nrf1_module_hf_cap;nrf1_return_buffer_bypass;nrf2_detector_bypass;nrf2_host_buffer_bypass;nrf2_module_hf_cap;nrf2_return_buffer_bypass;nrf_backup_gate_bypass;pack_admission_bypass;pack_batts_filter_cap;pack_cell1_filter_cap;pack_chg_gate_cap;pack_diag_timer_bypass;pack_dis_gate_cap;pack_in_bypass;pd_eeprom_bypass;power_command_filter;power_zone_temp_filter;ptt_filter_cap;receiver_i2c_iso_bypass;receiver_irq_iso_bypass;receiver_supervisor_bypass;receiver_vdd_bypass;rf_zone_temp_filter;rp_adc_avdd_bypass;rp_dvdd10_bypass;rp_dvdd32_bypass;rp_dvdd51_bypass;rp_iovdd15_bypass;rp_iovdd24_bypass;rp_iovdd29_bypass;rp_iovdd41_bypass;rp_iovdd50_bypass;rp_iovdd5_bypass;rp_iovdd60_bypass;rp_iovdd76_bypass;rp_qspi_iovdd_bypass;rp_service_usb_switch_bypass;rp_usb_otp_vdd_bypass;run_loop_filter;s3_detector_bypass;s3_supply_bypass;safe_c5_fault_reset_buffer_bypass;safe_c5_reset_buffer_bypass;safe_conditioner_bypass;safe_fault_reset_buffer_bypass;safe_gate_a_bypass;safe_gate_b_bypass;safe_latch_bypass;safe_ptt_or_bypass;safe_rearm_buffer_bypass;safe_reset_buffer_bypass;safe_run_fault_iso_bypass;safe_supervisor_bypass;safety_controller_bypass;safety_fault_request_iso_bypass;safety_s3_reset_iso_bypass;safety_watchdog_bypass;sd_detect_cap;sd_host_buffer_bypass;sd_miso_buffer_bypass;sd_power_hf_cap;slow_io_fault_sense_iso_bypass;slow_io_s3_evidence_iso_bypass;slow_io_vcci_bypass;slow_io_vccp_bypass;touch_irq_buffer_bypass;u214_host_buffer_a_bypass;u214_host_buffer_b_bypass;u214_i2c_iso_bypass;u214_return_buffer_bypass;u214_supervisor_bypass;ui_matrix_io_bypass;ui_zone_temp_filter;unit_signal_iso_vcca_bypass;unit_signal_iso_vccb_bypass;unit_supervisor_bypass;voice_audio_mux_bypass;voice_band_inverter_bypass;voice_band_io_bypass;voice_control_mux_a_bypass;voice_control_mux_b_bypass;voice_detector_bypass;voice_hf_input_cap;voice_hl_driver_bypass;voice_pd_gate_bypass;voice_supervisor_bypass;voice_v_detector_bypass",
       "ecad_disposition": "schematic_component_group",

@@ -1954,6 +1954,7 @@ def svg_bytes(audit: dict) -> bytes:
         "reviewed H6.0.3 native-silkscreen-clearance correction": ("#fdf2f8", "#db2777"),
         "reviewed outward connector mouth datum": ("#ecfdf5", "#047857"),
         "reviewed audio local-support correction": ("#f0fdf4", "#16a34a"),
+        "reviewed C5 control ECO, retained copper": ("#f0fdf4", "#16a34a"),
         "hard H1 datum with conflict": ("#fee2e2", "#dc2626"),
     }
     out = [

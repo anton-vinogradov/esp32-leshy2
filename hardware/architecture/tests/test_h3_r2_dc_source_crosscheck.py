@@ -34,9 +34,12 @@ class H3R2DcSourceCrosscheckTest(unittest.TestCase):
         self.assertEqual(2266, coverage["legal_states"])
         self.assertEqual(56, coverage["operating_profiles"])
         self.assertEqual(224, coverage["rail_profiles"])
-        self.assertEqual(629, coverage["physical_and_external_loads"])
-        self.assertEqual(552, coverage["direct_numeric_rail_owners"])
+        # C5 U59 logic + C86 bypass are two additional AON-owned load lines.
+        self.assertEqual(631, coverage["physical_and_external_loads"])
+        self.assertEqual(554, coverage["direct_numeric_rail_owners"])
         self.assertEqual(77, coverage["source_pack_owners"])
+        self.assertEqual(coverage["physical_and_external_loads"],
+                         coverage["direct_numeric_rail_owners"] + coverage["source_pack_owners"])
 
     def test_published_result_and_authorization_boundary(self):
         result = self.manifest["result"]

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 from typing import Any
@@ -14,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "hardware/architecture/h1-r2-dual-rp-pinout.json"
 H0 = ROOT / "hardware/architecture/h0-r2-rebaseline.json"
 C5_MUX = ROOT / "hardware/architecture/c5-sdio-service-mux-contract.json"
+C5_VALIDATOR = ROOT / "hardware/architecture/c5_sdio_service_mux.py"
 PACK_SAFETY_I2C = ROOT / "hardware/architecture/pack-safety-i2c-boundary-contract.json"
 U219 = ROOT / "hardware/architecture/h1-r2-u219-cap.json"
 DEVICES = ROOT / "hardware/architecture/devices.json"
@@ -145,10 +147,11 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
     if authority.get("rp2354b_fixed_mux_source") != \
             "https://github.com/raspberrypi/pico-sdk/blob/master/src/rp2_common/hardware_gpio/include/hardware/gpio.h":
         errors.append("dual-RP authority must cite the official RP2350 fixed-mux table")
-    if "closed" not in authority.get("c5_electrical_join_status", ""):
-        errors.append("C5 electrical pad/mux join must be explicit")
-    if authority.get("remaining_h2_gates") != []:
-        errors.append("all three pre-ECAD H2 electrical gates must be closed")
+    if authority.get("c5_electrical_join_status") != "engineering_schematic_join_not_functionally_qualified":
+        errors.append("C5 source join must not claim native or functional qualification")
+    if (authority.get("h2_gate_history_scope") != "historical_2026-08-30_not_current_C5_qualification"
+            or authority.get("remaining_h2_gates") != []):
+        errors.append("retained pre-ECAD H2 gate records must be explicitly historical")
     resolved = " ".join(authority.get("resolved_h2_gates", []))
     for token in (
         "H2-R2.0.1", "FSUSB42MUX", "C11355", "H2-R2.0.2",
@@ -156,7 +159,7 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
         "TCA9803DGKR", "C2687966",
     ):
         if token not in resolved:
-            errors.append(f"resolved C5 production gates must name {token}")
+            errors.append(f"historical pre-ECAD gate records must retain {token}")
     boundary = pack_safety_i2c.get("buffer", {})
     if (pack_safety_i2c.get("marker"), boundary.get("mpn"),
             boundary.get("jlcpcb_part_number")) != ("H2-R2.0.3", "TCA9803DGKR", "C2687966"):
@@ -326,8 +329,8 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
         "C5_SDIO_CMD": (8, "C5 GPIO10 / module pad 12"),
         "C5_SDIO_D0": (9, "C5 GPIO8 / module pad 10"),
         "C5_SDIO_D1": (10, "C5 GPIO7 / module pad 9"),
-        "C5_SDIO_D2": (11, "FSUSB42 HSD2+", "C5 GPIO14 / module pad 14"),
-        "C5_SDIO_D3": (12, "FSUSB42 HSD2-", "C5 GPIO13 / module pad 13"),
+        "C5_SDIO_D2": (11, "TS3USB221E 2D+", "C5 GPIO14 / module pad 14"),
+        "C5_SDIO_D3": (12, "TS3USB221E 2D-", "C5 GPIO13 / module pad 13"),
     }
     if set(c5_rows) != set(expected_c5_endpoints):
         errors.append("Hub-side C5 bus must contain exactly CLK/CMD/DAT0..DAT3")
@@ -347,18 +350,28 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
         errors.append("joined C5 source no longer contains the exact fixed SDIO/module-pad map")
     route = c5_mux.get("production_mux_route", {})
     candidate = route.get("candidate", {})
-    if (candidate.get("mpn"), candidate.get("jlcpcb_part_number")) != ("FSUSB42MUX", "C11355"):
-        errors.append("joined C5 source lost exact FSUSB42MUX/C11355 identity")
-    inventory = route.get("live_inventory", {})
-    inventory_complete = all(inventory.get(key) is not None for key in (
-        "stock", "available_order_quantity", "moq", "price_tiers_usd"
-    ))
-    if route.get("selection_status") != "accepted" or not inventory_complete:
-        errors.append("C11355 production route must remain fail-closed until live route/MOQ/price are proven")
-    service_vbus = c5_mux.get("ownership", {}).get("service_vbus", {})
-    if service_vbus.get("detector_and_latch_mpn_status") != "accepted" \
-            or not c5_mux.get("ownership", {}).get("detector_latch_implementation"):
-        errors.append("service-VBUS detector/latch must remain fail-closed until the exact implementation is accepted")
+    if (candidate.get("mpn"), candidate.get("jlcpcb_part_number")) != ("TS3USB221ERSER", "C129313"):
+        errors.append("joined C5 source lost exact TS3USB221ERSER/C129313 identity")
+    # Reuse the source-only validator, including its explicit zero-stock Pre-order
+    # route and sequence checks. This does not run a generator or native tool.
+    spec = importlib.util.spec_from_file_location("h1_joined_c5_mux", C5_VALIDATOR)
+    checker = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(checker)
+    c5_audit = checker.build(c5_mux, devices, h0)
+    errors.extend(f"joined C5 contract: {error}" for error in c5_audit["errors"])
+    expected_join = {
+        "selection_scope": "engineering_schematic_only",
+        "mux_device_id": "ti_ts3usb221erser", "mux_mpn": "TS3USB221ERSER",
+        "mux_jlcpcb_part_number": "C129313", "nand_device_id": "ti_sn74lv20apwr",
+        "nand_mpn": "SN74LV20APWR", "nand_jlcpcb_part_number": "C2862070",
+        "nand_package_count": 2, "nand_route": "explicit JLCPCB Pre-order",
+        "qualification": {key: False for key in checker.QUALIFICATION_FIELDS},
+    }
+    current_join = authority.get("current_c5_join", {})
+    if (current_join != expected_join
+            or any(value is not False for value in current_join.get("qualification", {}).values())):
+        errors.append("current C5 join must preserve exact schematic-only TI mux/NAND and open qualification")
 
     rf = {row["gpio"]: row for row in source["rf_rp"]["pin_map"]}
     expected_cap_rows = {
@@ -440,6 +453,8 @@ def build(source: dict[str, Any] | None = None, h0: dict[str, Any] | None = None
             "functional_source_sha256": digest(H0),
             "c5_mux_source": str(C5_MUX.relative_to(ROOT)),
             "c5_mux_source_sha256": digest(C5_MUX),
+            "c5_validator_source": str(C5_VALIDATOR.relative_to(ROOT)),
+            "c5_validator_source_sha256": digest(C5_VALIDATOR),
             "pack_safety_i2c_source": str(PACK_SAFETY_I2C.relative_to(ROOT)),
             "pack_safety_i2c_source_sha256": digest(PACK_SAFETY_I2C),
             "u219_profile_source": str(U219.relative_to(ROOT)),
@@ -448,6 +463,8 @@ def build(source: dict[str, Any] | None = None, h0: dict[str, Any] | None = None
             "device_register_source_sha256": digest(DEVICES),
             "r2_h2_authorized": False,
             "c5_electrical_join_status": source["authority_chain"]["c5_electrical_join_status"],
+            "h2_gate_history_scope": source["authority_chain"]["h2_gate_history_scope"],
+            "current_c5_join": source["authority_chain"]["current_c5_join"],
             "remaining_h2_gates": source["authority_chain"]["remaining_h2_gates"],
             "resolved_h2_gates": source["authority_chain"]["resolved_h2_gates"],
         },
@@ -480,9 +497,11 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         intro = (
             "Это точная рабочая H1-R2.31-карта GPIO двух независимых RP2354B и их пяти "
             "сигналов через M1. Точный электрический контракт module-pad/IO-mux C5 присоединён. "
-            "Она ещё не разрешает производство: live production route FSUSB42MUX/C11355, "
-            "detector/latch/release service-VBUS и TCA9803DGKR/C2687966 Pack/Safety "
-            "powered-off-Ioff граница прошли ревью и материализованы в принятой native R2 ECAD H2-R2.1.5."
+            "Текущая связка C5 — TS3USB221ERSER/C129313 и две SN74LV20APWR/C2862070 "
+            "(явный Pre-order, не склад): это инженерный выбор для схемы, не квалификация native, "
+            "температур/переходов питания, задержек или recovery. Старые закрытия FSUSB42/HC20 от "
+            "2026-08-30 сохранены только как история. TCA9803DGKR/C2687966 остаётся отдельной "
+            "Pack/Safety powered-off-Ioff границей. Политика KILL неизменна; производство не разрешено."
         )
         names = {"hub_rp": "Передний Hub RP", "rf_rp": "Задний RF RP"}
         cols = "| GPIO | Сеть | Направление | Контроллер | Физический endpoint | Reset / pull |"
@@ -490,16 +509,18 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         m1_heading = "Связь Hub RP ↔ RF RP через M1"
         uart_heading = "Выделенные линии ROM-UART S3"
         gates_heading = "Исполняемые проверки следующих этапов"
-        nm_heading = "Точный pin-map dual NMOS"
+        nm_heading = "Исторический pin-map dual NMOS G2F"
     else:
         title = "# Current Leshy2 R2 pin assignment"
         nav = "[Home](../README.md) · [Русский](pinout.ru.md) · [Hardware](hardware.md)"
         intro = (
             "This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains "
             "and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. "
-            "It still does not authorize fabrication: the live FSUSB42MUX/C11355 route, exact "
-            "service-VBUS detector/latch/release implementation and TCA9803DGKR/C2687966 "
-            "Pack/Safety powered-off-Ioff boundary are reviewed and materialized in accepted native R2 ECAD H2-R2.1.5."
+            "The current C5 join is TS3USB221ERSER/C129313 plus two SN74LV20APWR/C2862070 "
+            "(explicit Pre-order, not stock): an engineering schematic selection, not native, "
+            "temperature/power-transition, timing or recovery qualification. The 2026-08-30 "
+            "FSUSB42/HC20 closures are retained only as history. TCA9803DGKR/C2687966 remains "
+            "the separate Pack/Safety powered-off-Ioff boundary. KILL policy is unchanged; fabrication is not authorized."
         )
         names = {"hub_rp": "Front Hub RP", "rf_rp": "Rear RF RP"}
         cols = "| GPIO | Net | Direction | Controller | Physical endpoint | Reset / pull |"
@@ -507,7 +528,7 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         m1_heading = "Hub RP ↔ RF RP through M1"
         uart_heading = "Dedicated S3 ROM-UART routing"
         gates_heading = "Executable checks for later stages"
-        nm_heading = "Exact dual-NMOS pin map"
+        nm_heading = "Historical G2F dual-NMOS pin map"
 
     def esc(value: Any) -> str:
         return str(value).replace("|", "\\|").replace("\n", " ")
@@ -563,7 +584,14 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
     dual = candidate["sot363_2n7002dw_contract"]
     lines.extend([
         "", f"## {nm_heading}", "",
-        f"`{dual['mpn']}` / JLC `{dual['jlcpcb_part']}` keeps the exact physical SOT-363 top-view mapping.",
+        ("Сохранённая историческая карта G2F ниже не задаёт нынешние reset-sink: три reset-instance "
+         "заменяются NX3008NBKS,115 с переставленными именами половин при сохранении физических сетей; "
+         "два Pack-instance остаются 2N7002DW. Текущие контакты задают device register и native ledger."
+         if russian else
+         "The retained historical G2F map below does not define current reset sinks: three reset instances "
+         "are being replaced by NX3008NBKS,115 with exchanged half names and preserved physical nets; "
+         "the two Pack instances remain 2N7002DW. Current contacts are defined by the device register and native ledger."),
+        f"Historical `{dual['mpn']}` / JLC `{dual['jlcpcb_part']}` physical SOT-363 top-view mapping:",
         "", "| Physical pin | Terminal |", "|---:|---|",
     ])
     for physical, contact in dual["physical_pin_to_contact"].items():
@@ -612,7 +640,7 @@ def main() -> int:
     if stale:
         print("stale: " + ", ".join(stale))
         return 1
-    print("ok: exact dual-RP GPIO/M1 plus C5 electrical join is materialized in H2-R2.1.5; fabrication remains blocked")
+    print("ok: exact dual-RP GPIO/M1 and C5 engineering source join; physical qualification and fabrication remain blocked")
     return 0
 
 

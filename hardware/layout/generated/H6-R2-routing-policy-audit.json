@@ -5,8 +5,8 @@
   "status": "pass",
   "source_hashes": {
     "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
-    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "840535c7341bb681780c28a8f11f79ea6bd7fc9aff68077e1371b68003997c90",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "eb9976d1662695f0a013b421d582ed6b88faf2d4eca253f0db4ea5f686481840",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "963202a1ff8b2ab887b5fec5e860ddb5cf7af09be0c12b3ccc5701c585a475c8",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
     "hardware/layout/h6-r2-placement-contract.json": "19047e606884af05283938a50b11a66eae073f496ef6c457e3b7ad9abba64959"
   },
@@ -69,8 +69,8 @@
     "exact_trace_geometry_status": "bound to the current JLCPCB calculator; mandatory order-time recheck remains"
   },
   "summary": {
-    "project_net_count": 822,
-    "global_canonical_net_count": 788,
+    "project_net_count": 823,
+    "global_canonical_net_count": 789,
     "routing_class_count": 13,
     "usb_pair_count": 13,
     "external_usb_port_count": 4,
@@ -92,8 +92,8 @@
     "CLOCKED_DIGITAL": 142,
     "SAFETY_CONTROL": 111,
     "SERIAL_CONTROL": 74,
-    "ANALOG_AUDIO_SENSE": 143,
-    "GENERAL_CONTROL": 162
+    "ANALOG_AUDIO_SENSE": 142,
+    "GENERAL_CONTROL": 164
   },
   "boards": {
     "LESHY2-RF-R2": {
@@ -115,7 +115,7 @@
       }
     },
     "LESHY2-UI-R2": {
-      "physical_net_count": 306,
+      "physical_net_count": 307,
       "class_counts": {
         "GROUND_REFERENCE": 1,
         "PRIMARY_POWER": 2,
@@ -128,8 +128,8 @@
         "CLOCKED_DIGITAL": 99,
         "SAFETY_CONTROL": 33,
         "SERIAL_CONTROL": 33,
-        "ANALOG_AUDIO_SENSE": 21,
-        "GENERAL_CONTROL": 59
+        "ANALOG_AUDIO_SENSE": 20,
+        "GENERAL_CONTROL": 61
       }
     }
   },
@@ -6582,31 +6582,7 @@
       "geometry_release": "H6.0.2",
       "endpoint_roles": [
         "analog",
-        "signal",
-        "strap"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "C5_MUX_DISABLE_N",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_MUX_DISABLE_N",
-      "routing_class": "GENERAL_CONTROL",
-      "route_mode": "automatic_helper_allowed_then_manual_review",
-      "geometry_release": "H6.0.2",
-      "endpoint_roles": [
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "C5_MUX_SEL",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_MUX_SEL",
-      "routing_class": "GENERAL_CONTROL",
-      "route_mode": "automatic_helper_allowed_then_manual_review",
-      "geometry_release": "H6.0.2",
-      "endpoint_roles": [
-        "analog",
-        "strap"
       ]
     },
     {
@@ -6618,7 +6594,8 @@
       "geometry_release": "H6.0.2",
       "endpoint_roles": [
         "analog",
-        "io"
+        "io",
+        "signal"
       ]
     },
     {
@@ -6807,6 +6784,17 @@
     },
     {
       "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SERVICE_HUB_HOLD",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_HUB_HOLD",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "geometry_release": "H6.0.2",
+      "endpoint_roles": [
+        "signal"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
       "canonical_net": "C5_SERVICE_OWNED",
       "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_OWNED",
       "routing_class": "GENERAL_CONTROL",
@@ -6814,6 +6802,17 @@
       "geometry_release": "H6.0.2",
       "endpoint_roles": [
         "io",
+        "signal"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SERVICE_OWNER_NOT",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_OWNER_NOT",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "geometry_release": "H6.0.2",
+      "endpoint_roles": [
         "signal"
       ]
     },
@@ -6831,10 +6830,21 @@
     },
     {
       "project": "LESHY2-UI-R2",
-      "canonical_net": "C5_SERVICE_PATH_ACK_N",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_PATH_ACK_N",
-      "routing_class": "ANALOG_AUDIO_SENSE",
-      "route_mode": "manual_only",
+      "canonical_net": "C5_SERVICE_PATH_VALID",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_PATH_VALID",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "geometry_release": "H6.0.2",
+      "endpoint_roles": [
+        "signal"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SERVICE_RELEASE_NOT",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_RELEASE_NOT",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
       "geometry_release": "H6.0.2",
       "endpoint_roles": [
         "signal"
@@ -7181,7 +7191,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "FAULT_ASSERT_N",
-      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/FAULT_ASSERT_N",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/FAULT_ASSERT_N",
       "routing_class": "SAFETY_CONTROL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.2",
@@ -9089,7 +9099,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "RUN_PERMIT",
-      "kicad_net": "/UI_50_FRONT_POWER_SAFETY/RUN_PERMIT",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/RUN_PERMIT",
       "routing_class": "SAFETY_CONTROL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.2",

@@ -7,6 +7,12 @@ are frozen. The live boards are partially routed; placement acceptance is not
 routing completion or electrical sign-off. `H6-NATIVE-ELECTRICAL-SEMANTICS`
 remains open, and fabrication or purchase is not authorized.
 
+**Current scope, 2026-09-14:** 1,210 fitted instances, 4,321 physical pins and
+789 canonical nets; the partial typed-ERC review retains 24 open findings.
+The 1,208-instance / 311-locality / 36-critical-pair results below are retained
+from the earlier placement checkpoint, not current totals. Live placement,
+views and DRC belong to [current routing](h6-r2-current-routing.md).
+
 ![Exact H6 placement of both accessible inner faces](images/h6-r2-exact-placement.svg)
 
 ## What we want
@@ -16,7 +22,7 @@ preserving the reviewed mechanical interfaces and keeping electrically local
 parts beside the device or network that owns them. A visually collision-free
 placement alone is not sufficient.
 
-## What we decided
+## What we decided at that checkpoint
 
 - Retain the two 80 × 150-mm, six-copper-layer boards. The 85 × 150-mm fallback
   is considered only if a required route remains impossible after legal local
@@ -33,7 +39,7 @@ placement alone is not sufficient.
   they can validate a routed board without moving anything; `--write` remains
   an intentionally destructive unrouted-seed rebuild.
 
-## What we obtained
+## Historical checkpoint results
 
 - Two native KiCad 10 boards containing all **1,208/1,208** fitted schematic
   instances: 428 on UI and 780 on RF/power.
@@ -61,8 +67,8 @@ baseline for the live routing; current copper and DRC evidence belong to the
 [current-routing page](h6-r2-current-routing.md).
 
 These placement checks do not establish electrical validity of the schematic.
-The current all-passive symbol-pin typing limits what native ERC can detect;
-the electrical-semantics gate remains required.
+That checkpoint used all-passive symbol pins. The subsequent partial typed-ERC
+review still leaves the electrical-semantics gate open; see the current note above.
 
 ## What happens next
 
@@ -80,7 +86,7 @@ Run with KiCad's bundled Python:
 /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_placement_freeze.py --check
 ```
 
-Expected result:
+Retained output from the earlier 1,208-instance checkpoint (not today's expected count):
 
 ```text
 H6-R2 placement pass: 1208/1208 positions; 0 hard conflicts; 0 unplaced

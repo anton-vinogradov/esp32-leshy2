@@ -26,8 +26,8 @@ EXPECTED_ALIASES = {
 EXPECTED_PADS = {
     ("U14", "13"): PREFIX + "C5_USB_SDIO_COMMON_N",
     ("U14", "14"): PREFIX + "C5_USB_SDIO_COMMON_P",
-    ("U22", "4"): PREFIX + "C5_USB_SDIO_COMMON_N",
-    ("U22", "3"): PREFIX + "C5_USB_SDIO_COMMON_P",
+    ("U22", "7"): PREFIX + "C5_USB_SDIO_COMMON_N",
+    ("U22", "8"): PREFIX + "C5_USB_SDIO_COMMON_P",
 }
 
 
@@ -93,8 +93,8 @@ class C5CommonUsbAliasTests(unittest.TestCase):
         self.assertEqual({
             ("c5.GPIO13", "U14", "13", "C5_GPIO13_COMMON"),
             ("c5.GPIO14", "U14", "14", "C5_GPIO14_COMMON"),
-            ("c5_service_usb_switch.D_MINUS", "U22", "4", "C5_GPIO13_COMMON"),
-            ("c5_service_usb_switch.D_PLUS", "U22", "3", "C5_GPIO14_COMMON"),
+            ("c5_service_usb_switch.D_MINUS", "U22", "7", "C5_GPIO13_COMMON"),
+            ("c5_service_usb_switch.D_PLUS", "U22", "8", "C5_GPIO14_COMMON"),
         }, actual)
 
     def test_child_schematic_contains_two_labels_of_each_native_polarity(self):

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact": "H0-R2-c5-sdio-service-mux",
-  "status": "pass_scoped_contract",
+  "status": "pass_scoped_contract_open_gates",
   "contract_id": "C5-SDIO-SERVICE-MUX-1",
   "c5_signal_map": [
     {
@@ -50,26 +50,23 @@
   "mux_pin_topology": [
     {
       "pin": 1,
-      "name": "VCC",
-      "net": "3V3_MAIN"
+      "name": "1D+",
+      "net": "C5_SERVICE_USB_DP_BRANCH"
     },
     {
       "pin": 2,
-      "name": "SEL",
-      "net": "C5_MUX_SEL",
-      "default": "100-kohm pull-down; LOW selects USB HSD1"
+      "name": "1D-",
+      "net": "C5_SERVICE_USB_DM_BRANCH"
     },
     {
       "pin": 3,
-      "name": "D+",
-      "net": "C5_GPIO14_COMMON",
-      "endpoint": "C5 GPIO14 / module pad 14"
+      "name": "2D+",
+      "net": "HUB_C5_SDIO_DAT2_BRANCH"
     },
     {
       "pin": 4,
-      "name": "D-",
-      "net": "C5_GPIO13_COMMON",
-      "endpoint": "C5 GPIO13 / module pad 13"
+      "name": "2D-",
+      "net": "HUB_C5_SDIO_DAT3_BRANCH"
     },
     {
       "pin": 5,
@@ -78,33 +75,32 @@
     },
     {
       "pin": 6,
-      "name": "HSD1-",
-      "net": "C5_SERVICE_USB_DM_BRANCH",
-      "endpoint": "USB connector D- through connector-side ESD and branch-local series footprint"
+      "name": "OE",
+      "net": "C5_MUX_DISABLE",
+      "default": "HIGH disconnects; powered A=0 command produces HIGH; R91 alone is not a disconnected default"
     },
     {
       "pin": 7,
-      "name": "HSD1+",
-      "net": "C5_SERVICE_USB_DP_BRANCH",
-      "endpoint": "USB connector D+ through connector-side ESD and branch-local series footprint"
+      "name": "D-",
+      "net": "C5_GPIO13_COMMON",
+      "endpoint": "C5 GPIO13 / module pad 13"
     },
     {
       "pin": 8,
-      "name": "HSD2-",
-      "net": "HUB_C5_SDIO_DAT3_BRANCH",
-      "endpoint": "Hub SDIO DAT3 through branch-local pull-up and series footprint"
+      "name": "D+",
+      "net": "C5_GPIO14_COMMON",
+      "endpoint": "C5 GPIO14 / module pad 14"
     },
     {
       "pin": 9,
-      "name": "HSD2+",
-      "net": "HUB_C5_SDIO_DAT2_BRANCH",
-      "endpoint": "Hub SDIO DAT2 through branch-local pull-up and series footprint"
+      "name": "S",
+      "net": "C5_MUX_SEL_REQUEST",
+      "default": "R=0 selects USB port1; directly driven by the AON request net, not an isolated SEL node"
     },
     {
       "pin": 10,
-      "name": "OE",
-      "net": "C5_MUX_DISABLE",
-      "default": "100-kohm pull-down; HIGH disconnects both branches"
+      "name": "VCC",
+      "net": "3V3_MAIN"
     }
   ],
   "branch_conditioning": {
@@ -152,7 +148,7 @@
       },
       {
         "signal": "DAT2",
-        "location": "FSUSB42 HSD2+ SDIO-only branch",
+        "location": "TS3USB221E 2D+ SDIO-only branch",
         "initial_ohm": 0,
         "tuning_options_ohm": [
           0,
@@ -162,7 +158,7 @@
       },
       {
         "signal": "DAT3",
-        "location": "FSUSB42 HSD2- SDIO-only branch",
+        "location": "TS3USB221E 2D- SDIO-only branch",
         "initial_ohm": 0,
         "tuning_options_ohm": [
           0,
@@ -194,13 +190,13 @@
         "signal": "DAT2",
         "gpio": "GPIO14",
         "value_ohm": 10000,
-        "location": "FSUSB42 HSD2+ SDIO-only branch; disconnected from C5 during USB service"
+        "location": "TS3USB221E 2D+ SDIO-only branch; disconnected from C5 during USB service"
       },
       {
         "signal": "DAT3",
         "gpio": "GPIO13",
         "value_ohm": 10000,
-        "location": "FSUSB42 HSD2- SDIO-only branch; disconnected from C5 during USB service"
+        "location": "TS3USB221E 2D- SDIO-only branch; disconnected from C5 during USB service"
       }
     ],
     "sdio_clock_bias": {
@@ -213,7 +209,7 @@
     "usb_series": [
       {
         "signal": "USB_DP",
-        "location": "FSUSB42 HSD1+ USB-only branch after connector-side ESD",
+        "location": "TS3USB221E 1D+ USB-only branch after connector-side ESD",
         "initial_ohm": 22,
         "allowed_ohm": [
           22,
@@ -222,7 +218,7 @@
       },
       {
         "signal": "USB_DM",
-        "location": "FSUSB42 HSD1- USB-only branch after connector-side ESD",
+        "location": "TS3USB221E 1D- USB-only branch after connector-side ESD",
         "initial_ohm": 22,
         "allowed_ohm": [
           22,
@@ -232,7 +228,7 @@
     ],
     "layout_rules": [
       "USB and SDIO series footprints are branch-local and are never placed on the C5 common segment shared by GPIO13/GPIO14.",
-      "DAT2/DAT3 pull-ups stay on HSD2 so they cannot bias USB D+/D- in service mode.",
+      "DAT2/DAT3 pull-ups stay on port2 so they cannot bias USB D+/D- in service mode.",
       "CLK has no fitted pull-up; keep only a DNP diagnostic footprint and the independent series tuning footprint.",
       "Route each differential USB branch as 90-ohm differential and length-match within the final stack-up rule; avoid stubs at the mux.",
       "Place every source-series option close to the active source for the direction being qualified; bidirectional SDIO values are finalized by SI/HIL, not assumed from schematic alone."
@@ -261,6 +257,253 @@
     "jtag_policy": "GPIO7 is externally pulled high for SDIO. Production eFuse and recovery policy must use USB-JTAG or disabled JTAG and must never depend on a floating GPIO7 or a conflicting pad-JTAG strap."
   },
   "ownership": {
+    "control_mapping": {
+      "inputs": {
+        "O": {
+          "net": "C5_SERVICE_OWNED",
+          "source": "c5_service_owner_latch.Q",
+          "meaning": "hardware service owner"
+        },
+        "R": {
+          "net": "C5_MUX_SEL_REQUEST",
+          "source": "evidence_mask.P12",
+          "meaning": "requested SEL: 0 USB, 1 SDIO"
+        },
+        "A": {
+          "net": "C5_SERVICE_PATH_ACK",
+          "source": "evidence_mask.P13",
+          "meaning": "permission to connect; ACK is not proof that a switch already completed"
+        },
+        "L": {
+          "net": "AON_SERVICE_RELEASE_REQ",
+          "source": "evidence_mask.P14",
+          "meaning": "qualified owner-release request and independent Hub hold"
+        },
+        "P": {
+          "net": "RUN_PERMIT",
+          "meaning": "existing hardware RUN permit, not a universal power-valid signal"
+        },
+        "F": {
+          "net": "FAULT_ASSERT_N",
+          "meaning": "existing active-low fault boundary"
+        }
+      },
+      "equations": {
+        "SEL": "R",
+        "VALID": "!(O&R)",
+        "OE": "!(A&!(O&R)&P&F)",
+        "HUB_HOLD": "O|L|!R"
+      },
+      "inverters": [
+        {
+          "instance": "c5_service_mux_logic_inverters",
+          "gate": 1,
+          "input": "C5_SERVICE_OWNED",
+          "output": "C5_SERVICE_OWNER_NOT"
+        },
+        {
+          "instance": "c5_service_mux_logic_inverters",
+          "gate": 2,
+          "input": "AON_SERVICE_RELEASE_REQ",
+          "output": "C5_SERVICE_RELEASE_NOT"
+        }
+      ],
+      "nand_gates": [
+        {
+          "instance": "c5_service_release_logic",
+          "gate": 1,
+          "inputs": [
+            "SERVICE_VBUS_PRESENT_N",
+            "C5_EN_LOW_PROOF",
+            "HUB_SDIO_HIGH_Z_PROOF",
+            "AON_SERVICE_RELEASE_REQ"
+          ],
+          "output": "C5_SERVICE_CLEAR_N"
+        },
+        {
+          "instance": "c5_service_release_logic",
+          "gate": 2,
+          "inputs": [
+            "C5_SERVICE_OWNED",
+            "C5_MUX_SEL_REQUEST",
+            "AON_SAFE_3V3",
+            "AON_SAFE_3V3"
+          ],
+          "output": "C5_SERVICE_PATH_VALID"
+        },
+        {
+          "instance": "c5_service_path_logic",
+          "gate": 1,
+          "inputs": [
+            "C5_SERVICE_PATH_ACK",
+            "C5_SERVICE_PATH_VALID",
+            "RUN_PERMIT",
+            "FAULT_ASSERT_N"
+          ],
+          "output": "C5_MUX_DISABLE"
+        },
+        {
+          "instance": "c5_service_path_logic",
+          "gate": 2,
+          "inputs": [
+            "C5_SERVICE_OWNER_NOT",
+            "C5_SERVICE_RELEASE_NOT",
+            "C5_MUX_SEL_REQUEST",
+            "AON_SAFE_3V3"
+          ],
+          "output": "C5_SERVICE_HUB_HOLD"
+        }
+      ],
+      "nand_device_id": "ti_sn74lv20apwr",
+      "nand_package_count": 2,
+      "nand_supply": "AON_SAFE_3V3",
+      "nand_unconnected_pins": [
+        3,
+        11
+      ],
+      "owner_q_n_used": false,
+      "reset_sinks": {
+        "c5_service_reset_sink.G": "C5_MUX_DISABLE",
+        "c5_service_hub_reset_sink.G2": "C5_SERVICE_HUB_HOLD",
+        "c5_service_hub_reset_sink.G1": "C5_RESET_KILL_GATE"
+      },
+      "independent_kill_fault_sinks_preserved": true,
+      "kill_policy_changed": false,
+      "boolean_model": "hardware/verification/c5_mux_control_candidate.py",
+      "ordered_traces": {
+        "runtime_to_service": [
+          {
+            "controls": [
+              0,
+              1,
+              1,
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "controls": [
+              1,
+              1,
+              1,
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "controls": [
+              1,
+              1,
+              0,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "assumed_wait": "reset_and_pad_high_z"
+          },
+          {
+            "controls": [
+              1,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "assumed_wait": "mux_settle"
+          },
+          {
+            "controls": [
+              1,
+              0,
+              1,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "service_to_runtime": [
+          {
+            "controls": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "controls": [
+              1,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "assumed_wait": "reset_and_pad_high_z"
+          },
+          {
+            "controls": [
+              1,
+              1,
+              0,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "controls": [
+              0,
+              1,
+              0,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "assumed_wait": "mux_settle"
+          },
+          {
+            "controls": [
+              0,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "assumed_wait": "c5_strap_and_ready",
+            "duration_ms": 3
+          },
+          {
+            "controls": [
+              0,
+              1,
+              1,
+              0,
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      "firmware_service_manager_implemented": false
+    },
     "service_vbus": {
       "source": "C5 service USB connector VBUS",
       "use": "high-impedance presence sense only",
@@ -274,7 +517,9 @@
     },
     "detector_latch_implementation": {
       "selection_status": "accepted",
-      "checked_at": "2026-08-30T13:36:59+03:00",
+      "checked_at": "2026-09-14T00:10:12Z",
+      "selection_scope": "engineering_schematic_only",
+      "production_release_allowed": false,
       "aon_rail": "AON_SAFE_3V3",
       "detector": {
         "manufacturer": "Diodes Incorporated",
@@ -292,8 +537,15 @@
         "topology": "C5 service VBUS -> 1-Mohm top resistor -> MOSFET gate; 1-Mohm gate-to-ground resistor; source to ground; drain is SERVICE_VBUS_PRESENT_N with an AON 10-kohm pull-up",
         "input_current_ua_nominal_at_5v": 2.5,
         "gate_voltage_v_nominal_at_5v": 2.5,
-        "gate_voltage_v_min_at_4v75_with_1pct_divider": 2.351,
-        "proof": "The only service-VBUS DC path is the 2-Mohm divider to ground and the insulated MOSFET gate. No semiconductor junction or product rail is connected to service VBUS. Valid USB VBUS gives at least 2.351 V at the gate, above the exact device's 1.8-V RDS(on) test point; presence therefore pulls the active-low detector node hard low before any application domain is released.",
+        "gate_voltage_v_resistor_only_min_at_4v75_with_1pct_divider": 2.35125,
+        "resistor_only_bound_excludes": [
+          "gate leakage",
+          "temperature",
+          "VBUS ramp",
+          "detector and latch propagation"
+        ],
+        "full_electrical_detection_qualified": false,
+        "proof": "The nominal 5-V divider current is 2.5 uA. The 2.35125-V number is only 4.75 V times 0.99/(1.01+0.99), before gate leakage. The insulated gate avoids an intended VBUS-to-product-rail DC junction; this is not a full-temperature leakage, VBUS-ramp or asynchronous detection guarantee.",
         "live_inventory": {
           "stock": 20209,
           "available_order_quantity": 20078,
@@ -359,8 +611,8 @@
           {
             "pin": 3,
             "name": "Q_N",
-            "net": "C5_SERVICE_FREE_DIAG",
-            "reason": "read-only AON diagnostic"
+            "net": null,
+            "reason": "true NC: NOT(Q) is generated by U17; raw Q_N can be HIGH together with Q during simultaneous preset/clear"
           },
           {
             "pin": 4,
@@ -425,18 +677,22 @@
         }
       },
       "release_qualifier": {
-        "manufacturer": "Nexperia",
-        "mpn": "74HC20PW,118",
-        "device_id": "nexperia_74hc20pw_118",
-        "jlcpcb_part_number": "C546719",
+        "manufacturer": "Texas Instruments",
+        "mpn": "SN74LV20APWR",
+        "device_id": "ti_sn74lv20apwr",
+        "jlcpcb_part_number": "C2862070",
         "package": "TSSOP-14",
+        "quantity": 2,
+        "instances": [
+          "c5_service_release_logic",
+          "c5_service_path_logic"
+        ],
         "assembly_type": "SMT Assembly",
         "pcba_type": [
           "Economic",
           "Standard"
         ],
         "part_class": "Extended",
-        "msl_level": "MSL 1",
         "used_gate": {
           "inputs": [
             "SERVICE_VBUS_PRESENT_N",
@@ -447,41 +703,24 @@
           "output": "C5_SERVICE_CLEAR_N",
           "function": "four-input NAND; CLR_N can go low only when VBUS is absent and all three release proofs are high"
         },
-        "unused_gate": "tie all four inputs to SAFETY_GROUND; leave the deterministic-high output unconnected",
+        "other_gates": "All four gates across two packages are assigned by ownership.control_mapping.nand_gates; package NC pins3/11 remain unconnected.",
         "live_inventory": {
-          "stock": 21855,
-          "available_order_quantity": 21853,
-          "moq": 1,
-          "full_reel_quantity": 2500,
+          "checked_at": "2026-09-14T00:10:12Z",
+          "stock": 0,
+          "available_order_quantity": null,
+          "moq": 21,
           "currency": "USD",
-          "price_tiers_usd": [
-            {
-              "minimum_quantity": 1,
-              "unit_price": 0.2443
-            },
-            {
-              "minimum_quantity": 50,
-              "unit_price": 0.1903
-            },
-            {
-              "minimum_quantity": 150,
-              "unit_price": 0.1672
-            },
-            {
-              "minimum_quantity": 500,
-              "unit_price": 0.1384
-            },
-            {
-              "minimum_quantity": 2500,
-              "unit_price": 0.1256
-            },
-            {
-              "minimum_quantity": 5000,
-              "unit_price": 0.1178
-            }
-          ],
-          "route": "public JLCPCB stock",
-          "url": "https://jlcpcb.com/partdetail/Nexperia-74HC20PW118/C546719"
+          "price_tiers_usd": [],
+          "preorder_estimate": {
+            "unit_price": 0.4265,
+            "minimum_quantity": 21,
+            "not_a_stocked_price_tier": true
+          },
+          "route": "explicit JLCPCB Pre-order",
+          "explicit_preorder_offered": true,
+          "price_is_estimate": true,
+          "lead_time_days": null,
+          "url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LV20APWR/C2862070"
         }
       },
       "passives": [
@@ -508,8 +747,8 @@
           "unit_price_usd_quantity_1": 0.0037
         },
         {
-          "quantity": 2,
-          "role": "latch and NAND local bypass",
+          "quantity": 3,
+          "role": "latch and two NAND-package local bypasses; inventory is retained 2026-08-30 evidence, not a new three-part quote",
           "mpn": "CC0402KRX7R9BB104",
           "jlcpcb_part_number": "C131394",
           "value": "100 nF 50 V X7R 10%",
@@ -546,24 +785,24 @@
         }
       ],
       "invariants": [
-        "PRE_N and CLR_N cannot both be low because SERVICE_VBUS_PRESENT_N is both PRE_N and one input of the clear NAND.",
-        "C5, Hub and mux remain in the global AON-POR safe shell until either asynchronous preset or qualified clear has established a valid ownership state.",
+        "In settled Boolean states, low SERVICE_VBUS_PRESENT_N implies high CLR_N. Unequal asynchronous propagation can transiently assert both PRE_N and CLR_N; no hazard-free claim is made.",
+        "Q_N is NC; U17 derives NOT(Q), including the forbidden-latch both-HIGH case. Power-up, VBUS thresholds, propagation and recovery of the latch remain physical qualification gates.",
         "No C5, Hub or S3 firmware output reaches PRE_N, CLR_N or the VBUS detector.",
         "The explicit AON release request is necessary but cannot clear ownership unless VBUS absence, C5 EN low and Hub SDIO high-Z are simultaneously proven in hardware."
       ],
-      "exact_one_component_cost_usd": 0.5857,
-      "release_rule": "Accepted for native R2 schematic use. Recheck every exact JLC number, Standard-PCBA eligibility, stock/explicit route, MOQ and price at architecture freeze and immediately before the exact-one order."
+      "historical_2026_08_30_component_cost_usd": 0.5857,
+      "release_rule": "Engineering schematic selection only. Two SN74LV20A packages use an explicit zero-stock Pre-order route with unknown lead time and estimated price, not available inventory. Retained detector/latch/passive captures are not refreshed quotes. No functional or fabrication release follows."
     },
     "latch": {
       "signal": "C5_SERVICE_OWNED",
       "asynchronous_set": "service VBUS present",
       "clear_condition": "service VBUS absent AND C5 EN asserted low AND Hub SDIO pins proven high-impedance AND explicit AON service-release request",
       "service_override": [
-        "force Hub RUN low",
-        "force C5 EN low during switch",
-        "force mux OE high during branch change",
-        "force mux SEL low",
-        "deny Hub SDIO drive"
+        "force Hub RUN low while O=1",
+        "veto SDIO connection when O=1 and R=1",
+        "keep SEL equal to R without an asynchronous branch change",
+        "A=0 commands mux OE high and C5 reset during switching",
+        "deny Hub SDIO drive until L=0 after C5 readiness"
       ],
       "firmware_cannot_override": true
     },
@@ -593,35 +832,39 @@
         "mux_sel": 1
       }
     ],
-    "power_on_default": "SERVICE_USB branch selected; C5 and Hub remain reset until the always-on sequencer has sampled service VBUS and established one legal state."
+    "power_on_default": "Conditional powered-logic default: request/ACK/release pull-downs give R=A=L=0, hence OE=1 and HUB_HOLD=1 regardless of O. Actual ramp, reset-low, high-Z and initialized-expander behavior remain unqualified."
   },
-  "detector_latch_release_allowed": true,
+  "detector_latch_schematic_selection_allowed": true,
+  "detector_latch_release_allowed": false,
   "transition_sequences": {
     "runtime_to_service": [
-      "asynchronously latch C5_SERVICE_OWNED when service VBUS is detected",
-      "assert C5 EN low and Hub RUN low; deny all Hub SDIO output enables and prove the Hub pins high-impedance",
-      "drive mux OE high to disconnect both HSD branches",
-      "wait at least 1 microsecond, exceeding FSUSB42 turn-off and break-before-make maxima",
-      "drive mux SEL low for HSD1 USB",
-      "wait at least 1 microsecond, then drive mux OE low",
-      "establish all C5 boot and SDIO-edge strap levels",
-      "release C5 EN only; keep Hub RUN low and strap levels stable for at least 3 milliseconds"
+      "Hardware service seizure sets O=1; with R=1 the VALID veto drives mux OE high, asserts C5 EN low and holds Hub without changing SEL.",
+      "Write and confirm A=0 and L=1 before changing R; establish actual C5 reset and Hub reset/high-impedance.",
+      "AssumedWait reset_and_pad_high_z: duration is an unmeasured premise, not a fixed 1-us guarantee.",
+      "Write and confirm R=0 with A=0 and L=1 maintained; SEL follows R to USB port1.",
+      "AssumedWait mux_settle after SEL change; no accepted fixed duration yet.",
+      "Establish boot_straps.joint_download_boot_0 for manual ROM recovery, or application_boot for the intended application; preserve the separate SDIO-edge straps.",
+      "Write and confirm A=1 only with P=F=1; mux connection and C5 reset release share OE, so their relative delays require physical qualification.",
+      "Keep Hub held; maintain GPIO27/28 and other sampled straps for at least 3 ms after actual C5 EN release."
     ],
     "service_to_runtime": [
-      "require service VBUS absent and assert C5 EN low",
-      "keep Hub SDIO pins high-impedance while releasing Hub RUN and entering the ownership stub",
-      "drive mux OE high and wait at least 1 microsecond",
-      "drive mux SEL high for HSD2 SDIO and wait at least 1 microsecond",
-      "drive mux OE low while both endpoints remain non-driving",
-      "apply GPIO25 high, GPIO3 low and GPIO7 high strap levels, then release C5 EN",
-      "hold strap levels for at least 3 milliseconds and initialize C5 SDIO slave",
-      "train at 20 MHz before enabling Hub drive; target 40 MHz only after the HIL gates pass"
+      "Require service VBUS absent. Write and confirm L=1 and A=0: command mux OE high and C5 EN low, keeping Hub reset/high-impedance.",
+      "AssumedWait reset_and_pad_high_z before changing R or clearing O; this is not measured timing.",
+      "Write and confirm R=1 while A=0 and L=1. Clear O only through the unchanged four qualified CLR_N inputs; L keeps Hub held after O clears.",
+      "AssumedWait mux_settle after SEL change while A=0; apply boot_straps.application_boot and the separate GPIO25/3/7 edge/JTAG profile before C5 EN release.",
+      "Write and confirm A=1 with P=F=1 and O=0, retaining L=1; C5 is released while Hub remains reset.",
+      "AssumedWait c5_strap_and_ready: at least 3 ms after actual EN release plus an explicit C5 slave-ready premise; 3 ms alone does not prove readiness.",
+      "Only then write and confirm L=0 to release Hub; train at 20 MHz. The 40-MHz and 7.5-MB/s targets remain HIL gates."
     ],
     "illegal": [
       "changing SEL while C5 or Hub can drive GPIO13/GPIO14",
       "releasing Hub RUN in SERVICE_USB",
       "letting firmware clear C5_SERVICE_OWNED while VBUS is present",
-      "using service VBUS as a power source"
+      "using service VBUS as a power source",
+      "changing R with A high or before L high and reset/high-Z confirmation",
+      "automatic reconnection on KILL/fault release with stale A=1",
+      "releasing L before C5 strap hold and slave readiness",
+      "using U18.Q_N as NOT(O)"
     ]
   },
   "performance": {
@@ -636,61 +879,100 @@
   },
   "production_mux_route": {
     "selection_status": "accepted",
+    "selection_scope": "engineering_schematic_only",
+    "production_release_allowed": false,
     "candidate": {
-      "manufacturer": "onsemi",
-      "mpn": "FSUSB42MUX",
-      "jlcpcb_part_number": "C11355",
-      "package": "MSOP-10",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TS3USB221ERSER",
+      "jlcpcb_part_number": "C129313",
+      "package": "RSE UQFN-10 1.5x2mm; no exposed pad",
       "assembly_type": "SMT Assembly",
       "pcba_type": [
         "Economic",
         "Standard"
       ],
-      "catalog_identity_url": "https://jlcpcb.com/partdetail/onsemi-FSUSB42MUX/C11355",
-      "identity_checked_on": "2026-08-30",
+      "catalog_identity_url": "https://jlcpcb.com/partdetail/TexasInstruments-TS3USB221ERSER/C129313",
+      "identity_checked_on": "2026-09-14",
       "source": "JLCPCB",
-      "part_class": "Extended",
-      "msl_level": "MSL 1"
+      "part_class": "Extended"
     },
     "live_inventory": {
-      "checked_at": "2026-08-30T13:08:13+03:00",
+      "checked_at": "2026-09-14T00:03:22Z",
       "surface": "JLCPCB live part-detail browser surface",
-      "stock": 66698,
-      "available_order_quantity": 66045,
+      "stock": 2998,
+      "available_order_quantity": 2993,
       "moq": 1,
-      "full_reel_quantity": 4000,
       "currency": "USD",
       "price_tiers_usd": [
         {
           "minimum_quantity": 1,
-          "unit_price": 0.3179
+          "unit_price": 0.3416
         },
         {
           "minimum_quantity": 50,
-          "unit_price": 0.2458
+          "unit_price": 0.2678
         },
         {
           "minimum_quantity": 150,
-          "unit_price": 0.2106
+          "unit_price": 0.236
         },
         {
           "minimum_quantity": 500,
-          "unit_price": 0.1748
+          "unit_price": 0.1967
         },
         {
-          "minimum_quantity": 2500,
-          "unit_price": 0.1662
+          "minimum_quantity": 3000,
+          "unit_price": 0.1791
         },
         {
-          "minimum_quantity": 4000,
-          "unit_price": 0.1611
+          "minimum_quantity": 6000,
+          "unit_price": 0.1685
         }
       ],
       "route": "public JLCPCB stock"
     },
-    "release_rule": "Accepted for H2 schematic use because exact identity, Standard-PCBA eligibility, public live stock, MOQ and price were timestamped together. Recheck at architecture freeze and immediately before the exact-one order."
+    "release_rule": "Engineering schematic selection only. Stock is not functional or fabrication acceptance; recheck identity, Standard-PCBA route, MOQ and price at freeze and before order."
   },
-  "production_release_allowed": true,
+  "mux_schematic_selection_allowed": true,
+  "production_release_allowed": false,
+  "boot_straps": {
+    "primary": "ESP32-C5-WROOM-1/1U v1.3 sections3/4.1/4.2; distinct from SDIO edge straps",
+    "contacts": [
+      {
+        "gpio": "GPIO27",
+        "module_pad": 18,
+        "net": "C5_GPIO27_FIXED_HIGH",
+        "pullup_ohm": 10000
+      },
+      {
+        "gpio": "GPIO28",
+        "module_pad": 15,
+        "net": "C5_BOOT_N",
+        "pullup_ohm": 10000,
+        "button_series_ohm": 1000
+      }
+    ],
+    "joint_download_boot_0": {
+      "GPIO27": 1,
+      "GPIO28": 0
+    },
+    "application_boot": {
+      "GPIO27": 1,
+      "GPIO28": 1
+    },
+    "hold_after_en_release_ms_min": 3,
+    "sampled_levels_and_timing_qualified": false,
+    "policy": "Manual BOOT establishes download straps before releasing C5 EN. Runtime boot uses the pull-up state. Neither these requirements nor the mux contract implements recovery under KILL."
+  },
+  "qualification": {
+    "native_topology_verified": false,
+    "full_temperature_levels_qualified": false,
+    "voltage_ramps_qualified": false,
+    "vbus_detector_latch_qualified": false,
+    "switching_timing_qualified": false,
+    "recovery_qualified": false,
+    "production_release_allowed": false
+  },
   "h0_integration": {
     "native_four_bit_declared": true,
     "current_clock_hz": 40000000,
@@ -700,6 +982,12 @@
     "target_clock_explicit": true,
     "hil_frequency_semantics_explicit": true
   },
-  "open_gates": [],
+  "open_gates": [
+    "SN74LV20APWR Pre-order lead time and final quote; recheck all exact routes at freeze and before order",
+    "native endpoint binding, full-temperature output loading and reset-low proof",
+    "MAIN/AON ramps and VBUS detector/latch asynchronous hazards",
+    "ordered Safety service manager, measured waits, unchanged KILL/update conflict and physical recovery",
+    "USB/SDIO signal integrity and 7.5 MB/s at 40 MHz HIL"
+  ],
   "errors": []
 }

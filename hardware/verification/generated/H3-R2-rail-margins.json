@@ -9,13 +9,13 @@
   },
   "source_sha256": {
     "hardware/verification/h3-r2-rail-margin-contract.json": "b02616c8e30f2e8dbcd781dde72a492ed61b5b7ef19960b6c71f18eec0c8eb5f",
-    "hardware/verification/generated/H3-R2-load-binding.json": "4df2785b7316976dae13f2b8cfbc6bd8dafa76b98c60d9ced727f6b1d96527d2",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "090d12547495e35bde564d7b5eb569a9a562ed6cd8f90ee33da2778e9194e8e9",
-    "hardware/verification/generated/H3-R2-method-contract.json": "61c8ad9393a7413030957daf739671c6a5e85b536a6cc989c50611903a0430d6",
+    "hardware/verification/generated/H3-R2-load-binding.json": "298691cf34af764e87b7d0acf64d2dcb6ac648a090f10460bb5a136b38e41a40",
+    "hardware/verification/generated/H3-R2-power-state-register.json": "c1fba584032410ba3df65ddb3a95d671d5971f91021bdc2e9e12d81be12efa5a",
+    "hardware/verification/generated/H3-R2-method-contract.json": "6ab955eac6909f30e6e06f71f672d7faaf2e9fab4fcfba17238d4468b333263e",
     "hardware/architecture/h0-r2-rebaseline.json": "800ae7c3ad05e717eea11f4a1b547f52db4495681181c6234c37481c01719fbd",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "dfd2101cd84ab4290b69a38576bf40002e673817527dab27185747d1affca569",
-    "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "eb9976d1662695f0a013b421d582ed6b88faf2d4eca253f0db4ea5f686481840",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "9c4c81fe32c242297b6ed42b6999c8ac63e6f02a766fac0874c88b19b2ae9d3e",
+    "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
     "hardware/verification/h6_power_corner_math.py": "5f48acfb73f8cdc80cb5657a4b2b0415e86ff6956d27ea422a94d2019da13e72",
     "hardware/verification/h3_r2_rail_margins.py": "66cdb6c21f8e8f932890be7c3ef109bf447f8fbf75fccaae0a6864c107c70b1f",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
@@ -2771,691 +2771,701 @@
     },
     {
       "line": "LOAD-0486",
+      "instance_uid": "LESHY2-UI-R2:c5_service_path_logic_bypass",
+      "owner": "aon_common"
+    },
+    {
+      "line": "LOAD-0487",
       "instance_uid": "LESHY2-UI-R2:c5_sdio_d1_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0487",
+      "line": "LOAD-0488",
       "instance_uid": "LESHY2-UI-R2:c5_sdio_d2_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0488",
+      "line": "LOAD-0489",
       "instance_uid": "LESHY2-UI-R2:c5_sdio_d3_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0489",
+      "line": "LOAD-0490",
       "instance_uid": "LESHY2-UI-R2:c5_service_vbus_present_pullup",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0490",
+      "line": "LOAD-0491",
       "instance_uid": "LESHY2-UI-R2:ir_carrier_host_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0491",
+      "line": "LOAD-0492",
       "instance_uid": "LESHY2-UI-R2:ir_carrier_supply_res",
       "owner": "ir_group"
     },
     {
-      "line": "LOAD-0492",
+      "line": "LOAD-0493",
       "instance_uid": "LESHY2-UI-R2:ir_demod_host_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0493",
+      "line": "LOAD-0494",
       "instance_uid": "LESHY2-UI-R2:ir_demod_supply_res",
       "owner": "ir_group"
     },
     {
-      "line": "LOAD-0494",
+      "line": "LOAD-0495",
       "instance_uid": "LESHY2-UI-R2:ir_emitter_limit",
       "owner": "ir_group"
     },
     {
-      "line": "LOAD-0495",
+      "line": "LOAD-0496",
       "instance_uid": "LESHY2-UI-R2:ir_evidence_output_pullup",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0496",
+      "line": "LOAD-0497",
       "instance_uid": "LESHY2-UI-R2:c5_boot_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0497",
+      "line": "LOAD-0498",
       "instance_uid": "LESHY2-UI-R2:c5_dbg_id0_strap",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0498",
+      "line": "LOAD-0499",
       "instance_uid": "LESHY2-UI-R2:c5_dbg_vtref_series",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0499",
+      "line": "LOAD-0500",
       "instance_uid": "LESHY2-UI-R2:c5_evidence_output_pullup",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0500",
+      "line": "LOAD-0501",
       "instance_uid": "LESHY2-UI-R2:c5_gpio27_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0501",
+      "line": "LOAD-0502",
       "instance_uid": "LESHY2-UI-R2:c5_reset_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0502",
+      "line": "LOAD-0503",
       "instance_uid": "LESHY2-UI-R2:c5_sdio_cmd_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0503",
+      "line": "LOAD-0504",
       "instance_uid": "LESHY2-UI-R2:c5_sdio_d0_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0504",
+      "line": "LOAD-0505",
       "instance_uid": "LESHY2-UI-R2:c5",
       "owner": "c5_peak"
     },
     {
-      "line": "LOAD-0505",
+      "line": "LOAD-0506",
       "instance_uid": "LESHY2-UI-R2:c5_service_mux_logic_inverters",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0506",
+      "line": "LOAD-0507",
       "instance_uid": "LESHY2-UI-R2:c5_service_owner_latch",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0507",
+      "line": "LOAD-0508",
       "instance_uid": "LESHY2-UI-R2:c5_service_release_logic",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0508",
+      "line": "LOAD-0509",
       "instance_uid": "LESHY2-UI-R2:c5_service_reset_proof_inverters",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0509",
+      "line": "LOAD-0510",
       "instance_uid": "LESHY2-UI-R2:c5_service_usb_switch",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0510",
+      "line": "LOAD-0511",
       "instance_uid": "LESHY2-UI-R2:ir_power_switch",
       "owner": "ir_group"
     },
     {
-      "line": "LOAD-0511",
+      "line": "LOAD-0512",
       "instance_uid": "LESHY2-UI-R2:ir_return_buffer",
       "owner": "ir_group"
     },
     {
-      "line": "LOAD-0512",
+      "line": "LOAD-0513",
       "instance_uid": "LESHY2-UI-R2:ir_safe_gate",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0513",
+      "line": "LOAD-0514",
+      "instance_uid": "LESHY2-UI-R2:c5_service_path_logic",
+      "owner": "aon_common"
+    },
+    {
+      "line": "LOAD-0515",
       "instance_uid": "LESHY2-UI-R2:hub_rp_adc_avdd_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0514",
+      "line": "LOAD-0516",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dvdd10_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0515",
+      "line": "LOAD-0517",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dvdd32_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0516",
+      "line": "LOAD-0518",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dvdd51_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0517",
+      "line": "LOAD-0519",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dvdd_remote_bulk",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0518",
+      "line": "LOAD-0520",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd15_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0519",
+      "line": "LOAD-0521",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd24_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0520",
+      "line": "LOAD-0522",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd29_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0521",
+      "line": "LOAD-0523",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd41_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0522",
+      "line": "LOAD-0524",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd50_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0523",
+      "line": "LOAD-0525",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd5_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0524",
+      "line": "LOAD-0526",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd60_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0525",
+      "line": "LOAD-0527",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd76_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0526",
+      "line": "LOAD-0528",
       "instance_uid": "LESHY2-UI-R2:hub_rp_qspi_iovdd_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0527",
+      "line": "LOAD-0529",
       "instance_uid": "LESHY2-UI-R2:hub_rp_service_usb_switch_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0528",
+      "line": "LOAD-0530",
       "instance_uid": "LESHY2-UI-R2:hub_rp_usb_otp_vdd_bypass",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0529",
+      "line": "LOAD-0531",
       "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_avdd_filter_cap",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0530",
+      "line": "LOAD-0532",
       "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_output_bulk",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0531",
+      "line": "LOAD-0533",
       "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_vin_bulk",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0532",
+      "line": "LOAD-0534",
       "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_inductor",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0533",
+      "line": "LOAD-0535",
       "instance_uid": "LESHY2-UI-R2:hub_rp_boot_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0534",
+      "line": "LOAD-0536",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dbg_id1_strap",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0535",
+      "line": "LOAD-0537",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dbg_vtref_series",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0536",
+      "line": "LOAD-0538",
       "instance_uid": "LESHY2-UI-R2:hub_rp_reset_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0537",
+      "line": "LOAD-0539",
       "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_avdd_filter_res",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0538",
+      "line": "LOAD-0540",
       "instance_uid": "LESHY2-UI-R2:hub_rp",
       "owner": "hub_rp_peak"
     },
     {
-      "line": "LOAD-0539",
+      "line": "LOAD-0541",
       "instance_uid": "LESHY2-UI-R2:hub_rp_service_usb_switch",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0540",
+      "line": "LOAD-0542",
       "instance_uid": "LESHY2-UI-R2:nrf0_detector_bypass",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0541",
+      "line": "LOAD-0543",
       "instance_uid": "LESHY2-UI-R2:nrf0_host_buffer_bypass",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0542",
+      "line": "LOAD-0544",
       "instance_uid": "LESHY2-UI-R2:nrf0_module_bulk_cap",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0543",
+      "line": "LOAD-0545",
       "instance_uid": "LESHY2-UI-R2:nrf0_module_hf_cap",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0544",
+      "line": "LOAD-0546",
       "instance_uid": "LESHY2-UI-R2:nrf0_return_buffer_bypass",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0545",
+      "line": "LOAD-0547",
       "instance_uid": "LESHY2-UI-R2:nrf1_detector_bypass",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0546",
+      "line": "LOAD-0548",
       "instance_uid": "LESHY2-UI-R2:nrf1_host_buffer_bypass",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0547",
+      "line": "LOAD-0549",
       "instance_uid": "LESHY2-UI-R2:nrf1_module_bulk_cap",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0548",
+      "line": "LOAD-0550",
       "instance_uid": "LESHY2-UI-R2:nrf1_module_hf_cap",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0549",
+      "line": "LOAD-0551",
       "instance_uid": "LESHY2-UI-R2:nrf1_return_buffer_bypass",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0550",
+      "line": "LOAD-0552",
       "instance_uid": "LESHY2-UI-R2:nrf2_detector_bypass",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0551",
+      "line": "LOAD-0553",
       "instance_uid": "LESHY2-UI-R2:nrf2_host_buffer_bypass",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0552",
+      "line": "LOAD-0554",
       "instance_uid": "LESHY2-UI-R2:nrf2_module_bulk_cap",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0553",
+      "line": "LOAD-0555",
       "instance_uid": "LESHY2-UI-R2:nrf2_module_hf_cap",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0554",
+      "line": "LOAD-0556",
       "instance_uid": "LESHY2-UI-R2:nrf2_return_buffer_bypass",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0555",
+      "line": "LOAD-0557",
       "instance_uid": "LESHY2-UI-R2:nrf_backup_gate_bypass",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0556",
+      "line": "LOAD-0558",
       "instance_uid": "LESHY2-UI-R2:nrf_power_input_cap",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0557",
+      "line": "LOAD-0559",
       "instance_uid": "LESHY2-UI-R2:nrf0_host_csn_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0558",
+      "line": "LOAD-0560",
       "instance_uid": "LESHY2-UI-R2:nrf0_host_irq_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0559",
+      "line": "LOAD-0561",
       "instance_uid": "LESHY2-UI-R2:nrf0_module_csn_pullup",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0560",
+      "line": "LOAD-0562",
       "instance_uid": "LESHY2-UI-R2:nrf0_module_irq_pullup",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0561",
+      "line": "LOAD-0563",
       "instance_uid": "LESHY2-UI-R2:nrf1_host_csn_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0562",
+      "line": "LOAD-0564",
       "instance_uid": "LESHY2-UI-R2:nrf1_host_irq_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0563",
+      "line": "LOAD-0565",
       "instance_uid": "LESHY2-UI-R2:nrf1_module_csn_pullup",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0564",
+      "line": "LOAD-0566",
       "instance_uid": "LESHY2-UI-R2:nrf1_module_irq_pullup",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0565",
+      "line": "LOAD-0567",
       "instance_uid": "LESHY2-UI-R2:nrf2_host_csn_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0566",
+      "line": "LOAD-0568",
       "instance_uid": "LESHY2-UI-R2:nrf2_host_irq_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0567",
+      "line": "LOAD-0569",
       "instance_uid": "LESHY2-UI-R2:nrf2_module_csn_pullup",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0568",
+      "line": "LOAD-0570",
       "instance_uid": "LESHY2-UI-R2:nrf2_module_irq_pullup",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0569",
+      "line": "LOAD-0571",
       "instance_uid": "LESHY2-UI-R2:det_nrf0",
       "owner": "aon_detector_one"
     },
     {
-      "line": "LOAD-0570",
+      "line": "LOAD-0572",
       "instance_uid": "LESHY2-UI-R2:det_nrf1",
       "owner": "aon_detector_one"
     },
     {
-      "line": "LOAD-0571",
+      "line": "LOAD-0573",
       "instance_uid": "LESHY2-UI-R2:det_nrf2",
       "owner": "aon_detector_one"
     },
     {
-      "line": "LOAD-0572",
+      "line": "LOAD-0574",
       "instance_uid": "LESHY2-UI-R2:nrf0",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0573",
+      "line": "LOAD-0575",
       "instance_uid": "LESHY2-UI-R2:nrf0_host_buffer",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0574",
+      "line": "LOAD-0576",
       "instance_uid": "LESHY2-UI-R2:nrf0_return_buffer",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0575",
+      "line": "LOAD-0577",
       "instance_uid": "LESHY2-UI-R2:nrf1",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0576",
+      "line": "LOAD-0578",
       "instance_uid": "LESHY2-UI-R2:nrf1_host_buffer",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0577",
+      "line": "LOAD-0579",
       "instance_uid": "LESHY2-UI-R2:nrf1_return_buffer",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0578",
+      "line": "LOAD-0580",
       "instance_uid": "LESHY2-UI-R2:nrf2",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0579",
+      "line": "LOAD-0581",
       "instance_uid": "LESHY2-UI-R2:nrf2_host_buffer",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0580",
+      "line": "LOAD-0582",
       "instance_uid": "LESHY2-UI-R2:nrf2_return_buffer",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0581",
+      "line": "LOAD-0583",
       "instance_uid": "LESHY2-UI-R2:nrf_backup_gate",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0582",
+      "line": "LOAD-0584",
       "instance_uid": "LESHY2-UI-R2:nrf_power_switch",
       "owner": "nrf24_group"
     },
     {
-      "line": "LOAD-0583",
+      "line": "LOAD-0585",
       "instance_uid": "LESHY2-UI-R2:m1_ui_plug",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0584",
+      "line": "LOAD-0586",
       "instance_uid": "LESHY2-UI-R2:evidence_cmp_a_bypass",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0585",
+      "line": "LOAD-0587",
       "instance_uid": "LESHY2-UI-R2:evidence_cmp_b_bypass",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0586",
+      "line": "LOAD-0588",
       "instance_uid": "LESHY2-UI-R2:safe_c5_fault_reset_buffer_bypass",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0587",
+      "line": "LOAD-0589",
       "instance_uid": "LESHY2-UI-R2:safe_c5_reset_buffer_bypass",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0588",
+      "line": "LOAD-0590",
       "instance_uid": "LESHY2-UI-R2:safe_gate_a_bypass",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0589",
+      "line": "LOAD-0591",
       "instance_uid": "LESHY2-UI-R2:c5_evidence_threshold_top",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0590",
+      "line": "LOAD-0592",
       "instance_uid": "LESHY2-UI-R2:ir_evidence_threshold_top",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0591",
+      "line": "LOAD-0593",
       "instance_uid": "LESHY2-UI-R2:ir_evidence_vref_top",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0592",
+      "line": "LOAD-0594",
       "instance_uid": "LESHY2-UI-R2:nrf0_evidence_output_pullup",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0593",
+      "line": "LOAD-0595",
       "instance_uid": "LESHY2-UI-R2:nrf0_evidence_threshold_top",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0594",
+      "line": "LOAD-0596",
       "instance_uid": "LESHY2-UI-R2:nrf1_evidence_output_pullup",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0595",
+      "line": "LOAD-0597",
       "instance_uid": "LESHY2-UI-R2:nrf1_evidence_threshold_top",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0596",
+      "line": "LOAD-0598",
       "instance_uid": "LESHY2-UI-R2:nrf2_evidence_output_pullup",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0597",
+      "line": "LOAD-0599",
       "instance_uid": "LESHY2-UI-R2:nrf2_evidence_threshold_top",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0598",
+      "line": "LOAD-0600",
       "instance_uid": "LESHY2-UI-R2:s3_evidence_threshold_top",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0599",
+      "line": "LOAD-0601",
       "instance_uid": "LESHY2-UI-R2:safe_c5_reset_gate_pullup",
       "owner": "main_common_peak"
     },
     {
-      "line": "LOAD-0600",
+      "line": "LOAD-0602",
       "instance_uid": "LESHY2-UI-R2:det_c5",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0601",
+      "line": "LOAD-0603",
       "instance_uid": "LESHY2-UI-R2:det_s3",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0602",
+      "line": "LOAD-0604",
       "instance_uid": "LESHY2-UI-R2:evidence_cmp_a",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0603",
+      "line": "LOAD-0605",
       "instance_uid": "LESHY2-UI-R2:evidence_cmp_b",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0604",
+      "line": "LOAD-0606",
       "instance_uid": "LESHY2-UI-R2:ir_evidence_amp",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0605",
+      "line": "LOAD-0607",
       "instance_uid": "LESHY2-UI-R2:safe_c5_fault_reset_buffer",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0606",
+      "line": "LOAD-0608",
       "instance_uid": "LESHY2-UI-R2:safe_c5_reset_buffer",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0607",
+      "line": "LOAD-0609",
       "instance_uid": "LESHY2-UI-R2:safe_gate_a",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0608",
+      "line": "LOAD-0610",
       "instance_uid": "LESHY2-RF-R2:air_lna",
       "owner": "airband_chain"
     },
     {
-      "line": "LOAD-0609",
+      "line": "LOAD-0611",
       "instance_uid": "LESHY2-UI-R2:ir_carrier",
       "owner": "ir_group"
     },
     {
-      "line": "LOAD-0610",
+      "line": "LOAD-0612",
       "instance_uid": "LESHY2-UI-R2:ir_demod",
       "owner": "ir_group"
     },
     {
-      "line": "LOAD-0611",
+      "line": "LOAD-0613",
       "instance_uid": "LESHY2-UI-R2:ir_emitter",
       "owner": "ir_group"
     },
     {
-      "line": "LOAD-0612",
+      "line": "LOAD-0614",
       "instance_uid": "LESHY2-UI-R2:c5_tx_led",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0613",
+      "line": "LOAD-0615",
       "instance_uid": "LESHY2-UI-R2:cc_tx_led",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0614",
+      "line": "LOAD-0616",
       "instance_uid": "LESHY2-UI-R2:ext_tx_led",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0615",
+      "line": "LOAD-0617",
       "instance_uid": "LESHY2-UI-R2:fault_led",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0616",
+      "line": "LOAD-0618",
       "instance_uid": "LESHY2-UI-R2:ir_tx_led",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0617",
+      "line": "LOAD-0619",
       "instance_uid": "LESHY2-UI-R2:nrf0_tx_led",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0618",
+      "line": "LOAD-0620",
       "instance_uid": "LESHY2-UI-R2:nrf1_tx_led",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0619",
+      "line": "LOAD-0621",
       "instance_uid": "LESHY2-UI-R2:nrf2_tx_led",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0620",
+      "line": "LOAD-0622",
       "instance_uid": "LESHY2-UI-R2:s3_tx_led",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0621",
+      "line": "LOAD-0623",
       "instance_uid": "LESHY2-UI-R2:voice_tx_led",
       "owner": "aon_common"
     },
     {
-      "line": "LOAD-0622",
+      "line": "LOAD-0624",
       "instance_uid": "LESHY2-RF-R2:microphone",
       "owner": "audio_peak"
     },
     {
-      "line": "LOAD-0623",
+      "line": "LOAD-0625",
       "instance_uid": "LESHY2-RF-R2:speaker",
       "owner": "audio_peak"
     },
@@ -3491,11 +3501,11 @@
     }
   ],
   "ownership_summary": {
-    "physical_and_external_lines": 629,
-    "numeric_or_deferred_owner_lines": 629,
+    "physical_and_external_lines": 631,
+    "numeric_or_deferred_owner_lines": 631,
     "owner_counts": {
       "airband_chain": 14,
-      "aon_common": 166,
+      "aon_common": 168,
       "aon_detector_one": 6,
       "audio_peak": 19,
       "broadcast_receiver": 12,
@@ -3640,6 +3650,8 @@
         "LESHY2-UI-R2:c5_service_mux_logic_inverters",
         "LESHY2-UI-R2:c5_service_owner_latch",
         "LESHY2-UI-R2:c5_service_owner_latch_bypass",
+        "LESHY2-UI-R2:c5_service_path_logic",
+        "LESHY2-UI-R2:c5_service_path_logic_bypass",
         "LESHY2-UI-R2:c5_service_release_logic",
         "LESHY2-UI-R2:c5_service_release_logic_bypass",
         "LESHY2-UI-R2:c5_service_reset_proof_bypass",
@@ -21281,7 +21293,7 @@
   "summary": {
     "operating_profiles": 56,
     "rail_profiles_evaluated": 224,
-    "physical_and_external_lines_owned": 629,
+    "physical_and_external_lines_owned": 631,
     "deferred_source_pack_lines": 77,
     "hidden_miscellaneous_allowances": 0,
     "current_failures": 1,
@@ -21353,13 +21365,13 @@
     "battery_energization_authorized": false,
     "source_sha256": {
       "hardware/verification/h3-r2-rail-margin-contract.json": "b02616c8e30f2e8dbcd781dde72a492ed61b5b7ef19960b6c71f18eec0c8eb5f",
-      "hardware/verification/generated/H3-R2-load-binding.json": "4df2785b7316976dae13f2b8cfbc6bd8dafa76b98c60d9ced727f6b1d96527d2",
-      "hardware/verification/generated/H3-R2-power-state-register.json": "090d12547495e35bde564d7b5eb569a9a562ed6cd8f90ee33da2778e9194e8e9",
-      "hardware/verification/generated/H3-R2-method-contract.json": "61c8ad9393a7413030957daf739671c6a5e85b536a6cc989c50611903a0430d6",
+      "hardware/verification/generated/H3-R2-load-binding.json": "298691cf34af764e87b7d0acf64d2dcb6ac648a090f10460bb5a136b38e41a40",
+      "hardware/verification/generated/H3-R2-power-state-register.json": "c1fba584032410ba3df65ddb3a95d671d5971f91021bdc2e9e12d81be12efa5a",
+      "hardware/verification/generated/H3-R2-method-contract.json": "6ab955eac6909f30e6e06f71f672d7faaf2e9fab4fcfba17238d4468b333263e",
       "hardware/architecture/h0-r2-rebaseline.json": "800ae7c3ad05e717eea11f4a1b547f52db4495681181c6234c37481c01719fbd",
-      "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "dfd2101cd84ab4290b69a38576bf40002e673817527dab27185747d1affca569",
-      "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
-      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "eb9976d1662695f0a013b421d582ed6b88faf2d4eca253f0db4ea5f686481840",
+      "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "9c4c81fe32c242297b6ed42b6999c8ac63e6f02a766fac0874c88b19b2ae9d3e",
+      "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
+      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
       "hardware/verification/h6_power_corner_math.py": "5f48acfb73f8cdc80cb5657a4b2b0415e86ff6956d27ea422a94d2019da13e72",
       "hardware/verification/h3_r2_rail_margins.py": "66cdb6c21f8e8f932890be7c3ef109bf447f8fbf75fccaae0a6864c107c70b1f",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"

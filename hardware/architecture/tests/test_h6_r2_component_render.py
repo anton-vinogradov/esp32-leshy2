@@ -24,7 +24,7 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = ROOT / "hardware/layout/h6_r2_component_render.py"
 MANIFEST = ROOT / "hardware/layout/generated/H6-R2-component-views.json"
-EXPECTED = {("ui", "outer"): (30, 4), ("ui", "inner"): (398, 0),
+EXPECTED = {("ui", "outer"): (30, 4), ("ui", "inner"): (400, 0),
             ("rf", "outer"): (12, 4), ("rf", "inner"): (768, 0)}
 SVG = "{http://www.w3.org/2000/svg}"
 
@@ -88,7 +88,7 @@ class ComponentRenderTests(unittest.TestCase):
                 self.assertEqual(mounts, row["mount_count"])
                 self.assertEqual(components + mounts, len(row["references"]))
                 self.assertEqual(len(row["references"]), len(set(row["references"])))
-        self.assertEqual(1208, sum(row["component_count"] for row in self.views.values()))
+        self.assertEqual(1210, sum(row["component_count"] for row in self.views.values()))
         self.assertEqual(8, sum(row["mount_count"] for row in self.views.values()))
 
     def test_approved_single_sentence_is_rendered_on_its_own_outer_face_only(self):
@@ -106,6 +106,9 @@ class ComponentRenderTests(unittest.TestCase):
     def test_bilingual_legend_counts_match_the_current_native_inventory(self):
         english = (ROOT / "docs/h6-r2-component-views.md").read_text()
         russian = (ROOT / "docs/h6-r2-component-views.ru.md").read_text()
+        total = sum(components for components, _ in EXPECTED.values())
+        self.assertIn(f"All **{total} items**", english)
+        self.assertIn(f"Показаны все **{total} позиций**", russian)
         for (board, face), (components, mounts) in EXPECTED.items():
             if face == "outer":
                 self.assertIn(f"Outer F — {components} items + {mounts} mounting footprints", english)
@@ -131,7 +134,7 @@ class ComponentRenderTests(unittest.TestCase):
     def test_all_current_electronic_instances_are_represented_not_only_interfaces(self):
         ledger = json.loads((ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json").read_text())["rows"]
         expected = {(row["project"], row["reference"]) for row in ledger}
-        self.assertEqual(1208, len(ledger))
+        self.assertEqual(1210, len(ledger))
         self.assertEqual(len(ledger), len(expected), "duplicate instance must not hide a missing strategic part")
         shown = [(f"LESHY2-{board.upper()}-R2", ref)
                  for (board, face), view in self.views.items()

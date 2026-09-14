@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "6916cc064ed77537db44f3e9f9384f4b71b5caefaa42d242095690ad1a3d5675"
+      "sha256": "d9fd9d65913c56ac363f4dcbc0e1e8af7d56ada6d148831071a94065f30707eb"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9"
+      "sha256": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e"
     }
   },
   "historical_hint_sources": [
@@ -160,16 +160,16 @@
     }
   ],
   "summary": {
-    "component_group_count": 250,
-    "board_component_group_count": 244,
+    "component_group_count": 252,
+    "board_component_group_count": 246,
     "explicit_non_pcba_group_count": 6,
-    "symbol_identity_count": 244,
-    "footprint_identity_count": 244,
-    "logical_contact_count": 1599,
+    "symbol_identity_count": 246,
+    "footprint_identity_count": 246,
+    "logical_contact_count": 1615,
     "historical_package_hints_reconciled": 181,
     "historical_package_conflicts_resolved": 5,
-    "explicit_current_footprint_overrides": 63,
-    "standard_kicad_footprint_identities": 205,
+    "explicit_current_footprint_overrides": 65,
+    "standard_kicad_footprint_identities": 207,
     "reconciled_local_footprint_definitions": 25,
     "new_exact_footprint_geometries_materialized": 12,
     "partial_local_footprint_definitions_mechanics_open": 2,
@@ -1289,14 +1289,11 @@
     {
       "device_id": "diodes_2n7002dw_7_f",
       "mpn": "Diodes Incorporated 2N7002DW-7-F",
-      "quantity_per_product": 5,
+      "quantity_per_product": 2,
       "role": "pack_hold;pack_status_buffer;safe_reset_sink_a;safe_reset_sink_b",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
-        "RF_02_PACK_SAFETY_AON",
-        "RF_50_TX_SAFETY_EVIDENCE",
-        "UI_20_C5_WIFI_IR_SERVICE",
-        "UI_50_FRONT_POWER_SAFETY"
+        "RF_02_PACK_SAFETY_AON"
       ],
       "schematic_value": "dual_60v_nmos_sot363_hold_release",
       "symbol_id": "Leshy2_R2:diodes_2n7002dw_7_f",
@@ -7037,102 +7034,6 @@
       "bom_excluded": false
     },
     {
-      "device_id": "nexperia_74hc20pw_118",
-      "mpn": "74HC20PW,118",
-      "quantity_per_product": 1,
-      "role": "dual four-input NAND for qualified ownership release and asynchronous mux disconnect",
-      "ecad_disposition": "schematic_component_group",
-      "native_sheet_affinity": [
-        "UI_20_C5_WIFI_IR_SERVICE"
-      ],
-      "schematic_value": "tssop14_dual_four_input_nand_gate",
-      "symbol_id": "Leshy2_R2:nexperia_74hc20pw_118",
-      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
-      "logical_contact_count": 14,
-      "contact_role_counts": {
-        "no_connect": 2,
-        "power": 2,
-        "signal": 10
-      },
-      "contact_map": {
-        "1A": {
-          "physical": "1",
-          "role": "signal"
-        },
-        "1B": {
-          "physical": "2",
-          "role": "signal"
-        },
-        "NC_3": {
-          "physical": "3",
-          "role": "no_connect"
-        },
-        "1C": {
-          "physical": "4",
-          "role": "signal"
-        },
-        "1D": {
-          "physical": "5",
-          "role": "signal"
-        },
-        "1Y": {
-          "physical": "6",
-          "role": "signal"
-        },
-        "GND": {
-          "physical": "7",
-          "role": "power"
-        },
-        "2Y": {
-          "physical": "8",
-          "role": "signal"
-        },
-        "2A": {
-          "physical": "9",
-          "role": "signal"
-        },
-        "2B": {
-          "physical": "10",
-          "role": "signal"
-        },
-        "NC_11": {
-          "physical": "11",
-          "role": "no_connect"
-        },
-        "2C": {
-          "physical": "12",
-          "role": "signal"
-        },
-        "2D": {
-          "physical": "13",
-          "role": "signal"
-        },
-        "VCC": {
-          "physical": "14",
-          "role": "power"
-        }
-      },
-      "contact_map_sha256": "09644da1d8fded63006d3f24fdf18f7dd61dd2418a12006ac6c51bbd20f06999",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "manufacturer_evidence": {
-        "document": "74HC20 Dual 4-input NAND gate datasheet",
-        "version": "Rev. 7, 14 March 2024",
-        "url": "https://assets.nexperia.com/documents/data-sheet/74HC20.pdf",
-        "checked": "2026-08-30"
-      },
-      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
-      "footprint_resolution": "explicit_current_override",
-      "footprint_definition": {
-        "status": "exact_package_identity_mapped_to_standard_kicad_library",
-        "path": null,
-        "sha256": null
-      },
-      "historical_hint_files": [],
-      "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C546719",
-      "bom_excluded": false
-    },
-    {
       "device_id": "nexperia_74lvc126apw_118",
       "mpn": "Nexperia 74LVC126APW,118",
       "quantity_per_product": 8,
@@ -7499,6 +7400,70 @@
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
       "jlcpcb_part_number": "C47546",
+      "bom_excluded": false
+    },
+    {
+      "device_id": "nexperia_nx3008nbks_115",
+      "mpn": "NX3008NBKS,115",
+      "quantity_per_product": 3,
+      "role": "c5_service_hub_reset_sink,safe_reset_sink_a,safe_reset_sink_b",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "UI_20_C5_WIFI_IR_SERVICE",
+        "UI_50_FRONT_POWER_SAFETY"
+      ],
+      "schematic_value": "dual_30v_nmos_sot363_logic_level_reset_sink",
+      "symbol_id": "Leshy2_R2:nexperia_nx3008nbks_115",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 6,
+      "contact_role_counts": {
+        "signal": 6
+      },
+      "contact_map": {
+        "S1": {
+          "physical": "1",
+          "role": "signal"
+        },
+        "G1": {
+          "physical": "2",
+          "role": "signal"
+        },
+        "D2": {
+          "physical": "3",
+          "role": "signal"
+        },
+        "S2": {
+          "physical": "4",
+          "role": "signal"
+        },
+        "G2": {
+          "physical": "5",
+          "role": "signal"
+        },
+        "D1": {
+          "physical": "6",
+          "role": "signal"
+        }
+      },
+      "contact_map_sha256": "1da1e7b503463c65377f9eff227091ed4c80622bf4816094c6e5262b2ca5c8ef",
+      "electrical_contract_sha256": "a99e6adbc48724b23455b8049ed2143b616613805a5057b81124673c8ed61b96",
+      "manufacturer_evidence": {
+        "document": "NX3008NBKS 30 V dual N-channel Trench MOSFET datasheet",
+        "version": "5 November 2022",
+        "url": "https://assets.nexperia.com/documents/data-sheet/NX3008NBKS.pdf",
+        "checked": "2026-09-14"
+      },
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C396098",
       "bom_excluded": false
     },
     {
@@ -8041,12 +8006,11 @@
     {
       "device_id": "onsemi_fsusb42_mux",
       "mpn": "onsemi FSUSB42MUX",
-      "quantity_per_product": 3,
+      "quantity_per_product": 2,
       "role": "c5_service_usb_switch;rp_service_usb_switch",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
-        "UI_20_C5_WIFI_IR_SERVICE",
         "UI_30_HUB_RP_CORE_SERVICE"
       ],
       "schematic_value": "msop10_usb2_dpdt_power_off_protected_switch",
@@ -10865,6 +10829,102 @@
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
       "jlcpcb_part_number": "C131992",
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_sn74lv20apwr",
+      "mpn": "SN74LV20APWR",
+      "quantity_per_product": 2,
+      "role": "c5_service_release_logic,c5_service_path_logic",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "UI_20_C5_WIFI_IR_SERVICE"
+      ],
+      "schematic_value": "tssop14_dual_four_input_nand_gate",
+      "symbol_id": "Leshy2_R2:ti_sn74lv20apwr",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 14,
+      "contact_role_counts": {
+        "no_connect": 2,
+        "power": 2,
+        "signal": 10
+      },
+      "contact_map": {
+        "1A": {
+          "physical": "1",
+          "role": "signal"
+        },
+        "1B": {
+          "physical": "2",
+          "role": "signal"
+        },
+        "NC_3": {
+          "physical": "3",
+          "role": "no_connect"
+        },
+        "1C": {
+          "physical": "4",
+          "role": "signal"
+        },
+        "1D": {
+          "physical": "5",
+          "role": "signal"
+        },
+        "1Y": {
+          "physical": "6",
+          "role": "signal"
+        },
+        "GND": {
+          "physical": "7",
+          "role": "power"
+        },
+        "2Y": {
+          "physical": "8",
+          "role": "signal"
+        },
+        "2A": {
+          "physical": "9",
+          "role": "signal"
+        },
+        "2B": {
+          "physical": "10",
+          "role": "signal"
+        },
+        "NC_11": {
+          "physical": "11",
+          "role": "no_connect"
+        },
+        "2C": {
+          "physical": "12",
+          "role": "signal"
+        },
+        "2D": {
+          "physical": "13",
+          "role": "signal"
+        },
+        "VCC": {
+          "physical": "14",
+          "role": "power"
+        }
+      },
+      "contact_map_sha256": "09644da1d8fded63006d3f24fdf18f7dd61dd2418a12006ac6c51bbd20f06999",
+      "electrical_contract_sha256": "0922fb4ed36abd0ede81d7450f1718e6857dd55e7de8cee5aefa957f9deb48ff",
+      "manufacturer_evidence": {
+        "document": "SN74LV20A Dual 4-Input Positive-NAND Gates datasheet",
+        "version": "Rev. F, May 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lv20a.pdf",
+        "checked": "2026-09-14"
+      },
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C2862070",
       "bom_excluded": false
     },
     {
@@ -14086,6 +14146,85 @@
       "bom_excluded": false
     },
     {
+      "device_id": "ti_ts3usb221erser",
+      "mpn": "TS3USB221ERSER",
+      "quantity_per_product": 1,
+      "role": "c5_service_usb_switch",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "UI_20_C5_WIFI_IR_SERVICE"
+      ],
+      "schematic_value": "uqfn10_usb2_dpdt_power_off_protected_switch",
+      "symbol_id": "Leshy2_R2:ti_ts3usb221erser",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 10,
+      "contact_role_counts": {
+        "power": 2,
+        "signal": 8
+      },
+      "contact_map": {
+        "HSD1_PLUS": {
+          "physical": "1",
+          "role": "signal"
+        },
+        "HSD1_MINUS": {
+          "physical": "2",
+          "role": "signal"
+        },
+        "HSD2_PLUS": {
+          "physical": "3",
+          "role": "signal"
+        },
+        "HSD2_MINUS": {
+          "physical": "4",
+          "role": "signal"
+        },
+        "GND": {
+          "physical": "5",
+          "role": "power"
+        },
+        "OE": {
+          "physical": "6",
+          "role": "signal"
+        },
+        "D_MINUS": {
+          "physical": "7",
+          "role": "signal"
+        },
+        "D_PLUS": {
+          "physical": "8",
+          "role": "signal"
+        },
+        "SEL": {
+          "physical": "9",
+          "role": "signal"
+        },
+        "VCC": {
+          "physical": "10",
+          "role": "power"
+        }
+      },
+      "contact_map_sha256": "b81dca571d6b8137db56b65647a70d4a3aaea0f85dcf947676b05c3701b451dd",
+      "electrical_contract_sha256": "8b5b7be5232d5e1fd37b7a63582e6e9b72656ed9821f636b79097d1dc092464b",
+      "manufacturer_evidence": {
+        "document": "TS3USB221E High-Speed USB 2.0 (480-Mbps) 1:2 Multiplexer/Demultiplexer Switch datasheet",
+        "version": "Rev. E, July 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/ts3usb221e.pdf",
+        "checked": "2026-09-14"
+      },
+      "footprint": "Package_DFN_QFN:Texas_UQFN-10_1.5x2mm_P0.5mm",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C129313",
+      "bom_excluded": false
+    },
+    {
       "device_id": "ti_ts5a63157_dckr",
       "mpn": "Texas Instruments TS5A63157DCKR",
       "quantity_per_product": 3,
@@ -15415,7 +15554,7 @@
     {
       "device_id": "yageo_cc0402krx7r9bb104",
       "mpn": "Yageo CC0402KRX7R9BB104",
-      "quantity_per_product": 173,
+      "quantity_per_product": 174,
       "role": "aon_efuse_input_cap;audio_capture_buffer_bypass;audio_capture_selector_bypass;audio_rx_mux_bypass;audio_safe_gate_bypass;audio_speaker_selector_bypass;audio_tx_selector_bypass;backlight_efuse_input_cap;backlight_efuse_output_hf;c5_detector_bypass;c5_service_usb_switch_bypass;cc_avdd11_bypass;cc_avdd14_bypass;cc_avdd15_bypass;cc_avdd9_bypass;cc_backup_gate_bypass;cc_band_buffer_bypass;cc_dcoupl_cap;cc_detector_bypass;cc_dvdd_bypass;cc_host_buffer_bypass;cc_return_buffer_bypass;charger_pmid_hf_cap;charger_sys_hf_cap;charger_vbus_hf_cap;codec_avdd_bypass;codec_dvdd_bypass;codec_i2c_iso_bypass;codec_i2s_bclk_iso_bypass;codec_i2s_din_boot_gate_bypass;codec_i2s_din_iso_bypass;codec_i2s_dout_iso_bypass;codec_i2s_ws_iso_bypass;codec_pvdd_bypass;codec_supervisor_bypass;display_logic_hf_cap;evidence_cmp_a_bypass;evidence_cmp_b_bypass;evidence_cmp_voice_bypass;evidence_cmp_voice_v_bypass;evidence_main_isolator_bypass;evidence_mask_bypass;ext_branch_gate_bypass;ext_buck_hf_input_cap;ext_evidence_buffer_bypass;ext_request_or_bypass;headset_control_io_bypass;headset_mic_selector_bypass;ir_evidence_amp_bypass;ir_evidence_vref_cap;ir_power_output_bypass;ir_return_buffer_bypass;ir_safe_gate_bypass;main_hf_input_cap;nrf0_detector_bypass;nrf0_host_buffer_bypass;nrf0_module_hf_cap;nrf0_return_buffer_bypass;nrf1_detector_bypass;nrf1_host_buffer_bypass;nrf1_module_hf_cap;nrf1_return_buffer_bypass;nrf2_detector_bypass;nrf2_host_buffer_bypass;nrf2_module_hf_cap;nrf2_return_buffer_bypass;nrf_backup_gate_bypass;pack_admission_bypass;pack_batts_filter_cap;pack_cell1_filter_cap;pack_chg_gate_cap;pack_diag_timer_bypass;pack_dis_gate_cap;pack_in_bypass;pd_eeprom_bypass;power_command_filter;power_zone_temp_filter;ptt_filter_cap;receiver_i2c_iso_bypass;receiver_irq_iso_bypass;receiver_supervisor_bypass;receiver_vdd_bypass;rf_zone_temp_filter;rp_adc_avdd_bypass;rp_dvdd10_bypass;rp_dvdd32_bypass;rp_dvdd51_bypass;rp_iovdd15_bypass;rp_iovdd24_bypass;rp_iovdd29_bypass;rp_iovdd41_bypass;rp_iovdd50_bypass;rp_iovdd5_bypass;rp_iovdd60_bypass;rp_iovdd76_bypass;rp_qspi_iovdd_bypass;rp_service_usb_switch_bypass;rp_usb_otp_vdd_bypass;run_loop_filter;s3_detector_bypass;s3_supply_bypass;safe_c5_fault_reset_buffer_bypass;safe_c5_reset_buffer_bypass;safe_conditioner_bypass;safe_fault_reset_buffer_bypass;safe_gate_a_bypass;safe_gate_b_bypass;safe_latch_bypass;safe_ptt_or_bypass;safe_rearm_buffer_bypass;safe_reset_buffer_bypass;safe_run_fault_iso_bypass;safe_supervisor_bypass;safety_controller_bypass;safety_fault_request_iso_bypass;safety_s3_reset_iso_bypass;safety_watchdog_bypass;sd_detect_cap;sd_host_buffer_bypass;sd_miso_buffer_bypass;sd_power_hf_cap;slow_io_fault_sense_iso_bypass;slow_io_s3_evidence_iso_bypass;slow_io_vcci_bypass;slow_io_vccp_bypass;touch_irq_buffer_bypass;u214_host_buffer_a_bypass;u214_host_buffer_b_bypass;u214_i2c_iso_bypass;u214_return_buffer_bypass;u214_supervisor_bypass;ui_matrix_io_bypass;ui_zone_temp_filter;unit_signal_iso_vcca_bypass;unit_signal_iso_vccb_bypass;unit_supervisor_bypass;voice_audio_mux_bypass;voice_band_inverter_bypass;voice_band_io_bypass;voice_control_mux_a_bypass;voice_control_mux_b_bypass;voice_detector_bypass;voice_hf_input_cap;voice_hl_driver_bypass;voice_pd_gate_bypass;voice_supervisor_bypass;voice_v_detector_bypass",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [

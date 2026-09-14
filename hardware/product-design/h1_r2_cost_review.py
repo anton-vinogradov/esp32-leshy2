@@ -23,6 +23,10 @@ TOP20_MARKET_CSV_PATH = REPO / "hardware/product-design/generated/H1-R2-top20-ma
 EN_PATH = REPO / "docs/h1-r2-cost.md"
 RU_PATH = REPO / "docs/h1-r2-cost.ru.md"
 
+# The 2026-09-14 source additions have explicit quantity-one / Pre-order
+# estimates, not the legacy quantity-100 price basis. Do not restamp history.
+CURRENT_C5_COST_IDS = {"ti_ts3usb221erser", "ti_sn74lv20apwr", "nexperia_nx3008nbks_115"}
+
 
 ROLE_OVERRIDES = {
     "adi_ad8314acpz_rl7": "six real-TX RF detectors / шесть RF-детекторов фактической передачи",
@@ -139,6 +143,22 @@ def current_r2_bom(inventory: dict, devices: dict) -> list[dict]:
             "cost_gate_status": (device.get("cost_gate") or {}).get("status", ""),
             "placements": group.get("role", group["device_id"]),
         })
+        if group["device_id"] in CURRENT_C5_COST_IDS:
+            route = device["orderable_source"]
+            rows[-1]["current_cost_basis"] = {
+                "target_quantity": cost["target_quantity"],
+                "estimated": cost.get("estimated", False),
+                "price_break": cost["price_break"],
+                "source_url": cost["source"]["url"],
+                "checked_at": cost["source"]["checked_at"],
+                "jlcpcb_part_number": route["jlcpcb_part_number"],
+                "route": route["live_inventory"]["route"],
+                "stock": route["live_inventory"]["stock"],
+                "available_order_quantity": route["live_inventory"]["available_order_quantity"],
+                "moq": route["live_inventory"]["moq"],
+                "lead_time": route["live_inventory"].get("lead_time"),
+                "is_order_quote": False,
+            }
     return rows
 
 
@@ -201,6 +221,10 @@ def build(model: dict, historical_bom: list[dict], bom: list[dict], trial: dict,
             else None
         )
         burden_kind = "quantity-100"
+        current_basis = source.get("current_cost_basis")
+        if current_basis:
+            burden_kind = ("pre-order estimate; fitted allocation, not MOQ order total"
+                           if current_basis["estimated"] else "stocked quantity-one planning basis")
         if production_line is None and source["device_id"] in provisional:
             production_line = quantity * float(
                 provisional[source["device_id"]]["unit_price_usd"]
@@ -231,7 +255,7 @@ def build(model: dict, historical_bom: list[dict], bom: list[dict], trial: dict,
                 ),
                 "unit_price_quantity_100_usd": (
                     float(source["unit_price_usd"])
-                    if source["unit_price_usd"]
+                    if source["unit_price_usd"] and not current_basis
                     else None
                 ),
                 "effective_unit_price_usd": (
@@ -240,7 +264,7 @@ def build(model: dict, historical_bom: list[dict], bom: list[dict], trial: dict,
                 "line_burden_per_device_usd": production_line,
                 "line_burden_basis": burden_kind,
                 "quantity_100_batch_line_usd": (
-                    production_line * 100 if production_line is not None else None
+                    production_line * 100 if production_line is not None and not current_basis else None
                 ),
                 "quantity_ten_devices": quantity * 10,
                 "planning_ten_devices_line_usd": (
@@ -256,6 +280,11 @@ def build(model: dict, historical_bom: list[dict], bom: list[dict], trial: dict,
                 "cost_gate": source["cost_gate_status"] or None,
             }
         )
+        if current_basis:
+            rows[-1]["current_cost_basis"] = current_basis
+            rows[-1]["current_cost_price_break"] = current_basis["price_break"]
+            rows[-1]["current_procurement_moq"] = current_basis["moq"]
+            rows[-1]["current_procurement_route"] = current_basis["route"]
     rows.sort(
         key=lambda row: (
             row["line_burden_per_device_usd"] is not None,
@@ -430,8 +459,8 @@ def build(model: dict, historical_bom: list[dict], bom: list[dict], trial: dict,
     errors = []
     if len(historical_bom) != 210:
         errors.append("historical target BOM is no longer 210 lines")
-    if len(rows) != 248:
-        errors.append(f"current R2 purchasable component-group ledger is not 248 lines: {len(rows)}")
+    if len(rows) != 250:
+        errors.append(f"current R2 purchasable component-group ledger is not 250 lines: {len(rows)}")
     if any(
         rows[index]["line_burden_per_device_usd"] is not None
         and rows[index + 1]["line_burden_per_device_usd"] is not None
@@ -579,6 +608,7 @@ def render_csv(result: dict) -> str:
         "quantity_ten_devices", "planning_ten_devices_line_usd",
         "quantity_historical_capture", "historical_capture_displayed_line_usd",
         "historical_capture_route", "jlcpcb_part", "quantity_100_batch_line_usd", "cost_gate",
+        "current_cost_price_break", "current_procurement_moq", "current_procurement_route",
     ]
     import io
     output = io.StringIO()
@@ -722,6 +752,14 @@ def render_doc(result: dict, ru: bool) -> str:
                 f'`{summary["antenna_unpriced_positions"]}` positions in `{summary["antenna_unpriced_lines"]}` MPN groups remain unpriced. The known electronics plus known antennas already reach '
             f'**{money(summary["planning_plus_known_antenna_usd_per_device"])}** before PCB/PCBA, enclosure and freight.',
         ]
+    for row in result["rows"]:
+        current_basis = row.get("current_cost_basis")
+        if current_basis:
+            prefix = "Текущая отдельная ценовая база" if ru else "Separate current price basis"
+            lines += [f'- {prefix}: `{row["mpn"]}` ×{row["quantity_per_device"]}: '
+                      f'{current_basis["price_break"]}. '
+                      f'[JLCPCB {current_basis["jlcpcb_part_number"]}]({current_basis["source_url"]}), '
+                      f'`{current_basis["checked_at"]}`.']
     if ru:
         lines += [
             '', '## Принятая ценовая граница all-in-one', '',

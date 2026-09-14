@@ -4,13 +4,13 @@
   "scope": "Bounded triage of 22 power_pin_not_driven findings, one ACDRV pin_to_pin conflict and one low-or-float H/L pin_not_driven finding from the isolated native typed ERC. All 24 native findings remain unsuppressed. Exact reported pins are representatives of their connected nets, not an exhaustive consumer list.",
   "status": "triaged_not_cleared",
   "source_sha256": {
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "eb9976d1662695f0a013b421d582ed6b88faf2d4eca253f0db4ea5f686481840",
-    "hardware/ecad/generated/H2-R2-contact-materialization.json": "278f30482e35b5d9da11504927aed0843669b21249d4f460e3cc867dd3cb7953",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json": "a4c4bef711f223fd6ec04aee33e45fc2f9d1756c48f9b9702c81db00ecd39d02",
     "hardware/verification/h6-electrical-pins-power.json": "065011f2fd529cdd053255a20cb4202755dd65231b1ac0f27e2ddb917a065310",
     "hardware/verification/h6-electrical-pins-digital.json": "b061c58cebee24f0b0369b5a26b595e0cda0ecd6d8c3b0f7cb0c7c86d4f9f6b4",
-    "hardware/verification/h6-electrical-pins-logic.json": "30a7d8e950ecd8797ad88faef29f2286d087d297d43f0460961509f12560795e",
+    "hardware/verification/h6-electrical-pins-logic.json": "6a5c54d293ef8c3647766cc1dde711eb7b06c977f0662dddaa602a397ac90a8d",
     "hardware/verification/h6-electrical-pins-analog.json": "df58a02807801f4efa1bb1b9f1153b4cff40d57e4836ed598cba8860adf82ddb",
-    "hardware/verification/h6-electrical-pins-protection.json": "f5fb2858de93401873634abf67b8cc120b7b3adfa2f66f04164c1a7168b134f5",
+    "hardware/verification/h6-electrical-pins-protection.json": "be675de9e1b07aa9d0ab81dca317d148369e1b195edff19927e1328dc8e34bbe",
     "hardware/verification/h6-electrical-pins-interfaces.json": "e1f1d907dff43cf2dc6c7142976098bdc3370e5c94f98c04a7c118d1ba98cbc6",
     "hardware/verification/h6-electrical-pins-passives.json": "3e06305650139090fdfda739160ca45071d6bc068fbe24e74779c8e0f62a8a55",
     "hardware/verification/h6-electrical-pins-peripherals.json": "77e60da1c87dcd429dd78f488fb25913d223d3f2c5e8068b9d54b5b17ede426b"

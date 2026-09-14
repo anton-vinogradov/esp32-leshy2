@@ -1,9 +1,9 @@
 {
   "status": "current_native_visualization_not_assembly_approval",
   "inputs_sha256": {
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "c779ff7a7f958434121148ce9ef2fff9b2cc02d80fc077324d1d68ba1bf79511",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "81f8809ec75a5bfea43668a94ba64ac486fca8d33edda4fd36a68b0ef5ba6c76",
-    "hardware/layout/h6_r2_component_render.py": "8a4eb363b9e3efa39e1f0ba95ea571942af384536af72ade7a615bc48c38c252"
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3fb5f492f09eefb2e85c678a64e4398f50842e82253ceb0c5277314acde9cf9f",
+    "hardware/layout/h6_r2_component_render.py": "65ea16101f7bef85704faf63cd785e39000e93712e78fcf14b6b848b31d36dc4"
   },
   "view_convention": "outer=native; inner=x_view=80-x_native, y unchanged; no extra RF transform",
   "same_scale": true,
@@ -1420,6 +1420,7 @@
         "C83",
         "C84",
         "C85",
+        "C86",
         "C9",
         "D11",
         "J1",
@@ -1729,13 +1730,14 @@
         "U56",
         "U57",
         "U58",
+        "U59",
         "U6",
         "U7",
         "U8",
         "U9",
         "Y1"
       ],
-      "component_count": 398,
+      "component_count": 400,
       "mount_count": 0,
       "fallback_reference_labels": [
         "D11",
@@ -3617,10 +3619,10 @@
     }
   ],
   "outputs_sha256": {
-    "docs/images/h6-r2-components-ui-outer.svg": "954b2bdd7ee58128ad6120a99689e6920b2046417fd0ab58a2fb1b85721340ae",
-    "docs/images/h6-r2-components-rf-outer.svg": "b893a9b5ff74ad8f233e51958af6fc41d68fe5bebf22249d8e317b773ff3ad13",
-    "docs/images/h6-r2-components-ui-inner.svg": "25f3a28a76df283c61e3547f1de14b00fa657d6a25de1f675edc9069344c23f2",
-    "docs/images/h6-r2-components-rf-inner.svg": "c6c0416759bb4104f9a723476f66626dc2750db5237c46af4906518c03340879",
-    "docs/images/h6-r2-components-overview.svg": "5f2126fc70a34fafc6891a544d4a650b48403c42f6515788ea89955578cdf44a"
+    "docs/images/h6-r2-components-ui-outer.svg": "30bf1103a40eee6ba2d6e02c8217eba6b12532e51481aeac5e5cc99311789581",
+    "docs/images/h6-r2-components-rf-outer.svg": "0049a4868f3365c76580d4e995407ff1a6f5d5ac44590c4feb823f0793c1e627",
+    "docs/images/h6-r2-components-ui-inner.svg": "672fcf964ac123badc12a486ce1eb7deda2fb3ac3f7a5299e5946636f6c39df7",
+    "docs/images/h6-r2-components-rf-inner.svg": "8a3aefc333e23c94fee059500b823170c70f2717708858e4d46b357d4af095a0",
+    "docs/images/h6-r2-components-overview.svg": "24d0c6d50508a43851b3627789453434db017e860100f2a9a2d2993804480216"
   }
 }

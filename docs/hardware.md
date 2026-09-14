@@ -9,15 +9,15 @@
 > Current R2 authority contains six compute domains with a front Hub RP and a
 > rear RF RP. The [exact dual-RP GPIO/M1 map](pinout.md) and the C5
 > module-pad/IO-mux electrical contract are joined to the reviewed native R2
-> H2 projects; older single-RP material is historical evidence only. The live
-> FSUSB42MUX/C11355 route is reviewed as `H2-R2.0.1`; the exact service-VBUS
-> detector/latch/release implementation is reviewed as `H2-R2.0.2`; the exact
-> `TCA9803DGKR/C2687966` Pack/Safety boundary is reviewed as `H2-R2.0.3`.
-> The native R2 inventory and exact symbol/contact/footprint ledger passed
-> review. Two native KiCad projects materialize all 1,208 fitted instances and
-> 4,306 physical pins with zero ERC findings. H3-R2 and the joined H4-R2 gate
-> are reviewed. H6.0.3 keeps all positions fixed without hard conflicts while
-> routing is requalified on the 80-mm baseline.
+> H2 projects; older single-RP material and the FSUSB42/HC20 closure records
+> are historical evidence only. The current [C5 TS3/LV correction](h6-r2-c5-mux-control-review.md)
+> is implemented; the separate TCA9803 Pack/Safety boundary is retained.
+> The two native KiCad projects now contain **1,210 fitted instances, 4,321
+> physical pins and 789 canonical nets**. The partial typed-ERC review retains
+> **24 open findings**, not zero-error electrical approval. Current H3 remains
+> `review_required`; prior H4 results retain their own input scope. Live
+> placement, board views and partial-routing evidence have one owner:
+> [H6 current routing](h6-r2-current-routing.md).
 
 ## Capabilities
 
@@ -160,7 +160,11 @@ fault reason for the next boot/display opportunity.
 See [power and thermal architecture](h1-r2-power-thermal.md) and the
 [three-level safety model](safety.md).
 
-## Reviewed physical design and current ECAD entry
+## Retained H1/H2 review history
+
+The following records the earlier H1/H2 checkpoints, not current component
+counts or an electrical/assembly qualification. Current corrections and gates
+are linked above.
 
 Everything above is generated and structurally checked for every currently
 registered body. The onboard video experiment, its connector and its
@@ -176,6 +180,7 @@ groups; `H2-R2.1.2` reviewed exact identities for 232 board groups, six
 explicit non-PCBA groups and 1,578 logical contacts. `H2-R2.1.3` materializes
 1,183 fitted instances and 816 canonical nets in two native projects with
 zero-finding ERC. Cross-sheet and HW↔FW reconciliation passed in the reviewed
-`H2-R2.1.5` result; H3 now freezes those inputs.
+`H2-R2.1.5` result; H3 then froze those inputs.
 The legacy HMX display is reference evidence only and cannot enter
-an R2 order BOM. Routing and all purchasing remain blocked.
+an R2 order BOM. Those historical reviews did not authorize routing or purchasing;
+the current partial-routing checkpoint above does not authorize an order either.

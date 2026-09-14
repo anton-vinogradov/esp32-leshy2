@@ -3,6 +3,38 @@
   "scope": "H6-NATIVE-ELECTRICAL-SEMANTICS bounded protection, discrete and analog-switch review; candidate overlay only, not production symbol updates or release approval. Passive denotes a verified diode, shunt-clamp, conditional transistor channel or bilateral switch terminal, not an unreviewed default. Static ERC does not prove their conduction, protection ratings or switched rail availability. Ground uses power_in. Named Diodes top-view terminals were geometrically compared with the numbered materialized SOT footprints; these datasheet figures do not print numeric pin tables. Uncertain pad semantics are omitted.",
   "devices": [
     {
+      "device_id": "nexperia_nx3008nbks_115",
+      "mpn": "NX3008NBKS,115",
+      "evidence": [{"url": "https://assets.nexperia.com/documents/data-sheet/NX3008NBKS.pdf", "section": "5 November 2022 Table 2 SOT363 numeric pinning; all half names are reversed relative to the replaced Diodes part", "checked": "2026-09-14"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "S1 channel/body-diode terminal; conditional conduction"},
+        "2": {"type": "input", "reason": "G1 insulated gate control"},
+        "3": {"type": "passive", "reason": "D2 channel/body-diode terminal; conditional conduction"},
+        "4": {"type": "passive", "reason": "S2 channel/body-diode terminal; conditional conduction"},
+        "5": {"type": "input", "reason": "G2 insulated gate control"},
+        "6": {"type": "passive", "reason": "D1 channel/body-diode terminal; conditional conduction"}
+      },
+      "unresolved": ["1.8-V RDS(on) and gate leakage bounds apply at 25 C; temperature, reset-low and rail-ramp behavior need circuit qualification. Pack instances retain their independent unresolved power/provisioning gate."]
+    },
+    {
+      "device_id": "ti_ts3usb221erser",
+      "mpn": "TS3USB221ERSER",
+      "evidence": [{"url": "https://www.ti.com/lit/ds/symlink/ts3usb221e.pdf", "section": "Rev E July 2024 Table 4-1, RSE 10-pin UQFN; section 6.4 function table; no exposed pad", "checked": "2026-09-14"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "1D+ USB branch bilateral terminal"},
+        "2": {"type": "passive", "reason": "1D- USB branch bilateral terminal"},
+        "3": {"type": "passive", "reason": "2D+ SDIO DAT2 branch bilateral terminal"},
+        "4": {"type": "passive", "reason": "2D- SDIO DAT3 branch bilateral terminal"},
+        "5": {"type": "power_in", "reason": "GND supply return"},
+        "6": {"type": "input", "reason": "OE high disconnects both branches"},
+        "7": {"type": "passive", "reason": "D- common bilateral terminal"},
+        "8": {"type": "passive", "reason": "D+ common bilateral terminal"},
+        "9": {"type": "input", "reason": "S active branch selector; low selects port1"},
+        "10": {"type": "power_in", "reason": "VCC MAIN-powered supply"}
+      },
+      "unresolved": ["Static ERC does not qualify AON/MAIN voltage ramps, switching order, reset-to-high-Z, USB or SDIO timing."]
+    },
+    {
       "device_id": "diodes_2n7002dw_7_f",
       "mpn": "Diodes Incorporated 2N7002DW-7-F",
       "evidence": [{"url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf", "section": "DS30120 Rev22-2 p1 named top-view internal schematic; SOT363 geometry compared with numbered SOT-363_SC-70-6 lands (same top view after rotation)", "checked": "2026-09-07"}],

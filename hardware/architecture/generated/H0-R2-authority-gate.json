@@ -384,7 +384,7 @@
           "module_pad": 13,
           "muxed_with_usb": true,
           "strap_role": null,
-          "endpoint": "Hub RP native 4-bit SDIO through FSUSB42 service mux"
+          "endpoint": "Hub RP native 4-bit SDIO through TS3USB221E service mux"
         },
         {
           "instance": "c5",
@@ -396,7 +396,7 @@
           "module_pad": 14,
           "muxed_with_usb": true,
           "strap_role": null,
-          "endpoint": "Hub RP native 4-bit SDIO through FSUSB42 service mux"
+          "endpoint": "Hub RP native 4-bit SDIO through TS3USB221E service mux"
         },
         {
           "instance": "c5",
@@ -911,16 +911,16 @@
           "net": "C5_SDIO_D2",
           "direction": "io",
           "controller": "PIO1_SM1_2_C5_SDIO",
-          "endpoint": "FSUSB42 HSD2+ -> D+ common -> C5 GPIO14 / module pad 14",
-          "reset": "input/high-Z; 10-kohm HSD2 branch pull-up disconnected from C5 in service mode"
+          "endpoint": "TS3USB221E 2D+ -> D+ common -> C5 GPIO14 / module pad 14",
+          "reset": "input/high-Z; 10-kohm 2D branch pull-up disconnected from C5 in service mode"
         },
         {
           "gpio": 12,
           "net": "C5_SDIO_D3",
           "direction": "io",
           "controller": "PIO1_SM1_2_C5_SDIO",
-          "endpoint": "FSUSB42 HSD2- -> D- common -> C5 GPIO13 / module pad 13",
-          "reset": "input/high-Z; 10-kohm HSD2 branch pull-up disconnected from C5 in service mode"
+          "endpoint": "TS3USB221E 2D- -> D- common -> C5 GPIO13 / module pad 13",
+          "reset": "input/high-Z; 10-kohm 2D branch pull-up disconnected from C5 in service mode"
         },
         {
           "gpio": 13,

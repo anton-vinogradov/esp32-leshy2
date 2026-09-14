@@ -24,6 +24,11 @@ USB_RECHECK = ROOT / "hardware/verification/jlcpcb-usb-unification-2026-09-09.js
 OUTPUT = ROOT / "hardware/verification/generated/H5-R2-current-route-revalidation.json"
 EN = ROOT / "docs/h5-r2-current-route.md"
 RU = ROOT / "docs/h5-r2-current-route.ru.md"
+C5_ECO_PARTS = {
+    "ti_ts3usb221erser": ("TS3USB221ERSER", "Texas Instruments", "C129313", 1, "stocked"),
+    "ti_sn74lv20apwr": ("SN74LV20APWR", "Texas Instruments", "C2862070", 2, "pre_order"),
+    "nexperia_nx3008nbks_115": ("NX3008NBKS,115", "Nexperia", "C396098", 3, "stocked"),
+}
 
 
 def load(path: Path) -> dict:
@@ -36,6 +41,63 @@ def digest(path: Path) -> str:
 
 def source_for(device: dict) -> dict:
     return device.get("orderable_source") or device.get("source") or {}
+
+
+def c5_eco_snapshot(group: dict, device: dict) -> tuple[dict, list[str]]:
+    """Reuse the timestamped exact factory capture, never infer allocated stock."""
+    device_id = group["device_id"]
+    mpn, maker, number, quantity, route = C5_ECO_PARTS[device_id]
+    source = device.get("orderable_source", {})
+    live = source.get("live_inventory", {})
+    errors = []
+    if not (group.get("mpn") == device.get("mpn") == mpn
+            and source.get("manufacturer") == device.get("manufacturer") == maker
+            and group.get("jlcpcb_part_number") == source.get("jlcpcb_part_number") == number
+            and group.get("quantity_per_product") == quantity
+            and source.get("assembly_type") == "SMT"
+            and "Standard" in source.get("assembly_services", [])
+            and source.get("library_type") == "Extended"
+            and isinstance(source.get("checked"), str) and source["checked"].endswith("Z")
+            and source.get("url", "").startswith("https://jlcpcb.com/partdetail/")
+            and source["url"].endswith("/" + number)
+            and live.get("route") == route):
+        errors.append(f"C5 ECO exact Standard-PCBA capture disagrees: {device_id}")
+    stock, available, moq = (live.get(key) for key in ("stock", "available_order_quantity", "moq"))
+    snapshot = {
+        "source": str(DEVICES.relative_to(ROOT)),
+        "source_record": f"devices.{device_id}.orderable_source",
+        "checked_at_utc": source.get("checked"),
+        "manufacturer": source.get("manufacturer"), "jlcpcb_part_number": number,
+        "assembly_type": source.get("assembly_type"),
+        "assembly_services": source.get("assembly_services", []),
+        "library_type": source.get("library_type"),
+        "stock": stock, "available_order_quantity": available,
+        "minimum_purchase_quantity": moq, "route": route,
+        "is_order_or_reservation": False, "order_time_recheck": True,
+    }
+    if route == "stocked":
+        tiers = source.get("price_tiers_usd", [])
+        if not (type(stock) is int and type(available) is int and stock >= available >= quantity
+                and moq == 1 and any(tier.get("quantity") == 1
+                                    and isinstance(tier.get("unit_price"), (int, float))
+                                    and tier["unit_price"] > 0 for tier in tiers)):
+            errors.append(f"C5 ECO stocked route lacks actual stock/quantity-one price: {device_id}")
+        snapshot["price_tiers_usd_at_capture"] = tiers
+    else:
+        estimate = source.get("preorder_estimate", {})
+        price = estimate.get("unit_price")
+        if not (stock == 0 and available is None and moq == 21
+                and estimate.get("currency") == "USD"
+                and estimate.get("not_a_stocked_price_tier") is True
+                and isinstance(price, (int, float)) and price > 0):
+            errors.append(f"C5 ECO NAND requires explicit zero-stock MOQ-21 pre-order evidence: {device_id}")
+        snapshot.update(
+            estimated_unit_price_usd_at_minimum=price,
+            estimated_purchase_subtotal_usd=(round(price * moq, 4)
+                if isinstance(price, (int, float)) and type(moq) is int else None),
+            lead_time=live.get("lead_time"), final_quote_confirmed=False,
+            stock_allocation_confirmed=False, not_a_stocked_price_tier=True)
+    return snapshot, errors
 
 
 def build() -> dict:
@@ -90,6 +152,13 @@ def build() -> dict:
             "legacy_h5_status": (old or {}).get("tool_status"),
             "order_time_recheck": True,
         })
+        if device_id in C5_ECO_PARTS:
+            snapshot, snapshot_errors = c5_eco_snapshot(group, device)
+            errors.extend(snapshot_errors)
+            expected_class = "jlcpcb_preorder" if C5_ECO_PARTS[device_id][4] == "pre_order" else "jlcpcb_exact_part"
+            if route_class != expected_class:
+                errors.append(f"C5 ECO route class disagrees with captured availability: {device_id}")
+            routes[-1]["fresh_factory_snapshot"] = snapshot
         if device_id == "gct_usb4105_gf_a":
             part = usb_recheck["part"]
             if (part["mpn"] != "USB4105-GF-A"
@@ -120,10 +189,10 @@ def build() -> dict:
         if row["route_class"] == "jlcpcb_global_sourcing_required"
     ]
     expected = {
-        "component_groups": 248,
-        "component_articles": 1216,
+        "component_groups": 250,
+        "component_articles": 1218,
         "legacy_routes_reused": 205,
-        "new_or_replaced_routes": 43,
+        "new_or_replaced_routes": 45,
         "current_global_sourcing_gates": 1,
     }
     actual = {
@@ -137,17 +206,26 @@ def build() -> dict:
         errors.append(f"current route counts drifted: expected={expected}; actual={actual}")
     if {row["mpn"] for row in sourcing_gates} != {"WBC16-1TLC"}:
         errors.append("WBC16-1TLC must be the sole current global-sourcing gate")
-    if cost["summary"]["bom_lines"] != 248:
-        errors.append("cost report is not based on the same 248 current groups")
-    if cost["summary"]["base_fitted_placements"] != 1213:
+    if cost["summary"]["bom_lines"] != 250:
+        errors.append("cost report is not based on the same 250 current groups")
+    if cost["summary"]["base_fitted_placements"] != 1215:
         errors.append("current base-product article quantity drifted")
+    if {row["device_id"] for row in routes if row["device_id"] in C5_ECO_PARTS} != set(C5_ECO_PARTS):
+        errors.append("current C5 ECO factory route coverage is incomplete")
+    preorder_gates = [{
+        "device_id": row["device_id"], "mpn": row["mpn"],
+        "jlcpcb_part_number": row["jlcpcb_part_number"],
+        "quantity_per_product": row["quantity_per_product"],
+        "required_before_order": "confirm exact MOQ, final price, lead time and factory allocation; no silent substitution",
+        "order_release_allowed": False,
+    } for row in routes if row["route_class"] == "jlcpcb_preorder"]
 
     return {
         "schema_version": 1,
         "artifact": "H5-R2-current-route-revalidation",
         "marker": "H5-R2.1",
-        "checked_on": "2026-09-09",
-        "check_scope": "Current inventory reconciliation, retained three reviewed interface replacements and user-confirmed four-port GCT USB-C unification. Only the GCT factory record was rechecked on this date; other stock/price snapshots retain their original dates.",
+        "checked_on": "2026-09-14",
+        "check_scope": "Current C5 control ECO inventory reconciliation; exact TS3USB221ERSER, SN74LV20APWR and NX3008NBKS,115 factory captures are reused from their 2026-09-14 device records, not queried again by this generator. Older interface/GCT and other stock/price snapshots retain their own dates. Pre-order is not allocated stock or a confirmed quote.",
         "status": "reviewed_with_one_order_time_global_sourcing_gate" if not errors else "fail",
         "inputs": {
             str(path.relative_to(ROOT)): digest(path)
@@ -156,6 +234,7 @@ def build() -> dict:
         "summary": {
             **actual,
             "route_counts": route_counts,
+            "current_preorder_confirmation_gates": len(preorder_gates),
             "unmapped_groups": len(errors),
             "known_electronics_usd": cost["summary"]["planning_base_plus_post_pcba_usd_per_device"],
             "known_external_antennas_usd": cost["summary"]["antenna_known_first_target_usd"],
@@ -164,6 +243,7 @@ def build() -> dict:
             "unpriced_antenna_groups": cost["summary"]["antenna_unpriced_lines"],
         },
         "routes": routes,
+        "current_preorder_gates": preorder_gates,
         "current_order_time_gate": {
             "mpn": "WBC16-1TLC",
             "jlcpcb_part": "C22402290",
@@ -175,7 +255,7 @@ def build() -> dict:
         "boundary": {
             "h6_may_continue": not errors,
             "order_release_may_continue": False,
-            "reason": "layout can retain the exact accepted footprint, but the single order must not be released until WBC16-1TLC has a confirmed JLCPCB sourcing/private-library route or a fully qualified replacement",
+            "reason": "layout can retain the exact accepted footprints; order release requires a confirmed WBC16-1TLC JLCPCB sourcing/private-library route or fully qualified replacement, plus final MOQ/price/lead-time/allocation confirmation for every pre-order route, including zero-stock SN74LV20APWR MOQ21. Recheck every exact part before order; no substitution is authorized",
         },
         "errors": errors,
     }
@@ -194,7 +274,8 @@ flowchart LR
   A --> C["{s['new_or_replaced_routes']} новых или заменённых<br/>точных маршрутов"]
   B --> D["H6 · placement / routing"]
   C --> D
-  C --> E["1 order-time gate<br/>WBC16-1TLC"]
+  C --> E["1 global-sourcing gate<br/>WBC16-1TLC"]
+  C --> G["{s['current_preorder_confirmation_gates']} предзаказов<br/>условия до заказа"]
   E -. "до заказа" .-> F["JLCPCB sourcing<br/>или квалифицированная замена"]
 ```
 
@@ -203,12 +284,13 @@ flowchart LR
 - Стоимостной отчёт и H5 теперь используют один и тот же native R2 inventory, а не исторический 210-строчный BOM.
 - Пересборка 2026-09-08 включает точные замены [RUN/KILL SA](../hardware/procurement/h6-js102011saqn-selection-review.json), [ИК TR](../hardware/procurement/h6-tsmp95000tr-candidate-review.json) и [аудио SJ43515TS](../hardware/procurement/h6-sj43515ts-selection-review.json). ИК и аудио имеют явный предзаказ, не готовый склад сборки. Эта дата не обновляет автоматически остальные старые снимки наличия и цен.
 - Унификация 2026-09-09 объединяет четыре USB-C в один GCT USB4105-GF-A: [свежий маршрут C3020560](../hardware/verification/jlcpcb-usb-unification-2026-09-09.json) — предзаказ, минимум 9 штук примерно за $9.59 при четырёх устанавливаемых. Это отдельный текущий закупочный снимок; историческая цена серии при 100 штуках в плановом бюджете не превращается в цену единственного прототипа.
+- C5 ECO от 2026-09-14 добавляет точные TS3USB221ERSER / C129313 (1 шт.), SN74LV20APWR / C2862070 (2 шт.) и NX3008NBKS,115 / C396098 (3 шт.). Первые и третьи имеют сохранённые снимки наличия и Standard PCBA; NAND — **нулевой склад, явный предзаказ MOQ 21**, оценка $0.4265/шт. и $8.9565 за минимум, не цена двух установленных деталей. Срок, окончательная цена и выделение партии NAND ещё не подтверждены. Все три снимка взяты из [реестра деталей](../hardware/architecture/devices.json), с сохранением точного времени проверки; нового запроса фабрике генератор не делает.
 - Исправленная известная база электроники: **${s['known_electronics_usd']:.2f}**; известные внешние антенны: **${s['known_external_antennas_usd']:.2f}**; вместе **${s['known_combined_usd']:.2f}** до платы, сборки, корпуса, доставки и ещё {s['unpriced_component_groups']} групп компонентов / {s['unpriced_antenna_groups']} групп антенн без цены.
 - `WBC16-1TLC` остаётся точной схемной деталью, но склад JLCPCB сейчас нулевой. `H3-TC16-161T+` найден как массовый кандидат, однако не войдёт в BOM без проверки pin map, RF-параметров и точного factory route.
 
 ## Граница
 
-H6 может продолжать компоновку с принятым footprint `WBC16-1TLC`. Заказ остаётся fail-closed до подтверждённого JLCPCB sourcing/private-library маршрута либо полностью квалифицированной замены. Молчаливая замена запрещена.
+H6 может продолжать компоновку с принятыми footprint. Заказ остаётся fail-closed до подтверждённого JLCPCB sourcing/private-library маршрута `WBC16-1TLC` либо полностью квалифицированной замены, а также подтверждения MOQ, окончательной цены, срока и выделения партии для всех {s['current_preorder_confirmation_gates']} предзаказов, включая NAND. Наличие всех точных деталей повторно проверяется перед заказом. Молчаливая замена запрещена.
 
 [Машинный результат](../hardware/verification/generated/H5-R2-current-route-revalidation.json) · [актуальный топ-20 стоимости](h1-r2-cost.ru.md)
 """
@@ -222,7 +304,8 @@ flowchart LR
   A --> C["{s['new_or_replaced_routes']} new or replaced<br/>exact routes"]
   B --> D["H6 · placement / routing"]
   C --> D
-  C --> E["1 order-time gate<br/>WBC16-1TLC"]
+  C --> E["1 global-sourcing gate<br/>WBC16-1TLC"]
+  C --> G["{s['current_preorder_confirmation_gates']} pre-orders<br/>confirm before order"]
   E -. "before order" .-> F["JLCPCB sourcing<br/>or qualified replacement"]
 ```
 
@@ -231,12 +314,13 @@ flowchart LR
 - The cost report and H5 now consume the same native R2 inventory instead of the historical 210-line BOM.
 - The 2026-09-08 recomposition includes exact [RUN/KILL SA](../hardware/procurement/h6-js102011saqn-selection-review.json), [IR TR](../hardware/procurement/h6-tsmp95000tr-candidate-review.json) and [audio SJ43515TS](../hardware/procurement/h6-sj43515ts-selection-review.json) replacements. IR and audio use explicit preorder, not allocated assembly stock. This date does not renew the other retained availability/price snapshots.
 - The 2026-09-09 unification combines four USB-C ports into one GCT USB4105-GF-A group: the [fresh C3020560 route](../hardware/verification/jlcpcb-usb-unification-2026-09-09.json) is pre-order, minimum 9 pieces for approximately $9.59 while four are fitted. This is a separate current purchase snapshot; the retained historical quantity-100 planning price is not a quote for the single prototype.
+- The 2026-09-14 C5 ECO adds exact TS3USB221ERSER / C129313 (1 fitted), SN74LV20APWR / C2862070 (2 fitted) and NX3008NBKS,115 / C396098 (3 fitted). The first and third have retained stock/Standard-PCBA captures; the NAND has **zero stock and explicit pre-order MOQ 21**, estimated at $0.4265 each / $8.9565 minimum, not the cost of two fitted pieces. NAND lead time, final price and allocation are still unconfirmed. All three records are reused from the [device registry](../hardware/architecture/devices.json) with their exact capture timestamps; this generator does not query the factory again.
 - Corrected known electronics are **${s['known_electronics_usd']:.2f}**; known external antennas are **${s['known_external_antennas_usd']:.2f}**; combined they are **${s['known_combined_usd']:.2f}** before PCB, assembly, enclosure, delivery and {s['unpriced_component_groups']} unpriced component groups / {s['unpriced_antenna_groups']} unpriced antenna groups.
 - `WBC16-1TLC` remains the exact schematic part but JLCPCB live stock is now zero. `H3-TC16-161T+` is a mass-market candidate, but it does not enter the BOM without pin-map, RF and exact factory-route qualification.
 
 ## Boundary
 
-H6 may continue placement with the accepted `WBC16-1TLC` footprint. Order release remains fail-closed until a confirmed JLCPCB sourcing/private-library route or a fully qualified replacement exists. Silent substitution is forbidden.
+H6 may continue placement with the accepted footprints. Order release remains fail-closed until the `WBC16-1TLC` JLCPCB sourcing/private-library route or a fully qualified replacement is confirmed, and MOQ, final price, lead time and allocation are confirmed for all {s['current_preorder_confirmation_gates']} pre-order routes, including the NAND. Recheck every exact part before order. Silent substitution is forbidden.
 
 [Machine result](../hardware/verification/generated/H5-R2-current-route-revalidation.json) · [current cost top 20](h1-r2-cost.md)
 """
@@ -272,7 +356,7 @@ def main() -> int:
     if stale:
         print("stale H5-R2 artifacts: " + ", ".join(stale))
         return 1
-    print("ok: H5-R2 current routes are complete; one order-time sourcing gate remains")
+    print("ok: H5-R2 current routes are complete; one global-sourcing gate and pre-order confirmations remain")
     return 0
 
 

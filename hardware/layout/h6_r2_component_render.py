@@ -492,7 +492,7 @@ def check():
         for name, expected in manifest[section].items():
             if digest(ROOT/name) != expected:
                 raise RuntimeError(f"stale component view: {name}")
-    if sum(view["component_count"] for view in manifest["views"]) != 1208:
+    if sum(view["component_count"] for view in manifest["views"]) != 1210:
         raise RuntimeError("component inventory coverage changed; review counts")
 
 
@@ -505,7 +505,7 @@ def main():
     if args.write:
         write_all()
     check()
-    print("Native component views: 4 faces, 1208 inventory items, common scale; source PCBs untouched")
+    print("Native component views: 4 faces, 1210 inventory items, common scale; source PCBs untouched")
 
 
 if __name__ == "__main__":

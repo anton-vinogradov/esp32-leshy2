@@ -13,7 +13,7 @@ views, with fresh native intent/label checks and visual review.
 | --- | --- |
 | **Outer F — 30 items + 4 mounting footprints** | **Outer F — 12 items + 4 mounting footprints** |
 | [![UI outer](images/h6-r2-components-ui-outer.svg)](images/h6-r2-components-ui-outer.svg) | [![RF outer](images/h6-r2-components-rf-outer.svg)](images/h6-r2-components-rf-outer.svg) |
-| **Inner B — 398 items** | **Inner B — 768 items** |
+| **Inner B — 400 items** | **Inner B — 768 items** |
 | [![UI inner](images/h6-r2-components-ui-inner.svg)](images/h6-r2-components-ui-inner.svg) | [![RF inner](images/h6-r2-components-rf-inner.svg)](images/h6-r2-components-rf-inner.svg) |
 
 [All four views on one sheet](images/h6-r2-components-overview.svg).
@@ -45,7 +45,7 @@ service and assembly labels are checked separately from Fab/reference graphics.
 - Opposite-face protrusions appear faintly only outside the board outline.
   They provide placement context, not a 3D visibility calculation.
 
-All **1208 items** in the current native inventory and 8 mounting footprints
+All **1210 items** in the current native inventory and 8 mounting footprints
 are included. The display, cells, external antennas, loose cables and enclosure
 are not invented: these are PCBs before final assembly. The large UI area is
 the display bonding location; the RF outline is the current holder without cells.

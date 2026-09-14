@@ -56,11 +56,11 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
     def test_every_physical_net_is_classified_once(self):
         self.assertEqual("pass", self.audit["status"])
         self.assertEqual([], self.audit["errors"])
-        self.assertEqual(822, self.audit["summary"]["project_net_count"])
-        self.assertEqual(788, self.audit["summary"]["global_canonical_net_count"])
+        self.assertEqual(823, self.audit["summary"]["project_net_count"])
+        self.assertEqual(789, self.audit["summary"]["global_canonical_net_count"])
         self.assertEqual(0, self.audit["summary"]["unclassified_net_count"])
         self.assertEqual(0, self.audit["summary"]["unexpected_net_count"])
-        self.assertEqual(822, sum(self.audit["class_counts"].values()))
+        self.assertEqual(823, sum(self.audit["class_counts"].values()))
 
     def test_automatic_helper_is_fail_closed(self):
         self.assertEqual(["GENERAL_CONTROL"], self.audit["automatic_helper"]["allowed_classes"])
@@ -130,8 +130,8 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
 
     def test_shared_c5_usb_sdio_pair_is_explicit_and_manual_only(self):
         self.assertEqual({
-            "C5_GPIO13_COMMON": ("N", "DAT3", "GPIO13", "13", "D_MINUS", "4"),
-            "C5_GPIO14_COMMON": ("P", "DAT2", "GPIO14", "14", "D_PLUS", "3"),
+            "C5_GPIO13_COMMON": ("N", "DAT3", "GPIO13", "13", "D_MINUS", "7"),
+            "C5_GPIO14_COMMON": ("P", "DAT2", "GPIO14", "14", "D_PLUS", "8"),
         }, C5_SHARED_USB_PAIR)
         common = self.audit["shared_usb_sdio_pair"]
         self.assertEqual(C5_SHARED_PROJECT, common["project"])
@@ -263,10 +263,12 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertFalse(audit["phase_complete"])
         self.assertEqual(857, audit["summary"]["track_via_item_count"])
         self.assertEqual(197, audit["summary"]["resolved_connection_count"])
-        # Restored C5 GPIO28 net membership adds one not-yet-routed connection.
-        self.assertEqual(3072, audit["summary"]["current_total_unconnected_count"])
-        self.assertEqual(232, audit["summary"]["analog_remaining_connection_count"])
-        self.assertEqual(326, audit["summary"]["placement_locality_pair_count"])
+        # Includes the C5 BOOT correction and the two-instance C5 control ECO.
+        self.assertEqual(3085, audit["summary"]["current_total_unconnected_count"])
+        # The retired two-endpoint C5_SERVICE_PATH_ACK_N was classified here;
+        # removing it removes one connection, not a newly completed route.
+        self.assertEqual(231, audit["summary"]["analog_remaining_connection_count"])
+        self.assertEqual(327, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
         self.assertEqual(72, audit["summary"]["placement_critical_pad_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_critical_pad_pair_violation_count"])
@@ -517,9 +519,9 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
     def test_exact_placement_freeze_and_general_bootstrap_are_complete(self):
         freeze = json.loads(PLACEMENT_FREEZE.read_text(encoding="utf-8"))
         self.assertEqual("pass", freeze["freeze"]["status"])
-        self.assertEqual(1208, freeze["freeze"]["footprint_count"])
+        self.assertEqual(1210, freeze["freeze"]["footprint_count"])
         rows = [row for board in freeze["boards"] for row in board["placements"]]
-        self.assertEqual(1208, len(rows))
+        self.assertEqual(1210, len(rows))
         self.assertTrue(all(len(row["footprint_anchor_nm"]) == 2 for row in rows))
         self.assertNotIn("placement_freeze_sha256", freeze["sources"])
         s3_detector_cap = next(
@@ -598,9 +600,9 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         if not KICAD_PYTHON.is_file():
             self.skipTest("KiCad bundled pcbnew Python is unavailable")
         for script, expected in (
-            (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
+            (PLACEMENT_FREEZE_SCRIPT, "1210 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "857 copper items; 197 resolved; 3072 remain"),
+            (CURRENT_ROUTING_SCRIPT, "857 copper items; 197 resolved; 3085 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

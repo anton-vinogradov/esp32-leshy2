@@ -76,6 +76,7 @@
     "kicad-standard/Package_DFN_QFN.pretty/Texas_RGP0020D_VQFN-20-1EP_4x4mm_P0.5mm_EP2.7x2.7mm.kicad_mod": "13a18db10d0ba88c72a15e938c5549dacfb5893c5636f44d2fcc1b2555543694",
     "kicad-standard/Package_DFN_QFN.pretty/Texas_RQM0029A_VQFN-29_4x4mm_P0.4mm.kicad_mod": "83c140e990da83313c39642a345e5aaa8d57f33ddb8a0351fa13eeb6d1556e0c",
     "kicad-standard/Package_DFN_QFN.pretty/Texas_RUK0020B_WQFN-20-1EP_3x3mm_P0.4mm_EP1.7x1.7mm.kicad_mod": "92eaca5d0db532f434dfe72fe37200e1ebbe4e3a3ff2e03a9f6eb24d61ba0243",
+    "kicad-standard/Package_DFN_QFN.pretty/Texas_UQFN-10_1.5x2mm_P0.5mm.kicad_mod": "eae5151d8b2db32ac48501c8561535e4af101c986a3eee10974db85f3fc0adb0",
     "kicad-standard/Package_SO.pretty/MSOP-10_3x3mm_P0.5mm.kicad_mod": "c179dbee33613027667b07b4dba02648f193fc65f63616c9d73d6f1162c6bb9d",
     "kicad-standard/Package_SO.pretty/MSOP-8_3x3mm_P0.65mm.kicad_mod": "c85207be7edf4b5e1a128249fb05f91b67d622f536fc832d7a9f2a7f1e9a1223",
     "kicad-standard/Package_SO.pretty/SOIC-16_3.9x9.9mm_P1.27mm.kicad_mod": "f9b5075740f7816c540ae1137f025d659beaec522ed7b86b1a5274cc9a2d8a25",
@@ -110,8 +111,8 @@
     "kicad-standard/Resistor_SMD.pretty/R_2512_6332Metric.kicad_mod": "abab4bf8eeb3ed03061d8eeb56b542cdac074ce8a0ace0f9b06e933c0b48f297"
   },
   "summary": {
-    "native_footprints": 1216,
-    "checked_footprints": 1216,
+    "native_footprints": 1218,
+    "checked_footprints": 1218,
     "footprints_with_pad_geometry_drift": 0,
     "lookup_errors": 0
   },
@@ -120,8 +121,8 @@
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "board_sha256": "c779ff7a7f958434121148ce9ef2fff9b2cc02d80fc077324d1d68ba1bf79511",
-      "native_footprint_count": 432,
+      "board_sha256": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+      "native_footprint_count": 434,
       "checked_references": [
         "C1",
         "C10",
@@ -207,6 +208,7 @@
         "C83",
         "C84",
         "C85",
+        "C86",
         "C9",
         "D1",
         "D10",
@@ -550,6 +552,7 @@
         "U56",
         "U57",
         "U58",
+        "U59",
         "U6",
         "U7",
         "U8",
@@ -561,7 +564,7 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "81f8809ec75a5bfea43668a94ba64ac486fca8d33edda4fd36a68b0ef5ba6c76",
+      "board_sha256": "3fb5f492f09eefb2e85c678a64e4398f50842e82253ceb0c5277314acde9cf9f",
       "native_footprint_count": 784,
       "checked_references": [
         "BT1",

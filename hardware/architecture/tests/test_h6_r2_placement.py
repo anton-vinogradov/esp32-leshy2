@@ -36,12 +36,12 @@ class H6R2PlacementTests(unittest.TestCase):
                 "board_count": 2,
                 "board_outline_mm": [80.0, 150.0],
                 "copper_layers_per_board": 6,
-                "schematic_instance_count": 1208,
-                "placed_instance_count": 1208,
+                "schematic_instance_count": 1210,
+                "placed_instance_count": 1210,
                 "hard_conflict_count": 0,
                 "placement_failure_count": 0,
                 "net_or_footprint_error_count": 0,
-                "locality_pair_count": 326,
+                "locality_pair_count": 327,
                 "locality_violation_count": 0,
                 "critical_pad_pair_count": 72,
                 "critical_pad_pair_violation_count": 0,
@@ -52,12 +52,12 @@ class H6R2PlacementTests(unittest.TestCase):
             self.audit["summary"],
         )
         boards = {row["project"]: row for row in self.audit["boards"]}
-        self.assertEqual(428, boards["LESHY2-UI-R2"]["placed_instance_count"])
+        self.assertEqual(430, boards["LESHY2-UI-R2"]["placed_instance_count"])
         self.assertEqual(780, boards["LESHY2-RF-R2"]["placed_instance_count"])
 
     def test_local_parts_stay_with_their_physical_owners(self):
         # 311 prior pairs +10 actual UI supply owners +4 U6 bypasses +C259.
-        self.assertEqual(326, self.audit["summary"]["locality_pair_count"])
+        self.assertEqual(327, self.audit["summary"]["locality_pair_count"])
         self.assertEqual(0, self.audit["summary"]["locality_violation_count"])
         rows = {}
         for board in self.audit["boards"]:
@@ -346,7 +346,7 @@ class H6R2PlacementTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("1208/1208 positions; 0 hard conflicts; 0 unplaced", result.stdout)
+        self.assertIn("1210/1210 positions; 0 hard conflicts; 0 unplaced", result.stdout)
 
     def test_placement_signature_ignores_tracks_but_detects_footprint_movement(self):
         if not KICAD_PYTHON.is_file():
@@ -422,7 +422,7 @@ assert placement.placement_signature_bytes(path.stem, board) != baseline
         text = SVG.read_text(encoding="utf-8")
         self.assertIn("H6.0.1 exact-footprint placement", text)
         self.assertIn("placement authority for routed boards", text)
-        self.assertIn("428 positions", text)
+        self.assertIn("430 positions", text)
         self.assertIn("780 positions", text)
 
 

@@ -10,7 +10,7 @@ Open: `rail_current_voltage_thermal_pass`; `numerical:existing_checks`; `applica
 
 ## Coverage
 
-The check reconciles `2266` states, `56` operating profiles, `224` rail corners, `629` loads and all `77` source/pack lines. No gap, duplicate or hidden miscellaneous line remains.
+The check reconciles `2266` states, `56` operating profiles, `224` rail corners, `631` loads and all `77` source/pack lines. No gap, duplicate or hidden miscellaneous line remains.
 
 ## Provisional model result
 

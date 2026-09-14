@@ -6,22 +6,22 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "cef0ca72463b045189ff7d5619b80d8a2b1f81d676be8711a044d3620cdd124e"
+      "sha256": "d3bfc84772e1bf8b91800cb72d2edece0a57c2e1fdf76b821707d7035e81612a"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9"
+      "sha256": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e"
     }
   },
   "kicad_reference_version": "10.0.5",
   "summary": {
-    "board_component_group_count": 244,
-    "source_ledger_logical_contact_count": 1599,
-    "board_logical_contact_count": 1540,
-    "pcb_footprint_contact_count": 1537,
+    "board_component_group_count": 246,
+    "source_ledger_logical_contact_count": 1615,
+    "board_logical_contact_count": 1556,
+    "pcb_footprint_contact_count": 1553,
     "external_on_module_interface_count": 3,
-    "named_footprint_pad_count": 1557,
-    "footprint_pad_occurrence_count": 1606,
+    "named_footprint_pad_count": 1573,
+    "footprint_pad_occurrence_count": 1622,
     "mechanical_only_pad_occurrence_count": 6,
     "ignored_unnumbered_pad_occurrence_count": 89,
     "new_exact_footprint_files_materialized": 7,
@@ -11922,249 +11922,6 @@
       "bom_excluded": false
     },
     {
-      "device_id": "nexperia_74hc20pw_118",
-      "mpn": "74HC20PW,118",
-      "symbol_id": "Leshy2_R2:nexperia_74hc20pw_118",
-      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
-      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Package_SO.pretty/TSSOP-14_4.4x5mm_P0.65mm.kicad_mod",
-      "footprint_sha256": "e4bf82cea6d3b3259ddf42469b1407628ad1181a28ae6f3f340190c0cca31ccd",
-      "logical_contact_count": 14,
-      "footprint_named_pad_count": 14,
-      "footprint_pad_occurrence_count": 14,
-      "ignored_unnumbered_pad_occurrence_count": 0,
-      "pad_inventory": {
-        "1": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "10": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "11": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "12": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "13": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "14": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "2": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "3": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "4": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "5": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "6": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "7": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "8": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "9": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        }
-      },
-      "contacts": [
-        {
-          "contact": "1A",
-          "role": "signal",
-          "physical": "1",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "1"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "1B",
-          "role": "signal",
-          "physical": "2",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "2"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "NC_3",
-          "role": "no_connect",
-          "physical": "3",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "3"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "1C",
-          "role": "signal",
-          "physical": "4",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "4"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "1D",
-          "role": "signal",
-          "physical": "5",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "5"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "1Y",
-          "role": "signal",
-          "physical": "6",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "6"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "GND",
-          "role": "power",
-          "physical": "7",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "7"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "2Y",
-          "role": "signal",
-          "physical": "8",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "8"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "2A",
-          "role": "signal",
-          "physical": "9",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "9"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "2B",
-          "role": "signal",
-          "physical": "10",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "10"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "NC_11",
-          "role": "no_connect",
-          "physical": "11",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "11"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "2C",
-          "role": "signal",
-          "physical": "12",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "12"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "2D",
-          "role": "signal",
-          "physical": "13",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "13"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "VCC",
-          "role": "power",
-          "physical": "14",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "14"
-          ],
-          "resolution": "exact_physical_pad_name"
-        }
-      ],
-      "mechanical_only_pads": [],
-      "shared_electrical_pads": {},
-      "bom_excluded": false
-    },
-    {
       "device_id": "nexperia_74lvc126apw_118",
       "mpn": "Nexperia 74LVC126APW,118",
       "symbol_id": "Leshy2_R2:nexperia_74lvc126apw_118",
@@ -12827,6 +12584,121 @@
           "disposition": "pcb_footprint_pad",
           "pads": [
             "3"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "nexperia_nx3008nbks_115",
+      "mpn": "NX3008NBKS,115",
+      "symbol_id": "Leshy2_R2:nexperia_nx3008nbks_115",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Package_TO_SOT_SMD.pretty/SOT-363_SC-70-6.kicad_mod",
+      "footprint_sha256": "0659d885e00b786968c3ba29152b808777240a91c1fb49ab8d814eb03530115c",
+      "logical_contact_count": 6,
+      "footprint_named_pad_count": 6,
+      "footprint_pad_occurrence_count": 6,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "3": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "4": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "5": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "6": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "S1",
+          "role": "signal",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "G1",
+          "role": "signal",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "D2",
+          "role": "signal",
+          "physical": "3",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "3"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "S2",
+          "role": "signal",
+          "physical": "4",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "4"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "G2",
+          "role": "signal",
+          "physical": "5",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "5"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "D1",
+          "role": "signal",
+          "physical": "6",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "6"
           ],
           "resolution": "exact_physical_pad_name"
         }
@@ -19350,6 +19222,249 @@
           "disposition": "pcb_footprint_pad",
           "pads": [
             "5"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_sn74lv20apwr",
+      "mpn": "SN74LV20APWR",
+      "symbol_id": "Leshy2_R2:ti_sn74lv20apwr",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Package_SO.pretty/TSSOP-14_4.4x5mm_P0.65mm.kicad_mod",
+      "footprint_sha256": "e4bf82cea6d3b3259ddf42469b1407628ad1181a28ae6f3f340190c0cca31ccd",
+      "logical_contact_count": 14,
+      "footprint_named_pad_count": 14,
+      "footprint_pad_occurrence_count": 14,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "10": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "11": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "12": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "13": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "14": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "3": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "4": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "5": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "6": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "7": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "8": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "9": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "1A",
+          "role": "signal",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "1B",
+          "role": "signal",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "NC_3",
+          "role": "no_connect",
+          "physical": "3",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "3"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "1C",
+          "role": "signal",
+          "physical": "4",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "4"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "1D",
+          "role": "signal",
+          "physical": "5",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "5"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "1Y",
+          "role": "signal",
+          "physical": "6",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "6"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "GND",
+          "role": "power",
+          "physical": "7",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "7"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "2Y",
+          "role": "signal",
+          "physical": "8",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "8"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "2A",
+          "role": "signal",
+          "physical": "9",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "9"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "2B",
+          "role": "signal",
+          "physical": "10",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "10"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "NC_11",
+          "role": "no_connect",
+          "physical": "11",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "11"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "2C",
+          "role": "signal",
+          "physical": "12",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "12"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "2D",
+          "role": "signal",
+          "physical": "13",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "13"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "VCC",
+          "role": "power",
+          "physical": "14",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "14"
           ],
           "resolution": "exact_physical_pad_name"
         }
@@ -25985,6 +26100,185 @@
           "disposition": "pcb_footprint_pad",
           "pads": [
             "16"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_ts3usb221erser",
+      "mpn": "TS3USB221ERSER",
+      "symbol_id": "Leshy2_R2:ti_ts3usb221erser",
+      "footprint": "Package_DFN_QFN:Texas_UQFN-10_1.5x2mm_P0.5mm",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Package_DFN_QFN.pretty/Texas_UQFN-10_1.5x2mm_P0.5mm.kicad_mod",
+      "footprint_sha256": "eae5151d8b2db32ac48501c8561535e4af101c986a3eee10974db85f3fc0adb0",
+      "logical_contact_count": 10,
+      "footprint_named_pad_count": 10,
+      "footprint_pad_occurrence_count": 10,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "10": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "3": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "4": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "5": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "6": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "7": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "8": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "9": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "HSD1_PLUS",
+          "role": "signal",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "HSD1_MINUS",
+          "role": "signal",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "HSD2_PLUS",
+          "role": "signal",
+          "physical": "3",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "3"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "HSD2_MINUS",
+          "role": "signal",
+          "physical": "4",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "4"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "GND",
+          "role": "power",
+          "physical": "5",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "5"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "OE",
+          "role": "signal",
+          "physical": "6",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "6"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "D_MINUS",
+          "role": "signal",
+          "physical": "7",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "7"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "D_PLUS",
+          "role": "signal",
+          "physical": "8",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "8"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "SEL",
+          "role": "signal",
+          "physical": "9",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "9"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "VCC",
+          "role": "power",
+          "physical": "10",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "10"
           ],
           "resolution": "exact_physical_pad_name"
         }

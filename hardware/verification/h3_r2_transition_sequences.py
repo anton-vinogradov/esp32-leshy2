@@ -56,6 +56,45 @@ def rc_fall_ms(r_ohm: float, c_f: float, initial_v: float, leakage_a: float, thr
     return -r_ohm * c_f * math.log((threshold_v - final_v) / (initial_v - final_v)) * 1000.0
 
 
+def reset_sink_physical_checks(rows: list[dict], instances: list[dict], devices: dict) -> dict[str, bool]:
+    """Bind NX half-name changes to unchanged physical reset pads, not aliases.
+
+    Only the two existing transition-chain reset packages are checked here.
+    The additional C5 service gate is covered by the digital-interface checker.
+    This is topology evidence, never VGS/temperature/reset-delay qualification.
+    """
+    device_id = "nexperia_nx3008nbks_115"
+    pins = {"S1": "1", "G1": "2", "D2": "3", "S2": "4", "G2": "5", "D1": "6"}
+    device = devices.get(device_id, {})
+    checks = {"nx_reset_device_pin_map": (
+        device.get("mpn") == "NX3008NBKS,115"
+        and {key: row.get("physical") for key, row in device.get("contacts", {}).items()} == pins
+    )}
+    expected = {
+        "safe_reset_sink_a": ("LESHY2-UI-R2", {
+            "S1": "POWER_GROUND", "G1": "C5_RESET_KILL_GATE", "D2": "S3_RESET_N",
+            "S2": "POWER_GROUND", "G2": "S3_RESET_KILL_GATE", "D1": "C5_RESET_N"}),
+        "safe_reset_sink_b": ("LESHY2-RF-R2", {
+            "S1": "POWER_GROUND", "G1": "POWER_GROUND", "D2": "RF_RP_RESET_N",
+            "S2": "POWER_GROUND", "G2": "RF_RESET_KILL_GATE", "D1": None}),
+    }
+    for name, (project, nets) in expected.items():
+        fitted = [row for row in instances if row.get("instance") == name]
+        checks[f"nx_identity:{name}"] = len(fitted) == 1 and all(
+            fitted[0].get(key) == value for key, value in
+            (("device_id", device_id), ("project", project), ("reference", "Q6")))
+        actual = [row for row in rows if row.get("instance") == name]
+        checks[f"nx_inventory:{name}"] = len(actual) == 6
+        for contact, net in nets.items():
+            matching = [row for row in actual if row.get("contact") == contact]
+            checks[f"nx_physical:{name}.{contact}"] = len(matching) == 1 and all(
+                matching[0].get(key) == value for key, value in (
+                    ("endpoint", f"{name}.{contact}"), ("project", project), ("reference", "Q6"),
+                    ("device_id", device_id), ("physical", pins[contact]), ("net", net),
+                    ("disposition", "no_connect" if net is None else "connected")))
+    return checks
+
+
 class TransitionModel:
     """Small deterministic model of the hardware latch plus Safety boot policy."""
 
@@ -263,6 +302,11 @@ def build() -> tuple[dict[Path, str], dict]:
     net_checks["S3_RESET_KILL_GATE_exact"] = s3_gate_exact
     if not s3_gate_exact:
         errors.append("S3 reset gate has an unreviewed extra or missing endpoint")
+
+    physical_checks = reset_sink_physical_checks(nets["rows"], instances["rows"], devices)
+    topology_checks.update(physical_checks)
+    errors.extend(f"reset sink physical identity mismatch: {key}"
+                  for key, passed in physical_checks.items() if not passed)
 
     if m1["summary"]["physical_contacts"] != 80 or m1["summary"]["no_connect_reserve_contacts"] != 9:
         errors.append("M1 contact/reserve count differs from the current R2 map")

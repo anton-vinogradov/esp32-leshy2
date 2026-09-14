@@ -6,19 +6,19 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "278f30482e35b5d9da11504927aed0843669b21249d4f460e3cc867dd3cb7953"
+      "sha256": "a4c4bef711f223fd6ec04aee33e45fc2f9d1756c48f9b9702c81db00ecd39d02"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "cef0ca72463b045189ff7d5619b80d8a2b1f81d676be8711a044d3620cdd124e"
+      "sha256": "d3bfc84772e1bf8b91800cb72d2edece0a57c2e1fdf76b821707d7035e81612a"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "e7ffcac909b60962789297e333c18646e12f220336e1cc68e99ef4587d2edceb",
-    "symbol_count": 244,
-    "pin_count": 1553,
+    "sha256": "f32823dbb0810f1b2ead1fea6f4865b87266bf15260d8ad9d1848dcfa0513e5e",
+    "symbol_count": 246,
+    "pin_count": 1569,
     "external_interface_metadata_count": 3
   },
   "symbols": [
@@ -8108,173 +8108,6 @@
       "bom_excluded": false
     },
     {
-      "device_id": "nexperia_74hc20pw_118",
-      "symbol_id": "Leshy2_R2:nexperia_74hc20pw_118",
-      "reference_prefix": "U",
-      "value": "74HC20PW,118",
-      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
-      "pin_count": 14,
-      "no_connect_pin_count": 2,
-      "external_interfaces": [],
-      "pin_map": [
-        {
-          "number": "1",
-          "name": "1A",
-          "contacts": [
-            "1A"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
-          "name": "1B",
-          "contacts": [
-            "1B"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "3",
-          "name": "NC_3",
-          "contacts": [
-            "NC_3"
-          ],
-          "roles": [
-            "no_connect"
-          ],
-          "type": "no_connect"
-        },
-        {
-          "number": "4",
-          "name": "1C",
-          "contacts": [
-            "1C"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "5",
-          "name": "1D",
-          "contacts": [
-            "1D"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "6",
-          "name": "1Y",
-          "contacts": [
-            "1Y"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "7",
-          "name": "GND",
-          "contacts": [
-            "GND"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "8",
-          "name": "2Y",
-          "contacts": [
-            "2Y"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "9",
-          "name": "2A",
-          "contacts": [
-            "2A"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "10",
-          "name": "2B",
-          "contacts": [
-            "2B"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "11",
-          "name": "NC_11",
-          "contacts": [
-            "NC_11"
-          ],
-          "roles": [
-            "no_connect"
-          ],
-          "type": "no_connect"
-        },
-        {
-          "number": "12",
-          "name": "2C",
-          "contacts": [
-            "2C"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "13",
-          "name": "2D",
-          "contacts": [
-            "2D"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "14",
-          "name": "VCC",
-          "contacts": [
-            "VCC"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        }
-      ],
-      "bom_excluded": false
-    },
-    {
       "device_id": "nexperia_74lvc126apw_118",
       "symbol_id": "Leshy2_R2:nexperia_74lvc126apw_118",
       "reference_prefix": "U",
@@ -8729,6 +8562,85 @@
           ],
           "roles": [
             "analog"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "nexperia_nx3008nbks_115",
+      "symbol_id": "Leshy2_R2:nexperia_nx3008nbks_115",
+      "reference_prefix": "Q",
+      "value": "NX3008NBKS,115",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "pin_count": 6,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "S1",
+          "contacts": [
+            "S1"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "G1",
+          "contacts": [
+            "G1"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "D2",
+          "contacts": [
+            "D2"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "S2",
+          "contacts": [
+            "S2"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "G2",
+          "contacts": [
+            "G2"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "D1",
+          "contacts": [
+            "D1"
+          ],
+          "roles": [
+            "signal"
           ],
           "type": "passive"
         }
@@ -13242,6 +13154,173 @@
         },
         {
           "number": "5",
+          "name": "VCC",
+          "contacts": [
+            "VCC"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_sn74lv20apwr",
+      "symbol_id": "Leshy2_R2:ti_sn74lv20apwr",
+      "reference_prefix": "U",
+      "value": "SN74LV20APWR",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "pin_count": 14,
+      "no_connect_pin_count": 2,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "1A",
+          "contacts": [
+            "1A"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "1B",
+          "contacts": [
+            "1B"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "NC_3",
+          "contacts": [
+            "NC_3"
+          ],
+          "roles": [
+            "no_connect"
+          ],
+          "type": "no_connect"
+        },
+        {
+          "number": "4",
+          "name": "1C",
+          "contacts": [
+            "1C"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "1D",
+          "contacts": [
+            "1D"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "1Y",
+          "contacts": [
+            "1Y"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "7",
+          "name": "GND",
+          "contacts": [
+            "GND"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "8",
+          "name": "2Y",
+          "contacts": [
+            "2Y"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "9",
+          "name": "2A",
+          "contacts": [
+            "2A"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "10",
+          "name": "2B",
+          "contacts": [
+            "2B"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "11",
+          "name": "NC_11",
+          "contacts": [
+            "NC_11"
+          ],
+          "roles": [
+            "no_connect"
+          ],
+          "type": "no_connect"
+        },
+        {
+          "number": "12",
+          "name": "2C",
+          "contacts": [
+            "2C"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "13",
+          "name": "2D",
+          "contacts": [
+            "2D"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "14",
           "name": "VCC",
           "contacts": [
             "VCC"
@@ -17809,6 +17888,129 @@
           "name": "GND",
           "contacts": [
             "GND"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_ts3usb221erser",
+      "symbol_id": "Leshy2_R2:ti_ts3usb221erser",
+      "reference_prefix": "U",
+      "value": "TS3USB221ERSER",
+      "footprint": "Package_DFN_QFN:Texas_UQFN-10_1.5x2mm_P0.5mm",
+      "pin_count": 10,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "HSD1_PLUS",
+          "contacts": [
+            "HSD1_PLUS"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "HSD1_MINUS",
+          "contacts": [
+            "HSD1_MINUS"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "HSD2_PLUS",
+          "contacts": [
+            "HSD2_PLUS"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "HSD2_MINUS",
+          "contacts": [
+            "HSD2_MINUS"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "GND",
+          "contacts": [
+            "GND"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "OE",
+          "contacts": [
+            "OE"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "7",
+          "name": "D_MINUS",
+          "contacts": [
+            "D_MINUS"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "8",
+          "name": "D_PLUS",
+          "contacts": [
+            "D_PLUS"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "9",
+          "name": "SEL",
+          "contacts": [
+            "SEL"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "10",
+          "name": "VCC",
+          "contacts": [
+            "VCC"
           ],
           "roles": [
             "power"

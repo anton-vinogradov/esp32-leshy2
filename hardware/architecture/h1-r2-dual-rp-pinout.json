@@ -12,7 +12,28 @@
     "rp2354b_fixed_mux_source": "https://github.com/raspberrypi/pico-sdk/blob/master/src/rp2_common/hardware_gpio/include/hardware/gpio.h",
     "supersedes": "the bounded dual-RP GPIO groups in H0-R2 and every single-RP R1/G2F/H2 GPIO projection for current R2 implementation",
     "does_not_authorize": ["R2 KiCad", "fabrication", "ordering"],
-    "c5_electrical_join_status": "closed against C5-SDIO-SERVICE-MUX-1: exact module pads, fixed IO mux, FSUSB42 branch polarity, reset ownership and Hub-side signal order are joined.",
+    "c5_electrical_join_status": "engineering_schematic_join_not_functionally_qualified",
+    "h2_gate_history_scope": "historical_2026-08-30_not_current_C5_qualification",
+    "current_c5_join": {
+      "selection_scope": "engineering_schematic_only",
+      "mux_device_id": "ti_ts3usb221erser",
+      "mux_mpn": "TS3USB221ERSER",
+      "mux_jlcpcb_part_number": "C129313",
+      "nand_device_id": "ti_sn74lv20apwr",
+      "nand_mpn": "SN74LV20APWR",
+      "nand_jlcpcb_part_number": "C2862070",
+      "nand_package_count": 2,
+      "nand_route": "explicit JLCPCB Pre-order",
+      "qualification": {
+        "native_topology_verified": false,
+        "full_temperature_levels_qualified": false,
+        "voltage_ramps_qualified": false,
+        "vbus_detector_latch_qualified": false,
+        "switching_timing_qualified": false,
+        "recovery_qualified": false,
+        "production_release_allowed": false
+      }
+    },
     "remaining_h2_gates": [],
     "resolved_h2_gates": [
       "H2-R2.0.1: exact onsemi FSUSB42MUX / JLCPCB C11355 live Standard-PCBA route, MOQ and price reviewed 2026-08-30",
@@ -40,8 +61,8 @@
       {"gpio": 8, "net": "C5_SDIO_CMD", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "direct pull-up/series branch -> C5 GPIO10 / module pad 12", "reset": "input/high-Z; branch-local 10-kohm pull-up; C5 and Hub held reset"},
       {"gpio": 9, "net": "C5_SDIO_D0", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "direct pull-up/series branch -> C5 GPIO8 / module pad 10", "reset": "input/high-Z; branch-local 10-kohm pull-up; C5 and Hub held reset"},
       {"gpio": 10, "net": "C5_SDIO_D1", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "direct pull-up/series branch -> C5 GPIO7 / module pad 9", "reset": "input/high-Z; branch-local 10-kohm pull-up also fixes the JTAG-source strap; C5 and Hub held reset"},
-      {"gpio": 11, "net": "C5_SDIO_D2", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "FSUSB42 HSD2+ -> D+ common -> C5 GPIO14 / module pad 14", "reset": "input/high-Z; 10-kohm HSD2 branch pull-up disconnected from C5 in service mode"},
-      {"gpio": 12, "net": "C5_SDIO_D3", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "FSUSB42 HSD2- -> D- common -> C5 GPIO13 / module pad 13", "reset": "input/high-Z; 10-kohm HSD2 branch pull-up disconnected from C5 in service mode"},
+      {"gpio": 11, "net": "C5_SDIO_D2", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "TS3USB221E 2D+ -> D+ common -> C5 GPIO14 / module pad 14", "reset": "input/high-Z; 10-kohm 2D branch pull-up disconnected from C5 in service mode"},
+      {"gpio": 12, "net": "C5_SDIO_D3", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "TS3USB221E 2D- -> D- common -> C5 GPIO13 / module pad 13", "reset": "input/high-Z; 10-kohm 2D branch pull-up disconnected from C5 in service mode"},
       {"gpio": 13, "net": "HUB_RF_SCK", "direction": "out", "controller": "PIO2_SM0_RF_SPI", "endpoint": "M1.24 -> RF RP GPIO26", "reset": "input/high-Z; external pull-down"},
       {"gpio": 14, "net": "HUB_RF_MOSI", "direction": "out", "controller": "PIO2_SM0_RF_SPI", "endpoint": "M1.26 -> RF RP GPIO24", "reset": "input/high-Z; external pull-down"},
       {"gpio": 15, "net": "HUB_RF_MISO", "direction": "in", "controller": "PIO2_SM0_RF_SPI", "endpoint": "M1.27 <- RF RP GPIO27", "reset": "input; external pull-down"},
@@ -234,7 +255,7 @@
     "Simultaneous three-nRF RX/TX/mix, microSD, S3-Hub, Hub-C5 and Hub-RF traffic must pass emulator/dev-board timing before fabrication and HIL after assembly.",
     "Reset-state voltage and no-back-power behavior must be measured for every switched/isolated branch.",
     "The exact TCA9803DGKR/C2687966 Pack/Safety boundary is closed: two 2.2-kohm pull-ups terminate the MAIN A-side, while the AON B-side uses only the device's 3.3-mA current sources and forbids external pull-ups.",
-    "Native R2 ECAD must instantiate the reviewed H2-R2.0.1, H2-R2.0.2 and H2-R2.0.3 circuits exactly; this H1 authority still does not authorize fabrication or ordering.",
+    "The 2026-08-30 resolved_h2_gates and empty remaining_h2_gates are historical pre-ECAD checkpoint records, not current C5 acceptance. Current C5 uses TS3USB221ERSER 1D USB / 2D SDIO and two SN74LV20APWR NAND packages with an explicit Pre-order route, joined to the current C5 contract. Native topology, full-temperature levels, ramps, detector/latch behavior, switching timing and recovery still require verification; KILL policy is unchanged and this source join does not authorize fabrication or ordering.",
     "The exact-one signed U214/U219 profile must pass received-unit pin continuity, protected-power, RF-switch, VNA and RX/NFC HIL before the U219 branch can be enabled."
   ]
 }

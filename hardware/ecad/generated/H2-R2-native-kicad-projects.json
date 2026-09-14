@@ -6,35 +6,35 @@
   "sources": {
     "inventory": {
       "path": "hardware/ecad/h2-r2-native-inventory-contract.json",
-      "sha256": "58bbd3b14ab4990ae41cda4e7f0fb0ab4be820d0c526554b232304ab8321a235"
+      "sha256": "f43241dfda3c0b4c1784cf8bb62810d7b9d1c3f1e63caac5bfc759b744677ea4"
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "dfd2101cd84ab4290b69a38576bf40002e673817527dab27185747d1affca569"
+      "sha256": "9c4c81fe32c242297b6ed42b6999c8ac63e6f02a766fac0874c88b19b2ae9d3e"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "eb9976d1662695f0a013b421d582ed6b88faf2d4eca253f0db4ea5f686481840"
+      "sha256": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "fc14457685eca2a89b5baf01ca118c034b3b7a18aae8fb83fabe20824f1e342b"
+      "sha256": "8aeda79b6891c94f16e57384c965c272b7dc867c6bc4ecf182998e8a318ef0bc"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-      "sha256": "e7ffcac909b60962789297e333c18646e12f220336e1cc68e99ef4587d2edceb"
+      "sha256": "f32823dbb0810f1b2ead1fea6f4865b87266bf15260d8ad9d1848dcfa0513e5e"
     }
   },
   "summary": {
     "project_count": 2,
     "project_graph_sheet_count": 22,
     "populated_sheet_count": 18,
-    "fitted_symbol_instance_count": 1208,
-    "physical_symbol_pin_count": 4305,
-    "connected_physical_pin_count": 4071,
-    "explicit_no_connect_physical_pin_count": 234,
+    "fitted_symbol_instance_count": 1210,
+    "physical_symbol_pin_count": 4321,
+    "connected_physical_pin_count": 4085,
+    "explicit_no_connect_physical_pin_count": 236,
     "external_module_interface_annotation_count": 5,
-    "canonical_net_count": 788,
+    "canonical_net_count": 789,
     "generated_file_count": 28,
     "pcb_file_count": 0
   },
@@ -44,10 +44,10 @@
       "root": "UI_00_ROOT",
       "sheet_count": 9,
       "populated_sheet_count": 7,
-      "instance_count": 428,
-      "physical_symbol_pin_count": 1598,
+      "instance_count": 430,
+      "physical_symbol_pin_count": 1614,
       "external_module_interface_count": 5,
-      "canonical_net_count": 306,
+      "canonical_net_count": 307,
       "cross_sheet_net_count": 100
     },
     {
@@ -96,11 +96,11 @@
     {
       "id": "UI_20_C5_WIFI_IR_SERVICE",
       "role": "C5 native 2.4/5-GHz, IR, exact SDIO/service mux and independent recovery",
-      "instance_count": 96,
-      "physical_symbol_pin_count": 317,
-      "connected_physical_pin_count": 298,
-      "explicit_no_connect_physical_pin_count": 19,
-      "hierarchical_interface_count": 25,
+      "instance_count": 98,
+      "physical_symbol_pin_count": 333,
+      "connected_physical_pin_count": 312,
+      "explicit_no_connect_physical_pin_count": 21,
+      "hierarchical_interface_count": 26,
       "external_module_interface_count": 1,
       "external_module_interfaces": [
         {
@@ -383,7 +383,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
-      "sha256": "114dc84499fbc2b60a0cda22bfa3e82fe2c0aa0fd963a5fd5695d9426a58bbf0"
+      "sha256": "385eae39503b77c014822fdd95166b3eb8e42944b4a650865e8602754cc2d85e"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch",
@@ -403,7 +403,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch",
-      "sha256": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50"
+      "sha256": "3a029b1e419880b23ae483d1dcb5757cc2b1e1958a5bae78bfa9cfc90d8e9129"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch",
@@ -415,7 +415,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch",
-      "sha256": "5b2de4da43a3599782b62cea2979bef537ae28923d3dc571e36908ce977e547b"
+      "sha256": "a6d0da18bf1a7669e336c608776142a1130cef9fa5ae91ff6c8c3adfadfadb36"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch",
@@ -431,7 +431,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch",
-      "sha256": "5c1befee1751e1dfb882c1ee86d04ce19312095f527a901bcbae75691ef1b15b"
+      "sha256": "1354eeefe742c0fbd5f4a79dfb202b00ae42b7a82b6465c258284fcd7f4aa963"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch",

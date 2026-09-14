@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "4c38ceeef1664225e0951df4f4434535a33ebf950f7586d68b10cd05fb33bd6d",
-  "parameter_register_sha256": "fe486585847d2ed29b4a62d02d66946b5042b2296b06cef1efd18b2a53f18cb0",
-  "method_contract_sha256": "e10fd8a3c38c48d79e04b3d35dadfe11374b9a92147f0b07a7f26efd46ee9079",
+  "input_freeze_sha256": "1652d0e912327dd0608747e22c12be5d55d74acfb89806f0d843e9641e48073e",
+  "parameter_register_sha256": "6caaa324d5b869aecec1222cc4867dc5a1641b4778d3a8d34a797ca0c7b31d5f",
+  "method_contract_sha256": "ad98db096bbaf556f640af4d5f18f01b4977c5f517fe5d395d67a04df1d9bd0f",
   "source_sha256": {
-    "hardware/verification/h3-r2-method-contract.json": "2ae918e20cc23d4d667a21958a19951a0c277b75d0c73101b1ee6f9bf34f6bd3",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "577583bdb0215290a512effb7897d507ca921510d7eaae43a8635799ff594232",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "3f1b935053ece74f1944225056d7ef2640bdcf7738ed83f8648bd871becc57c2"
+    "hardware/verification/h3-r2-method-contract.json": "557d551a7e69555d7f7181432c24bd8e3b0fb3dd8f37fa94d7ce2f3f517bbcc6",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "9f373af9a6e88e34cd561c370547f033ba081d42147eee51747a7d590d6bfe60",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "6a2d2c23574115f3cb90160d152b275719b35ef69091d8f9aca25775b3c4e209"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",
@@ -436,15 +436,11 @@
       "device_id": "diodes_2n7002dw_7_f",
       "parameter_class": "general_component",
       "owner_workstreams": [
-        "H3-R2.2",
-        "H3-R2.4",
-        "H3-R2.6"
+        "H3-R2.2"
       ],
       "method_ids": [
-        "M-DIGITAL",
         "M-INT",
         "M-STATE",
-        "M-THERMAL",
         "M-TRANS"
       ],
       "parameter_state": "explicit_extraction_queue",
@@ -1694,19 +1690,6 @@
       "missing_parameter_disposition": "unresolved_fail"
     },
     {
-      "device_id": "nexperia_74hc20pw_118",
-      "parameter_class": "digital_interface",
-      "owner_workstreams": [
-        "H3-R2.4"
-      ],
-      "method_ids": [
-        "M-DIGITAL",
-        "M-INT"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
-    },
-    {
       "device_id": "nexperia_74lvc126apw_118",
       "parameter_class": "digital_interface",
       "owner_workstreams": [
@@ -1794,6 +1777,22 @@
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "nexperia_nx3008nbks_115",
+      "parameter_class": "general_component",
+      "owner_workstreams": [
+        "H3-R2.4",
+        "H3-R2.6"
+      ],
+      "method_ids": [
+        "M-DIGITAL",
+        "M-INT",
+        "M-STATE",
+        "M-THERMAL"
+      ],
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
       "device_id": "nexperia_pesd24vy1bsf",
@@ -2472,6 +2471,19 @@
       "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
+      "device_id": "ti_sn74lv20apwr",
+      "parameter_class": "digital_interface",
+      "owner_workstreams": [
+        "H3-R2.4"
+      ],
+      "method_ids": [
+        "M-DIGITAL",
+        "M-INT"
+      ],
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
+    },
+    {
       "device_id": "ti_sn74lvc08a_pwr",
       "parameter_class": "digital_interface",
       "owner_workstreams": [
@@ -3098,6 +3110,19 @@
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "ti_ts3usb221erser",
+      "parameter_class": "digital_interface",
+      "owner_workstreams": [
+        "H3-R2.4"
+      ],
+      "method_ids": [
+        "M-DIGITAL",
+        "M-INT"
+      ],
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
       "device_id": "ti_ts5a63157_dckr",
@@ -4087,23 +4112,23 @@
     }
   ],
   "summary": {
-    "parameter_rows": 250,
+    "parameter_rows": 252,
     "parameter_classes": 9,
     "workstreams": 7,
     "methods": 9,
     "pass_fail_rules": 12,
-    "assigned_parameter_rows": 250,
+    "assigned_parameter_rows": 252,
     "method_usage": {
       "M-ANALOG": 83,
       "M-DC": 75,
-      "M-DIGITAL": 88,
-      "M-INT": 250,
+      "M-DIGITAL": 89,
+      "M-INT": 252,
       "M-RF": 94,
-      "M-STATE": 172,
+      "M-STATE": 173,
       "M-THERMAL": 113,
       "M-TRANS": 126
     },
-    "explicit_unresolved_until_extraction": 172,
+    "explicit_unresolved_until_extraction": 171,
     "open_method_questions": 0,
     "errors": 0
   },

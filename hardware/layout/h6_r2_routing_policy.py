@@ -68,8 +68,8 @@ EXTERNAL_USB_PAIR_STEMS = {
 # names deliberately retain GPIO ownership, so substring matching misses them.
 # USB geometry is the protective class; SDIO timing still needs group review.
 C5_SHARED_USB_PAIR = {
-    "C5_GPIO13_COMMON": ("N", "DAT3", "GPIO13", "13", "D_MINUS", "4"),
-    "C5_GPIO14_COMMON": ("P", "DAT2", "GPIO14", "14", "D_PLUS", "3"),
+    "C5_GPIO13_COMMON": ("N", "DAT3", "GPIO13", "13", "D_MINUS", "7"),
+    "C5_GPIO14_COMMON": ("P", "DAT2", "GPIO14", "14", "D_PLUS", "8"),
 }
 C5_SHARED_USB_STEM = "C5_USB_SDIO_COMMON"
 C5_SHARED_PROJECT = "LESHY2-UI-R2"
@@ -83,7 +83,7 @@ def c5_shared_pair_errors(ledger_rows: list[dict], projects: dict) -> list[str]:
     for name, (polarity, _sdio, gpio, module_pad, mux_contact, mux_pad) in C5_SHARED_USB_PAIR.items():
         expected = {
             (C5_SHARED_PROJECT, C5_SHARED_SHEET, "U14", "c5", "esp32_c5_wroom_1u_n8r8", gpio, module_pad, "connected", f"c5.{gpio}"),
-            (C5_SHARED_PROJECT, C5_SHARED_SHEET, "U22", "c5_service_usb_switch", "onsemi_fsusb42_mux", mux_contact, mux_pad, "connected", f"c5_service_usb_switch.{mux_contact}"),
+            (C5_SHARED_PROJECT, C5_SHARED_SHEET, "U22", "c5_service_usb_switch", "ti_ts3usb221erser", mux_contact, mux_pad, "connected", f"c5_service_usb_switch.{mux_contact}"),
         }
         members = [row for row in ledger_rows if row.get("net") == name]
         keys = ("project", "sheet", "reference", "instance", "device_id", "contact", "physical", "disposition", "endpoint")

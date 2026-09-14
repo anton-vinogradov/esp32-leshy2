@@ -90,8 +90,8 @@ of the manufacturer PDF drawings resolved the package/view ambiguities;
 independent pad-map and native-connectivity tests now guard these corrections.
 
 The [hash-bound electrical audit](../hardware/verification/generated/H6-R2-electrical-semantics.json)
-now draws on **eight source maps with 1,327 reviewed pin types across 161
-exact-part groups**, within an inventory of 244 current board groups: digital,
+now draws on **eight source maps with 1,343 reviewed pin types across 163
+exact-part groups**, within an inventory of 246 current board groups: digital,
 logic, power, analog/RF, protection, interfaces,
 selected passives, SA818S-U/V and the PD EEPROM. This is not a percentage of completed electrical
 verification. Mechanical pads, unreviewed parts and unresolved electrical pins

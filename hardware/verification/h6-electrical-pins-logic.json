@@ -3,13 +3,13 @@
   "scope": "H6 manufacturer-verified physical pin electrical semantics for 27 logic, timer, translator and GPIO/bus-buffer device groups. Independent of H2 logical role; package-specific physical pin numbers are authoritative. open_collector denotes MOS open-drain outputs. GPIO direction and translator drive ownership require later circuit/configuration checks. Native exposed-pad numbers 17/33 identify optional grounded thermal pads; grounded timing-capacitor returns are passive, not independent supply inputs. This file neither changes production parts nor certifies whole-circuit ERC.",
   "devices": [
     {
-      "device_id": "nexperia_74hc20pw_118",
-      "mpn": "74HC20PW,118",
+      "device_id": "ti_sn74lv20apwr",
+      "mpn": "SN74LV20APWR",
       "evidence": [
         {
-          "url": "https://assets.nexperia.com/documents/data-sheet/74HC20.pdf",
-          "section": "Rev 7, Table 2 pin description; Table 3 NAND function; PW/TSSOP14",
-          "checked": "2026-09-07"
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lv20a.pdf",
+          "section": "Rev F May 2024, section 3 PW/TSSOP14 pin functions and NAND function table; electrical timing qualification remains separate",
+          "checked": "2026-09-14"
         }
       ],
       "pins": {

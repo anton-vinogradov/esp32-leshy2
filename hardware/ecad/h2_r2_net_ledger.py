@@ -490,8 +490,8 @@ def build() -> dict:
 
     # Ordinary SMT SJ-43515TS retains all five connected headset contacts;
     # only the former unused RING1_SWITCH / physical pin 6 is absent.
-    if len(rows) != 4301:
-        errors.append(f"current endpoint count changed: {len(rows)} != 4301")
+    if len(rows) != 4317:
+        errors.append(f"current endpoint count changed: {len(rows)} != 4317")
     current_endpoints = {row["endpoint"] for row in rows}
     stale_topology = sorted(set(current_sources.get("topology", {}).get("endpoint_overrides", {})) - current_endpoints)
     if stale_topology:
@@ -562,7 +562,7 @@ def main() -> int:
     if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != text:
         print(f"stale: {OUTPUT.relative_to(ROOT)}")
         return 1
-    print("ok: 4301 current R2 endpoints reconciled; zero unresolved; native projects not yet created")
+    print("ok: 4317 current R2 endpoints reconciled; zero unresolved; schematic ledger only")
     return 0
 
 

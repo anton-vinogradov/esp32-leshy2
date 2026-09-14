@@ -2,36 +2,37 @@
   "schema_version": 1,
   "artifact": "H5-R2-current-route-revalidation",
   "marker": "H5-R2.1",
-  "checked_on": "2026-09-09",
-  "check_scope": "Current inventory reconciliation, retained three reviewed interface replacements and user-confirmed four-port GCT USB-C unification. Only the GCT factory record was rechecked on this date; other stock/price snapshots retain their original dates.",
+  "checked_on": "2026-09-14",
+  "check_scope": "Current C5 control ECO inventory reconciliation; exact TS3USB221ERSER, SN74LV20APWR and NX3008NBKS,115 factory captures are reused from their 2026-09-14 device records, not queried again by this generator. Older interface/GCT and other stock/price snapshots retain their own dates. Pre-order is not allocated stock or a confirmed quote.",
   "status": "reviewed_with_one_order_time_global_sourcing_gate",
   "inputs": {
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "1e899cfca17f311309d1add013d0feb3f14f1bc2d4679e0c61c5785268fda3db",
-    "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "d9fd9d65913c56ac363f4dcbc0e1e8af7d56ada6d148831071a94065f30707eb",
+    "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
     "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json": "6d43cea9c21d44d374ae8ef8243a88e8d0c180e5d74a7602e74671dc16554e31",
-    "hardware/product-design/generated/H1-R2-cost-audit.json": "8619846ee4730f1b6d0f1686c137d1ecfc26f8cf2725369770a64eed589ae312",
+    "hardware/product-design/generated/H1-R2-cost-audit.json": "89863b8987d15a843ed1dd616e6786198bfd364604a5fea7714793e8f5248913",
     "hardware/verification/jlcpcb-usb-unification-2026-09-09.json": "b2e6fd0d7df4cfba16dbf2dd758f02af74c063bd1a9dc8cb4b59eff12673adbd"
   },
   "summary": {
-    "component_groups": 248,
-    "component_articles": 1216,
+    "component_groups": 250,
+    "component_articles": 1218,
     "legacy_routes_reused": 205,
-    "new_or_replaced_routes": 43,
+    "new_or_replaced_routes": 45,
     "current_global_sourcing_gates": 1,
     "route_counts": {
       "validated_h5_r1_J0": 118,
-      "jlcpcb_preorder": 5,
-      "jlcpcb_exact_part": 83,
+      "jlcpcb_preorder": 6,
+      "jlcpcb_exact_part": 84,
       "validated_h5_r1_J2": 26,
       "jlcpcb_global_sourcing_required": 1,
       "controlled_external_or_owner_assembly": 5,
       "validated_h5_r1_J3": 9,
       "owner_supplied_not_factory": 1
     },
+    "current_preorder_confirmation_gates": 6,
     "unmapped_groups": 0,
-    "known_electronics_usd": 311.3856,
+    "known_electronics_usd": 312.0357,
     "known_external_antennas_usd": 138.3166,
-    "known_combined_usd": 449.7022,
+    "known_combined_usd": 450.3523,
     "unpriced_component_groups": 5,
     "unpriced_antenna_groups": 2
   },
@@ -247,7 +248,7 @@
     {
       "device_id": "diodes_2n7002dw_7_f",
       "mpn": "Diodes Incorporated 2N7002DW-7-F",
-      "quantity_per_product": 5,
+      "quantity_per_product": 2,
       "scope": "base_product",
       "route_class": "validated_h5_r1_J2",
       "jlcpcb_part_number": null,
@@ -1297,19 +1298,6 @@
       "order_time_recheck": true
     },
     {
-      "device_id": "nexperia_74hc20pw_118",
-      "mpn": "74HC20PW,118",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "route_class": "jlcpcb_exact_part",
-      "jlcpcb_part_number": "C546719",
-      "evidence_url": "https://jlcpcb.com/partdetail/Nexperia-74HC20PW118/C546719",
-      "evidence_checked": "2026-08-30",
-      "legacy_h5_route": null,
-      "legacy_h5_status": null,
-      "order_time_recheck": true
-    },
-    {
       "device_id": "nexperia_74lvc126apw_118",
       "mpn": "Nexperia 74LVC126APW,118",
       "quantity_per_product": 8,
@@ -1373,6 +1361,64 @@
       "legacy_h5_route": null,
       "legacy_h5_status": null,
       "order_time_recheck": true
+    },
+    {
+      "device_id": "nexperia_nx3008nbks_115",
+      "mpn": "NX3008NBKS,115",
+      "quantity_per_product": 3,
+      "scope": "base_product",
+      "route_class": "jlcpcb_exact_part",
+      "jlcpcb_part_number": "C396098",
+      "evidence_url": "https://jlcpcb.com/partdetail/Nexperia-NX3008NBKS115/C396098",
+      "evidence_checked": "2026-09-14T00:24:23Z",
+      "legacy_h5_route": null,
+      "legacy_h5_status": null,
+      "order_time_recheck": true,
+      "fresh_factory_snapshot": {
+        "source": "hardware/architecture/devices.json",
+        "source_record": "devices.nexperia_nx3008nbks_115.orderable_source",
+        "checked_at_utc": "2026-09-14T00:24:23Z",
+        "manufacturer": "Nexperia",
+        "jlcpcb_part_number": "C396098",
+        "assembly_type": "SMT",
+        "assembly_services": [
+          "Economic",
+          "Standard"
+        ],
+        "library_type": "Extended",
+        "stock": 5255,
+        "available_order_quantity": 5229,
+        "minimum_purchase_quantity": 1,
+        "route": "stocked",
+        "is_order_or_reservation": false,
+        "order_time_recheck": true,
+        "price_tiers_usd_at_capture": [
+          {
+            "quantity": 1,
+            "unit_price": 0.1615
+          },
+          {
+            "quantity": 50,
+            "unit_price": 0.125
+          },
+          {
+            "quantity": 150,
+            "unit_price": 0.1094
+          },
+          {
+            "quantity": 500,
+            "unit_price": 0.0899
+          },
+          {
+            "quantity": 3000,
+            "unit_price": 0.0813
+          },
+          {
+            "quantity": 6000,
+            "unit_price": 0.0761
+          }
+        ]
+      }
     },
     {
       "device_id": "nexperia_pesd24vy1bsf",
@@ -1468,7 +1514,7 @@
     {
       "device_id": "onsemi_fsusb42_mux",
       "mpn": "onsemi FSUSB42MUX",
-      "quantity_per_product": 3,
+      "quantity_per_product": 2,
       "scope": "base_product",
       "route_class": "validated_h5_r1_J0",
       "jlcpcb_part_number": null,
@@ -1958,6 +2004,44 @@
       "legacy_h5_route": null,
       "legacy_h5_status": null,
       "order_time_recheck": true
+    },
+    {
+      "device_id": "ti_sn74lv20apwr",
+      "mpn": "SN74LV20APWR",
+      "quantity_per_product": 2,
+      "scope": "base_product",
+      "route_class": "jlcpcb_preorder",
+      "jlcpcb_part_number": "C2862070",
+      "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LV20APWR/C2862070",
+      "evidence_checked": "2026-09-14T00:10:12Z",
+      "legacy_h5_route": null,
+      "legacy_h5_status": null,
+      "order_time_recheck": true,
+      "fresh_factory_snapshot": {
+        "source": "hardware/architecture/devices.json",
+        "source_record": "devices.ti_sn74lv20apwr.orderable_source",
+        "checked_at_utc": "2026-09-14T00:10:12Z",
+        "manufacturer": "Texas Instruments",
+        "jlcpcb_part_number": "C2862070",
+        "assembly_type": "SMT",
+        "assembly_services": [
+          "Economic",
+          "Standard"
+        ],
+        "library_type": "Extended",
+        "stock": 0,
+        "available_order_quantity": null,
+        "minimum_purchase_quantity": 21,
+        "route": "pre_order",
+        "is_order_or_reservation": false,
+        "order_time_recheck": true,
+        "estimated_unit_price_usd_at_minimum": 0.4265,
+        "estimated_purchase_subtotal_usd": 8.9565,
+        "lead_time": null,
+        "final_quote_confirmed": false,
+        "stock_allocation_confirmed": false,
+        "not_a_stocked_price_tier": true
+      }
     },
     {
       "device_id": "ti_sn74lvc08a_pwr",
@@ -2454,6 +2538,64 @@
       "order_time_recheck": true
     },
     {
+      "device_id": "ti_ts3usb221erser",
+      "mpn": "TS3USB221ERSER",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "route_class": "jlcpcb_exact_part",
+      "jlcpcb_part_number": "C129313",
+      "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-TS3USB221ERSER/C129313",
+      "evidence_checked": "2026-09-14T00:03:22Z",
+      "legacy_h5_route": null,
+      "legacy_h5_status": null,
+      "order_time_recheck": true,
+      "fresh_factory_snapshot": {
+        "source": "hardware/architecture/devices.json",
+        "source_record": "devices.ti_ts3usb221erser.orderable_source",
+        "checked_at_utc": "2026-09-14T00:03:22Z",
+        "manufacturer": "Texas Instruments",
+        "jlcpcb_part_number": "C129313",
+        "assembly_type": "SMT",
+        "assembly_services": [
+          "Economic",
+          "Standard"
+        ],
+        "library_type": "Extended",
+        "stock": 2998,
+        "available_order_quantity": 2993,
+        "minimum_purchase_quantity": 1,
+        "route": "stocked",
+        "is_order_or_reservation": false,
+        "order_time_recheck": true,
+        "price_tiers_usd_at_capture": [
+          {
+            "quantity": 1,
+            "unit_price": 0.3416
+          },
+          {
+            "quantity": 50,
+            "unit_price": 0.2678
+          },
+          {
+            "quantity": 150,
+            "unit_price": 0.236
+          },
+          {
+            "quantity": 500,
+            "unit_price": 0.1967
+          },
+          {
+            "quantity": 3000,
+            "unit_price": 0.1791
+          },
+          {
+            "quantity": 6000,
+            "unit_price": 0.1685
+          }
+        ]
+      }
+    },
+    {
       "device_id": "ti_ts5a63157_dckr",
       "mpn": "Texas Instruments TS5A63157DCKR",
       "quantity_per_product": 3,
@@ -2781,7 +2923,7 @@
     {
       "device_id": "yageo_cc0402krx7r9bb104",
       "mpn": "Yageo CC0402KRX7R9BB104",
-      "quantity_per_product": 173,
+      "quantity_per_product": 174,
       "scope": "base_product",
       "route_class": "jlcpcb_exact_part",
       "jlcpcb_part_number": "C131394",
@@ -3273,6 +3415,56 @@
       "order_time_recheck": true
     }
   ],
+  "current_preorder_gates": [
+    {
+      "device_id": "adi_ad8314armz_reel",
+      "mpn": "Analog Devices AD8314ARMZ-REEL",
+      "jlcpcb_part_number": "C652687",
+      "quantity_per_product": 6,
+      "required_before_order": "confirm exact MOQ, final price, lead time and factory allocation; no silent substitution",
+      "order_release_allowed": false
+    },
+    {
+      "device_id": "gct_usb4105_gf_a",
+      "mpn": "GCT USB4105-GF-A",
+      "jlcpcb_part_number": "C3020560",
+      "quantity_per_product": 4,
+      "required_before_order": "confirm exact MOQ, final price, lead time and factory allocation; no silent substitution",
+      "order_release_allowed": false
+    },
+    {
+      "device_id": "nicerf_sa818s_v_v18",
+      "mpn": "G-NiceRF SA818S-V",
+      "jlcpcb_part_number": "C51897911",
+      "quantity_per_product": 1,
+      "required_before_order": "confirm exact MOQ, final price, lead time and factory allocation; no silent substitution",
+      "order_release_allowed": false
+    },
+    {
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "mpn": "Same Sky SJ-43515TS-SMT-TR",
+      "jlcpcb_part_number": "C5353507",
+      "quantity_per_product": 1,
+      "required_before_order": "confirm exact MOQ, final price, lead time and factory allocation; no silent substitution",
+      "order_release_allowed": false
+    },
+    {
+      "device_id": "ti_sn74lv20apwr",
+      "mpn": "SN74LV20APWR",
+      "jlcpcb_part_number": "C2862070",
+      "quantity_per_product": 2,
+      "required_before_order": "confirm exact MOQ, final price, lead time and factory allocation; no silent substitution",
+      "order_release_allowed": false
+    },
+    {
+      "device_id": "vishay_tsmp95000tr",
+      "mpn": "Vishay TSMP95000TR",
+      "jlcpcb_part_number": "C20593617",
+      "quantity_per_product": 1,
+      "required_before_order": "confirm exact MOQ, final price, lead time and factory allocation; no silent substitution",
+      "order_release_allowed": false
+    }
+  ],
   "current_order_time_gate": {
     "mpn": "WBC16-1TLC",
     "jlcpcb_part": "C22402290",
@@ -3284,7 +3476,7 @@
   "boundary": {
     "h6_may_continue": true,
     "order_release_may_continue": false,
-    "reason": "layout can retain the exact accepted footprint, but the single order must not be released until WBC16-1TLC has a confirmed JLCPCB sourcing/private-library route or a fully qualified replacement"
+    "reason": "layout can retain the exact accepted footprints; order release requires a confirmed WBC16-1TLC JLCPCB sourcing/private-library route or fully qualified replacement, plus final MOQ/price/lead-time/allocation confirmation for every pre-order route, including zero-stock SN74LV20APWR MOQ21. Recheck every exact part before order; no substitution is authorized"
   },
   "errors": []
 }

@@ -106,7 +106,7 @@ def reference_prefix(device_id: str, footprint: str) -> str:
         return "SW"
     if "fuse" in device_id or device_id.startswith("littelfuse_045"):
         return "F"
-    if device_id.startswith(("diodes_2n", "diodes_dmn", "diodes_mmbt")):
+    if device_id == "nexperia_nx3008nbks_115" or device_id.startswith(("diodes_2n", "diodes_dmn", "diodes_mmbt")):
         return "Q"
     if device_id == "keystone_1048p":
         return "BT"
@@ -321,8 +321,8 @@ def build() -> dict:
     except ValueError as error:
         errors.append(f"invalid reference allocation: {error}")
         rows.sort(key=lambda row: (row["project"], row["sheet"], row["instance"]))
-    if len(rows) != 1208:
-        errors.append(f"expected 1208 board schematic instances, got {len(rows)}")
+    if len(rows) != 1210:
+        errors.append(f"expected 1210 board schematic instances, got {len(rows)}")
     project_counts = Counter(row["project"] for row in rows)
     project_graph_sheet_count = sum(
         len(project.get("sheets", [])) for project in inventory.get("projects", [])
@@ -384,7 +384,7 @@ def main() -> int:
     if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != text:
         print(f"stale: {OUTPUT.relative_to(ROOT)}")
         return 1
-    print("ok: 1208 exact R2 board instances across 2 native projects and 22 sheets; zero nets created")
+    print("ok: 1210 exact R2 board instances across 2 native projects and 22 sheets; zero nets created")
     return 0
 
 

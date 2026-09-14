@@ -126890,7 +126890,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "Diodes Incorporated 2N7002DW-7-F"
+		(property "Value" "NX3008NBKS,115"
 			(at 0 -1.8 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -126915,7 +126915,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "diodes_2n7002dw_7_f"
+		(property "Description" "nexperia_nx3008nbks_115"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -126948,6 +126948,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 				(justify mirror)
 			)

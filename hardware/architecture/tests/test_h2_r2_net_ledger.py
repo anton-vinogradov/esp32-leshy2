@@ -27,7 +27,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("4301 current R2 endpoints reconciled", result.stdout)
+        self.assertIn("4317 current R2 endpoints reconciled", result.stdout)
 
     def test_every_current_instance_contact_occurs_once(self):
         instances = json.loads(INSTANCES.read_text(encoding="utf-8"))["rows"]
@@ -41,7 +41,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             for contact in definitions[instance["device_id"]]["contact_map"]
         }
         self.assertEqual(expected, set(self.by_endpoint))
-        self.assertEqual(4301, len(expected))
+        self.assertEqual(4317, len(expected))
         self.assertFalse([
             endpoint for endpoint, count in Counter(row["endpoint"] for row in self.rows).items()
             if count != 1
@@ -51,12 +51,12 @@ class H2R2NetLedgerTests(unittest.TestCase):
         summary = self.ledger["summary"]
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
-        self.assertEqual(4301, summary["endpoint_count"])
-        self.assertEqual(4067, summary["connected_endpoint_count"])
-        self.assertEqual(234, summary["no_connect_endpoint_count"])
+        self.assertEqual(4317, summary["endpoint_count"])
+        self.assertEqual(4081, summary["connected_endpoint_count"])
+        self.assertEqual(236, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
-        self.assertEqual(788, summary["unique_net_count"])
+        self.assertEqual(789, summary["unique_net_count"])
 
     def test_m1_contacts_match_on_both_projects(self):
         for position in range(1, 81):
@@ -225,11 +225,12 @@ class H2R2NetLedgerTests(unittest.TestCase):
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
         # The approved GCT migration pins down 15 former historical hints
         # plus B12 explicitly; C5 GPIO28 now has its own BOOT override instead
-        # of a historical NC hint. No electrical endpoint is removed.
-        self.assertEqual(2180, len(historical))
+        # of a historical NC hint. The exact NX reset overrides supersede
+        # five further historical and seven abstract endpoint hints.
+        self.assertEqual(2175, len(historical))
         self.assertEqual("current_r2_board_local_topology", self.by_endpoint["c5.GPIO28"]["origin"])
         self.assertEqual(
-            1095,
+            1088,
             self.ledger["summary"]["origin_counts"]["current_abstract_endpoint_canonical"],
         )
         product_usb = [row for row in self.rows if row["instance"] == "product_usb_connector"]

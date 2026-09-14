@@ -33,18 +33,18 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("244 board groups", result.stdout)
+        self.assertIn("246 board groups", result.stdout)
 
     def test_exact_group_boundary_is_complete(self):
         self.assertEqual("H2-R2.1.2", self.ledger["marker"])
         self.assertEqual("pass", self.ledger["status"])
         summary = self.ledger["summary"]
-        self.assertEqual(250, summary["component_group_count"])
-        self.assertEqual(244, summary["board_component_group_count"])
+        self.assertEqual(252, summary["component_group_count"])
+        self.assertEqual(246, summary["board_component_group_count"])
         self.assertEqual(6, summary["explicit_non_pcba_group_count"])
-        self.assertEqual(244, summary["symbol_identity_count"])
-        self.assertEqual(244, summary["footprint_identity_count"])
-        self.assertEqual(1599, summary["logical_contact_count"])
+        self.assertEqual(246, summary["symbol_identity_count"])
+        self.assertEqual(246, summary["footprint_identity_count"])
+        self.assertEqual(1615, summary["logical_contact_count"])
         self.assertEqual(0, summary["unresolved_groups"])
 
     def test_contacts_are_hash_bound_to_current_device_evidence(self):

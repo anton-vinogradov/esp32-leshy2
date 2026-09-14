@@ -17,8 +17,9 @@ class H3R2LoadBindingTests(unittest.TestCase):
         self.assertEqual("pass", self.result["status"])
         self.assertGreater(summary["power_connected_instances"], 250)
         self.assertEqual(summary["power_connected_instances"], summary["bound_instance_lines"])
-        self.assertEqual(607, summary["direct_power_connected_instances"])
+        self.assertEqual(609, summary["direct_power_connected_instances"])
         self.assertEqual(16, summary["indirect_powered_instances"])
+        self.assertEqual(625, summary["power_connected_instances"])
         self.assertEqual(0, summary["unbound_power_connected_instances"])
         self.assertEqual(0, summary["duplicate_instance_lines"])
         self.assertEqual(0, summary["source_missing"])
@@ -36,6 +37,24 @@ class H3R2LoadBindingTests(unittest.TestCase):
             self.assertIn(profile, profiles)
         self.assertEqual(6, len(self.result["external_load_lines"]))
         self.assertIn("DISPLAY", {row["profile"] for row in self.result["external_load_lines"]})
+
+    def test_two_added_c5_instances_have_exact_separate_aon_owners(self):
+        # Stable instance UIDs, not sequential LOAD ids (which shift on insert).
+        for instance, reference, device_id, state in (
+            ("c5_service_path_logic", "U59", "ti_sn74lv20apwr",
+             "candidate_current_seed_requires_applicability_review"),
+            ("c5_service_path_logic_bypass", "C86", "yageo_cc0402krx7r9bb104",
+             "exact_nonload_parameter_extraction_required"),
+        ):
+            rows = [row for row in self.result["load_lines"]
+                    if row["instance_uid"] == "LESHY2-UI-R2:" + instance]
+            self.assertEqual(1, len(rows), instance)
+            row = rows[0]
+            self.assertEqual((reference, device_id), (row["reference"], row["device_id"]))
+            self.assertEqual(["AON_SAFE_3V3"], row["canonical_rails"])
+            self.assertEqual(["ALWAYS_ON"], row["profiles"])
+            self.assertEqual("H3-R2.1.3", row["parameter_owner"])
+            self.assertEqual(state, row["parameter_state"])
 
     def test_every_line_is_source_bound_and_fail_closed(self):
         for row in self.result["load_lines"]:

@@ -77,7 +77,7 @@ def reference_prefix(device_id: str, footprint: str) -> str:
         return "SW"
     if "fuse" in device_id or device_id.startswith("littelfuse_045"):
         return "F"
-    if device_id.startswith(("diodes_2n", "diodes_dmn", "diodes_mmbt")):
+    if device_id == "nexperia_nx3008nbks_115" or device_id.startswith(("diodes_2n", "diodes_dmn", "diodes_mmbt")):
         return "Q"
     if device_id == "keystone_1048p":
         return "BT"
@@ -232,11 +232,11 @@ def build() -> tuple[str, dict]:
         ]
     )
     symbol_ids = [row["symbol_id"] for row in symbols]
-    if len(symbols) != 244 or len(set(symbol_ids)) != 244:
-        errors.append("expected 244 unique controlled symbols")
+    if len(symbols) != 246 or len(set(symbol_ids)) != 246:
+        errors.append("expected 246 unique controlled symbols")
     pin_count = sum(row["pin_count"] for row in symbols)
-    if pin_count != 1553:
-        errors.append(f"expected 1553 unique electrical-pad pins (USB exact-device groups consolidated), got {pin_count}")
+    if pin_count != 1569:
+        errors.append(f"expected 1569 unique electrical-pad pins (C5 TS/NX definitions add 16 pins), got {pin_count}")
     external_count = sum(len(row["external_interfaces"]) for row in symbols)
     if external_count != 3:
         errors.append(f"expected three on-module external interfaces, got {external_count}")
@@ -299,7 +299,7 @@ def main() -> int:
     if stale:
         print("stale: " + ", ".join(stale))
         return 1
-    print("ok: 244 controlled R2 symbols, 1553 exact pad pins, 3 external-interface metadata entries")
+    print("ok: 246 controlled R2 symbols, 1569 exact pad pins, 3 external-interface metadata entries")
     return 0
 
 

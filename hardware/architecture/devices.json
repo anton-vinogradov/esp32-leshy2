@@ -5275,6 +5275,72 @@
         "VCC": {"physical": "5", "role": "power"}
       }
     },
+    "ti_sn74lv20apwr": {
+      "mpn": "SN74LV20APWR",
+      "manufacturer": "Texas Instruments",
+      "kind": "tssop14_dual_four_input_nand_gate",
+      "qualification": "engineering_candidate_not_electrically_or_hil_qualified",
+      "lifecycle": "active_catalog_part_explicit_preorder_route",
+      "package": "PW, TSSOP-14",
+      "source": {
+        "document": "SN74LV20A Dual 4-Input Positive-NAND Gates datasheet",
+        "version": "Rev. F, May 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lv20a.pdf",
+        "checked": "2026-09-14"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact Texas Instruments SN74LV20APWR C2862070; explicit pre-order, not in-stock availability",
+        "url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LV20APWR/C2862070",
+        "checked": "2026-09-14T00:10:12Z",
+        "manufacturer": "Texas Instruments",
+        "jlcpcb_part_number": "C2862070",
+        "library_type": "Extended",
+        "assembly_type": "SMT",
+        "assembly_services": ["Economic", "Standard"],
+        "live_inventory": {"stock": 0, "available_order_quantity": null, "route": "pre_order", "moq": 21, "lead_time": null},
+        "preorder_estimate": {"currency": "USD", "unit_price": 0.4265, "not_a_stocked_price_tier": true}
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 1, "unit_price_usd": 0.4265,
+        "estimated": true,
+        "procurement_moq": 21,
+        "stocked_unit_tier": false,
+        "price_break": "One-product planning allocation at USD 0.4265 per fitted part (two parts: USD 0.8530), not an order total. JLCPCB Pre-order estimate requires MOQ 21 (USD 8.9565 estimated material minimum); no stocked quantity-one tier, final quote or lead time established",
+        "source": {"document": "JLCPCB C2862070 exact pre-order estimate", "url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LV20APWR/C2862070", "checked": "2026-09-14", "checked_at": "2026-09-14T00:10:12Z"}
+      },
+      "electrical_contract": {
+        "recommended_supply_v": [2.0, 5.5],
+        "operating_temperature_c": [-40, 85],
+        "logic_thresholds": {"supply_v": [3.0, 3.6], "vih_min_vcc_ratio": 0.7, "vil_max_vcc_ratio": 0.3},
+        "low_load_output": {"current_ua": 50, "supply_v": [2.0, 5.5], "voh_min_vcc_minus_v": 0.1, "vol_max_v": 0.1},
+        "loaded_output": {"supply_v": 3.0, "current_ma": 6, "voh_min_v": 2.48, "vol_max_v": 0.44},
+        "power_off_leakage_max_ua": 5,
+        "power_off_leakage_conditions": "VCC=0 V; input or output voltage 0..5.5 V",
+        "input_leakage_max_ua": 1,
+        "input_leakage_conditions": "Input voltage 0..5.5 V; exact supply conditions remain those of the primary electrical-characteristics table",
+        "circuit_qualification": false,
+        "timing_qualification": false,
+        "hil_qualification": false,
+        "open_conditions": "C5 source-only correction: verify actual AON limits, all fan-out loading, asynchronous hazards and ordered recovery before release. Catalogue route does not qualify the circuit."
+      },
+      "programmable": false,
+      "contacts": {
+        "1A": {"physical": "1", "role": "signal"},
+        "1B": {"physical": "2", "role": "signal"},
+        "NC_3": {"physical": "3", "role": "no_connect"},
+        "1C": {"physical": "4", "role": "signal"},
+        "1D": {"physical": "5", "role": "signal"},
+        "1Y": {"physical": "6", "role": "signal"},
+        "GND": {"physical": "7", "role": "power"},
+        "2Y": {"physical": "8", "role": "signal"},
+        "2A": {"physical": "9", "role": "signal"},
+        "2B": {"physical": "10", "role": "signal"},
+        "NC_11": {"physical": "11", "role": "no_connect"},
+        "2C": {"physical": "12", "role": "signal"},
+        "2D": {"physical": "13", "role": "signal"},
+        "VCC": {"physical": "14", "role": "power"}
+      }
+    },
     "nexperia_74hc20pw_118": {
       "mpn": "74HC20PW,118",
       "kind": "tssop14_dual_four_input_nand_gate",
@@ -8376,6 +8442,73 @@
         "SLOT1_NEG": {"physical": "slot 1 negative-side independent SMT contact", "role": "power"}
       }
     },
+    "nexperia_nx3008nbks_115": {
+      "mpn": "NX3008NBKS,115",
+      "manufacturer": "Nexperia",
+      "kind": "dual_30v_nmos_sot363_logic_level_reset_sink",
+      "qualification": "engineering_candidate_not_electrically_or_hil_qualified",
+      "lifecycle": "active_catalog_part_stocked_at_capture",
+      "package": "SOT363",
+      "source": {
+        "document": "NX3008NBKS 30 V dual N-channel Trench MOSFET datasheet",
+        "version": "5 November 2022",
+        "url": "https://assets.nexperia.com/documents/data-sheet/NX3008NBKS.pdf",
+        "checked": "2026-09-14"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact Nexperia NX3008NBKS,115 C396098 live stock and Standard-PCBA route",
+        "url": "https://jlcpcb.com/partdetail/Nexperia-NX3008NBKS115/C396098",
+        "checked": "2026-09-14T00:24:23Z",
+        "manufacturer": "Nexperia",
+        "jlcpcb_part_number": "C396098",
+        "library_type": "Extended",
+        "assembly_type": "SMT",
+        "assembly_services": ["Economic", "Standard"],
+        "live_inventory": {"stock": 5255, "available_order_quantity": 5229, "route": "stocked", "moq": 1},
+        "price_tiers_usd": [
+          {"quantity": 1, "unit_price": 0.1615}, {"quantity": 50, "unit_price": 0.1250},
+          {"quantity": 150, "unit_price": 0.1094}, {"quantity": 500, "unit_price": 0.0899},
+          {"quantity": 3000, "unit_price": 0.0813}, {"quantity": 6000, "unit_price": 0.0761}
+        ]
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 1, "unit_price_usd": 0.1615,
+        "price_break": "JLCPCB stocked quantity-one tier at the timestamp; recheck before order",
+        "source": {"document": "JLCPCB C396098 exact live price table", "url": "https://jlcpcb.com/partdetail/Nexperia-NX3008NBKS115/C396098", "checked": "2026-09-14", "checked_at": "2026-09-14T00:24:23Z"}
+      },
+      "electrical_contract": {
+        "drain_source_absolute_max_v": 30,
+        "gate_source_absolute_max_v": [-8, 8],
+        "on_resistance_limits": [
+          {"max_ohm": 2.8, "vgs_v": 1.8, "drain_current_ma": 10, "junction_temperature_c": 25},
+          {"max_ohm": 2.1, "vgs_v": 2.5, "junction_temperature_c": 25, "current_condition": "see primary table; not extended to arbitrary load"},
+          {"max_ohm": 1.4, "vgs_v": 4.5, "junction_temperature_c": 25, "current_condition": "see primary table; not extended to arbitrary load"},
+          {"max_ohm": 2.5, "vgs_v": 4.5, "junction_temperature_c": 150, "current_condition": "see primary table; not a 1.8-V-gate full-temperature guarantee"}
+        ],
+        "gate_leakage": {"max_ua": 1, "vgs_v": [-8, 8], "junction_temperature_c": 25},
+        "drain_leakage_limits": [{"max_ua": 1, "vds_v": 30, "junction_temperature_c": 25}, {"max_ua": 10, "vds_v": 30, "junction_temperature_c": 150}],
+        "input_capacitance": {"max_pf": 50, "vds_v": 15, "vgs_v": 0, "frequency_mhz": 1, "junction_temperature_c": 25},
+        "total_gate_charge": {"max_nc": 0.68, "vgs_v": 4.5, "other_conditions": "see primary table; not a switching-delay guarantee"},
+        "circuit_qualification": false,
+        "timing_qualification": false,
+        "hil_qualification": false,
+        "open_conditions": "Low-voltage reset-low screening is conditional at 25 C only. Full-temperature low-gate-voltage behavior, AON ramp, reset thresholds and actual sink loading remain unqualified. Pack Q2/Q3 are not replaced by this record."
+      },
+      "pinout_invariant": {
+        "package": "SOT363 manufacturer top view",
+        "physical_pin_to_contact": {"1": "S1", "2": "G1", "3": "D2", "4": "S2", "5": "G2", "6": "D1"},
+        "source_figure": "Nexperia NX3008NBKS pinning and internal schematic; not the Diodes 2N7002DW channel numbering"
+      },
+      "programmable": false,
+      "contacts": {
+        "S1": {"physical": "1", "role": "signal"},
+        "G1": {"physical": "2", "role": "signal"},
+        "D2": {"physical": "3", "role": "signal"},
+        "S2": {"physical": "4", "role": "signal"},
+        "G2": {"physical": "5", "role": "signal"},
+        "D1": {"physical": "6", "role": "signal"}
+      }
+    },
     "diodes_2n7002dw_7_f": {
       "mpn": "Diodes Incorporated 2N7002DW-7-F",
       "kind": "dual_60v_nmos_sot363_hold_release",
@@ -8409,6 +8542,11 @@
         "package": "SOT363 standard top view",
         "physical_pin_to_contact": {"1": "S2", "2": "G2", "3": "D1", "4": "S1", "5": "G1", "6": "D2"},
         "source_figure": "Diodes Incorporated 2N7002DW DS30120 Rev. 22-2 page 1 top-view internal schematic"
+      },
+      "current_r2_scope_review": {
+        "retained_instances": ["LESHY2-RF-R2:pack_hold", "LESHY2-RF-R2:pack_status_buffer"],
+        "electrical_qualification": false,
+        "open_gate": "Pack Q2/Q3 retain their existing exact device and require a separate actual gate-drive/load/temperature review. The conditional 25-C NX3008NBKS reset-sink screening does not qualify these Pack circuits."
       },
       "contacts": {
         "S2": {"physical": "1", "role": "signal"},
@@ -9976,6 +10114,87 @@
         "D_PLUS": {"physical": "1", "role": "signal"},
         "D_MINUS": {"physical": "2", "role": "signal"},
         "GND": {"physical": "3", "role": "power"}
+      }
+    },
+    "ti_ts3usb221erser": {
+      "mpn": "TS3USB221ERSER",
+      "manufacturer": "Texas Instruments",
+      "kind": "uqfn10_usb2_dpdt_power_off_protected_switch",
+      "qualification": "engineering_candidate_not_electrically_or_hil_qualified",
+      "lifecycle": "active_catalog_part_stocked_at_capture",
+      "package": "RSE0010A, UQFN-10, 1.5x2 mm, no exposed pad",
+      "source": {
+        "document": "TS3USB221E High-Speed USB 2.0 (480-Mbps) 1:2 Multiplexer/Demultiplexer Switch datasheet",
+        "version": "Rev. E, July 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/ts3usb221e.pdf",
+        "checked": "2026-09-14"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact Texas Instruments TS3USB221ERSER C129313 live stock and Standard-PCBA route",
+        "url": "https://jlcpcb.com/partdetail/TexasInstruments-TS3USB221ERSER/C129313",
+        "checked": "2026-09-14T00:03:22Z",
+        "manufacturer": "Texas Instruments",
+        "jlcpcb_part_number": "C129313",
+        "library_type": "Extended",
+        "assembly_type": "SMT",
+        "assembly_services": ["Economic", "Standard"],
+        "live_inventory": {"stock": 2998, "available_order_quantity": 2993, "route": "stocked", "moq": 1},
+        "price_tiers_usd": [
+          {"quantity": 1, "unit_price": 0.3416}, {"quantity": 50, "unit_price": 0.2678},
+          {"quantity": 150, "unit_price": 0.2360}, {"quantity": 500, "unit_price": 0.1967},
+          {"quantity": 3000, "unit_price": 0.1791}, {"quantity": 6000, "unit_price": 0.1685}
+        ]
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 1, "unit_price_usd": 0.3416,
+        "price_break": "JLCPCB stocked quantity-one tier at the timestamp; recheck before order",
+        "source": {"document": "JLCPCB C129313 exact live price table", "url": "https://jlcpcb.com/partdetail/TexasInstruments-TS3USB221ERSER/C129313", "checked": "2026-09-14", "checked_at": "2026-09-14T00:03:22Z"}
+      },
+      "electrical_contract": {
+        "recommended_supply_v": [2.3, 3.6],
+        "operating_temperature_c": [-40, 85],
+        "usb_speed_mbps": 480,
+        "bandwidth_mhz": 1000,
+        "bandwidth_limit_type": "typical_only_no_guaranteed_minimum",
+        "bandwidth_conditions": {"load_ohm": 50, "supply_v_nominal": [3.3, 2.5], "supply_tolerance_percent": 10},
+        "control_input_absolute_max_v": 7,
+        "control_vih_min_vcc_ratio": 0.46,
+        "control_input_leakage_max_ua": 1,
+        "control_input_leakage_conditions": {"supply_v": [0, 2.7, 3.6], "input_v": [0, 3.6]},
+        "power_off_port_leakage_max_ua": 2,
+        "power_off_leakage_max_ua": 2,
+        "power_off_port_leakage_conditions": {"supply_v": 0, "port_v": [0, 5.25]},
+        "on_resistance_max_ohm": 6,
+        "on_resistance_conditions": {"supply_v": [3.0, 2.3], "test_points": [{"input_v": 0, "current_ma": 30}, {"input_v": 2.4, "current_ma": -15}], "free_air_temperature_c": [-40, 85]},
+        "on_capacitance_max_pf": 7.5,
+        "on_capacitance_conditions": {"supply_v": [3.3, 2.5], "port_v": [0, 3.3], "switch": "on", "free_air_temperature_c": [-40, 85]},
+        "analogue_limit_scope": "Primary electrical-characteristics table maxima, not unconditionally extended beyond each table row's test conditions or to complete USB/SDIO signal integrity.",
+        "truth_table": [
+          {"SEL": 0, "OE": 0, "path": "HSD1"},
+          {"SEL": 1, "OE": 0, "path": "HSD2"},
+          {"SEL": "X", "OE": 1, "path": "disconnected"}
+        ],
+        "circuit_qualification": false,
+        "timing_qualification": false,
+        "hil_qualification": false,
+        "open_conditions": "Supply brownout 0<VCC<2.3 V, powered-domain sequencing, reset-to-pad-high-Z, USB/SDIO signal integrity and full recovery remain unqualified. This replaces only the C5 switch; both RP service switches remain FSUSB42."
+      },
+      "pinout_invariant": {
+        "package": "TI RSE0010A top view, ten numbered contacts, no exposed pad",
+        "physical_pin_to_contact": {"1": "HSD1_PLUS", "2": "HSD1_MINUS", "3": "HSD2_PLUS", "4": "HSD2_MINUS", "5": "GND", "6": "OE", "7": "D_MINUS", "8": "D_PLUS", "9": "SEL", "10": "VCC"}
+      },
+      "programmable": false,
+      "contacts": {
+        "HSD1_PLUS": {"physical": "1", "role": "signal"},
+        "HSD1_MINUS": {"physical": "2", "role": "signal"},
+        "HSD2_PLUS": {"physical": "3", "role": "signal"},
+        "HSD2_MINUS": {"physical": "4", "role": "signal"},
+        "GND": {"physical": "5", "role": "power"},
+        "OE": {"physical": "6", "role": "signal"},
+        "D_MINUS": {"physical": "7", "role": "signal"},
+        "D_PLUS": {"physical": "8", "role": "signal"},
+        "SEL": {"physical": "9", "role": "signal"},
+        "VCC": {"physical": "10", "role": "power"}
       }
     },
     "onsemi_fsusb42_mux": {

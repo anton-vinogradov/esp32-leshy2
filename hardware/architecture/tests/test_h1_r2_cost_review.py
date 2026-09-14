@@ -26,7 +26,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertIn("TX2400-JW-5", ru)
 
     def test_complete_bom_is_ranked(self):
-        self.assertEqual(len(self.result["rows"]), 248)
+        self.assertEqual(len(self.result["rows"]), 250)
         mpns = [row["mpn"] for row in self.result["rows"]]
         self.assertEqual(len(mpns), len(set(mpns)))
         known = [
@@ -38,7 +38,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_cost_boundaries_are_explicit(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["quantity_100_priced_lines"], 239)
+        self.assertEqual(summary["quantity_100_priced_lines"], 238)
         self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
         self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 270)
         self.assertAlmostEqual(
@@ -67,8 +67,8 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_accepted_all_in_one_target_gap_is_not_hidden(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["base_bom_lines"], 246)
-        self.assertEqual(summary["base_fitted_placements"], 1213)
+        self.assertEqual(summary["base_bom_lines"], 248)
+        self.assertEqual(summary["base_fitted_placements"], 1215)
         self.assertEqual(summary["community_complete_device_target_usd"], 260)
         self.assertEqual(summary["community_electronics_target_usd"], [189, 216])
         self.assertAlmostEqual(
@@ -82,7 +82,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         ru = MODULE.render_doc(self.result, True)
         self.assertIn("Принятая ценовая граница all-in-one", ru)
         self.assertIn("отдельный `Core` сейчас не проектируется", ru)
-        self.assertIn("1213", ru)
+        self.assertIn("1215", ru)
         self.assertIn("пересинтез", ru)
 
     def test_cost_feasibility_separates_all_in_one_from_modular_entry(self):
@@ -165,6 +165,20 @@ class H1R2CostReviewTest(unittest.TestCase):
         # Fitted demand is four; this does not replace the separately recorded
         # live MOQ-nine procurement requirement with a quantity-four order.
 
+    def test_c5_component_split_adds_two_current_groups_without_rewriting_history(self):
+        rows = {row["device_id"]: row for row in self.result["rows"]}
+        # FSUSB and 2N7002 remain on other interfaces / Pack. Retired HC20 is
+        # replaced by LV20; the extra NAND and bypass add two fitted parts.
+        expected = {"ti_ts3usb221erser": 1, "ti_sn74lv20apwr": 2,
+                    "nexperia_nx3008nbks_115": 3, "onsemi_fsusb42_mux": 2,
+                    "diodes_2n7002dw_7_f": 2}
+        self.assertEqual(expected, {key: rows[key]["quantity_per_device"] for key in expected})
+        self.assertNotIn("nexperia_74hc20pw_118", rows)
+        self.assertEqual(210, self.result["summary"]["historical_source_bom_lines"])
+        for key in ("ti_ts3usb221erser", "ti_sn74lv20apwr", "nexperia_nx3008nbks_115"):
+            self.assertIsNone(rows[key]["quantity_historical_capture"])
+            self.assertIsNone(rows[key]["historical_capture_displayed_line_usd"])
+
     def test_historical_quantities_follow_the_retained_snapshot(self):
         by_id = {row["device_id"]: row for row in self.result["rows"]}
         # H5-EVR05 retains actual BOM-Tool quantities even when its projected
@@ -185,6 +199,34 @@ class H1R2CostReviewTest(unittest.TestCase):
         # Quantity provenance does not recalculate retained prices or totals.
         self.assertEqual(1365.0493, self.result["summary"]["historical_capture_displayed_usd"])
         self.assertEqual(1406.4379, self.result["summary"]["historical_spot_adjusted_displayed_usd"])
+
+    def test_three_current_c5_prices_do_not_invent_volume_tiers_or_preorder_stock(self):
+        rows = {row["device_id"]: row for row in self.result["rows"]}
+        for device_id in MODULE.CURRENT_C5_COST_IDS:
+            row = rows[device_id]
+            self.assertIsNone(row["unit_price_quantity_100_usd"])
+            self.assertIsNone(row["quantity_100_batch_line_usd"])
+            self.assertNotEqual("quantity-100", row["line_burden_basis"])
+            basis = row["current_cost_basis"]
+            self.assertEqual(1, basis["target_quantity"])
+            self.assertIs(False, basis["is_order_quote"])
+            self.assertIsNone(row["quantity_historical_capture"])
+        lv = rows["ti_sn74lv20apwr"]
+        basis = lv["current_cost_basis"]
+        self.assertEqual((2, 0, None, 21, "pre_order"), (
+            lv["quantity_per_device"], basis["stock"], basis["available_order_quantity"],
+            basis["moq"], basis["route"]))
+        self.assertIs(True, basis["estimated"])
+        self.assertIsNone(basis["lead_time"])
+        self.assertAlmostEqual(.853, lv["planning_procurement_line_usd"])
+        self.assertAlmostEqual(8.9565, basis["moq"] * lv["effective_unit_price_usd"])
+        self.assertIn("not an order total", basis["price_break"])
+        self.assertIn("MOQ 21", MODULE.render_csv(self.result))
+        for russian in (False, True):
+            page = MODULE.render_doc(self.result, russian)
+            self.assertIn("SN74LV20APWR", page)
+            self.assertIn("MOQ 21", page)
+            self.assertIn("no stocked quantity-one tier", page)
 
     def test_capture_quantity_never_falls_back_to_current_fitted_demand(self):
         self.assertEqual(10, MODULE.trial_capture_quantity({

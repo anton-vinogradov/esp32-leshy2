@@ -11,7 +11,7 @@
 | Цель | Прямой путь | Текущее ограничение / резервный путь | Где |
 |---|---|---|---|
 | ESP32-S3 | основной USB RF J1 через M1 к native USB; UI J2 через R4/R5 к выделенным ROM UART0 GPIO43/44; ручные BOOT/RESET | Назначение площадок и сетей UART исправлено; Hub D2/D3 перенесены на GPIO7/8. Разводка, питание/reset/BOOT и восстановление после прерванной записи ещё не квалифицированы | UI + RF |
-| ESP32-C5 | сервисный USB UI J9 через FSUSB42; UART0 GPIO11/12 на UI J6; ручные BOOT/RESET | Принадлежность GPIO28 сети исправлена; медь/тайминг strap, SEL/OE USB и reset при KILL остаются открытыми. UART обходит мультиплексор данных, но не цепи сброса | UI |
+| ESP32-C5 | сервисный USB UI J9 через TS3USB221ERSER; UART0 GPIO11/12 на UI J6; ручные BOOT/RESET | Топология GPIO28 и SEL/OE/HUB_HOLD исправлена в исходниках/native; фактическая разводка и тайминг strap/питания не квалифицированы, сервисный менеджер Safety не реализован. UART обходит mux, но не сохранённые цепи reset от KILL | UI |
 | RF RP2354B | сервисный USB/BOOTSEL RF J4; SWD/RUN RF J3 | Нужны MAIN и освобождение обоих аппаратных путей сброса; KILL по-прежнему удерживает RUN низким | RF |
 | Hub RP2354B | сервисный USB/BOOTSEL UI J11; SWD/RUN UI J10 | Нужны MAIN и освобождение reset; KILL и сервисное владение C5 могут удерживать Hub в сбросе | UI |
 | Pack MSPM0C1106 | SWD + NRST RF J2; отдельный ввод PACK_FIXTURE_3V3 | Земля оснастки — **cell-side**, не обычная системная POWER_GROUND. Для UART-загрузки нужна её flash-резидентная часть; пустой чип восстанавливается по SWD | RF |
@@ -24,6 +24,8 @@
 
 GPIO7/8 используют GPIO matrix. Hub должен оставаться высокоимпедансным, а тактовый сигнал шины — неактивным до запуска приложения и согласования idle-состояния; независимые сбросы и неодновременное включение питания требуют проверки. Espressif указывает для этих контактов импульс низкого уровня при включении **60 мкс типично**, не как максимум. Поддержка GPIO matrix не квалифицирует собранную линию на 40 МГц. [Аппаратные рекомендации S3](https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32s3/schematic-checklist.html), [назначение GPIO для SPI](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/spi_master.html).
 
+[Исправление C5](h6-r2-c5-mux-control-review.ru.md) добавляет UI U59/C86 и заменяет три reset-корпуса на NX3008NBKS,115; Pack Q2/Q3 не менялись и не квалифицированы. Размеры плат и геометрия/UUID всех 857 существующих объектов меди сохранены. Ограниченные проверки исходной/H3-топологии и native DRC/parity обеих плат проходят; это не завершённая разводка или квалификация восстановления. Два LV20 требуют явного Pre-order, MOQ 21, а не поставляются из наличия. Аппаратное поведение KILL/fault неизменно, сервисный менеджер Safety **не реализован**.
+
 ## Восстановление, обновление и отладка — разные процедуры
 
 - Повреждённый образ или стёртое приложение: обращаться прямо к нужному чипу через ROM USB/UART либо SWD, проверять записанное, затем совместимость перед возвратом в работу. Вход не должен зависеть от повреждённого приложения.
@@ -33,7 +35,7 @@ GPIO7/8 используют GPIO matrix. Hub должен оставаться 
 - Пошаговая отладка: независимый watchdog может штатно сбросить остановленный процессор. Нельзя незаметно отключать его или считать отладочный режим безопасным только потому, что работает перепрошивка; нужна отдельная контролируемая стендовая процедура.
 - Сохранять физические debug/recovery-интерфейсы. Не закрывать их необратимо через ESP eFuse, RP OTP или политику MSPM0 NONMAIN. У MSPM0C1106 загрузчик содержит flash-резидентную часть; это не независимый полный ROM UART-загрузчик для стёртого чипа.
 
-[Текущее ревью интерфейсов](h6-r2-interface-review.ru.md) · [Ошибка mux C5](h6-r2-c5-mux-control-review.ru.md) · [Противоречие KILL/обновления](safety.ru.md#обновление-и-восстановление).
+[Текущее ревью интерфейсов](h6-r2-interface-review.ru.md) · [Исправление mux C5 и ограничения](h6-r2-c5-mux-control-review.ru.md) · [Противоречие KILL/обновления](safety.ru.md#обновление-и-восстановление).
 
 Первоисточники загрузчиков: [Espressif S3](https://docs.espressif.com/projects/esptool/en/latest/esp32s3/advanced-topics/boot-mode-selection.html), [Espressif C5](https://docs.espressif.com/projects/esptool/en/latest/esp32c5/advanced-topics/boot-mode-selection.html), [Raspberry Pi BOOTSEL](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#resetting-flash-memory), [TI MSPM0 bootloader guide, разделы2/6](https://www.ti.com/lit/ug/slau887a/slau887a.pdf). Файлы `boot_main.c` Pack/Safety сейчас являются ожидающими заглушками, не реализованными менеджерами восстановления/A-B.
 

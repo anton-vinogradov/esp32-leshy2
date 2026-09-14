@@ -6,12 +6,12 @@
   "source_sha256": {
     "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
     "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "aaae4c3b9701145e98da0c5710b37115b25bc2ab720824eb4f5d117bcdf2bb8c",
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "079e6dfb10bcaaad7378e20501ae542be6b259bdf969ca06a584ffbce0050624",
-    "hardware/verification/generated/H3-R2-handover.json": "5d874675525d50769e6e16a9ae51a4d2effa789a7eba476745bc103636ba2a24",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "eb9976d1662695f0a013b421d582ed6b88faf2d4eca253f0db4ea5f686481840",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "dfd2101cd84ab4290b69a38576bf40002e673817527dab27185747d1affca569",
-    "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "e03e2cafc1c81752704848992a68101271fa83eb93d892ff1032f527a5e027d9",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "3852ecaf993321cf0408400c8f697448998fd36f0c7bfad6b1cb479bf323d461",
+    "hardware/verification/generated/H3-R2-handover.json": "5cea16d632bfdc67e2eeb6d0b463288b9ced0820e38877d2124e0e2bf6b2af6e",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "9c4c81fe32c242297b6ed42b6999c8ac63e6f02a766fac0874c88b19b2ae9d3e",
+    "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
     "hardware/verification/h3_r2_inrush_watchdog.py": "12ca320af4639b3e0004b3c676d0082abf6db7628b96627605e5082d35ec9598",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
@@ -81,9 +81,9 @@
   "automatic_capacitance_inventory": {
     "AON_SAFE_3V3": {
       "net": "AON_SAFE_3V3",
-      "capacitor_instances": 55,
-      "nominal_uf": "36.100000",
-      "upper_uf": "42.710000",
+      "capacitor_instances": 56,
+      "nominal_uf": "36.200000",
+      "upper_uf": "42.820000",
       "parts": [
         {
           "instance_uid": "LESHY2-RF-R2:aon_efuse_output_cap",
@@ -407,6 +407,14 @@
         },
         {
           "instance_uid": "LESHY2-UI-R2:c5_service_owner_latch_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:c5_service_path_logic_bypass",
           "device_id": "yageo_cc0402krx7r9bb104",
           "mpn": "Yageo CC0402KRX7R9BB104",
           "nominal_uf": "0.100000",
@@ -1181,16 +1189,16 @@
       "rail": "AON_SAFE_3V3",
       "output_net": "AON_SAFE_3V3",
       "strategy": "minimum current limit bounds a commanded fixed-slew start",
-      "pcb_capacitance_upper_uf": "42.710000",
+      "pcb_capacitance_upper_uf": "42.820000",
       "external_capacitance_upper_uf": "0.000000",
-      "capacitance_upper_uf": "42.710000",
+      "capacitance_upper_uf": "42.820000",
       "worst_load_ma": "72.100",
       "capacitive_inrush_ma": "92.900",
       "combined_current_ma": "165.000",
       "effective_hardware_min_ma": "165.000",
       "current_margin_ma": "0.000",
-      "ramp_time_ms": "1.517147",
-      "energy_mj": "0.232556",
+      "ramp_time_ms": "1.521055",
+      "energy_mj": "0.233155",
       "status": "pass"
     },
     {
@@ -1313,10 +1321,10 @@
       {
         "rail": "AON_SAFE_3V3",
         "dt_ms": "0.010",
-        "ramp_ms": "1.520000",
+        "ramp_ms": "1.530000",
         "dt2_ms": "0.005",
-        "ramp_dt2_ms": "1.520000",
-        "difference_ms": "0.000000",
+        "ramp_dt2_ms": "1.525000",
+        "difference_ms": "0.005000",
         "current_classification_dt": "pass",
         "current_classification_dt2": "pass",
         "same_result": true,
@@ -1518,7 +1526,7 @@
     }
   ],
   "summary": {
-    "pcb_capacitor_instances": 132,
+    "pcb_capacitor_instances": 133,
     "startup_envelopes": 5,
     "passed_startup_envelopes": 4,
     "load_step_rails": 4,
@@ -1599,12 +1607,12 @@
     "source_sha256": {
       "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
       "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-      "hardware/verification/generated/H3-R2-rail-margins.json": "aaae4c3b9701145e98da0c5710b37115b25bc2ab720824eb4f5d117bcdf2bb8c",
-      "hardware/verification/generated/H3-R2-transition-sequences.json": "079e6dfb10bcaaad7378e20501ae542be6b259bdf969ca06a584ffbce0050624",
-      "hardware/verification/generated/H3-R2-handover.json": "5d874675525d50769e6e16a9ae51a4d2effa789a7eba476745bc103636ba2a24",
-      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "eb9976d1662695f0a013b421d582ed6b88faf2d4eca253f0db4ea5f686481840",
-      "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "dfd2101cd84ab4290b69a38576bf40002e673817527dab27185747d1affca569",
-      "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "e03e2cafc1c81752704848992a68101271fa83eb93d892ff1032f527a5e027d9",
+      "hardware/verification/generated/H3-R2-transition-sequences.json": "3852ecaf993321cf0408400c8f697448998fd36f0c7bfad6b1cb479bf323d461",
+      "hardware/verification/generated/H3-R2-handover.json": "5cea16d632bfdc67e2eeb6d0b463288b9ced0820e38877d2124e0e2bf6b2af6e",
+      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
+      "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "9c4c81fe32c242297b6ed42b6999c8ac63e6f02a766fac0874c88b19b2ae9d3e",
+      "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
       "hardware/verification/h3_r2_inrush_watchdog.py": "12ca320af4639b3e0004b3c676d0082abf6db7628b96627605e5082d35ec9598",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }

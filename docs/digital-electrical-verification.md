@@ -15,7 +15,7 @@ Open: `applicability:rail_inputs`.
 | USB / service | review_required | Data-branch presence checked; C5 SEL/OE control and recovery under KILL are not qualified |
 | C5 BOOT | topology checked | GPIO28/U14.15 → C5_BOOT_N, R76/R79/SW18; GPIO27 pulled high. Copper and 3-ms strap hold after EN remain unqualified |
 | M1 | PASS | 80/80 pin parity; 9 true NC; USB and Hub-RF groups are ground-bounded |
-| Loading | PASS | point-to-point fast buses; FSUSB42 bandwidth is 18x the 40-MHz SDIO clock |
+| Loading | provisional screen | point-to-point buses; TS3USB221E typical bandwidth/40-MHz ratio = 25; not a minimum bandwidth or SDIO timing guarantee |
 
 ## Why 20 MHz
 

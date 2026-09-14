@@ -3,7 +3,7 @@
   "id": "LESHY2-H2-R2-NATIVE-INSTANCE-LEDGER",
   "marker": "H2-R2.1.3",
   "status": "current_native_instance_allocation",
-  "purpose": "Allocate exactly 1,208 R2 board schematic instances to the reviewed two-project/22-sheet graph, including 1,206 fitted board positions and two BOM-excluded PCB copper features, before native schematic generation.",
+  "purpose": "Allocate exactly 1,210 R2 board schematic instances to the reviewed two-project/22-sheet graph, including 1,208 fitted board positions and two BOM-excluded PCB copper features; C5 correction adds only U59/C86 and does not imply electrical or HIL qualification.",
   "authority": {
     "native_inventory": "hardware/ecad/generated/H2-R2-native-inventory.json",
     "exact_definition_ledger": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
@@ -23,14 +23,17 @@
     "gct_rfpc_sma31_fn_175_a": ["receiver_fmsw_external_sma", "receiver_amlw_external_sma", "nrf0_external_sma", "nrf1_external_sma", "nrf2_external_sma", "cc_external_sma", "voice_external_sma", "voice_v_external_sma"],
     "gct_usb4105_gf_a": ["product_usb_connector", "c5_service_usb_connector", "hub_rp_service_usb_connector", "rf_rp_service_usb_connector"],
     "hirose_fh34srj_50s_0_5sh_50": ["display_connector"],
-    "onsemi_fsusb42_mux": ["c5_service_usb_switch", "hub_rp_service_usb_switch", "rf_rp_service_usb_switch"],
+    "onsemi_fsusb42_mux": ["hub_rp_service_usb_switch", "rf_rp_service_usb_switch"],
+    "ti_ts3usb221erser": ["c5_service_usb_switch"],
+    "nexperia_nx3008nbks_115": ["c5_service_hub_reset_sink", "safe_reset_sink_a", "safe_reset_sink_b"],
+    "diodes_2n7002dw_7_f": ["pack_hold", "pack_status_buffer"],
     "pui_as02404po": ["speaker"],
     "rp2354b_a4": ["hub_rp", "rf_rp"],
     "samsung_cl05a105ka5nqnc": ["hub_safe_i2c_main_1u", "hub_safe_i2c_aon_1u", "air_power_input_bulk", "air_power_output_bulk", "air_mixer_vcc_bulk", "air_lna_rail_bulk", "air_lo_vdd_bulk"],
     "samsung_cl05b104ko5nnnc": ["hub_safe_i2c_main_100n", "hub_safe_i2c_aon_100n"],
     "samtec_ftsh_105_01_l_dv_k_p_tr": ["s3_dbg_header", "c5_dbg_header", "hub_rp_dbg_header", "rf_rp_dbg_header"],
     "ti_tca9803_dgkr": ["hub_safe_i2c_boundary"],
-    "nexperia_74hc20pw_118": ["c5_service_release_logic"],
+    "ti_sn74lv20apwr": ["c5_service_release_logic", "c5_service_path_logic"],
     "coilcraft_wbc1_1tlc": ["air_mixer_input_transformer"],
     "coilcraft_wbc16_1tlc": ["air_mixer_output_transformer"],
     "minicircuits_pga_103_plus": ["air_lna"],
@@ -77,11 +80,10 @@
     "nexperia_74lvc2g14gv_125": ["c5_service_mux_logic_inverters", "c5_service_reset_proof_inverters", "airband_mode_inverter"],
     "ti_tps22919_dckr": ["airband_power_switch"],
     "ti_tlv1821_dckr": ["evidence_cmp_cc"],
-    "diodes_2n7002dw_7_f": ["c5_service_hub_reset_sink"],
     "yageo_rc0402fr_071ml": ["c5_service_vbus_divider_top", "c5_service_vbus_divider_bottom"],
     "yageo_rc0402fr_0710kl": ["c5_service_vbus_present_pullup", "c5_sdio_cmd_pullup", "c5_sdio_d0_pullup", "c5_sdio_d1_pullup", "c5_sdio_d2_pullup", "c5_sdio_d3_pullup", "air_rx_en_pulldown", "air_lo_sda_pullup", "air_lo_scl_pullup"],
     "yageo_rc0402fr_07100kl": ["c5_mux_sel_pulldown", "c5_mux_oe_pulldown", "air_rx_mode_pulldown"],
-    "yageo_cc0402krx7r9bb104": ["c5_service_owner_latch_bypass", "c5_service_release_logic_bypass", "c5_service_mux_logic_bypass", "c5_service_reset_proof_bypass", "evidence_cmp_cc_bypass", "air_power_switch_input_bypass", "air_lna_rail_bypass", "air_lo_vdd_bypass", "air_mode_inverter_bypass", "u219_pin10_switch_bypass", "u219_pin10_oe_driver_bypass", "u219_field_comparator_bypass"],
+    "yageo_cc0402krx7r9bb104": ["c5_service_owner_latch_bypass", "c5_service_release_logic_bypass", "c5_service_path_logic_bypass", "c5_service_mux_logic_bypass", "c5_service_reset_proof_bypass", "evidence_cmp_cc_bypass", "air_power_switch_input_bypass", "air_lna_rail_bypass", "air_lo_vdd_bypass", "air_mode_inverter_bypass", "u219_pin10_switch_bypass", "u219_pin10_oe_driver_bypass", "u219_field_comparator_bypass"],
     "yageo_rc0402jr_070rl": ["c5_sdio_clk_series", "c5_sdio_cmd_series", "c5_sdio_d0_series", "c5_sdio_d1_series", "c5_sdio_d2_series", "c5_sdio_d3_series", "air_mixer_output_link_p", "air_mixer_output_link_n", "main_buck_bootstrap_link"],
     "murata_grm1555c1h102ja01d": ["air_filter_to_lna_dc_block", "air_lna_to_t1_dc_block", "air_lo_dc_block", "air_t2_to_selector_dc_block", "air_direct_to_selector_dc_block", "air_selector_to_receiver_dc_block", "air_mixer_vcc_hf_bypass"],
     "murata_gjm1555c1h150jb01d": ["air_mixer_input_match_c"],
@@ -113,6 +115,8 @@
     "rp_any_tx_main_pullup"
   ],
   "instance_sheet_overrides": {
+    "c5_service_hub_reset_sink": "UI_20_C5_WIFI_IR_SERVICE",
+    "safe_reset_sink_b": "RF_50_TX_SAFETY_EVIDENCE",
     "u219_pin10_oe_driver": "RF_30_U214_U219_M5_EXT",
     "main_buck_bootstrap_link": "RF_03_MAIN_RAILS_DOMAIN_GATES",
     "safe_reset_sink_a": "UI_50_FRONT_POWER_SAFETY",
@@ -219,6 +223,12 @@
     "RF_40_INTERBOARD_M1": "RF_40_INTERBOARD_M1",
     "RF_50_TX_SAFETY_EVIDENCE": "RF_50_TX_SAFETY_EVIDENCE",
     "RF_60_TESTPOINTS_MANUFACTURING": "RF_60_TESTPOINTS_MANUFACTURING"
+  },
+  "reference_overrides": {
+    "LESHY2-UI-R2": {
+      "c5_service_path_logic": "U59",
+      "c5_service_path_logic_bypass": "C86"
+    }
   },
   "authorization": {
     "native_instance_ledger": true,

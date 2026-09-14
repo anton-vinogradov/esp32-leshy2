@@ -158,6 +158,138 @@ def c5_boot_topology_checks(rows: list[dict], instances: list[dict], devices: di
     return checks
 
 
+def c5_mux_topology_checks(rows: list[dict], instances: list[dict], devices: dict) -> dict:
+    """Check concrete control pins, not merely that mux/reset parts exist.
+
+    NAND pin maps are TI LV20A table 3-1; TS3USB221E table 4-1; NX3008NBKS
+    table 2. This is a source-graph witness, never analog or timing qualification.
+    NX channel names are reversed relative to the former Diodes dual MOSFET:
+    all three reset packages retain their physical pad/net pairs (except the
+    intentional UI Q2 pad5 OWNER -> HUB_HOLD change). Pack Q2/Q3 are excluded.
+    """
+    ui, rf = "LESHY2-UI-R2", "LESHY2-RF-R2"
+    parts = {
+        "c5_service_usb_switch": (ui, "U22", "ti_ts3usb221erser"),
+        "c5_service_release_logic": (ui, "U19", "ti_sn74lv20apwr"),
+        "c5_service_path_logic": (ui, "U59", "ti_sn74lv20apwr"),
+        "c5_service_mux_logic_inverters": (ui, "U17", "nexperia_74lvc2g14gv_125"),
+        "c5_service_owner_latch": (ui, "U18", "ti_sn74lvc1g74_dcur"),
+        "c5_service_hub_reset_sink": (ui, "Q2", "nexperia_nx3008nbks_115"),
+        "safe_reset_sink_a": (ui, "Q6", "nexperia_nx3008nbks_115"),
+        "safe_reset_sink_b": (rf, "Q6", "nexperia_nx3008nbks_115"),
+        "c5_service_path_logic_bypass": (ui, "C86", "yageo_cc0402krx7r9bb104"),
+        "evidence_mask": (rf, "U111", "ti_tca9535_pwr"),
+        "m1_ui_plug": (ui, "J18", "hirose_fx8c_80p_sv1_92"),
+        "m1_rf_receptacle": (rf, "J12", "hirose_fx8c_80s_sv5_92"),
+        "c5_mux_oe_pulldown": (ui, "R91", "yageo_rc0402fr_07100kl"),
+        "c5_mux_sel_pulldown": (ui, "R92", "yageo_rc0402fr_07100kl"),
+        "c5_service_reset_sink": (ui, "Q3", "diodes_dmn2056u_7"),
+    }
+    exact_mpns = {
+        "ti_ts3usb221erser": "TS3USB221ERSER", "ti_sn74lv20apwr": "SN74LV20APWR",
+        "nexperia_nx3008nbks_115": "NX3008NBKS,115", "ti_sn74lvc1g74_dcur": "SN74LVC1G74DCUR",
+        "nexperia_74lvc2g14gv_125": "74LVC2G14GV,125", "yageo_cc0402krx7r9bb104": "Yageo CC0402KRX7R9BB104",
+        "ti_tca9535_pwr": "TCA9535PWR", "hirose_fx8c_80p_sv1_92": "Hirose FX8C-80P-SV1(92)",
+        "hirose_fx8c_80s_sv5_92": "Hirose FX8C-80S-SV5(92)",
+        "yageo_rc0402fr_07100kl": "Yageo RC0402FR-07100KL", "diodes_dmn2056u_7": "Diodes Incorporated DMN2056U-7",
+    }
+    exact_kinds = {
+        "ti_ts3usb221erser": "uqfn10_usb2_dpdt_power_off_protected_switch",
+        "ti_sn74lv20apwr": "tssop14_dual_four_input_nand_gate",
+        "nexperia_nx3008nbks_115": "dual_30v_nmos_sot363_logic_level_reset_sink",
+        "ti_sn74lvc1g74_dcur": "vssop8_d_flip_flop_async_preset_clear",
+        "nexperia_74lvc2g14gv_125": "tsop6_dual_schmitt_inverter",
+        "yageo_cc0402krx7r9bb104": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
+    }
+    checks = {}
+    for name, (project, ref, device_id) in parts.items():
+        found = [row for row in instances if row.get("instance") == name]
+        device = devices.get(device_id, {})
+        checks["identity:" + name] = (
+            len(found) == 1 and found[0].get("project") == project
+            and found[0].get("reference") == ref and found[0].get("device_id") == device_id
+            and found[0].get("mpn") == device.get("mpn") == exact_mpns[device_id]
+            and found[0].get("reference_prefix") == ref.rstrip("0123456789")
+            and (device_id not in exact_kinds or device.get("kind") == exact_kinds[device_id])
+            and found[0].get("bom_excluded") is False)
+
+    pins = {
+        "c5_service_usb_switch": {
+            "HSD1_PLUS": ("1", "C5_SERVICE_USB_DP_BRANCH"),
+            "HSD1_MINUS": ("2", "C5_SERVICE_USB_DM_BRANCH"),
+            "HSD2_PLUS": ("3", "HUB_C5_SDIO_DAT2_BRANCH"),
+            "HSD2_MINUS": ("4", "HUB_C5_SDIO_DAT3_BRANCH"),
+            "GND": ("5", "POWER_GROUND"), "OE": ("6", "C5_MUX_DISABLE"),
+            "D_MINUS": ("7", "C5_GPIO13_COMMON"), "D_PLUS": ("8", "C5_GPIO14_COMMON"),
+            "SEL": ("9", "C5_MUX_SEL_REQUEST"), "VCC": ("10", "3V3_MAIN")},
+        "c5_service_mux_logic_inverters": {
+            "1A": ("1", "C5_SERVICE_OWNED"), "GND": ("2", "POWER_GROUND"),
+            "2A": ("3", "AON_SERVICE_RELEASE_REQ"), "2Y": ("4", "C5_SERVICE_RELEASE_NOT"),
+            "VCC": ("5", "AON_SAFE_3V3"), "1Y": ("6", "C5_SERVICE_OWNER_NOT")},
+        "c5_service_owner_latch": {"Q_N": ("3", None), "Q": ("5", "C5_SERVICE_OWNED")},
+        "c5_service_path_logic_bypass": {"END_1": ("1", "AON_SAFE_3V3"), "END_2": ("2", "POWER_GROUND")},
+        "evidence_mask": {"P12": ("15", "C5_MUX_SEL_REQUEST"), "P13": ("16", "C5_SERVICE_PATH_ACK"),
+                          "P14": ("17", "AON_SERVICE_RELEASE_REQ"), "P15": ("18", "C5_SERVICE_OWNED")},
+        "c5_mux_oe_pulldown": {"END_1": ("1", "C5_MUX_DISABLE"), "END_2": ("2", "POWER_GROUND")},
+        "c5_mux_sel_pulldown": {"END_1": ("1", "C5_MUX_SEL_REQUEST"), "END_2": ("2", "POWER_GROUND")},
+        "c5_service_reset_sink": {"G": ("1", "C5_MUX_DISABLE"), "S": ("2", "POWER_GROUND"), "D": ("3", "C5_RESET_N")},
+    }
+    for name in ("m1_ui_plug", "m1_rf_receptacle"):
+        pins[name] = {f"P{pad}": (str(pad), net) for pad, net in (
+            (37, "RUN_PERMIT"), (38, "FAULT_ASSERT_N"), (55, "C5_MUX_SEL_REQUEST"),
+            (56, "C5_SERVICE_PATH_ACK"), (57, "AON_SERVICE_RELEASE_REQ"), (58, "C5_SERVICE_OWNED"))}
+    nand_pins = {"1A": "1", "1B": "2", "NC_3": "3", "1C": "4", "1D": "5", "1Y": "6",
+                 "GND": "7", "2Y": "8", "2A": "9", "2B": "10", "NC_11": "11", "2C": "12", "2D": "13", "VCC": "14"}
+    nand_nets = {
+        "c5_service_release_logic": {
+            "1A": "SERVICE_VBUS_PRESENT_N", "1B": "C5_EN_LOW_PROOF", "1C": "HUB_RESET_LOW_PROOF",
+            "1D": "AON_SERVICE_RELEASE_REQ", "1Y": "C5_SERVICE_CLEAR_N",
+            "2A": "C5_SERVICE_OWNED", "2B": "C5_MUX_SEL_REQUEST", "2C": "AON_SAFE_3V3",
+            "2D": "AON_SAFE_3V3", "2Y": "C5_SERVICE_PATH_VALID"},
+        "c5_service_path_logic": {
+            "1A": "C5_SERVICE_PATH_ACK", "1B": "C5_SERVICE_PATH_VALID", "1C": "RUN_PERMIT",
+            "1D": "FAULT_ASSERT_N", "1Y": "C5_MUX_DISABLE",
+            "2A": "C5_SERVICE_OWNER_NOT", "2B": "C5_SERVICE_RELEASE_NOT", "2C": "C5_MUX_SEL_REQUEST",
+            "2D": "AON_SAFE_3V3", "2Y": "C5_SERVICE_HUB_HOLD"},
+    }
+    for name, nets in nand_nets.items():
+        nets = {**nets, "VCC": "AON_SAFE_3V3", "GND": "POWER_GROUND", "NC_3": None, "NC_11": None}
+        pins[name] = {contact: (pad, nets[contact]) for contact, pad in nand_pins.items()}
+    nx_pins = {"S1": "1", "G1": "2", "D2": "3", "S2": "4", "G2": "5", "D1": "6"}
+    for name, nets in {
+        "c5_service_hub_reset_sink": {"G1": "C5_RESET_KILL_GATE", "D1": "HUB_RP_RESET_N", "G2": "C5_SERVICE_HUB_HOLD", "D2": "HUB_RP_RESET_N"},
+        "safe_reset_sink_a": {"G1": "C5_RESET_KILL_GATE", "D1": "C5_RESET_N", "G2": "S3_RESET_KILL_GATE", "D2": "S3_RESET_N"},
+        "safe_reset_sink_b": {"G1": "POWER_GROUND", "D1": None, "G2": "RF_RESET_KILL_GATE", "D2": "RF_RP_RESET_N"},
+    }.items():
+        nets = {**nets, "S1": "POWER_GROUND", "S2": "POWER_GROUND"}
+        pins[name] = {contact: (pad, nets[contact]) for contact, pad in nx_pins.items()}
+    for name, contacts in pins.items():
+        project, ref, device_id = parts[name]
+        for contact, (pad, net) in contacts.items():
+            ep = name + "." + contact
+            found = [row for row in rows if row.get("endpoint") == ep]
+            checks["pin:" + ep] = (
+                len(found) == 1 and found[0].get("project") == project and found[0].get("reference") == ref
+                and found[0].get("instance") == name and found[0].get("device_id") == device_id and found[0].get("physical") == pad
+                and found[0].get("contact") == contact and found[0].get("net") == net
+                and found[0].get("disposition") == ("connected" if net is not None else "no_connect")
+                and devices.get(device_id, {}).get("contacts", {}).get(contact, {}).get("physical") == pad)
+    # Exact membership prevents an extra driver or a second connection from
+    # silently bypassing these gates, even when all expected endpoints exist.
+    members = {
+        "C5_SERVICE_OWNER_NOT": {"c5_service_mux_logic_inverters.1Y", "c5_service_path_logic.2A"},
+        "C5_SERVICE_RELEASE_NOT": {"c5_service_mux_logic_inverters.2Y", "c5_service_path_logic.2B"},
+        "C5_SERVICE_PATH_VALID": {"c5_service_release_logic.2Y", "c5_service_path_logic.1B"},
+        "C5_SERVICE_HUB_HOLD": {"c5_service_path_logic.2Y", "c5_service_hub_reset_sink.G2"},
+        "C5_MUX_DISABLE": {"c5_service_path_logic.1Y", "c5_service_usb_switch.OE", "c5_service_reset_sink.G", "c5_mux_oe_pulldown.END_1"},
+        "C5_MUX_SEL_REQUEST": {"evidence_mask.P12", "evidence_mask_p12_pulldown.END_1", "m1_rf_receptacle.P55", "m1_ui_plug.P55", "c5_evidence_main_pullup.END_1", "c5_mux_sel_pulldown.END_1", "c5_service_usb_switch.SEL", "c5_service_release_logic.2B", "c5_service_path_logic.2C"},
+    }
+    for net, expected in members.items():
+        actual = [row.get("endpoint") for row in rows if row.get("net") == net]
+        checks["members:" + net] = len(actual) == len(expected) and set(actual) == expected
+    return checks
+
+
 def panel_endpoint(display_mount: dict, panel_pin: int) -> str:
     """Resolve physical mating without borrowing H2's panel-function assignment."""
     mapping = display_mount["electrical"].get("panel_to_connector_pin_map")
@@ -288,7 +420,7 @@ def build() -> dict:
         errors.append("direct i8080 timing/occupancy contract failed")
 
     by_instance = {row["instance"]: row for row in instances}
-    fsusb = devices[by_instance["c5_service_usb_switch"]["device_id"]]["electrical_contract"]
+    service_switch = devices[by_instance["c5_service_usb_switch"]["device_id"]]["electrical_contract"]
     usb_topology = {
         "product_usb_reaches_s3_through_m1_29_30": all(
             endpoint(rows, f"m1_ui_plug.P{pin}", net)
@@ -305,11 +437,14 @@ def build() -> dict:
         "c5_mux_has_hardware_default_pulldowns": endpoint(rows, "c5_mux_sel_pulldown.END_2", "POWER_GROUND") and endpoint(rows, "c5_mux_oe_pulldown.END_2", "POWER_GROUND"),
         "c5_mux_switches_only_d2_d3_or_usb": all(instance_net(rows, "c5_service_usb_switch", net) for net in ("C5_GPIO13_COMMON", "C5_GPIO14_COMMON", "HUB_C5_SDIO_DAT2_BRANCH", "HUB_C5_SDIO_DAT3_BRANCH", "C5_SERVICE_USB_DM_BRANCH", "C5_SERVICE_USB_DP_BRANCH")),
         "service_ownership_latch_resets_both_compute_domains": instance_net(rows, "c5_service_owner_latch", "C5_SERVICE_OWNED") and instance_net(rows, "c5_service_reset_sink", "C5_RESET_N") and instance_net(rows, "c5_service_hub_reset_sink", "HUB_RP_RESET_N"),
-        "service_switch_bandwidth_covers_usb_full_speed": fsusb["usb_speed_mbps"] >= 12 and fsusb["bandwidth_mhz"] >= 240,
-        "power_off_leakage_has_over_2x_reserve": fsusb["power_off_leakage_max_ua"] <= 2,
+        "service_switch_has_usb_full_speed_capability": service_switch["usb_speed_mbps"] >= 12,
+        "power_off_port_leakage_limit_is_2ua": service_switch["power_off_leakage_max_ua"] <= 2,
     }
     if not all_true(usb_topology):
         errors.append("USB/service ownership topology failed")
+    mux_checks = c5_mux_topology_checks(rows, instances, devices)
+    if not all_true(mux_checks):
+        errors.append("C5 mux control topology failed: " + ", ".join(name for name, passed in mux_checks.items() if not passed))
 
     c5_boot = c5_boot_topology_checks(rows, instances, devices)
     if not all_true(c5_boot):
@@ -353,14 +488,15 @@ def build() -> dict:
 
     loading = {
         "i8080": {"fanout_per_driven_line": 1, "route_rule": "one S3 output -> one direct UI-board ZIF contact -> one ILI9488 input"},
-        "hub_c5_sdio": {"fanout_per_line": 1, "series_elements": 6, "d2_d3_switch_bandwidth_mhz": fsusb["bandwidth_mhz"], "switch_to_bus_clock_ratio": fsusb["bandwidth_mhz"] / 40},
+        "hub_c5_sdio": {"fanout_per_line": 1, "series_elements": 6, "d2_d3_switch_bandwidth_mhz": service_switch["bandwidth_mhz"], "switch_to_bus_clock_ratio": service_switch["bandwidth_mhz"] / 40,
+                        "bandwidth_is_typical_not_timing_proof": True},
         "hub_rf_m1": {"fanout_per_line": 1, "signal_contacts": [22, 23, 24, 26, 27], "reference_contacts": [21, 25, 28]},
         "sys_ui_i2c": {"pullup_ohm": 2200, "clock_hz": 400000, "maximum_allowed_bus_capacitance_pf": 120, "rise_time_at_max_cap_ns": 0.8473 * 2200 * 120 / 1000, "fast_mode_rise_limit_ns": 300},
         "usb": {"signalling_mbps": 12, "product_series_ohm_per_line": 22, "service_series_ohm_per_line": 27, "m1_rating_gbps": m1_part["transmission_rate_gbps"]},
     }
     loading_checks = {
         "all_fast_single_ended_buses_are_point_to_point": loading["i8080"]["fanout_per_driven_line"] == loading["hub_c5_sdio"]["fanout_per_line"] == loading["hub_rf_m1"]["fanout_per_line"] == 1,
-        "c5_mux_bandwidth_is_at_least_10x_bus_clock": loading["hub_c5_sdio"]["switch_to_bus_clock_ratio"] >= 10,
+        "c5_mux_typical_bandwidth_screen_is_at_least_10x_bus_clock": loading["hub_c5_sdio"]["switch_to_bus_clock_ratio"] >= 10,
         "ui_i2c_rise_time_has_positive_margin": loading["sys_ui_i2c"]["rise_time_at_max_cap_ns"] < loading["sys_ui_i2c"]["fast_mode_rise_limit_ns"],
         "usb_series_values_are_bounded": loading["usb"]["product_series_ohm_per_line"] == 22 and loading["usb"]["service_series_ohm_per_line"] == 27,
     }
@@ -385,6 +521,13 @@ def build() -> dict:
         "display_topology": display_topology,
         "display_timing": display_timing,
         "usb_and_service_ownership": usb_topology,
+        "c5_mux_control": {
+            "checks": mux_checks,
+            "source_topology_status": "pass" if all_true(mux_checks) else "fail",
+            "scope": "Exact source pins and control-net membership only; neither routed-board parity nor voltage, reset-to-high-Z, asynchronous hazards or firmware sequencing is inferred.",
+            "timing_qualified": False, "power_sequences_qualified": False,
+            "firmware_service_manager_implemented": False, "production_release_allowed": False,
+        },
         "c5_boot_strap": {
             "checks": c5_boot,
             "topology_status": "pass" if all_true(c5_boot) else "fail",
@@ -433,7 +576,7 @@ def render(result: dict, language: str) -> str:
          if ru else "| USB / service | review_required | Data-branch presence checked; C5 SEL/OE control and recovery under KILL are not qualified |"),
         boot_row,
         f"| M1 | PASS | 80/80 pin parity; 9 true NC; USB and Hub-RF groups are ground-bounded |",
-        f"| Loading | PASS | point-to-point fast buses; FSUSB42 bandwidth is {result['loading']['models']['hub_c5_sdio']['switch_to_bus_clock_ratio']:.0f}x the 40-MHz SDIO clock |",
+        f"| Loading | provisional screen | point-to-point buses; TS3USB221E typical bandwidth/40-MHz ratio = {result['loading']['models']['hub_c5_sdio']['switch_to_bus_clock_ratio']:.0f}; not a minimum bandwidth or SDIO timing guarantee |",
         "", "## Почему 20 МГц" if ru else "## Why 20 MHz", "",
         ("ILI9488 допускает максимум 25 МГц, но штатный integer divider ESP‑IDF превращает запрос 24 МГц в 26,667 МГц. Запрос 20 МГц даёт ровно 20 МГц: 50 нс на цикл, по 25 нс на фазы WR и минимум 10 нс запаса по циклу/импульсу."
          if ru else "ILI9488 allows at most 25 MHz, but the standard ESP-IDF integer divider turns a 24-MHz request into 26.667 MHz. A 20-MHz request produces exactly 20 MHz: a 50-ns cycle, 25-ns WR phases and at least 10 ns of cycle/pulse margin."),

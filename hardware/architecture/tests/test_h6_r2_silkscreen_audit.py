@@ -47,7 +47,7 @@ class SilkscreenContractTests(unittest.TestCase):
         self.assertEqual("fail", result["status"])
         self.assertTrue(result["interface_coverage"]["errors"])
         args, kwargs = check.call_args
-        self.assertEqual(1208, len(args[0]))  # Full electrical inventory, not producer labels.
+        self.assertEqual(1210, len(args[0]))  # Full electrical inventory, not producer labels.
         self.assertEqual(set(projects), set(kwargs["native_snapshots"]))
         self.assertIn("hardware/layout/h6-r2-interface-label-coverage.json", result["inputs_sha256"])
         self.assertIn("hardware/layout/h6-r2-interface-label-placements.json", result["inputs_sha256"])
