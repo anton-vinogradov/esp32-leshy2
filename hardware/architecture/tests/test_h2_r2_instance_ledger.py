@@ -1,13 +1,21 @@
+import copy
+import hashlib
+import importlib.util
 import json
 import subprocess
 import unittest
 from collections import Counter
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = ROOT / "hardware/ecad/h2_r2_instance_ledger.py"
 OUTPUT = ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
+SPEC = importlib.util.spec_from_file_location("h2_r2_instance_ledger", SCRIPT)
+MODULE = importlib.util.module_from_spec(SPEC)
+assert SPEC.loader is not None
+SPEC.loader.exec_module(MODULE)
 
 
 class H2R2InstanceLedgerTests(unittest.TestCase):
@@ -127,6 +135,119 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
         self.assertFalse(source["authority"])
         self.assertTrue(all(row["historical_topology_authority"] is False for row in self.rows))
         self.assertEqual(0, self.ledger["summary"]["native_schematic_nets_created"])
+
+    def test_empty_reference_overrides_preserve_all_1208_frozen_references_and_output_bytes(self):
+        frozen = sorted((row["project"], row["instance"], row["reference"]) for row in self.rows)
+        self.assertEqual(1208, len(frozen))
+        self.assertEqual(
+            "216e588158c69e18ff7f60999b14a26ea543388b2c705a98cc6fd89513b60250",
+            hashlib.sha256(json.dumps(frozen, separators=(",", ":")).encode()).hexdigest(),
+        )
+        original = copy.deepcopy(self.rows)
+        assigned = MODULE.assign_references(list(reversed(self.rows)), {})
+        self.assertEqual(original, assigned)
+        self.assertEqual(original, self.rows)
+        self.assertIsNot(self.rows[0], assigned[0])
+        # Missing optional field and an explicit empty mapping produce the same
+        # entire artifact, not merely the same references or counts.
+        real_load = MODULE.load
+        for explicit_empty in (False, True):
+            contract = copy.deepcopy(real_load(MODULE.CONTRACT))
+            contract.pop("reference_overrides", None)
+            if explicit_empty:
+                contract["reference_overrides"] = {}
+            with mock.patch.object(MODULE, "load", side_effect=lambda path: (
+                contract if path == MODULE.CONTRACT else real_load(path)
+            )):
+                result = MODULE.build()
+            self.assertEqual([], result["errors"])
+            self.assertEqual(OUTPUT.read_bytes(),
+                             (json.dumps(result, ensure_ascii=False, indent=2) + "\n").encode())
+
+    def appended_reference_fixture(self):
+        project = "LESHY2-UI-R2"
+        rows = copy.deepcopy(self.rows)
+        overrides = {project: {}}
+        for prefix, suffix in (("U", "logic"), ("C", "bypass")):
+            source = next(row for row in rows if row["reference_prefix"] == prefix
+                          and row["sheet"] == "UI_20_C5_WIFI_IR_SERVICE")
+            row = dict(source)
+            instance = f"c5_service_candidate_{suffix}"
+            row.update(instance=instance, instance_uid=f"{project}:{instance}")
+            row.pop("reference")
+            number = max(int(item["reference"][len(prefix):]) for item in self.rows
+                         if item["project"] == project and item["reference_prefix"] == prefix) + 1
+            overrides[project][instance] = f"{prefix}{number}"
+            rows.append(row)
+        return rows, overrides
+
+    def test_two_inserted_ui20_rows_with_append_refs_preserve_every_existing_row(self):
+        rows, overrides = self.appended_reference_fixture()
+        original = copy.deepcopy(rows)
+        assigned = MODULE.assign_references(rows, overrides)
+        self.assertEqual(1210, len(assigned))
+        old = {row["instance_uid"]: row for row in self.rows}
+        self.assertEqual(old, {row["instance_uid"]: row for row in assigned if row["instance_uid"] in old})
+        self.assertEqual(rows, original)
+        self.assertEqual(
+            overrides["LESHY2-UI-R2"],
+            {row["instance"]: row["reference"] for row in assigned if row["instance_uid"] not in old},
+        )
+        naive = MODULE.assign_references(rows, {})
+        shifted = [row for row in naive if row["instance_uid"] in old
+                   and row["reference"] != old[row["instance_uid"]]["reference"]]
+        self.assertEqual({"U", "C"}, {row["reference_prefix"] for row in shifted})
+        self.assertEqual({"LESHY2-UI-R2"}, {row["project"] for row in shifted})
+
+    def test_reference_overrides_reject_auto_and_explicit_collisions_without_mutation(self):
+        rows, overrides = self.appended_reference_fixture()
+        overrides["LESHY2-UI-R2"]["c5_service_candidate_logic"] = "U1"
+        original = copy.deepcopy(rows)
+        with self.assertRaisesRegex(ValueError, "duplicate project-local reference"):
+            MODULE.assign_references(rows, overrides)
+        self.assertEqual(original, rows)
+        # Two explicit rows must also not receive one appended reference.
+        second = dict(rows[-2])
+        second.update(instance="c5_service_candidate_logic_two",
+                      instance_uid="LESHY2-UI-R2:c5_service_candidate_logic_two")
+        rows.append(second)
+        overrides["LESHY2-UI-R2"].update(c5_service_candidate_logic="U999",
+                                          c5_service_candidate_logic_two="U999")
+        with self.assertRaisesRegex(ValueError, "duplicate project-local reference"):
+            MODULE.assign_references(rows, overrides)
+
+    def test_reference_overrides_reject_stale_owner_prefix_zero_and_malformed_values(self):
+        row = self.rows[0]
+        project, instance, prefix = row["project"], row["instance"], row["reference_prefix"]
+        for invalid in (f"{prefix}0", f"{prefix}01", f"{prefix}-1", f"{prefix}1.0",
+                        f"{prefix.lower()}1", f" {prefix}1", f"{prefix}1\n", "U1A", "", 1, None):
+            with self.subTest(reference=invalid), self.assertRaisesRegex(ValueError, "invalid explicit reference"):
+                MODULE.assign_references(self.rows, {project: {instance: invalid}})
+        wrong_prefix = "C" if prefix != "C" else "U"
+        with self.assertRaisesRegex(ValueError, "prefix mismatch"):
+            MODULE.assign_references(self.rows, {project: {instance: f"{wrong_prefix}999"}})
+        with self.assertRaisesRegex(ValueError, "missing instance"):
+            MODULE.assign_references(self.rows, {project: {"not_an_allocated_instance": "U999"}})
+        with self.assertRaisesRegex(ValueError, "unknown project"):
+            MODULE.assign_references(self.rows, {"LESHY2-UNKNOWN": {instance: f"{prefix}999"}})
+        for invalid in (None, [], {project: []}):
+            with self.subTest(overrides=invalid), self.assertRaises(ValueError):
+                MODULE.assign_references(self.rows, invalid)
+        with self.assertRaisesRegex(ValueError, "duplicate project-local instance"):
+            MODULE.assign_references(self.rows + [dict(row)], {})
+
+    def test_reference_override_failure_is_a_failed_build_not_an_admission(self):
+        real_load = MODULE.load
+        contract = copy.deepcopy(real_load(MODULE.CONTRACT))
+        contract["reference_overrides"] = {"LESHY2-UI-R2": {"missing_instance": "U999"}}
+        with mock.patch.object(MODULE, "load", side_effect=lambda path: (
+            contract if path == MODULE.CONTRACT else real_load(path)
+        )):
+            result = MODULE.build()
+        self.assertEqual("fail", result["status"])
+        self.assertTrue(any("invalid reference allocation" in error for error in result["errors"]))
+        self.assertEqual(1208, result["summary"]["fitted_board_instance_count"])
+        self.assertEqual(self.ledger["authorization"], result["authorization"])
 
 
 if __name__ == "__main__":

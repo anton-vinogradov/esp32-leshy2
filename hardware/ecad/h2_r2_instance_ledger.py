@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "hardware/ecad/h2-r2-instance-ledger-contract.json"
 OUTPUT = ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
 VALID_INSTANCE = re.compile(r"^[a-z][a-z0-9_]*$")
+VALID_REFERENCE = re.compile(r"([A-Z]+)([1-9][0-9]*)")
 
 
 def load(path: Path) -> dict:
@@ -114,6 +115,64 @@ def reference_prefix(device_id: str, footprint: str) -> str:
     if device_id == "same_sky_cmej_0413_42_smt_tr":
         return "MK"
     return "U"
+
+
+def assign_references(rows: list[dict], explicit_overrides: dict) -> list[dict]:
+    """Copy rows in legacy order, with optional project -> instance -> ref pins.
+
+    Intended for explicitly reviewed NEW appended references: an overridden row
+    consumes no ordinary counter value, so inserting it cannot renumber the old
+    rows. Auto assignment never skips reserved numbers; a collision is an error.
+    This helper neither accepts a new device nor changes inventory-count guards.
+    """
+    if not isinstance(explicit_overrides, dict):
+        raise ValueError("reference_overrides must map project -> instance -> reference")
+    by_instance = {}
+    for row in rows:
+        key = (row["project"], row["instance"])
+        if key in by_instance:
+            raise ValueError(f"duplicate project-local instance: {key}")
+        by_instance[key] = row
+    projects = {project for project, _ in by_instance}
+    overrides = {}
+    for project, entries in explicit_overrides.items():
+        if project not in projects:
+            raise ValueError(f"reference override has unknown project: {project!r}")
+        if not isinstance(entries, dict):
+            raise ValueError(f"reference overrides for {project} must be an instance mapping")
+        for instance, reference in entries.items():
+            key = (project, instance)
+            if key not in by_instance:
+                raise ValueError(f"reference override has missing instance: {key}")
+            match = VALID_REFERENCE.fullmatch(reference) if isinstance(reference, str) else None
+            if match is None:
+                raise ValueError(f"invalid explicit reference for {key}: {reference!r}")
+            prefix = by_instance[key]["reference_prefix"]
+            if match.group(1) != prefix:
+                raise ValueError(f"reference prefix mismatch for {key}: {reference!r}, expected {prefix}")
+            overrides[key] = reference
+
+    assigned = []
+    counters = defaultdict(Counter)
+    seen = {}
+    for source in sorted(rows, key=lambda row: (row["project"], row["sheet"], row["instance"])):
+        row = dict(source)
+        key = (row["project"], row["instance"])
+        if key in overrides:
+            reference = overrides[key]
+        else:
+            prefix = row["reference_prefix"]
+            counters[row["project"]][prefix] += 1
+            reference = f"{prefix}{counters[row['project']][prefix]}"
+        reference_key = (row["project"], reference)
+        if reference_key in seen:
+            raise ValueError(
+                f"duplicate project-local reference {reference_key}: {seen[reference_key]} and {row['instance']}"
+            )
+        seen[reference_key] = row["instance"]
+        row["reference"] = reference
+        assigned.append(row)
+    return assigned
 
 
 def build() -> dict:
@@ -257,11 +316,11 @@ def build() -> dict:
     ]
     if duplicate_local:
         errors.append(f"duplicate project-local instance names: {duplicate_local}")
-    rows.sort(key=lambda row: (row["project"], row["sheet"], row["instance"]))
-    counters = defaultdict(Counter)
-    for row in rows:
-        counters[row["project"]][row["reference_prefix"]] += 1
-        row["reference"] = f"{row['reference_prefix']}{counters[row['project']][row['reference_prefix']]}"
+    try:
+        rows = assign_references(rows, contract.get("reference_overrides", {}))
+    except ValueError as error:
+        errors.append(f"invalid reference allocation: {error}")
+        rows.sort(key=lambda row: (row["project"], row["sheet"], row["instance"]))
     if len(rows) != 1208:
         errors.append(f"expected 1208 board schematic instances, got {len(rows)}")
     project_counts = Counter(row["project"] for row in rows)
