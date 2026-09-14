@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "purpose": "Batch geometry proposals, not production-board promotion or electrical qualification",
+  "decision_date": "2026-09-14",
+  "engine": {
+    "name": "KiCadRoutingTools",
+    "repository": "https://github.com/drandyhaas/KiCadRoutingTools",
+    "source_commit": "5a7fbcb6ee4deebd1d9ec1d5bd094d8681f502f3",
+    "version": "0.22.0",
+    "entrypoint": "py_router/route.py",
+    "macos_arm64_binary_sha256": "22ddb80e186d54ec34e7d820fb9b3973421ca2778b80e02f6324a433a0a9859f",
+    "python_dependencies_tested": {"python": "3.12", "numpy": "2.5.3", "scipy": "1.18.1", "shapely": "2.1.2"}
+  },
+  "execution": {
+    "model_calls_inside_router": 0,
+    "candidate_only": true,
+    "preserve_original_project": true,
+    "restore_original_rules_before_drc": true,
+    "rules_restore_reason": "Even with --no-fix-drc-settings, the tested engine changed min_hole_clearance from 0.25 to 0.15 and added rule_severities. Discard all generated project/rule settings, restore exact baseline copies, then run native DRC. A clean DRC against engine-written rules is not acceptable.",
+    "timeout_seconds_per_board": 180,
+    "net_selection": "Explicit endpoint-reviewed full KiCad net names; never an unreviewed wildcard",
+    "environment": {
+      "KICAD_PLANE_FINALIZE": "0",
+      "KICAD_FINALIZE_RIP": "0",
+      "KICAD_RIP_PREEXISTING": "0",
+      "KICAD_RECONCILE_RIP_ESCALATION": "0",
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1"
+    },
+    "arguments": [
+      "--layers", "F.Cu", "In2.Cu", "In3.Cu", "B.Cu",
+      "--track-width", "0.15", "--via-size", "0.4", "--via-drill", "0.2",
+      "--keep-input-copper", "--no-stub-layer-swap", "--no-fix-drc-settings",
+      "--fab-tier", "standard", "--escalation", "off", "--strict-sizes"
+    ],
+    "fab_overrides_file_contents": "via_diameter = 0.4\n",
+    "fab_overrides_reason": "Preserve the existing H6 0.4/0.2-mm via recipe; do not let the engine's generic 0.45-mm floor replace it",
+    "grid_step_mm_tested": {"LESHY2-UI-R2": 0.05, "LESHY2-RF-R2": 0.1},
+    "forbidden_options": ["--clearance", "--clearance-ceiling", "--force-reroute", "--rip-existing-nets", "--swappable-nets", "--mps-layer-swap", "--relax-drc-severities", "--write-fill"],
+    "warning": "Pinned source overrides some README claims. Without these switches it may enroll old copper for rerouting or relax rules. The output writer can also transform unrelated artwork: independent exact preservation checks remain mandatory."
+  },
+  "acceptance": [
+    "Original source/input hashes unchanged",
+    "All old copper UUIDs and geometry, footprints, pads/nets, outline, zones, stack and non-copper objects unchanged",
+    "Added copper only on explicit allowed nets with the exact layer/width/via recipe",
+    "Native pad connectivity improves without regression on other nets",
+    "Fresh whole-board native KiCad DRC and schematic parity against unchanged project rules",
+    "Separate electrical/ESD/return-path and assembly review before production promotion"
+  ],
+  "pilot": {
+    "baseline_hardware_commit": "2b530674c8003e9cbdcc701887696c78383f0891",
+    "old_copper_objects_preserved": 857,
+    "ui": {
+      "scope": "15 manual-key GPIO nets, 60 connections",
+      "seconds": 12.447,
+      "native_unconnected_before_after": [1226, 1166],
+      "new_tracks_vias": [369, 43],
+      "drc_violations": 0,
+      "schematic_parity_errors": 0,
+      "candidate_sha256": "4fef249837971ffe988ef961001aa117766e17164b3e16960a42aa32044bc609"
+    },
+    "rf": {
+      "scope": "7 reserved U42 GPIO pull-down nets, 7 connections",
+      "seconds": 4.524,
+      "native_unconnected_before_after": [1859, 1852],
+      "new_tracks_vias": [53, 4],
+      "drc_violations": 0,
+      "schematic_parity_errors": 0,
+      "candidate_sha256": "c35fc921d7822f685365666956e2dd8f28fdab323a8fbb4e8c98fc494b96b4ff"
+    },
+    "scope_limit": "67/67 trial connections, not the complete boards. Times exclude initial integration, independent grading/DRC and the discarded first UI pass. No production copper was promoted.",
+    "token_savings_factor": null,
+    "token_measurement_limit": "No comparable per-batch manual-routing token baseline. Zero model calls inside deterministic routing does not mean zero total setup/orchestration/review tokens.",
+    "freerouting_comparison": "Installed 2.3.0 with fixed netless obstacles timed out after 180 seconds per board without SES. Its headless settings and obstacle conversion are confounders; this is not a general quality ranking, and 2.4.1 was not benchmarked.",
+    "local_evidence_directories": ["work/route-batch-Z7Zt8C", "work/freerouting-bench-YKnRN9"]
+  }
+}
