@@ -40,6 +40,16 @@ Transferring the idea to UI did not succeed: [two new cold candidates](../hardwa
 
 ## One command instead of manual iterations
 
+The combined UI 252 + RF 222 experiment now has one command:
+
+```sh
+python3 tools/route_474.py
+```
+
+It uses the prepared pinned KRT with the published NPTH patch; override runtime locations with `--engine-root` and `--engine-python`. A bounded native check of both original copies precedes routing. The [portfolio](../hardware/layout/h6-r2-474-portfolio.json) allows at most 12 initial UI profiles, one additional round of four automatically derived failed-first orders and two RF profiles. A passing block receives three fresh cold replays instead of further search. Up to eight engines run concurrently; a 0.025-mm grid reserves two resource units, while native checks remain serial. Caffeinate, process-group cancellation, immutable inputs, the exact 1,218-footprint inventory and all-net checks are included. Details stay in `work/`; stdout returns compact JSON. Only `status=pass`, `resolved=474` and exit 0 qualify both blocks and their replays; partial candidates receive no acceptance credit. This is a geometry experiment, not board release or proof of full-device rerouting readiness.
+
+The earlier serial wrapper for smaller manifests remains available:
+
 From the repository root, with prepared KRT/Python runtimes from the [pinned profile](../hardware/layout/h6-r2-autorouter-profile.json):
 
 ```sh
