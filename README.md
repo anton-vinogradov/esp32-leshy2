@@ -14,11 +14,20 @@
 
 ## What we want
 
-Leshy2 is intended to be a repairable hobby device combining spectrum
+Leshy2 is intended to be a hobby device combining spectrum
 observation, communication, diagnostics and safe experimentation without a
 mandatory laptop. The first order targets one genuinely working prototype:
 the factory supplies two populated PCBAs and the owner completes a simple,
 solder-free final assembly.
+
+Repairability is not a design priority and does not justify greater cost, size,
+or layout/manufacturing complexity. Optional service conveniences are acceptable
+only without those penalties. Safety, reliability, required assembly and test
+access, and firmware programming/recovery remain mandatory.
+
+PCB layer count is an engineering choice based on electrical integrity,
+manufacturability and the complete quoted cost, not a minimization target.
+The current six-layer baseline is retained until a validated comparison justifies a change.
 
 | Area | Intended result |
 |---|---|
