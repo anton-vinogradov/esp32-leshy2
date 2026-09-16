@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-16",
+  "scope": "Eight patched-engine cold geometry candidates over UI252/RF222; not a whole-board build",
+  "engine_commit": "5a7fbcb6ee4deebd1d9ec1d5bd094d8681f502f3",
+  "engine_patch_sha256": "f23c065706e02fd003d350f9cd4c308de7b5849981d98a023c10d43850884b03",
+  "engine_patch": "hardware/layout/engine-patches/krt-0.22.0-npth-via-floor.patch",
+  "matrix_sha256": "fe4ed05c747b90f1b41c680f70292815674c781b8919a63638b7558a85c67732",
+  "driver_sha256": "15031c7879217eae870d15faf97e65e87e159a6af1b2f17cabfdfe6c64d4b833",
+  "wall_seconds": 269.526,
+  "concurrency": {
+    "engines": 8,
+    "validators": 1
+  },
+  "sampled_load": {
+    "cpu_percent": 742.5,
+    "rss_gib": 6.53,
+    "swap_mib": 0,
+    "peak_measurement": false
+  },
+  "results": [
+    {
+      "id": "ui-off-backward-default",
+      "engine_seconds": 171.291,
+      "remaining": 9,
+      "target": 252,
+      "drc_count": 8,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 352,
+      "trace_mm": 5742.179869,
+      "geometry_signature": "0bb4a6933993120e7f4fa8b6d5acfc6654364847aad359aa54d7b2aced3279d9",
+      "candidate_sha256": "dbfc9953f80ff1c585271800508b28bab6d69c4e5be1fb526e85ba6305dd6da1",
+      "validation_sha256": "5d48a4547dbe484d97851ec7150647cc3a19c87443837df3b3b4dcf74b995ec3",
+      "inventory_sha256": "04dcc4886f53dac38d0dd22fa46d657e209667306d528eb92e7b90b0be95df2b",
+      "geometry_pass": false
+    },
+    {
+      "id": "ui-off-forward-1.3",
+      "engine_seconds": 239.574,
+      "remaining": 11,
+      "target": 252,
+      "drc_count": 10,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 297,
+      "trace_mm": 5244.504182,
+      "geometry_signature": "670729645fe706066fbcb1f3b549da37c9530f556c4b29d23e89e0f908e78dbe",
+      "candidate_sha256": "1e8cf676869346b4a2f42d6fb49f4bac21c9c6a332113623f3a792fc93b4e70e",
+      "validation_sha256": "bb5e77bcc1862deefd96ae1cd6566af146d7ada33c24fd745cae9084537a3816",
+      "inventory_sha256": "6ffd41d6c43c442a2e545d65f7d4553c200e093c5f18e65bb230bc4871f0fdf3",
+      "geometry_pass": false
+    },
+    {
+      "id": "rf-off-backward-default",
+      "engine_seconds": 139.622,
+      "remaining": 3,
+      "target": 222,
+      "drc_count": 2,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 342,
+      "trace_mm": 6345.651401,
+      "geometry_signature": "0950871b21b2fcb82b1d4776268b7ea88f42c642e49fabc79bb5c38056de49fc",
+      "candidate_sha256": "22650e1f41f06eb3619ce034e99e31156485396a7dc8db6cd8113bb6dc36c679",
+      "validation_sha256": "6fc8f522740a9213362579d1765c913cce1b77458c9b71244302e091c1ea906f",
+      "inventory_sha256": "04e04c73c4083fcf044d8836d9fb819855aa0d28ce0c03db52a5e7314da65139",
+      "geometry_pass": false
+    },
+    {
+      "id": "rf-off-forward-1.3",
+      "engine_seconds": 240.441,
+      "remaining": 5,
+      "target": 222,
+      "drc_count": 3,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 273,
+      "trace_mm": 5887.140401,
+      "geometry_signature": "629b0631d8c64d953d0a13f0e10f540b8a51be587b9f52682437c3395fa4fbb7",
+      "candidate_sha256": "b0e69783f35a5e20b83640d688cbcf9c4d6f946d6589f815926b83601f11bd4f",
+      "validation_sha256": "93986aabe58d32e49a5aad1e112be8a0bc3ed8b5e780a08bd40d6474a19a97b5",
+      "inventory_sha256": "5cf8ee50648c842b375c6d0dd7909672d73288d929c2dee077e5b39781be5894",
+      "geometry_pass": false
+    },
+    {
+      "id": "rf-on-backward-default",
+      "engine_seconds": 177.99,
+      "remaining": 2,
+      "target": 222,
+      "drc_count": 2,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 344,
+      "trace_mm": 6356.187344,
+      "geometry_signature": "013a855213265d24a86f3394b76c1877b647138c11bd20e62c939bc763e6a67f",
+      "candidate_sha256": "de113c1c43404fbb18592664ac5c894cc5bd069029105a77cb71f71a5399dba8",
+      "validation_sha256": "7f2163121c48f9c33ada4b7a3f38716de447c6d483bea873cb85824ce234f350",
+      "inventory_sha256": "4ec53d7489cbbbb58f25cc9b184b44e4e3e9dff400515ad45bbcbd9778c9075a",
+      "geometry_pass": false
+    },
+    {
+      "id": "rf-on-forward-1.3",
+      "engine_seconds": 255.538,
+      "remaining": 4,
+      "target": 222,
+      "drc_count": 3,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 275,
+      "trace_mm": 5935.611804,
+      "geometry_signature": "e67f70cd29719dbc566aa5f9f7bb903f4c00be24b583460c3209398f3bb9f081",
+      "candidate_sha256": "247e9cbc475cf3fd748ec43c6168bfe3dbdf968ee59b35b8e6fe409a56ba0ab2",
+      "validation_sha256": "f0c14536d7969a560a94d684f3125796dc3a3f442a0f44d11050b2357dd9a0f7",
+      "inventory_sha256": "b0610baf9be80850979c1bf4c05d3efbba26dd3ba1d389b35f5f9bd2f0371c7c",
+      "geometry_pass": false
+    },
+    {
+      "id": "ui-off-forward-default",
+      "engine_seconds": 168.318,
+      "remaining": 8,
+      "target": 252,
+      "drc_count": 7,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 360,
+      "trace_mm": 5591.16721,
+      "geometry_signature": "d66ceaf4a501a49ea6468edea65077c5514fdd142ac3f7be52dcf9a3a5e22471",
+      "candidate_sha256": "99f3531cc0afe158c26828ee45873a26371c6b325299f184c91adbf6d165808c",
+      "validation_sha256": "6a0b00a573e4955d16c0630416049b60c8a72a1e01ca2ec8166f9156bd53646b",
+      "inventory_sha256": "419fcfda4931e35bb2fa45266ecf93948635e1aefe596b2c96c1af0e0be7231a",
+      "geometry_pass": false
+    },
+    {
+      "id": "rf-off-forward-default",
+      "engine_seconds": 151.237,
+      "remaining": 5,
+      "target": 222,
+      "drc_count": 1,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 346,
+      "trace_mm": 6297.569,
+      "geometry_signature": "ed75747f765b7f26af58d03878940ccc7822882bd8f4dd2b2582cb6e6eb37c27",
+      "candidate_sha256": "2954b8b9f7b5c57024b1fe9f15836b8b155fb8c382fcb98420dfa8fd9cdbc7e0",
+      "validation_sha256": "c1ad642b9b35103c9250bfc3e2d350ab836380d543cefcadecc35de83b03355b",
+      "inventory_sha256": "d4cbb1043488262cf20d4e6cb96c36f0b44136cb8f77fdde543c31a91023368d",
+      "geometry_pass": false
+    }
+  ],
+  "geometry_passes": 0,
+  "all_candidates_inventory_pass": true,
+  "expected_footprints_per_product": 1218,
+  "all_candidates_hole_clearance_violations": 0,
+  "replay_pass": false,
+  "production_ready": false,
+  "production_pcb_changed": false,
+  "model_calls_between_attempts": 0,
+  "model_preparation_cost_included": false,
+  "limitations": [
+    "No complete candidate passes yet",
+    "Matched RF backward candidates retain 3/2 opens but reduce DRC from 8 to 2; no generic speedup claim",
+    "Preserved out-of-scope copper is experimental isolation, not the target full-cold architecture"
+  ]
+}
