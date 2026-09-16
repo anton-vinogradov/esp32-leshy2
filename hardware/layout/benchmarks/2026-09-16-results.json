@@ -1,0 +1,526 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-16",
+  "candidate_only": true,
+  "production_promoted": false,
+  "electrically_qualified": false,
+  "model_calls_inside_runs": 0,
+  "total_orchestration_tokens": null,
+  "token_saving_multiplier": null,
+  "timing_notes": "Replay includes snapshot copy, engine, dependency restoration, native grading/DRC and final input hashes. Setup recorded separately. Early selection runs excluded final input hashes; one-time integration not counted.",
+  "setup_failures": [
+    "Two initial engine launches failed because resolving the Python symlink bypassed its virtualenv; fixed.",
+    "Initial fixture checker rejected KiCad netcode renumbering; normalized codes only during fixture preparation, preserving net names, UUIDs and geometry."
+  ],
+  "rejected_move_fixtures": [
+    {
+      "reference": "R64",
+      "dx_mm": 0.5,
+      "dy_mm": 0,
+      "reason": "Pre-routing DRC rejected clearance/courtyard/silkscreen collision"
+    },
+    {
+      "reference": "R64",
+      "dx_mm": 0,
+      "dy_mm": 0.5,
+      "reason": "Pre-routing DRC rejected fixture; see work/routing-benchmark-738pfsop/baseline/fixture.json"
+    }
+  ],
+  "cases": {
+    "small": {
+      "case": "ui-upper-keys-28",
+      "fixture": null,
+      "attempts": [
+        {
+          "profile": "coarse",
+          "repeat": 1,
+          "seconds": 23.56,
+          "engine_seconds": 14.468,
+          "pass": false,
+          "resolved": 27,
+          "vias": 17,
+          "length_mm": 437.889595,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "6fed5e9c48278fd52bd5925d6e61816909855578f48ea9f4892f1612bda47158"
+        },
+        {
+          "profile": "fine",
+          "repeat": 1,
+          "seconds": 34.264,
+          "engine_seconds": 23.878,
+          "pass": false,
+          "resolved": 27,
+          "vias": 18,
+          "length_mm": 452.7943,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "7a73483488cc46b4d296e45b6e90cabd9531aec7d1ec2ad4a25666d8c26d68d6"
+        },
+        {
+          "profile": "fine_fewer_vias",
+          "repeat": 1,
+          "seconds": 43.177,
+          "engine_seconds": 37.446,
+          "pass": false,
+          "resolved": 26,
+          "vias": 18,
+          "length_mm": 477.565594,
+          "drc": [
+            "via_dangling"
+          ],
+          "parity_errors": 0,
+          "geometry_signature": "dbd591a2bfbe8e79ba8243b9539712179704bed43fd7a4971f69410a29770305"
+        },
+        {
+          "profile": "fine_inside_out",
+          "repeat": 1,
+          "seconds": 12.54,
+          "engine_seconds": 7.678,
+          "pass": false,
+          "resolved": 27,
+          "vias": 19,
+          "length_mm": 451.785145,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "47e02b6b9eb053c452b824394c3c9efe5d31aef6b9091fd6ed0c2e764e983f67"
+        },
+        {
+          "profile": "fine_via75",
+          "repeat": 1,
+          "seconds": 9.513,
+          "engine_seconds": 6.001,
+          "pass": true,
+          "resolved": 28,
+          "vias": 19,
+          "length_mm": 463.54301,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "75735b8ddc6bc999ffda382b2f33ca2e7512959a3936788a8cd0c9a63e0b41ff"
+        },
+        {
+          "profile": "fine_backward",
+          "repeat": 1,
+          "seconds": 12.47,
+          "engine_seconds": 8.952,
+          "pass": false,
+          "resolved": 27,
+          "vias": 18,
+          "length_mm": 450.440011,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "49d20e3f22af088dd03249f5056bea142dbeb2e8b1d2c8eea90bb4e888fe286d"
+        },
+        {
+          "profile": "coarse_via75",
+          "repeat": 1,
+          "seconds": 9.839,
+          "engine_seconds": 5.737,
+          "pass": false,
+          "resolved": 27,
+          "vias": 16,
+          "length_mm": 438.590205,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "c058be27d6b729af18a52bb931cdcdd47b8edbd9afdc193071217c3530fc38e3"
+        },
+        {
+          "profile": "fine_via75_outer",
+          "repeat": 1,
+          "seconds": 10.018,
+          "engine_seconds": 6.5,
+          "pass": false,
+          "resolved": 26,
+          "vias": 16,
+          "length_mm": 442.535762,
+          "drc": [
+            "track_dangling"
+          ],
+          "parity_errors": 0,
+          "geometry_signature": "59af3428e1fac283d6f1a73c88125692a3684b03999bc2329cdb16f70a9b6c0d"
+        },
+        {
+          "profile": "fine_via75",
+          "repeat": 1,
+          "seconds": 9.41,
+          "engine_seconds": 5.772,
+          "pass": true,
+          "resolved": 28,
+          "vias": 19,
+          "length_mm": 463.54301,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "75735b8ddc6bc999ffda382b2f33ca2e7512959a3936788a8cd0c9a63e0b41ff"
+        },
+        {
+          "profile": "fine_via75",
+          "repeat": 2,
+          "seconds": 9.374,
+          "engine_seconds": 5.909,
+          "pass": true,
+          "resolved": 28,
+          "vias": 19,
+          "length_mm": 463.54301,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "75735b8ddc6bc999ffda382b2f33ca2e7512959a3936788a8cd0c9a63e0b41ff"
+        },
+        {
+          "profile": "fine_via75",
+          "repeat": 3,
+          "seconds": 9.439,
+          "engine_seconds": 5.785,
+          "pass": true,
+          "resolved": 28,
+          "vias": 19,
+          "length_mm": 463.54301,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "75735b8ddc6bc999ffda382b2f33ca2e7512959a3936788a8cd0c9a63e0b41ff"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "work/routing-benchmark-_ucjeymy/summary.json",
+          "sha256": "cdb3c6a7362474877e0683e9ba0be0a8a917c81477276025570f75254935784b",
+          "setup_seconds": null,
+          "total_seconds": null
+        },
+        {
+          "path": "work/routing-benchmark-1m01g8uq/summary.json",
+          "sha256": "5869f1540bb1d651e8dc405ab6a06b72f7c09b7b9862df8cb8a75a1ce57cb37c",
+          "setup_seconds": 0.105,
+          "total_seconds": 22.101
+        },
+        {
+          "path": "work/routing-benchmark-64mni4hz/summary.json",
+          "sha256": "03904d1041237ec2b6eeae9101885a3b04edd7b68c2c74e03dad6b84faf42373",
+          "setup_seconds": 0.095,
+          "total_seconds": 19.964
+        },
+        {
+          "path": "work/routing-benchmark-7n0s0tp5/summary.json",
+          "sha256": "759bfd9a7acbf1b465b89bc25802fea43345027da567e1a78ef8eeb6c47dccdd",
+          "setup_seconds": 0.187,
+          "total_seconds": 28.428
+        }
+      ],
+      "repeat_summary": {
+        "all_pass": true,
+        "same_geometry": true,
+        "min_seconds": 9.374,
+        "median_seconds": 9.41,
+        "max_seconds": 9.439,
+        "resolved": 28,
+        "vias": 19,
+        "length_mm": 463.54301
+      }
+    },
+    "large": {
+      "case": "ui-controls-60",
+      "fixture": null,
+      "attempts": [
+        {
+          "profile": "grid0.1-via50-mps",
+          "repeat": 1,
+          "seconds": 13.555,
+          "engine_seconds": 9.908,
+          "pass": false,
+          "resolved": 56,
+          "vias": 42,
+          "length_mm": 1076.122492,
+          "drc": [
+            "via_dangling"
+          ],
+          "parity_errors": 0,
+          "geometry_signature": "f70fd9cab3a6907f6081aeb99046ffc5145300181d307175b58edc16af3c6f2c"
+        },
+        {
+          "profile": "grid0.1-via50-inside_out",
+          "repeat": 1,
+          "seconds": 12.572,
+          "engine_seconds": 8.738,
+          "pass": false,
+          "resolved": 56,
+          "vias": 45,
+          "length_mm": 1123.951727,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "a5318f03b23c82eab9ed13233719458d66fd1515d2fe2f12bb3dd35be4faf89d"
+        },
+        {
+          "profile": "grid0.1-via75-mps",
+          "repeat": 1,
+          "seconds": 17.613,
+          "engine_seconds": 13.502,
+          "pass": false,
+          "resolved": 56,
+          "vias": 41,
+          "length_mm": 1076.823101,
+          "drc": [
+            "via_dangling"
+          ],
+          "parity_errors": 0,
+          "geometry_signature": "afd1850072efc81ba53bc6e2bee42604ef6981abde780eba0c35db4daaeaa83e"
+        },
+        {
+          "profile": "grid0.1-via75-inside_out",
+          "repeat": 1,
+          "seconds": 14.689,
+          "engine_seconds": 11.239,
+          "pass": false,
+          "resolved": 56,
+          "vias": 44,
+          "length_mm": 1123.707463,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "7fbb8f3ea10dc10514d22333c1f069cbb84e0320bade3af6486233005388863e"
+        },
+        {
+          "profile": "grid0.1-via125-mps",
+          "repeat": 1,
+          "seconds": 13.626,
+          "engine_seconds": 10.156,
+          "pass": false,
+          "resolved": 54,
+          "vias": 40,
+          "length_mm": 1128.716544,
+          "drc": [
+            "via_dangling"
+          ],
+          "parity_errors": 0,
+          "geometry_signature": "27df137888bf0601a4a85336b3c2e330ba9ad792eb7477202cb09832d09109cd"
+        },
+        {
+          "profile": "grid0.1-via125-inside_out",
+          "repeat": 1,
+          "seconds": 12.853,
+          "engine_seconds": 9.379,
+          "pass": false,
+          "resolved": 54,
+          "vias": 40,
+          "length_mm": 1183.880489,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "5a668431a1cd39cb3fee8b115f220d3721d3ac2cf88b74b25314b0bd9d617281"
+        },
+        {
+          "profile": "grid0.05-via50-mps",
+          "repeat": 1,
+          "seconds": 16.517,
+          "engine_seconds": 13.078,
+          "pass": false,
+          "resolved": 59,
+          "vias": 44,
+          "length_mm": 1136.066545,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "19012bc53c9cee8c2701d49ffe6f6ad63f4e6c0a9d10f5e93fa87853e5279f91"
+        },
+        {
+          "profile": "grid0.05-via50-inside_out",
+          "repeat": 1,
+          "seconds": 16.523,
+          "engine_seconds": 12.811,
+          "pass": false,
+          "resolved": 59,
+          "vias": 46,
+          "length_mm": 1138.355391,
+          "drc": [
+            "via_dangling"
+          ],
+          "parity_errors": 0,
+          "geometry_signature": "73a5ae4bf1d964b075e2758ca31efcf7d12520c49ca8dcdb0fd38d63394c6297"
+        },
+        {
+          "profile": "grid0.05-via75-mps",
+          "repeat": 1,
+          "seconds": 15.553,
+          "engine_seconds": 12.066,
+          "pass": true,
+          "resolved": 60,
+          "vias": 43,
+          "length_mm": 1153.737714,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "c661098b12562d83e190e94dd16b973306d5b13d53bd955be53dbc1d145850ef"
+        },
+        {
+          "profile": "grid0.05-via75-inside_out",
+          "repeat": 1,
+          "seconds": 18.527,
+          "engine_seconds": 14.778,
+          "pass": false,
+          "resolved": 58,
+          "vias": 45,
+          "length_mm": 1124.306766,
+          "drc": [
+            "via_dangling"
+          ],
+          "parity_errors": 0,
+          "geometry_signature": "277c51b210e52eec99547179654bce2389b5879ad49292271331e06236b14ccf"
+        },
+        {
+          "profile": "grid0.05-via125-mps",
+          "repeat": 1,
+          "seconds": 20.502,
+          "engine_seconds": 17.062,
+          "pass": false,
+          "resolved": 58,
+          "vias": 37,
+          "length_mm": 1173.594933,
+          "drc": [
+            "via_dangling"
+          ],
+          "parity_errors": 0,
+          "geometry_signature": "c3147ced09597240ff5221e3ac409589798ebf76c2b90dc26d20cd3de0f1b7c5"
+        },
+        {
+          "profile": "grid0.05-via125-inside_out",
+          "repeat": 1,
+          "seconds": 19.373,
+          "engine_seconds": 15.971,
+          "pass": false,
+          "resolved": 59,
+          "vias": 38,
+          "length_mm": 1179.514399,
+          "drc": [
+            "via_dangling"
+          ],
+          "parity_errors": 0,
+          "geometry_signature": "d4fe177cc130c3fc9d4f36089efe7e7681ce78493ea8d3bdb728e47e03751e0f"
+        },
+        {
+          "profile": "grid0.05-via75-mps-replay1",
+          "repeat": 1,
+          "seconds": 15.511,
+          "engine_seconds": 11.914,
+          "pass": true,
+          "resolved": 60,
+          "vias": 43,
+          "length_mm": 1153.737714,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "c661098b12562d83e190e94dd16b973306d5b13d53bd955be53dbc1d145850ef"
+        },
+        {
+          "profile": "grid0.05-via75-mps-replay2",
+          "repeat": 1,
+          "seconds": 15.666,
+          "engine_seconds": 12.26,
+          "pass": true,
+          "resolved": 60,
+          "vias": 43,
+          "length_mm": 1153.737714,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "c661098b12562d83e190e94dd16b973306d5b13d53bd955be53dbc1d145850ef"
+        },
+        {
+          "profile": "grid0.05-via75-mps-replay3",
+          "repeat": 1,
+          "seconds": 15.149,
+          "engine_seconds": 11.729,
+          "pass": true,
+          "resolved": 60,
+          "vias": 43,
+          "length_mm": 1153.737714,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "c661098b12562d83e190e94dd16b973306d5b13d53bd955be53dbc1d145850ef"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "work/routing-benchmark-pho02afj/summary.json",
+          "sha256": "01a41840ffbec26f388aa9148b47f02a35421ed99594bd478e98ab48e9610432",
+          "setup_seconds": 0.19,
+          "total_seconds": 238.523
+        }
+      ],
+      "repeat_summary": {
+        "all_pass": true,
+        "same_geometry": true,
+        "min_seconds": 15.149,
+        "median_seconds": 15.511,
+        "max_seconds": 15.666,
+        "resolved": 60,
+        "vias": 43,
+        "length_mm": 1153.737714
+      }
+    },
+    "moved": {
+      "case": "ui-upper-keys-28",
+      "fixture": {
+        "drc_violations": 0,
+        "fixture_board_sha256": "4b0c5b84f2a3d2f9ac01c9697a2cac4a7081beaf84b7e31ee1f7dc6bd2683bce",
+        "move": [
+          "R64",
+          -0.5,
+          0
+        ],
+        "original_board_sha256": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+        "schematic_parity_errors": 0
+      },
+      "attempts": [
+        {
+          "profile": "fine_via75",
+          "repeat": 1,
+          "seconds": 8.919,
+          "engine_seconds": 5.567,
+          "pass": true,
+          "resolved": 28,
+          "vias": 19,
+          "length_mm": 463.51372,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "bfb9ee1e8a28368e95ce2cc50acb2ed04fd23ceac6b01b3e765917c75d8f52ea"
+        },
+        {
+          "profile": "fine_via75",
+          "repeat": 2,
+          "seconds": 8.919,
+          "engine_seconds": 5.591,
+          "pass": true,
+          "resolved": 28,
+          "vias": 19,
+          "length_mm": 463.51372,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "bfb9ee1e8a28368e95ce2cc50acb2ed04fd23ceac6b01b3e765917c75d8f52ea"
+        },
+        {
+          "profile": "fine_via75",
+          "repeat": 3,
+          "seconds": 8.865,
+          "engine_seconds": 5.573,
+          "pass": true,
+          "resolved": 28,
+          "vias": 19,
+          "length_mm": 463.51372,
+          "drc": [],
+          "parity_errors": 0,
+          "geometry_signature": "bfb9ee1e8a28368e95ce2cc50acb2ed04fd23ceac6b01b3e765917c75d8f52ea"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "work/routing-benchmark-52x_g3yv/summary.json",
+          "sha256": "bf1ecaacfbcae24c34b9787b9fec607928cb6235ecf1b12ff7d50d1bbf01ae7f",
+          "setup_seconds": 2.823,
+          "total_seconds": 29.545
+        }
+      ],
+      "repeat_summary": {
+        "all_pass": true,
+        "same_geometry": true,
+        "min_seconds": 8.865,
+        "median_seconds": 8.919,
+        "max_seconds": 8.919,
+        "resolved": 28,
+        "vias": 19,
+        "length_mm": 463.51372
+      }
+    }
+  }
+}

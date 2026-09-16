@@ -294,7 +294,7 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
         title = "# H6.0.3-R1 · Текущая разводка 80-мм плат"
         nav = "[Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [English](h6-r2-current-routing.md)"
         lead = (
-            "**Статус:** ▶️ разводка и исправление физических интерфейсов продолжаются; H6 ещё не закрыт. "
+            "**Статус:** рабочая трассировка приостановлена; на копиях проверяем [скорость и воспроизводимость процесса](h6-r2-routing-automation.ru.md). H6 ещё не закрыт. "
             "[Ревью настоящих PCB](h6-r2-interface-review.ru.md) выявило ошибки ориентации, сочленения и обязательных отверстий; нулевой DRC не означает готовность сборки."
         )
         headers = "| Плата | Дорожки | Via | Замкнуто | Осталось | DRC |\n| --- | ---: | ---: | ---: | ---: | --- |"
@@ -366,9 +366,9 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
             "Их конденсаторы перенесены к выводу 69. Частичный ERC на копиях с уточнёнными типами "
             "выводов уже выполнен; он не закрывает электрическую проверку целиком.\n\n"
             "## Что делаем дальше\n\n"
-            "Продолжаем `H6-NATIVE-ELECTRICAL-SEMANTICS`: проверку остальных типов физических выводов, источников шин, "
-            "конфликтов выходов и повторного ERC. Затем четыре DC/DC-острова и защита питания → RF/clock-кластеры → USB и direct i8080 → "
-            "остальная цифровая и управляющая медь → плоскости/возвраты → полный DRC и release-проверки.\n\n"
+            "Сначала [бенчмарк трассировки и повторных изменений](h6-r2-routing-automation.ru.md) на копиях, без переноса экспериментальной меди в рабочие PCB. "
+            "`H6-NATIVE-ELECTRICAL-SEMANTICS`, источники питания и остальные электрические/механические gates остаются открытыми: "
+            "быстрый геометрический результат их не закрывает.\n\n"
             "## Живые изображения\n\n"
             "Это прямые экспорты текущих `.kicad_pcb`; hash платы встроен в SVG.\n\n"
             "**Передняя/UI-плата**\n\n"
@@ -384,7 +384,7 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
         title = "# H6.0.3-R1 · Current 80-mm routing"
         nav = "[Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-current-routing.ru.md)"
         lead = (
-            "**Status:** ▶️ routing and physical-interface corrections continue; H6 is not closed. "
+            "**Status:** production routing is paused; copies are used to test [process speed and repeatability](h6-r2-routing-automation.md). H6 is not closed. "
             "The [native PCB review](h6-r2-interface-review.md) found orientation, mating and required-hole defects; clean DRC does not establish assembly readiness."
         )
         headers = "| Board | Traces | Vias | Resolved | Remaining | DRC |\n| --- | ---: | ---: | ---: | ---: | --- |"
@@ -454,9 +454,9 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
             "beside pad 69. Partial ERC has run on copies with reviewed pin types; this does not "
             "close the whole electrical review.\n\n"
             "## What happens next\n\n"
-            "Continue `H6-NATIVE-ELECTRICAL-SEMANTICS`: remaining physical-pin types, rail sources, output conflicts "
-            "and fresh ERC. Then four DC/DC islands and power protection → RF/clock clusters → USB and direct i8080 → remaining "
-            "digital/control copper → planes and return paths → full DRC and release checks.\n\n"
+            "First [benchmark routing and repeated changes](h6-r2-routing-automation.md) on copies, without promoting experimental copper to production PCBs. "
+            "`H6-NATIVE-ELECTRICAL-SEMANTICS`, rail sources and the other electrical/mechanical gates remain open: "
+            "fast geometry does not close them.\n\n"
             "## Live images\n\n"
             "These are direct exports from the current `.kicad_pcb` files; each SVG embeds its board hash.\n\n"
             "**Front/UI board**\n\n"

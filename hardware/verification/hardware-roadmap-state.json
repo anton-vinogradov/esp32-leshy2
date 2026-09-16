@@ -3,6 +3,13 @@
   "baseline": "R2",
   "current_stage": "H6",
   "current_substep": "H6.0.3-R1",
+  "current_activity": {
+    "id": "H6-ROUTING-AUTOMATION-BENCH",
+    "production_routing": "paused_by_owner",
+    "experiment_scope": "disposable copies only; no automatic production promotion",
+    "plan": "docs/h6-r2-routing-automation.md",
+    "first_case": "hardware/layout/benchmarks/ui-upper-keys-28.json"
+  },
   "current_detail": "H6.0.1-R1 and the former H6.0.2-R1 routing slice remain historical evidence, not proof of current physical assembly. The native interface review reopened connector orientation/mating, holder and audio cutouts, indicator faces and user silkscreen. H6.0.3-R1 owns correcting these findings on both 80 × 150 mm boards, all current native connectivity and fresh parity/DRC; exact live counts belong to H6-R2-current-routing-audit.json. Purchasing and fabrication remain unauthorized.",
   "native_interface_review": {
     "status": "review_required",

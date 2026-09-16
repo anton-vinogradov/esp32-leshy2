@@ -114,7 +114,7 @@ check rejects images that no longer match the PCB files.
 - Both native KiCad boards pass the current [exact-placement checks](docs/h6-r2-exact-placement.md).
 - Manufacturer-drawing corrections are being integrated into both PCBs. The [native interface review](docs/h6-r2-interface-review.md) separates applied corrections from remaining assembly gates; clean DRC alone does not prove physical assembly.
 - Recovery: S3 ROM UART0 has dedicated native pins; the [C5 TS3/LV control correction](docs/h6-r2-c5-mux-control-review.md) is implemented in source/native ECAD with scoped topology and DRC/parity checks passed. The Safety service manager, electrical/HIL qualification and KILL/update policy remain open; LV20 requires Pre-order, MOQ 21. [Actual recovery boundary](docs/service-recovery.md).
-- Routing is in progress. Live copper/connectivity counts, hash-bound DRC results and the electrical-review limitations have one owner: [H6.0.3-R1](docs/h6-r2-current-routing.md).
+- Production routing is paused: first test a [fast, repeatable routing and rerouting process](docs/h6-r2-routing-automation.md) on copies. Live copper/connectivity counts, hash-bound DRC results and the electrical-review limitations have one owner: [H6.0.3-R1](docs/h6-r2-current-routing.md).
 - Native ERC currently uses passive symbol pins; zero findings do not prove correct rail sources or compatible outputs. This electrical-semantics gap blocks release; [corrected pin mappings and partial typed-ERC review](docs/h6-r2-electrical-semantics.md) describe the current evidence and remaining work.
 
 ## What remains

@@ -152,6 +152,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h6-r2-routing-policy.ru.md",
         "docs/h6-r2-current-routing.md",
         "docs/h6-r2-current-routing.ru.md",
+        "docs/h6-r2-routing-automation.md",
+        "docs/h6-r2-routing-automation.ru.md",
         "docs/h6-r2-interface-review.md",
         "docs/h6-r2-interface-review.ru.md",
         "docs/h6-r2-interface-silkscreen.md",

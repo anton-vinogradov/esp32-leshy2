@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "id": "ui-controls-60",
+  "purpose": "Repeatable geometry benchmark on copies; not production or electrical qualification",
+  "project": "LESHY2-UI-R2",
+  "source_commit": "2b530674c8003e9cbdcc701887696c78383f0891",
+  "scope": {
+    "roi_mm": [
+      0.5,
+      15,
+      79.5,
+      145
+    ],
+    "actual_pad_bounds_mm": [
+      2.35,
+      18.52,
+      77.65,
+      140.65
+    ],
+    "retain_full_board_obstacles": true,
+    "footprint_centres_in_roi": 399,
+    "expected_connections": 60,
+    "electrical_or_esd_qualified": false,
+    "unverified": [
+      "ESD ingress topology",
+      "ground return and reference continuity",
+      "electrical qualification"
+    ],
+    "description": "Larger reviewed GPIO matrix: all 15 UI manual-key nets (DPAD UP/DOWN/LEFT/RIGHT/OK, BACK, OPT, and F1-F8), 60 remaining connections and 75 exact pad endpoints."
+  },
+  "baseline_sha256": {
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "9c4c81fe32c242297b6ed42b6999c8ac63e6f02a766fac0874c88b19b2ae9d3e",
+    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "8aeda79b6891c94f16e57384c965c272b7dc867c6bc4ecf182998e8a318ef0bc",
+    "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
+    "hardware/ecad/h2-r2-topology-overrides.json": "d70eb63b5c9bc60b35624a53a9fef603597ddaeb3c39609654f6786fde9067b7",
+    "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
+    "hardware/layout/generated/H6-R2-routing-policy-audit.json": "7a21ca393f5a54131e73289d313717118842982e2dd86fa23ab97eb5b8431063",
+    "hardware/layout/h6-r2-manual-copper.json": "9dec0bf735af1994bff6c1330f99e3870f8362246bb5192ca71acc3a26c0e8a4",
+    "hardware/layout/h6-r2-placement-freeze.json": "71f155c7c4031563a6b21d40867a404b4b340d8471921286314498eea1e428cd",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "963202a1ff8b2ab887b5fec5e860ddb5cf7af09be0c12b3ccc5701c585a475c8",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3fb5f492f09eefb2e85c678a64e4398f50842e82253ceb0c5277314acde9cf9f",
+    "hardware/layout/generated/H6-R2-current-routing-audit.json": "ddcae9930cae61b011560385bfbd68093bc9f924bfdff45d1366552d82116127"
+  },
+  "nets": [
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_DPAD_UP_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_UP_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R72.2",
+        "SW7.3",
+        "SW7.4",
+        "U12.1",
+        "U13.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_DPAD_DOWN_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_DOWN_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R58.2",
+        "SW3.3",
+        "SW3.4",
+        "U12.2",
+        "U13.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_DPAD_LEFT_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_LEFT_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R68.2",
+        "SW4.3",
+        "SW4.4",
+        "U12.3",
+        "U13.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_DPAD_RIGHT_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_RIGHT_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R71.2",
+        "SW6.3",
+        "SW6.4",
+        "U12.4",
+        "U13.7"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_DPAD_OK_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_OK_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R69.2",
+        "SW5.3",
+        "SW5.4",
+        "U12.5",
+        "U13.8"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_BACK_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_BACK_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R57.2",
+        "SW8.3",
+        "SW8.4",
+        "U12.6",
+        "U13.9"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_OPT_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_OPT_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R70.2",
+        "SW17.3",
+        "SW17.4",
+        "U12.7",
+        "U13.10"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F1_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F1_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R60.2",
+        "SW9.3",
+        "SW9.4",
+        "U13.13",
+        "U5.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F2_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F2_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R61.2",
+        "SW10.3",
+        "SW10.4",
+        "U13.14",
+        "U5.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F3_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F3_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R62.2",
+        "SW11.3",
+        "SW11.4",
+        "U12.8",
+        "U13.11"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F4_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F4_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R63.2",
+        "SW12.3",
+        "SW12.4",
+        "U13.16",
+        "U5.3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F5_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F5_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R64.2",
+        "SW13.3",
+        "SW13.4",
+        "U13.17",
+        "U5.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F6_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F6_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R65.2",
+        "SW14.3",
+        "SW14.4",
+        "U13.18",
+        "U5.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F7_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F7_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R66.2",
+        "SW15.3",
+        "SW15.4",
+        "U13.19",
+        "U5.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F8_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F8_N",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R67.2",
+        "SW16.3",
+        "SW16.4",
+        "U13.20",
+        "U5.7"
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "fine_via75",
+      "grid_step": 0.05,
+      "via_cost": 75,
+      "ordering": "mps"
+    },
+    {
+      "id": "coarse_via75",
+      "grid_step": 0.1,
+      "via_cost": 75,
+      "ordering": "mps"
+    },
+    {
+      "id": "fine75_inside_out",
+      "grid_step": 0.05,
+      "via_cost": 75,
+      "ordering": "inside_out"
+    }
+  ],
+  "selection": "Only full selected connectivity, independent native DRC/parity, unchanged rules and preservation, and added copper inside ROI qualify geometrically; compare time/vias/length on the Pareto frontier. No electrical acceptance.",
+  "engine_timeout_seconds": 180,
+  "validation_timeout_seconds": 120
+}

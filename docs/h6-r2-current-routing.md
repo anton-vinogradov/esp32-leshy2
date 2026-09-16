@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-current-routing.ru.md)
 
-**Status:** ▶️ routing and physical-interface corrections continue; H6 is not closed. The [native PCB review](h6-r2-interface-review.md) found orientation, mating and required-hole defects; clean DRC does not establish assembly readiness.
+**Status:** production routing is paused; copies are used to test [process speed and repeatability](h6-r2-routing-automation.md). H6 is not closed. The [native PCB review](h6-r2-interface-review.md) found orientation, mating and required-hole defects; clean DRC does not establish assembly readiness.
 
 | Board | Traces | Vias | Resolved | Remaining | DRC |
 | --- | ---: | ---: | ---: | ---: | --- |
@@ -37,7 +37,7 @@ The first [electrical-review pass](h6-r2-electrical-semantics.md) corrected thre
 
 ## What happens next
 
-Continue `H6-NATIVE-ELECTRICAL-SEMANTICS`: remaining physical-pin types, rail sources, output conflicts and fresh ERC. Then four DC/DC islands and power protection → RF/clock clusters → USB and direct i8080 → remaining digital/control copper → planes and return paths → full DRC and release checks.
+First [benchmark routing and repeated changes](h6-r2-routing-automation.md) on copies, without promoting experimental copper to production PCBs. `H6-NATIVE-ELECTRICAL-SEMANTICS`, rail sources and the other electrical/mechanical gates remain open: fast geometry does not close them.
 
 ## Live images
 

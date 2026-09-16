@@ -27,6 +27,8 @@ and completed results live in the [report index](stage-results.md).
 
 ## Current H6
 
+Current focus: [routing speed and repeatability validation](h6-r2-routing-automation.md). Production routing waits for this gate; experiments use copies. This is an internal H6.0.3 step, not H6 closure or fabrication authorization.
+
 | Substage | Status | Exit |
 |---|---|---|
 | H6.0.1-R1 · Placement and mechanical stack | Historical 2D placement; [native interface/assembly findings reopened](h6-r2-interface-review.md) | 1,208/1,208 footprints; physical mating, openings and assembled access also require verification |
