@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-16",
+  "scope": "Eight cold geometry-only candidates over UI252/RF222; not a whole-board build",
+  "engine_commit": "5a7fbcb6ee4deebd1d9ec1d5bd094d8681f502f3",
+  "engine_patch": null,
+  "matrix_sha256": "a4da875a796fb5f39db79be9ef34f5395a98623fd2a9e3fbd25a622f0d4238bf",
+  "driver_sha256": "e0c00352761ab54ff70e780331429896185d0991304fd989b1054b958a105fc1",
+  "wall_seconds": 330.619,
+  "concurrency": {
+    "engines": 6,
+    "validators": 1,
+    "refill_independent_of_validation": true
+  },
+  "sampled_load": {
+    "cpu_percent": 589.0,
+    "rss_gib": 7.96,
+    "swap_mib": 0,
+    "peak_measurement": false
+  },
+  "controls": {
+    "cold_from_original": true,
+    "in_run_rip": "off/on exact selected nets; selected original copper proved empty",
+    "smooth_route": false,
+    "inrun_floor_sync": false,
+    "conservative_clearance_mm": 0.16,
+    "original_native_rules_restored": true
+  },
+  "results": [
+    {
+      "id": "ui-off-backward-default",
+      "engine_seconds": 134.188,
+      "remaining": 9,
+      "target": 252,
+      "drc_count": 8,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 352,
+      "trace_mm": 5742.179869,
+      "geometry_signature": "0bb4a6933993120e7f4fa8b6d5acfc6654364847aad359aa54d7b2aced3279d9",
+      "candidate_sha256": "7f9171a50d5822e6b43cc966de9403bee3f5f29f864d7a67d40f02b1aacb1e03",
+      "geometry_pass": false
+    },
+    {
+      "id": "ui-off-forward-1.3",
+      "engine_seconds": 215.813,
+      "remaining": 11,
+      "target": 252,
+      "drc_count": 10,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 297,
+      "trace_mm": 5244.504182,
+      "geometry_signature": "670729645fe706066fbcb1f3b549da37c9530f556c4b29d23e89e0f908e78dbe",
+      "candidate_sha256": "50b1e4c9ae178ce9f3f833920b910f21a3170d6d7321fe2a7593566d6cc3daad",
+      "geometry_pass": false
+    },
+    {
+      "id": "ui-on-backward-default",
+      "engine_seconds": 177.167,
+      "remaining": 14,
+      "target": 252,
+      "drc_count": 10,
+      "drc_types": [
+        "hole_clearance",
+        "track_dangling",
+        "via_dangling"
+      ],
+      "new_vias": 344,
+      "trace_mm": 5658.540781,
+      "geometry_signature": "5163ff4ad27ab54f1058e1b38314e7cf7ab8a584858efed25eacc25d1d3a3545",
+      "candidate_sha256": "e4857b981554eca39b7dc30e9e1119007ddecdea1f49e0c556d819d5f2febbf7",
+      "geometry_pass": false
+    },
+    {
+      "id": "ui-on-forward-1.3",
+      "engine_seconds": 242.053,
+      "remaining": 12,
+      "target": 252,
+      "drc_count": 9,
+      "drc_types": [
+        "track_dangling",
+        "via_dangling"
+      ],
+      "new_vias": 296,
+      "trace_mm": 5203.868695,
+      "geometry_signature": "70adffc98b95246b6d764da9e9f759e1f99ff3d11d69b5f4d1d44bbe1c32139f",
+      "candidate_sha256": "cb148d95dc61438f3b799be2f099539118058496ff8d2dea7a3e5b85174f3c8d",
+      "geometry_pass": false
+    },
+    {
+      "id": "rf-off-backward-default",
+      "engine_seconds": 108.085,
+      "remaining": 3,
+      "target": 222,
+      "drc_count": 8,
+      "drc_types": [
+        "hole_clearance",
+        "via_dangling"
+      ],
+      "new_vias": 341,
+      "trace_mm": 6346.366048,
+      "geometry_signature": "27571e903bab3cabf9bc2b26e1489892d04a260931091d9146680748444cb4bc",
+      "candidate_sha256": "562d44df49543dfac2fea16de31506b34076bc2064f274700bc4789d27db9a10",
+      "geometry_pass": false
+    },
+    {
+      "id": "rf-off-forward-1.3",
+      "engine_seconds": 216.296,
+      "remaining": 5,
+      "target": 222,
+      "drc_count": 3,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 273,
+      "trace_mm": 5887.140401,
+      "geometry_signature": "629b0631d8c64d953d0a13f0e10f540b8a51be587b9f52682437c3395fa4fbb7",
+      "candidate_sha256": "1e1312289ccfe97b08aa9e41df3376aee052674ced358a7fe6a739d0b055bd5c",
+      "geometry_pass": false
+    },
+    {
+      "id": "rf-on-backward-default",
+      "engine_seconds": 134.778,
+      "remaining": 2,
+      "target": 222,
+      "drc_count": 8,
+      "drc_types": [
+        "hole_clearance",
+        "via_dangling"
+      ],
+      "new_vias": 343,
+      "trace_mm": 6356.72199,
+      "geometry_signature": "7fd55999ac89e1b82ae1f77129a02679bebfd2175c6e6a55da6575ff05cdbbda",
+      "candidate_sha256": "23443780f9b39a01e0bd0ea09e5be2eb9b1f73940cbd80fa2b445c35d95f3fb7",
+      "geometry_pass": false
+    },
+    {
+      "id": "rf-on-forward-1.3",
+      "engine_seconds": 184.519,
+      "remaining": 4,
+      "target": 222,
+      "drc_count": 3,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "new_vias": 275,
+      "trace_mm": 5935.611804,
+      "geometry_signature": "e67f70cd29719dbc566aa5f9f7bb903f4c00be24b583460c3209398f3bb9f081",
+      "candidate_sha256": "dd8ee00e66c62ea18cb91571f8b8d1c8707bf39a815bd5da1bdddd0cb1aedbd9",
+      "geometry_pass": false
+    }
+  ],
+  "geometry_passes": 0,
+  "replay_pass": false,
+  "production_ready": false,
+  "production_pcb_changed": false,
+  "model_calls_between_attempts": 0,
+  "model_preparation_cost_included": false,
+  "limitations": [
+    "Partial completion is not credited as acceptance",
+    "Preserved out-of-scope copper is experimental isolation, not the target full-cold architecture",
+    "Native DRC finds remaining via/track dangling and NPTH clearance failures",
+    "Model development cost and token proxy are documented separately; no amortization claim"
+  ]
+}

@@ -28,6 +28,12 @@ Two other R64 moves were rejected before routing due to baseline collisions. The
 
 [Initial attempts and evidence hashes](../hardware/layout/benchmarks/2026-09-16-results.json) · [Larger test and usage counters](../hardware/layout/benchmarks/2026-09-16-larger-results.json). Two initial Python-environment failures and one netcode-renumbering checker failure are accounted for as setup. Integration is outside table timings. Total usage including agents and the savings multiplier against the old method remain unmeasured.
 
+The expansion to **UI 252 + RF 222 = 474 connections** has not passed the strict gate. The [eight cold-candidate queue](../hardware/layout/benchmarks/2026-09-16-parallel-474-results.json) finished in 330.6 s with 0 complete passing candidates; best partial results were UI 243/252 and RF 220/222. None is accepted: opens and DRC violations remain. The preceding serial stock search also produced no complete result: eight UI attempts, six completed RF attempts, then the next attempt was stopped to switch to parallel scheduling. Production boards remain unchanged.
+
+Concrete engine NPTH-clearance defects were identified in smoothing and rule resynchronization, followed by a separate via-handling path. Disabling the first two mechanisms helped some candidates but did not eliminate the defect universally. The next experiment is a focused via-path fix in an isolated engine copy, with negative tests and unchanged independent KiCad checks. Rules are not relaxed.
+
+Preparation cost is recorded too: the **00:49–02:11 UTC** pass used **533,174 uncached-input + output tokens** in the root-task diagnostic proxy (440,003 + 93,171), alongside 16,813,184 cached input tokens, 138 tool calls and two compactions. Child-agent inclusion is unverified; work after the snapshot is excluded. This is one-time development/diagnosis, not repeat routing cost or billing. No model decisions occurred inside the eight attempts, but **preparation has not demonstrated payback yet**.
+
 ## One command instead of manual iterations
 
 From the repository root, with prepared KRT/Python runtimes from the [pinned profile](../hardware/layout/h6-r2-autorouter-profile.json):
