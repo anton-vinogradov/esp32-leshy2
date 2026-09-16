@@ -19,9 +19,9 @@ import tempfile
 import time
 
 if __package__:
-    from .h6_r2_benchmark_profiles import adaptive_fallback, sweep_profiles
+    from .h6_r2_benchmark_profiles import adaptive_fallback, sweep_profiles, portfolio_profiles, freeze_net_order
 else:
-    from h6_r2_benchmark_profiles import adaptive_fallback, sweep_profiles
+    from h6_r2_benchmark_profiles import adaptive_fallback, sweep_profiles, portfolio_profiles, freeze_net_order
 
 ROOT = Path(__file__).resolve().parents[2]
 LAYOUT = ROOT / "hardware/layout"
@@ -74,16 +74,33 @@ def execute(command, log, timeout, env=None):
     with Path(log).open("w") as stream:
         process = subprocess.Popen(command, stdout=stream, stderr=subprocess.STDOUT,
                                    env=env, start_new_session=True)
-        try:
-            code = process.wait(timeout=timeout)
-        except subprocess.TimeoutExpired:
-            os.killpg(process.pid, signal.SIGTERM)
+        def stop_child():
+            try:
+                os.killpg(process.pid, signal.SIGTERM)
+            except ProcessLookupError:
+                return
             try:
                 process.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 os.killpg(process.pid, signal.SIGKILL)
                 process.wait()
+
+        # Workers/engine have their own sessions. Forward cancellation instead
+        # of leaving KiCad/router children alive while another case starts.
+        previous = signal.getsignal(signal.SIGTERM)
+        def cancelled(signum, frame):
+            raise KeyboardInterrupt("Controller cancelled")
+        signal.signal(signal.SIGTERM, cancelled)
+        try:
+            code = process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            stop_child()
             code = "timeout"
+        except BaseException:
+            stop_child()
+            raise
+        finally:
+            signal.signal(signal.SIGTERM, previous)
     return {"exit_code": code, "seconds": round(time.monotonic() - start, 3)}
 
 
@@ -146,13 +163,14 @@ def worker(request_path):
     import pcbnew
     from h6_r2_drc import input_hashes, run_drc, validate_provenance
     from h6_r2_manual_copper import item_uuid
-    from h6_r2_route_candidate import grade_candidate
+    from h6_r2_route_candidate import grade_candidate, drc_selected_open
 
     req = read(request_path)
     case = read(req["case"])
     baseline, candidate = Path(req["baseline"]), Path(req["candidate"])
     rel = Path(req["board_relative"])
     started = time.monotonic()
+    candidate_sha256 = sha(candidate / rel)
     result = grade_candidate(baseline / rel, candidate / rel, case["nets"],
                              req.get("baseline_board_sha256", case["baseline_sha256"][str(rel)]))
     original = input_hashes(case["project"], baseline)
@@ -179,13 +197,24 @@ def worker(request_path):
     report_path = candidate / "work/native-drc.json"
     report = run_drc(case["project"], report_path, root=candidate)
     validate_provenance(report_path, case["project"], candidate)
+    uuid_nets = {item_uuid(item): item.GetNetname() for item in board.GetTracks()}
+    uuid_nets.update({item_uuid(pad): pad.GetNetname()
+                      for fp in board.GetFootprints() for pad in fp.Pads()})
+    selected_open = drc_selected_open(report, uuid_nets, {row["kicad_net"] for row in case["nets"]})
+    result.update(candidate_sha256=candidate_sha256,
+                  candidate_unchanged_during_checks=candidate_sha256 == sha(candidate / rel),
+                  drc_selected_unconnected=selected_open,
+                  drc_report_sha256=sha(report_path),
+                  drc_receipt_sha256=sha(report_path.with_name(report_path.name + ".provenance.json")),
+                  kicad_version=report["kicad_version"])
     result.update(drc_checked=True, drc_seconds=round(time.monotonic() - started, 3),
                   drc_violations=len(report["violations"]),
                   schematic_parity_errors=len(report["schematic_parity"]),
                   drc_types=sorted({row["type"] for row in report["violations"]}))
     result["geometry_pass"] = bool(result.get("candidate_pass") and result.get("selected_complete")
         and result["dependencies_unchanged"] and not escaped
-        and not result["drc_violations"] and not result["schematic_parity_errors"])
+        and not result["drc_violations"] and not result["schematic_parity_errors"]
+        and not selected_open and result["candidate_unchanged_during_checks"])
     result["electrically_qualified"] = False
     write(candidate / "validation.json", result)
 
@@ -236,6 +265,8 @@ def run(args):
     profiles = case["profiles"]
     if args.sweep:
         profiles = sweep_profiles()
+    elif args.portfolio:
+        profiles = portfolio_profiles()
     elif args.adaptive:
         profiles = [profiles[0]]
     if args.profiles:
@@ -264,6 +295,7 @@ def run(args):
     initial_profile_count = len(profiles)
     # Repeated runs always restart from the exact same unrouted snapshot.
     for profile_index, profile in enumerate(profiles):
+        profile = freeze_net_order(profile, case["nets"], summary["runs"])
         if time.monotonic() - experiment_started > args.max_seconds:
             summary["budget_exhausted"] = True
             break
@@ -276,7 +308,7 @@ def run(args):
             # Resolving the venv's Python symlink bypasses its site-packages.
             command = [str(args.engine_python.absolute()), str(tool / "py_router/route.py"),
                        str(baseline / board_rel), str(dest / board_rel),
-                       "--nets", *[n["kicad_net"] for n in case["nets"]],
+                       "--nets", *profile["net_order"],
                        *recipe["execution"]["arguments"], "--fab-overrides", str(floors),
                        "--grid-step", str(profile["grid_step"]),
                        "--via-cost", str(profile["via_cost"]),
@@ -284,6 +316,8 @@ def run(args):
                        "--json-out", str(dest / "engine-summary.json")]
             if profile.get("direction"):
                 command.extend(["--direction", profile["direction"]])
+            if profile.get("heuristic_weight"):
+                command.extend(["--heuristic-weight", str(profile["heuristic_weight"])])
             if profile.get("layers"):
                 if not set(profile["layers"]) <= {"F.Cu", "In2.Cu", "In3.Cu", "B.Cu"}:
                     raise ValueError("Profile cannot introduce a prohibited layer")
@@ -341,7 +375,7 @@ def run(args):
     summary["benchmark_seconds"] = round(time.monotonic() - experiment_started, 3)
     write(output / "summary.json", summary)
     best = select_best(summary["runs"])
-    print(json.dumps({"summary": str(output / "summary.json"), "attempts": len(summary["runs"]),
+    print(json.dumps({"summary": str(output / "summary.json"), "summary_sha256": sha(output / "summary.json"), "attempts": len(summary["runs"]),
         "passing_attempts": sum(bool(r["geometry_pass"]) for r in summary["runs"]),
         "replay_pass": summary["replay_pass"], "seconds": summary["benchmark_seconds"],
         "resolved": best["validation"]["resolved_connections"] if best else None,
@@ -361,6 +395,7 @@ def main():
     search = parser.add_mutually_exclusive_group()
     search.add_argument("--sweep", action="store_true", help="Bounded 12-profile parameter sweep")
     search.add_argument("--adaptive", action="store_true", help="Try first case profile; search only if independent checks fail")
+    search.add_argument("--portfolio", action="store_true", help="Eight cold-rebuild search/order/grid alternatives with frozen replay recipes")
     parser.add_argument("--quiet", action="store_true", help="Only launch/final summaries; full evidence stays on disk")
     parser.add_argument("--repeat-best", type=int, choices=range(4), default=0)
     parser.add_argument("--max-seconds", type=int, default=1800, help="Stop scheduling new profiles after this budget")

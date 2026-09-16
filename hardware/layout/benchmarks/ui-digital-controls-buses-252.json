@@ -1,0 +1,2231 @@
+{
+  "schema_version": 1,
+  "id": "ui-digital-controls-buses-252",
+  "purpose": "Copy-only 252-connection geometry stress benchmark on endpoint-reviewed digital/control/bus nets; timing, ESD and electrical acceptance remain blocked",
+  "project": "LESHY2-UI-R2",
+  "source_commit": "973ee20c12fa601156f127f00b3555f8b8fba25b",
+  "scope": {
+    "roi_mm": [
+      0.5,
+      5,
+      79.5,
+      145
+    ],
+    "actual_pad_bounds_mm": [
+      1.195,
+      7.125,
+      77.65,
+      142.85
+    ],
+    "retain_full_board_obstacles": true,
+    "footprint_centres_in_roi": 421,
+    "expected_connections": 252,
+    "electrical_or_esd_qualified": false,
+    "unverified": [
+      "All per-group missing_electrical_checks recorded in scope_review",
+      "Ground/reference continuity and coupling",
+      "ESD ingress topology and service attachment",
+      "Signal integrity, clock/data skew, setup/hold and RC timing",
+      "Remote board and connector behavior",
+      "No electrical or production acceptance"
+    ],
+    "description": "137 exact nets / 252 native remaining connections across reviewed UI manual inputs, SD card presence, display i8080, SD/SDIO/SPI, interprocessor buses and UART/SWD. Full native 80 x 150 mm board and all existing obstacles retained. No production routing-policy change.",
+    "actual_pad_copper_bounds_mm": [
+      0.645,
+      6.375,
+      78.3,
+      143.25
+    ],
+    "expected_net_count": 137,
+    "exact_pad_endpoint_count": 389,
+    "physical_timing_qualified": false
+  },
+  "baseline_sha256": {
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "9c4c81fe32c242297b6ed42b6999c8ac63e6f02a766fac0874c88b19b2ae9d3e",
+    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "8aeda79b6891c94f16e57384c965c272b7dc867c6bc4ecf182998e8a318ef0bc",
+    "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
+    "hardware/ecad/h2-r2-topology-overrides.json": "d70eb63b5c9bc60b35624a53a9fef603597ddaeb3c39609654f6786fde9067b7",
+    "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
+    "hardware/layout/generated/H6-R2-routing-policy-audit.json": "7a21ca393f5a54131e73289d313717118842982e2dd86fa23ab97eb5b8431063",
+    "hardware/layout/h6-r2-manual-copper.json": "9dec0bf735af1994bff6c1330f99e3870f8362246bb5192ca71acc3a26c0e8a4",
+    "hardware/layout/h6-r2-placement-freeze.json": "71f155c7c4031563a6b21d40867a404b4b340d8471921286314498eea1e428cd",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "963202a1ff8b2ab887b5fec5e860ddb5cf7af09be0c12b3ccc5701c585a475c8",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3fb5f492f09eefb2e85c678a64e4398f50842e82253ceb0c5277314acde9cf9f",
+    "hardware/layout/generated/H6-R2-current-routing-audit.json": "ddcae9930cae61b011560385bfbd68093bc9f924bfdff45d1366552d82116127"
+  },
+  "nets": [
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_DPAD_UP_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_UP_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R72.2",
+        "SW7.3",
+        "SW7.4",
+        "U12.1",
+        "U13.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_DPAD_DOWN_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_DOWN_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R58.2",
+        "SW3.3",
+        "SW3.4",
+        "U12.2",
+        "U13.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_DPAD_LEFT_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_LEFT_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R68.2",
+        "SW4.3",
+        "SW4.4",
+        "U12.3",
+        "U13.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_DPAD_RIGHT_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_RIGHT_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R71.2",
+        "SW6.3",
+        "SW6.4",
+        "U12.4",
+        "U13.7"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_DPAD_OK_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_OK_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R69.2",
+        "SW5.3",
+        "SW5.4",
+        "U12.5",
+        "U13.8"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_BACK_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_BACK_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R57.2",
+        "SW8.3",
+        "SW8.4",
+        "U12.6",
+        "U13.9"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_OPT_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_OPT_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R70.2",
+        "SW17.3",
+        "SW17.4",
+        "U12.7",
+        "U13.10"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F1_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F1_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R60.2",
+        "SW9.3",
+        "SW9.4",
+        "U13.13",
+        "U5.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F2_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F2_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R61.2",
+        "SW10.3",
+        "SW10.4",
+        "U13.14",
+        "U5.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F3_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F3_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R62.2",
+        "SW11.3",
+        "SW11.4",
+        "U12.8",
+        "U13.11"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F4_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F4_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R63.2",
+        "SW12.3",
+        "SW12.4",
+        "U13.16",
+        "U5.3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F5_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F5_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R64.2",
+        "SW13.3",
+        "SW13.4",
+        "U13.17",
+        "U5.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F6_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F6_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R65.2",
+        "SW14.3",
+        "SW14.4",
+        "U13.18",
+        "U5.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F7_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F7_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R66.2",
+        "SW15.3",
+        "SW15.4",
+        "U13.19",
+        "U5.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_F8_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F8_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "manual_keys",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R67.2",
+        "SW16.3",
+        "SW16.4",
+        "U13.20",
+        "U5.7"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "ENCODER_A",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/ENCODER_A",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "encoder_inputs",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J18.51",
+        "R29.2",
+        "U1.32"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "ENCODER_B",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/ENCODER_B",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "encoder_inputs",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J18.52",
+        "R30.2",
+        "U1.24"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_ENCODER_PUSH_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_ENCODER_PUSH_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "encoder_inputs",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J18.53",
+        "R59.2",
+        "U13.15"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "UI_HUB_ALERT_N",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/UI_HUB_ALERT_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "touch_input_irq",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "R20.2",
+        "U1.15",
+        "U11.4",
+        "U13.1",
+        "U28.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_TOUCH_INT_RAW_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/LCD_TOUCH_INT_RAW_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "touch_input_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J1.5",
+        "R55.2",
+        "U11.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "IR_DEMOD_LOCAL_N",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/IR_DEMOD_LOCAL_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "ir_demod_receive",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U24.3",
+        "U26.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "IR_DEMOD_BUFFERED_N",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/IR_DEMOD_BUFFERED_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "ir_demod_receive",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R119.1",
+        "U26.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "IR_RX_DEMOD",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/IR_RX_DEMOD",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "ir_demod_receive",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R118.1",
+        "R119.2",
+        "U14.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_DBG_ID0",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_DBG_ID0",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_identity",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J2.8",
+        "R7.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_DBG_ID1",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_DBG_ID1",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_identity",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J2.10",
+        "R8.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_DBG_ID0",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_DBG_ID0",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_identity",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J6.8",
+        "R80.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_DBG_ID1",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_DBG_ID1",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_identity",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J6.10",
+        "R81.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_DBG_ID0",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_DBG_ID0",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_identity",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J10.8",
+        "R135.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_DBG_ID1",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_DBG_ID1",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_identity",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J10.10",
+        "R136.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_DB0",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/LCD_DB0",
+      "routing_class": "DISPLAY_I8080",
+      "scope_group": "display_i8080",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J1.19",
+        "U1.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_DB1",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/LCD_DB1",
+      "routing_class": "DISPLAY_I8080",
+      "scope_group": "display_i8080",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J1.20",
+        "U1.17"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_DB2",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/LCD_DB2",
+      "routing_class": "DISPLAY_I8080",
+      "scope_group": "display_i8080",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J1.21",
+        "U1.11"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_DB3",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/LCD_DB3",
+      "routing_class": "DISPLAY_I8080",
+      "scope_group": "display_i8080",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J1.22",
+        "U1.31"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_DB4",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/LCD_DB4",
+      "routing_class": "DISPLAY_I8080",
+      "scope_group": "display_i8080",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J1.23",
+        "U1.33"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_DB5",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/LCD_DB5",
+      "routing_class": "DISPLAY_I8080",
+      "scope_group": "display_i8080",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J1.24",
+        "U1.34"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_DB6",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/LCD_DB6",
+      "routing_class": "DISPLAY_I8080",
+      "scope_group": "display_i8080",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J1.25",
+        "U1.35"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_DB7",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/LCD_DB7",
+      "routing_class": "DISPLAY_I8080",
+      "scope_group": "display_i8080",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J1.26",
+        "U1.16"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_DC",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/LCD_DC",
+      "routing_class": "DISPLAY_I8080",
+      "scope_group": "display_i8080",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J1.14",
+        "U1.26"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "LCD_WR_N",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/LCD_WR_N",
+      "routing_class": "DISPLAY_I8080",
+      "scope_group": "display_i8080",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J1.15",
+        "U1.10"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SDIO_CLK",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_CLK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "c5_sdio_discrete",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R95.1",
+        "U28.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SDIO_CLK_C5",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_CLK_C5",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "c5_sdio_discrete",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R95.2",
+        "U14.11"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SDIO_CMD",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_CMD",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "c5_sdio_discrete",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R97.1",
+        "U28.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SDIO_CMD_C5",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_CMD_C5",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "c5_sdio_discrete",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R96.2",
+        "R97.2",
+        "U14.12"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SDIO_D0",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_D0",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "c5_sdio_discrete",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R99.1",
+        "U28.7"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SDIO_D0_C5",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_D0_C5",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "c5_sdio_discrete",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R98.2",
+        "R99.2",
+        "U14.10"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SDIO_D1",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_D1",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "c5_sdio_discrete",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R101.1",
+        "U28.8"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SDIO_D1_C5",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_D1_C5",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "c5_sdio_discrete",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R100.2",
+        "R101.2",
+        "U14.9"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SDIO_D2",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_D2",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "c5_sdio_discrete",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R103.1",
+        "U28.9"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_SDIO_D3",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_D3",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "c5_sdio_discrete",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R105.1",
+        "U28.11"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RF_ALERT_N",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RF_ALERT_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "m1_hub_rf_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J18.22",
+        "U28.17"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RF_CS_N",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RF_CS_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "m1_hub_rf_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J18.23",
+        "U28.16"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RF_MISO",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RF_MISO",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "m1_hub_rf_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J18.27",
+        "U28.14"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RF_MOSI",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RF_MOSI",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "m1_hub_rf_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J18.26",
+        "U28.13"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RF_SCK",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RF_SCK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "m1_hub_rf_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J18.24",
+        "U28.12"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "IR_CARRIER_BUFFERED_N",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/IR_CARRIER_BUFFERED_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "ir_carrier_receive",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R116.1",
+        "U26.3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "IR_CARRIER_LOCAL_N",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/IR_CARRIER_LOCAL_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "ir_carrier_receive",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R115.1",
+        "U23.3",
+        "U26.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "IR_RX_CARRIER",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/IR_RX_CARRIER",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "ir_carrier_receive",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R114.1",
+        "R116.2",
+        "U14.7"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_CSN_BUFFERED_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_CSN_BUFFERED_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R148.1",
+        "U37.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_CSN_MODULE_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_CSN_MODULE_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R148.2",
+        "R159.1",
+        "U35.3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_CSN_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_CSN_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R151.1",
+        "U28.21",
+        "U37.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_IRQ_BUFFERED_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_IRQ_BUFFERED_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R156.1",
+        "U38.3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_IRQ_MODULE_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_IRQ_MODULE_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R160.1",
+        "U35.7",
+        "U38.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_IRQ_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_IRQ_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R152.1",
+        "R156.2",
+        "U28.23"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_MISO",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_MISO",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R153.1",
+        "R157.2",
+        "U28.20"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_MISO_BUFFERED",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_MISO_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R157.1",
+        "U38.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_MISO_MODULE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_MISO_MODULE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R161.1",
+        "U35.6",
+        "U38.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_MOSI",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_MOSI",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R154.1",
+        "U28.19",
+        "U37.12"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_MOSI_BUFFERED",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_MOSI_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R164.1",
+        "U37.11"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_MOSI_MODULE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_MOSI_MODULE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R162.1",
+        "R164.2",
+        "U35.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_SCK",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_SCK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R155.1",
+        "U28.18",
+        "U37.9"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_SCK_BUFFERED",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_SCK_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R165.1",
+        "U37.8"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_SCK_MODULE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_SCK_MODULE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R163.1",
+        "R165.2",
+        "U35.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_CSN_BUFFERED_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_CSN_BUFFERED_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R168.1",
+        "U41.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_CSN_MODULE_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_CSN_MODULE_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R168.2",
+        "R179.1",
+        "U39.3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_CSN_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_CSN_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R171.1",
+        "U28.28",
+        "U41.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_IRQ_BUFFERED_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_IRQ_BUFFERED_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R176.1",
+        "U42.3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_IRQ_MODULE_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_IRQ_MODULE_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R180.1",
+        "U39.7",
+        "U42.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_IRQ_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_IRQ_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R172.1",
+        "R176.2",
+        "U28.37"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_MISO",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_MISO",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R173.1",
+        "R177.2",
+        "U28.27"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_MISO_BUFFERED",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_MISO_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R177.1",
+        "U42.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_MISO_MODULE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_MISO_MODULE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R181.1",
+        "U39.6",
+        "U42.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_MOSI",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_MOSI",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R174.1",
+        "U28.26",
+        "U41.12"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_MOSI_BUFFERED",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_MOSI_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R184.1",
+        "U41.11"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_MOSI_MODULE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_MOSI_MODULE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R182.1",
+        "R184.2",
+        "U39.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_SCK",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_SCK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R175.1",
+        "U28.25",
+        "U41.9"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_SCK_BUFFERED",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_SCK_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R185.1",
+        "U41.8"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_SCK_MODULE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_SCK_MODULE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R183.1",
+        "R185.2",
+        "U39.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_CSN_BUFFERED_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_CSN_BUFFERED_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R188.1",
+        "U45.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_CSN_MODULE_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_CSN_MODULE_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R188.2",
+        "R199.1",
+        "U43.3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_CSN_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_CSN_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R191.1",
+        "U28.42",
+        "U45.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_IRQ_BUFFERED_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_IRQ_BUFFERED_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R196.1",
+        "U46.3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_IRQ_MODULE_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_IRQ_MODULE_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R200.1",
+        "U43.7",
+        "U46.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_IRQ_N",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_IRQ_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R192.1",
+        "R196.2",
+        "U28.44"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_MISO",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MISO",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R193.1",
+        "R197.2",
+        "U28.40"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_MISO_BUFFERED",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MISO_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R197.1",
+        "U46.6"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_MISO_MODULE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MISO_MODULE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R201.1",
+        "U43.6",
+        "U46.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_MOSI",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MOSI",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R194.1",
+        "U28.39",
+        "U45.12"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_MOSI_BUFFERED",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MOSI_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R204.1",
+        "U45.11"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_MOSI_MODULE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MOSI_MODULE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R202.1",
+        "R204.2",
+        "U43.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_SCK",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_SCK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R195.1",
+        "U28.38",
+        "U45.9"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_SCK_BUFFERED",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_SCK_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R205.1",
+        "U45.8"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_SCK_MODULE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_SCK_MODULE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "nrf_spi_irq",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R203.1",
+        "R205.2",
+        "U43.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_HUB_D0",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_HUB_D0",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "s3_hub_parallel",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U1.23",
+        "U28.77"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_HUB_D1",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_HUB_D1",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "s3_hub_parallel",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U1.22",
+        "U28.78"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_HUB_D2",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_HUB_D2",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "s3_hub_parallel",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U1.7",
+        "U28.79"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_HUB_D3",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_HUB_D3",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "s3_hub_parallel",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U1.12",
+        "U28.80"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_HUB_SCK",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_HUB_SCK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "s3_hub_parallel",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U1.25",
+        "U28.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_CLK_BUFFERED",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_CLK_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R54.1",
+        "U8.7"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_CLK_PROTECTED",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_CLK_PROTECTED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J5.5",
+        "R54.2",
+        "U6.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_CMD_BUFFERED",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_CMD_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R44.1",
+        "U8.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_CMD_PROTECTED",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_CMD_PROTECTED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 3,
+      "exact_ref_pads": [
+        "J5.3",
+        "R39.2",
+        "R44.2",
+        "U6.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_CS_BUFFERED_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_CS_BUFFERED_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R45.1",
+        "U8.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_CS_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_CS_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 3,
+      "exact_ref_pads": [
+        "R48.1",
+        "U28.49",
+        "U8.6",
+        "U9.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_DAT0_MISO_PROTECTED",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_DAT0_MISO_PROTECTED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 3,
+      "exact_ref_pads": [
+        "J5.7",
+        "R40.2",
+        "U6.5",
+        "U9.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_DAT1_PROTECTED",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_DAT1_PROTECTED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J5.8",
+        "R41.2",
+        "U7.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_DAT2_PROTECTED",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_DAT2_PROTECTED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J5.1",
+        "R42.2",
+        "U7.2"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_DAT3_CS_PROTECTED_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_DAT3_CS_PROTECTED_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 3,
+      "exact_ref_pads": [
+        "J5.2",
+        "R43.2",
+        "R45.2",
+        "U6.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_MISO",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_MISO",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R50.1",
+        "R52.2",
+        "U28.48"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_MISO_BUFFERED",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_MISO_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R52.1",
+        "U9.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_MOSI",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_MOSI",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R49.1",
+        "U28.47",
+        "U8.3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_SCK",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_SCK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "sd_card_spi",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R51.1",
+        "U28.46",
+        "U8.1"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_DBG0_CONNECTOR",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_DBG0_CONNECTOR",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J6.5",
+        "R77.1",
+        "U15.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_DBG1_CONNECTOR",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_DBG1_CONNECTOR",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J6.6",
+        "R78.1",
+        "U15.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_UART_SERVICE_RX",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_UART_SERVICE_RX",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R78.2",
+        "U14.24"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_UART_SERVICE_TX",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_UART_SERVICE_TX",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R77.2",
+        "U14.25"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_DBG0_CONNECTOR",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_DBG0_CONNECTOR",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.5",
+        "R132.1",
+        "U29.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_DBG1_CONNECTOR",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_DBG1_CONNECTOR",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.6",
+        "R133.1",
+        "U29.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_SWCLK",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SWCLK",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R133.2",
+        "U28.33"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_SWDIO",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SWDIO",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R132.2",
+        "U28.34"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_DBG0_CONNECTOR",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_DBG0_CONNECTOR",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J2.5",
+        "R4.1",
+        "U2.4"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_DBG1_CONNECTOR",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_DBG1_CONNECTOR",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J2.6",
+        "R5.1",
+        "U2.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_UART_SERVICE_RX",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_UART_SERVICE_RX",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R5.2",
+        "U1.36"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_UART_SERVICE_TX",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_UART_SERVICE_TX",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_uart_swd",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R4.2",
+        "U1.37"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SYS_UI_I2C_SCL",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/SYS_UI_I2C_SCL",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "ui_i2c",
+      "remaining_connections": 3,
+      "exact_ref_pads": [
+        "J1.7",
+        "R18.2",
+        "U1.38",
+        "U13.22"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SYS_UI_I2C_SDA",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/SYS_UI_I2C_SDA",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "ui_i2c",
+      "remaining_connections": 3,
+      "exact_ref_pads": [
+        "J1.6",
+        "R19.2",
+        "U1.39",
+        "U13.23"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_CARD_DETECT_RAW_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_CARD_DETECT_RAW_N",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "sd_card_presence_input",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J5.10",
+        "R47.1",
+        "U7.5"
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "SD_DETECT_N",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_DETECT_N",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "sd_card_presence_input",
+      "remaining_connections": 3,
+      "exact_ref_pads": [
+        "C12.1",
+        "R46.2",
+        "R47.2",
+        "U28.55"
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "fine_via75",
+      "grid_step": 0.05,
+      "via_cost": 75,
+      "ordering": "mps"
+    },
+    {
+      "id": "coarse_via75",
+      "grid_step": 0.1,
+      "via_cost": 75,
+      "ordering": "mps"
+    },
+    {
+      "id": "fine75_inside_out",
+      "grid_step": 0.05,
+      "via_cost": 75,
+      "ordering": "inside_out"
+    }
+  ],
+  "selection": "Only full selected connectivity, independent native DRC/parity, unchanged rules and preservation, and added copper inside ROI qualify geometrically; compare time/vias/length on the Pareto frontier. No electrical acceptance.",
+  "engine_timeout_seconds": 900,
+  "validation_timeout_seconds": 180,
+  "scope_review": {
+    "reviewed_at_utc": "2026-09-16T00:55:15.963Z",
+    "basis": "Read-only KiCad native connectivity and every selected native ref/pad matched exactly through H2 controlled-symbol pin maps to endpoint/instance ledgers. Groups include explicit endpoint semantics; routing class alone is never admission. Original 82-connection-case endpoint scope retained and extended by reviewed groups only.",
+    "included_groups": [
+      {
+        "nets": [
+          "UI_DPAD_UP_N",
+          "UI_DPAD_DOWN_N",
+          "UI_DPAD_LEFT_N",
+          "UI_DPAD_RIGHT_N",
+          "UI_DPAD_OK_N",
+          "UI_BACK_N",
+          "UI_OPT_N",
+          "UI_F1_N",
+          "UI_F2_N",
+          "UI_F3_N",
+          "UI_F4_N",
+          "UI_F5_N",
+          "UI_F6_N",
+          "UI_F7_N",
+          "UI_F8_N"
+        ],
+        "remaining_connections": 60,
+        "reason": "Preserve all 15 reviewed manual-key nets from ui-controls-60, including exact switch, pull, ESD and TCA9539 endpoints.",
+        "id": "manual_keys",
+        "missing_electrical_checks": [
+          "ESD ingress topology",
+          "ground return and reference continuity",
+          "electrical qualification",
+          "shared IRQ electrical behavior and digital edge return paths",
+          "inter-board encoder ingress and remote endpoint behavior"
+        ]
+      },
+      {
+        "nets": [
+          "ENCODER_A",
+          "ENCODER_B",
+          "UI_ENCODER_PUSH_N"
+        ],
+        "remaining_connections": 6,
+        "reason": "Passive human-input contacts arrive through J18 pins 51/52/53 and 3.32k pulls, terminating at S3 GPIO39/GPIO47 and TCA9539 P12. Only the UI-board half is selected.",
+        "id": "encoder_inputs",
+        "missing_electrical_checks": [
+          "ESD ingress topology",
+          "ground return and reference continuity",
+          "electrical qualification",
+          "shared IRQ electrical behavior and digital edge return paths",
+          "inter-board encoder ingress and remote endpoint behavior"
+        ]
+      },
+      {
+        "nets": [
+          "UI_HUB_ALERT_N",
+          "LCD_TOUCH_INT_RAW_N"
+        ],
+        "remaining_connections": 6,
+        "reason": "Display touch interrupt J1.5 through open-drain SN74LVC1G07 U11 joins TCA9539 INT_N, S3 GPIO3 and hub GPIO5 with 10k pulls. The reset pins, I2C bus and AON/safety alert remain excluded.",
+        "id": "touch_input_irq",
+        "missing_electrical_checks": [
+          "ESD ingress topology",
+          "ground return and reference continuity",
+          "electrical qualification",
+          "shared IRQ electrical behavior and digital edge return paths",
+          "inter-board encoder ingress and remote endpoint behavior"
+        ]
+      },
+      {
+        "nets": [
+          "IR_DEMOD_LOCAL_N",
+          "IR_DEMOD_BUFFERED_N",
+          "IR_RX_DEMOD"
+        ],
+        "remaining_connections": 4,
+        "reason": "TSOP75238 U24.OUT is the active-low demodulated envelope; U26.1A/1Y and 100ohm R119 feed C5 GPIO0 with 10k R118. No optical carrier, emitter, supply, evidence or enable net is selected.",
+        "id": "ir_demod_receive",
+        "missing_electrical_checks": [
+          "ESD ingress topology",
+          "ground return and reference continuity",
+          "electrical qualification",
+          "shared IRQ electrical behavior and digital edge return paths",
+          "inter-board encoder ingress and remote endpoint behavior"
+        ]
+      },
+      {
+        "nets": [
+          "S3_DBG_ID0",
+          "S3_DBG_ID1",
+          "C5_DBG_ID0",
+          "C5_DBG_ID1",
+          "HUB_RP_DBG_ID0",
+          "HUB_RP_DBG_ID1"
+        ],
+        "remaining_connections": 6,
+        "reason": "J2/J6/J10 pins 8 and 10 are static header-identity contacts, each behind a 10k pull: S3 0/0, C5 1/0, HUB 0/1 for ID0/ID1. These six explicitly reviewed SERIAL_CONTROL-labelled nets carry no clock, UART, reset, boot or USB signals.",
+        "id": "service_identity",
+        "missing_electrical_checks": [
+          "ESD ingress topology",
+          "ground return and reference continuity",
+          "electrical qualification",
+          "shared IRQ electrical behavior and digital edge return paths",
+          "inter-board encoder ingress and remote endpoint behavior"
+        ]
+      },
+      {
+        "id": "display_i8080",
+        "nets": [
+          "LCD_DB0",
+          "LCD_DB1",
+          "LCD_DB2",
+          "LCD_DB3",
+          "LCD_DB4",
+          "LCD_DB5",
+          "LCD_DB6",
+          "LCD_DB7",
+          "LCD_DC",
+          "LCD_WR_N"
+        ],
+        "reason": "Direct S3 GPIO-to-display J1 data/WR/D-C endpoints; ten members retained as a complete routed geometry group.",
+        "missing_electrical_checks": [
+          "i8080 timing and inter-signal skew",
+          "edge rate and source termination",
+          "continuous ground reference and crosstalk"
+        ],
+        "remaining_connections": 10
+      },
+      {
+        "id": "c5_sdio_discrete",
+        "nets": [
+          "C5_SDIO_CLK",
+          "C5_SDIO_CLK_C5",
+          "C5_SDIO_CMD",
+          "C5_SDIO_CMD_C5",
+          "C5_SDIO_D0",
+          "C5_SDIO_D0_C5",
+          "C5_SDIO_D1",
+          "C5_SDIO_D1_C5",
+          "C5_SDIO_D2",
+          "C5_SDIO_D3"
+        ],
+        "reason": "Hub RP GPIO7..12 and C5 GPIO7..10/series/pull endpoints. SDIO-only discrete segments selected; USB-shared common nets and USB-switch DAT2/DAT3 branch endpoints excluded.",
+        "missing_electrical_checks": [
+          "SDIO timing and skew",
+          "mixed-mode service ownership",
+          "series resistor topology and return continuity"
+        ],
+        "remaining_connections": 13
+      },
+      {
+        "id": "m1_hub_rf_bus",
+        "nets": [
+          "HUB_RF_ALERT_N",
+          "HUB_RF_CS_N",
+          "HUB_RF_MISO",
+          "HUB_RF_MOSI",
+          "HUB_RF_SCK"
+        ],
+        "reason": "Five Hub RP GPIO13..17 to M1 J18 digital SPI/alert signals; only UI-board endpoints selected.",
+        "missing_electrical_checks": [
+          "M1 remote endpoints and return contacts",
+          "bus timing and skew",
+          "inter-board crosstalk"
+        ],
+        "remaining_connections": 5
+      },
+      {
+        "id": "ir_carrier_receive",
+        "nets": [
+          "IR_CARRIER_BUFFERED_N",
+          "IR_CARRIER_LOCAL_N",
+          "IR_RX_CARRIER"
+        ],
+        "reason": "Digital carrier-detect receiver U23.CARRIER_OUT to U26 buffer and C5 GPIO1 through R116; supply and all transmit/gate nets excluded.",
+        "missing_electrical_checks": [
+          "receiver edge integrity",
+          "pull-up/load timing",
+          "buffer isolation and ground return"
+        ],
+        "remaining_connections": 5
+      },
+      {
+        "id": "nrf_spi_irq",
+        "nets": [
+          "NRF0_CSN_BUFFERED_N",
+          "NRF0_CSN_MODULE_N",
+          "NRF0_CSN_N",
+          "NRF0_IRQ_BUFFERED_N",
+          "NRF0_IRQ_MODULE_N",
+          "NRF0_IRQ_N",
+          "NRF0_MISO",
+          "NRF0_MISO_BUFFERED",
+          "NRF0_MISO_MODULE",
+          "NRF0_MOSI",
+          "NRF0_MOSI_BUFFERED",
+          "NRF0_MOSI_MODULE",
+          "NRF0_SCK",
+          "NRF0_SCK_BUFFERED",
+          "NRF0_SCK_MODULE",
+          "NRF1_CSN_BUFFERED_N",
+          "NRF1_CSN_MODULE_N",
+          "NRF1_CSN_N",
+          "NRF1_IRQ_BUFFERED_N",
+          "NRF1_IRQ_MODULE_N",
+          "NRF1_IRQ_N",
+          "NRF1_MISO",
+          "NRF1_MISO_BUFFERED",
+          "NRF1_MISO_MODULE",
+          "NRF1_MOSI",
+          "NRF1_MOSI_BUFFERED",
+          "NRF1_MOSI_MODULE",
+          "NRF1_SCK",
+          "NRF1_SCK_BUFFERED",
+          "NRF1_SCK_MODULE",
+          "NRF2_CSN_BUFFERED_N",
+          "NRF2_CSN_MODULE_N",
+          "NRF2_CSN_N",
+          "NRF2_IRQ_BUFFERED_N",
+          "NRF2_IRQ_MODULE_N",
+          "NRF2_IRQ_N",
+          "NRF2_MISO",
+          "NRF2_MISO_BUFFERED",
+          "NRF2_MISO_MODULE",
+          "NRF2_MOSI",
+          "NRF2_MOSI_BUFFERED",
+          "NRF2_MOSI_MODULE",
+          "NRF2_SCK",
+          "NRF2_SCK_BUFFERED",
+          "NRF2_SCK_MODULE"
+        ],
+        "reason": "All three NRF module SPI/IRQ groups through host/return buffers and pull/series resistors. Every CE request/safe/buffered/module transmit-enabling path is excluded.",
+        "missing_electrical_checks": [
+          "SPI timing and skew per radio",
+          "IRQ/open-drain behavior",
+          "buffer powered-off behavior",
+          "ground return and crosstalk"
+        ],
+        "remaining_connections": 75
+      },
+      {
+        "id": "s3_hub_parallel",
+        "nets": [
+          "S3_HUB_D0",
+          "S3_HUB_D1",
+          "S3_HUB_D2",
+          "S3_HUB_D3",
+          "S3_HUB_SCK"
+        ],
+        "reason": "S3 GPIO21/14/7/8/48 to Hub RP GPIO0..4 five-wire clocked link.",
+        "missing_electrical_checks": [
+          "clock/data skew and setup/hold",
+          "edge rate",
+          "ground reference continuity"
+        ],
+        "remaining_connections": 5
+      },
+      {
+        "id": "sd_card_spi",
+        "nets": [
+          "SD_CLK_BUFFERED",
+          "SD_CLK_PROTECTED",
+          "SD_CMD_BUFFERED",
+          "SD_CMD_PROTECTED",
+          "SD_CS_BUFFERED_N",
+          "SD_CS_N",
+          "SD_DAT0_MISO_PROTECTED",
+          "SD_DAT1_PROTECTED",
+          "SD_DAT2_PROTECTED",
+          "SD_DAT3_CS_PROTECTED_N",
+          "SD_MISO",
+          "SD_MISO_BUFFERED",
+          "SD_MOSI",
+          "SD_SCK"
+        ],
+        "reason": "Complete fourteen-net SD SPI/data contact group through U8/U9 buffers, J5 contacts, pulls, series resistors and ESD channels; power/card-enable nets excluded.",
+        "missing_electrical_checks": [
+          "card mode and bus timing",
+          "ESD ingress topology",
+          "buffer output-enable behavior",
+          "unused card-data contact pulls",
+          "ground return"
+        ],
+        "remaining_connections": 28
+      },
+      {
+        "id": "service_uart_swd",
+        "nets": [
+          "C5_DBG0_CONNECTOR",
+          "C5_DBG1_CONNECTOR",
+          "C5_UART_SERVICE_RX",
+          "C5_UART_SERVICE_TX",
+          "HUB_RP_DBG0_CONNECTOR",
+          "HUB_RP_DBG1_CONNECTOR",
+          "HUB_RP_SWCLK",
+          "HUB_RP_SWDIO",
+          "S3_DBG0_CONNECTOR",
+          "S3_DBG1_CONNECTOR",
+          "S3_UART_SERVICE_RX",
+          "S3_UART_SERVICE_TX"
+        ],
+        "reason": "J2/J6 UART and J10 SWD signal contacts through series resistors and ESD channels to processor contacts. Reset, boot, VTREF and USB-C CC remain excluded.",
+        "missing_electrical_checks": [
+          "ESD ingress topology",
+          "service ownership and attachment sequencing",
+          "SWD clock/data timing",
+          "UART loading"
+        ],
+        "remaining_connections": 18
+      },
+      {
+        "id": "ui_i2c",
+        "nets": [
+          "SYS_UI_I2C_SCL",
+          "SYS_UI_I2C_SDA"
+        ],
+        "reason": "S3 GPIO1/2, TCA9539 U13.SCL/SDA and display J1 touch I2C contacts with 3V3 pull resistors.",
+        "missing_electrical_checks": [
+          "I2C bus capacitance and rise time",
+          "pull-up current and voltage compatibility",
+          "inter-board return and display ingress"
+        ],
+        "remaining_connections": 6
+      },
+      {
+        "id": "sd_card_presence_input",
+        "nets": [
+          "SD_CARD_DETECT_RAW_N",
+          "SD_DETECT_N"
+        ],
+        "remaining_connections": 5,
+        "reason": "Mechanical J5.DETECT_A card-presence contact through R47 and U7 ESD to Hub RP GPIO44 with pull R46 and filter C12. Although policy labels the RC-filtered group ANALOG_AUDIO_SENSE, its exact contacts carry card-presence logic, not supply or RF.",
+        "missing_electrical_checks": [
+          "contact debounce and RC threshold timing",
+          "ESD ingress topology",
+          "GPIO input leakage and voltage levels",
+          "ground return"
+        ]
+      }
+    ],
+    "excluded_groups": [
+      {
+        "reason": "All RF, power, ground, oscillator, USB differential/common/CC/VTREF, safety, RF detector/evidence, reset/boot, supply, LED-current and gate nets excluded regardless of fallback routing class."
+      },
+      {
+        "nets": [
+          "NRF0_CE_BUFFERED",
+          "NRF0_CE_MODULE",
+          "NRF0_CE_REQ",
+          "NRF0_CE_SAFE",
+          "NRF1_CE_BUFFERED",
+          "NRF1_CE_MODULE",
+          "NRF1_CE_REQ",
+          "NRF1_CE_SAFE",
+          "NRF2_CE_BUFFERED",
+          "NRF2_CE_MODULE",
+          "NRF2_CE_REQ",
+          "NRF2_CE_SAFE"
+        ],
+        "reason": "Clocked-labelled CE request/safe/buffered/module paths control transmitter enable and remain excluded."
+      },
+      {
+        "nets": [
+          "IR_CARRIER_VS",
+          "IR_TX_CARRIER",
+          "IR_TX_CARRIER_SAFE",
+          "HUB_C5_SDIO_DAT2_BRANCH",
+          "HUB_C5_SDIO_DAT3_BRANCH"
+        ],
+        "reason": "Supply, transmit gate, and USB-sharing switch endpoints excluded even when classified CLOCKED_DIGITAL."
+      }
+    ],
+    "electrical_acceptance": "BLOCKED: no timing, signal-integrity, ESD, return-current or circuit-function qualification is performed by this experiment",
+    "production_authorization": false
+  },
+  "experiment_geometry": {
+    "track_width_mm": 0.15,
+    "via_diameter_mm": 0.4,
+    "via_drill_mm": 0.2,
+    "routable_layers": [
+      "F.Cu",
+      "In2.Cu",
+      "In3.Cu",
+      "B.Cu"
+    ],
+    "reserved_reference_layers": [
+      "In1.Cu",
+      "In4.Cu"
+    ],
+    "nominal_geometry_only": true,
+    "production_policy_changed": false
+  }
+}

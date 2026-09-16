@@ -1,0 +1,2285 @@
+{
+  "schema_version": 1,
+  "id": "rf-digital-audio-geometry-222",
+  "purpose": "Copy-only 222-connection mixed digital and low-level analog geometry stress benchmark; every electrical, timing, audio and ESD acceptance remains blocked",
+  "project": "LESHY2-RF-R2",
+  "source_commit": "973ee20c12fa601156f127f00b3555f8b8fba25b",
+  "scope": {
+    "roi_mm": [
+      0.25,
+      0.25,
+      79.75,
+      149.75
+    ],
+    "actual_pad_bounds_mm": [
+      1.3225,
+      1.0875,
+      79.15,
+      147.4
+    ],
+    "actual_pad_copper_bounds_mm": [
+      0.4,
+      0.35,
+      79.6,
+      147.83
+    ],
+    "retain_full_board_obstacles": true,
+    "footprint_centres_in_roi": 779,
+    "expected_connections": 222,
+    "expected_net_count": 147,
+    "exact_pad_endpoint_count": 370,
+    "electrical_or_esd_qualified": false,
+    "physical_timing_qualified": false,
+    "analog_audio_qualified": false,
+    "unverified": [
+      "All per-group missing_electrical_checks recorded in scope_review",
+      "Digital timing and signal integrity",
+      "ESD ingress and ground/reference continuity",
+      "Analog noise, bias/reference values, feedback stability, loading and temperature drift",
+      "Low-level audio pairing/common mode and crosstalk",
+      "No electrical or production acceptance"
+    ],
+    "description": "147 exact RF-board nets / 222 native remaining connections: 148 connections in reviewed digital/control/bus groups and 74 connections in coherent low-level analog audio paths. Full native 80 x 150 mm board and original copper/obstacles retained. This complements UI252 for a 474-connection stress workload across two independent boards; no claim of one 474-connection board."
+  },
+  "baseline_sha256": {
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "9c4c81fe32c242297b6ed42b6999c8ac63e6f02a766fac0874c88b19b2ae9d3e",
+    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "8aeda79b6891c94f16e57384c965c272b7dc867c6bc4ecf182998e8a318ef0bc",
+    "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
+    "hardware/ecad/h2-r2-topology-overrides.json": "d70eb63b5c9bc60b35624a53a9fef603597ddaeb3c39609654f6786fde9067b7",
+    "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
+    "hardware/layout/generated/H6-R2-routing-policy-audit.json": "7a21ca393f5a54131e73289d313717118842982e2dd86fa23ab97eb5b8431063",
+    "hardware/layout/h6-r2-manual-copper.json": "9dec0bf735af1994bff6c1330f99e3870f8362246bb5192ca71acc3a26c0e8a4",
+    "hardware/layout/h6-r2-placement-freeze.json": "71f155c7c4031563a6b21d40867a404b4b340d8471921286314498eea1e428cd",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "963202a1ff8b2ab887b5fec5e860ddb5cf7af09be0c12b3ccc5701c585a475c8",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3fb5f492f09eefb2e85c678a64e4398f50842e82253ceb0c5277314acde9cf9f",
+    "hardware/layout/generated/H6-R2-current-routing-audit.json": "ddcae9930cae61b011560385bfbd68093bc9f924bfdff45d1366552d82116127"
+  },
+  "nets": [
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AUDIO_BCLK",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/AUDIO_BCLK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "i2s_audio_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U23.77",
+        "U75.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AUDIO_DIN",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/AUDIO_DIN",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "i2s_audio_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U23.80",
+        "U77.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AUDIO_DOUT",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/AUDIO_DOUT",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "i2s_audio_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U23.79",
+        "U78.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AUDIO_WS",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/AUDIO_WS",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "i2s_audio_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U23.78",
+        "U79.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAP_SPI_MISO",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/CAP_SPI_MISO",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R218.2",
+        "U23.55"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAP_SPI_MOSI",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/CAP_SPI_MOSI",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U23.57",
+        "U90.12"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAP_SPI_PRIMARY_CS_N",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/CAP_SPI_PRIMARY_CS_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U23.58",
+        "U91.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAP_SPI_SCK",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/CAP_SPI_SCK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U23.56",
+        "U90.9"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_CSN_BUFFERED_N",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_CSN_BUFFERED_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R96.1",
+        "U31.8"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_CSN_DEVICE_N",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_CSN_DEVICE_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R96.2",
+        "U27.7"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_CSN_N",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_CSN_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R99.1",
+        "U23.7",
+        "U31.9"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_GDO0",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_GDO0",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R100.1",
+        "R97.2",
+        "U23.8"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_GDO0_BUFFERED",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_GDO0_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R97.1",
+        "U33.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_GDO0_DEVICE",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_GDO0_DEVICE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U27.6",
+        "U33.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_GDO2",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_GDO2",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R101.1",
+        "R98.2",
+        "U23.9"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_GDO2_BUFFERED",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_GDO2_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R98.1",
+        "U33.8"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_GDO2_DEVICE",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_GDO2_DEVICE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U27.3",
+        "U33.9"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_MISO",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_MISO",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R104.1",
+        "R109.2",
+        "U23.48"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_MOSI",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_MOSI",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R103.1",
+        "U23.54",
+        "U31.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_SCK",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_SCK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R102.1",
+        "U23.53",
+        "U31.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_SCLK_BUFFERED",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_SCLK_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R107.1",
+        "U31.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_SCLK_DEVICE",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_SCLK_DEVICE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R107.2",
+        "U27.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_SI_BUFFERED",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_SI_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R108.1",
+        "U31.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_SI_DEVICE",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_SI_DEVICE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R108.2",
+        "U27.20"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_SO_BUFFERED",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_SO_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R109.1",
+        "U33.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_SO_DEVICE",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_SO_DEVICE",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cc1101_spi_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U27.2",
+        "U33.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_I2S_BCLK",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_I2S_BCLK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "i2s_audio_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U73.6",
+        "U75.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_I2S_DIN_LOCAL",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_I2S_DIN_LOCAL",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "i2s_audio_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U73.7",
+        "U77.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_I2S_DOUT",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_I2S_DOUT",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "i2s_audio_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U73.9",
+        "U78.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_I2S_WS",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_I2S_WS",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "i2s_audio_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U73.8",
+        "U79.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HUB_RF_ALERT_N",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/HUB_RF_ALERT_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "m1_hub_rf_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J12.22",
+        "U23.19"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HUB_RF_CS_N",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/HUB_RF_CS_N",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "m1_hub_rf_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J12.23",
+        "U23.26"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HUB_RF_MISO",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/HUB_RF_MISO",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "m1_hub_rf_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J12.27",
+        "U23.28"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HUB_RF_MOSI",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/HUB_RF_MOSI",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "m1_hub_rf_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J12.26",
+        "U23.25"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HUB_RF_SCK",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/HUB_RF_SCK",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "m1_hub_rf_bus",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "J12.24",
+        "U23.27"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_MISO_BUFFERED",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_MISO_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R218.1",
+        "U93.11"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_MISO_CONNECTOR",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_MISO_CONNECTOR",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.13",
+        "U89.4",
+        "U93.12"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_MOSI_BUFFERED",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_MOSI_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R219.1",
+        "U90.11"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_MOSI_CONNECTOR",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_MOSI_CONNECTOR",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.12",
+        "R219.2",
+        "U88.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_NSS_BUFFERED",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_NSS_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R220.1",
+        "U91.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_NSS_CONNECTOR",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_NSS_CONNECTOR",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.14",
+        "R220.2",
+        "U88.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_SCK_BUFFERED",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_SCK_BUFFERED",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R222.1",
+        "U90.8"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_SCK_CONNECTOR",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_SCK_CONNECTOR",
+      "routing_class": "CLOCKED_DIGITAL",
+      "scope_group": "cap_spi",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.11",
+        "R222.2",
+        "U88.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_LO_I2C_SCL",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_I2C_SCL",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R150.2",
+        "U23.37",
+        "U54.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_LO_I2C_SDA",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_I2C_SDA",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R151.2",
+        "U23.36",
+        "U54.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAP_GNSS_RX_OR_CC_GDO0",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/CAP_GNSS_RX_OR_CC_GDO0",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "cap_uart",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R216.2",
+        "U23.52"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAP_GNSS_TX_OR_RF_SW0",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/CAP_GNSS_TX_OR_RF_SW0",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "cap_uart",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U23.49",
+        "U90.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAP_I2C_SCL",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/CAP_I2C_SCL",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R212.2",
+        "U23.39",
+        "U92.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAP_I2C_SDA",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/CAP_I2C_SDA",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R213.2",
+        "U23.38",
+        "U92.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_I2C_SCL",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_I2C_SCL",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R183.2",
+        "U73.1",
+        "U74.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_I2C_SDA",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_I2C_SDA",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R184.2",
+        "U73.19",
+        "U74.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "REAR_I2C_SCL",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/REAR_I2C_SCL",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 6,
+      "exact_ref_pads": [
+        "R246.2",
+        "U106.29",
+        "U23.2",
+        "U42.14",
+        "U63.5",
+        "U74.5",
+        "U84.14"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "REAR_I2C_SDA",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/REAR_I2C_SDA",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 6,
+      "exact_ref_pads": [
+        "R247.2",
+        "U106.30",
+        "U23.1",
+        "U42.15",
+        "U63.1",
+        "U74.1",
+        "U84.15"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_DBG0_CONNECTOR",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_DBG0_CONNECTOR",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_swd",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J3.5",
+        "R77.1",
+        "U24.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_DBG1_CONNECTOR",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_DBG1_CONNECTOR",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_swd",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J3.6",
+        "R78.1",
+        "U24.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_SWCLK",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_SWCLK",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_swd",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R78.2",
+        "U23.33"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_SWDIO",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_SWDIO",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "service_swd",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R77.2",
+        "U23.34"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_I2C_SCL",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_I2C_SCL",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R157.2",
+        "U61.11",
+        "U63.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_I2C_SDA",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_I2C_SDA",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R158.2",
+        "U61.12",
+        "U63.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_I2C_READY",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_I2C_READY",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U106.15",
+        "U92.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_I2C_SCL_OUT",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_I2C_SCL_OUT",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.3",
+        "U87.2",
+        "U92.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_I2C_SDA_OUT",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_I2C_SDA_OUT",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "rf_i2c_controls",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.4",
+        "U87.1",
+        "U92.7"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_UART_RX",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_UART_RX",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "voice_uart",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R142.1",
+        "U23.17",
+        "U44.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_UART_TX",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/VOICE_UART_TX",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "voice_uart",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U23.16",
+        "U44.10"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_U_UART_RX",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_U_UART_RX",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "voice_uart",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R141.1",
+        "U39.16",
+        "U44.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_U_UART_TX",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_U_UART_TX",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "voice_uart",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U39.17",
+        "U44.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_V_UART_RX",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_V_UART_RX",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "voice_uart",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R146.1",
+        "U44.9",
+        "U51.16"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_V_UART_TX",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_V_UART_TX",
+      "routing_class": "SERIAL_CONTROL",
+      "scope_group": "voice_uart",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U44.7",
+        "U51.17"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAP_IRQ",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/CAP_IRQ",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R217.2",
+        "U23.12"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAP_PIN10_HOST",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/CAP_PIN10_HOST",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U23.11",
+        "U99.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "ENCODER_A",
+      "kicad_net": "/RF_31_REAR_CONTROLS/ENCODER_A",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_encoder_inputs",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J12.51",
+        "SW3.A",
+        "U104.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "ENCODER_B",
+      "kicad_net": "/RF_31_REAR_CONTROLS/ENCODER_B",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_encoder_inputs",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J12.52",
+        "SW3.B",
+        "U104.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_ABSENT",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_ABSENT",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R192.1",
+        "R200.2",
+        "U106.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_SWITCH_STATE",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_SWITCH_STATE",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R200.1",
+        "U83.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "M5_UNIT_SIG0",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/M5_UNIT_SIG0",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U102.5",
+        "U23.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "M5_UNIT_SIG1",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/M5_UNIT_SIG1",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U102.4",
+        "U23.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_STATUS_LOCAL_N",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_STATUS_LOCAL_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "receiver_status",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U61.3",
+        "U64.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_STATUS_N",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_STATUS_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "receiver_status",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R159.2",
+        "U106.21",
+        "U64.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_BUSY_CONNECTOR",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_BUSY_CONNECTOR",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.10",
+        "U88.5",
+        "U99.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_GPS_RX_BUFFERED",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_GPS_RX_BUFFERED",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R215.1",
+        "U90.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_GPS_RX_CONNECTOR",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_GPS_RX_CONNECTOR",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.2",
+        "R215.2",
+        "U87.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_GPS_TX_BUFFERED",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_GPS_TX_BUFFERED",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R216.1",
+        "U93.8"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_GPS_TX_CONNECTOR",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_GPS_TX_CONNECTOR",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.1",
+        "U89.2",
+        "U93.9"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_IRQ_BUFFERED",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_IRQ_BUFFERED",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R217.1",
+        "U93.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "U214_IRQ_CONNECTOR",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_IRQ_CONNECTOR",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J10.9",
+        "U89.1",
+        "U93.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "UI_ENCODER_PUSH_N",
+      "kicad_net": "/RF_31_REAR_CONTROLS/UI_ENCODER_PUSH_N",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_encoder_inputs",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J12.53",
+        "SW3.E",
+        "U105.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "UNIT_CONNECTOR_SIG0",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/UNIT_CONNECTOR_SIG0",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J11.3",
+        "U101.1",
+        "U102.8"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "UNIT_CONNECTOR_SIG1",
+      "kicad_net": "/RF_30_U214_U219_M5_EXT/UNIT_CONNECTOR_SIG1",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "cap_unit_digital",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "J11.4",
+        "U101.2",
+        "U102.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_IO_SPARE_P1",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_IO_SPARE_P1",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R193.1",
+        "U84.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_IO_SPARE_P2",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_IO_SPARE_P2",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R194.1",
+        "U84.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_IO_SPARE_P3",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_IO_SPARE_P3",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R195.1",
+        "U84.7"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_IO_SPARE_P4",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_IO_SPARE_P4",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R196.1",
+        "U84.9"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_IO_SPARE_P5",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_IO_SPARE_P5",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R197.1",
+        "U84.10"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_IO_SPARE_P6",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_IO_SPARE_P6",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R198.1",
+        "U84.11"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_IO_SPARE_P7",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_IO_SPARE_P7",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R199.1",
+        "U84.12"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_BAND_RESERVE_P1",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_BAND_RESERVE_P1",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R115.1",
+        "U42.5"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_BAND_RESERVE_P2",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_BAND_RESERVE_P2",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R116.1",
+        "U42.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_BAND_RESERVE_P3",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_BAND_RESERVE_P3",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R117.1",
+        "U42.7"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_BAND_RESERVE_P4",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_BAND_RESERVE_P4",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R118.1",
+        "U42.9"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_BAND_RESERVE_P5",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_BAND_RESERVE_P5",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R119.1",
+        "U42.10"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_BAND_RESERVE_P6",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_BAND_RESERVE_P6",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R120.1",
+        "U42.11"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_BAND_RESERVE_P7",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_BAND_RESERVE_P7",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "rear_input_logic",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R121.1",
+        "U42.12"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AUDIO_CAPTURE_MIC_SEL",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/AUDIO_CAPTURE_MIC_SEL",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R171.1",
+        "U106.1",
+        "U68.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AUDIO_VMID_MAIN",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/AUDIO_VMID_MAIN",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 9,
+      "exact_ref_pads": [
+        "C204.1",
+        "R165.2",
+        "R169.2",
+        "R170.2",
+        "R178.1",
+        "R179.2",
+        "R187.2",
+        "R204.2",
+        "R210.2",
+        "U71.7"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAPTURE_MIC_BIASED",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CAPTURE_MIC_BIASED",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "C197.2",
+        "R169.1",
+        "U68.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAPTURE_RX_BIASED",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CAPTURE_RX_BIASED",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "C198.2",
+        "R170.1",
+        "U68.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_ADCVREF",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_ADCVREF",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C207.1",
+        "U73.15"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_ADC_IN_N",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_ADC_IN_N",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R180.2",
+        "U73.17"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_ADC_IN_P",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_ADC_IN_P",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R181.2",
+        "U73.18"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_ADC_N_AC",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_ADC_N_AC",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C205.2",
+        "R180.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_ADC_P_AC",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_ADC_P_AC",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C206.2",
+        "R181.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_CAPTURE_BUFFER_FB",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_CAPTURE_BUFFER_FB",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "C206.1",
+        "U67.1",
+        "U67.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_CAPTURE_VMID",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_CAPTURE_VMID",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 4,
+      "exact_ref_pads": [
+        "C195.2",
+        "C196.1",
+        "R167.1",
+        "R168.2",
+        "U67.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_DACVREF",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_DACVREF",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C209.1",
+        "U73.14"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_TX_AC",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_TX_AC",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C221.2",
+        "R188.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CODEC_VMID",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CODEC_VMID",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C223.1",
+        "U73.16"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_INTERNAL_MIC_SEL",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_INTERNAL_MIC_SEL",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R202.2",
+        "U84.4",
+        "U85.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_MIC_BIAS_FILTERED",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_MIC_BIAS_FILTERED",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "C230.1",
+        "R201.1",
+        "R203.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "HEADSET_MIC_RAW",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_MIC_RAW",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 3,
+      "exact_ref_pads": [
+        "R201.2",
+        "U82.4",
+        "U83.1",
+        "U85.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MIC_BIAS_FILTERED",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/MIC_BIAS_FILTERED",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "C232.1",
+        "R205.2",
+        "R206.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MIC_RAW",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "MK1.1",
+        "MK1.1",
+        "R206.2",
+        "U85.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MIC_SELECTED_RAW",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/MIC_SELECTED_RAW",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "C197.1",
+        "C231.1",
+        "U85.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "PAM_AUDIO_IN_N",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/PAM_AUDIO_IN_N",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R208.2",
+        "U86.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "PAM_AUDIO_IN_P",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/PAM_AUDIO_IN_P",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "R209.2",
+        "U86.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "PAM_INPUT_N_AC",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/PAM_INPUT_N_AC",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C235.2",
+        "R208.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "PAM_INPUT_P_AC",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/PAM_INPUT_P_AC",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C236.2",
+        "R209.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_AUDIO_L",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AUDIO_L",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C192.1",
+        "U61.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_AUDIO_L_AC",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AUDIO_L_AC",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C192.2",
+        "R163.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_AUDIO_R",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AUDIO_R",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C193.1",
+        "U61.16"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_AUDIO_R_AC",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AUDIO_R_AC",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C193.2",
+        "R164.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_AUDIO_SELECTED",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/RX_AUDIO_SELECTED",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "C198.1",
+        "U69.4",
+        "U71.9"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_AUDIO_SOURCE_SEL",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/RX_AUDIO_SOURCE_SEL",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R173.1",
+        "U106.24",
+        "U69.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_VOICE_AFOUT_AC",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/RX_VOICE_AFOUT_AC",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C239.2",
+        "R211.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_VOICE_AFOUT_BIASED",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/RX_VOICE_AFOUT_BIASED",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 2,
+      "exact_ref_pads": [
+        "R210.1",
+        "R211.2",
+        "U69.1"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "SPEAKER_SELECTED_N",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/SPEAKER_SELECTED_N",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C235.1",
+        "U71.6"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "SPEAKER_SELECTED_P",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/SPEAKER_SELECTED_P",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C236.1",
+        "U71.10"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_MIC_SELECTED_MAIN",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_MIC_SELECTED_MAIN",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U40.6",
+        "U72.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_U_MIC_IN",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_U_MIC_IN",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C146.2",
+        "U39.18"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_U_MIC_SELECTED",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_U_MIC_SELECTED",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C146.1",
+        "U40.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_V_MIC_IN",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_V_MIC_IN",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C154.2",
+        "U51.18"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_V_MIC_SELECTED",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_V_MIC_SELECTED",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C154.1",
+        "U40.7"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CAPTURE_SELECTED",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/CAPTURE_SELECTED",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C195.1",
+        "U68.4"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_SI4732_MONO",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_SI4732_MONO",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 3,
+      "exact_ref_pads": [
+        "R163.2",
+        "R164.2",
+        "R165.1",
+        "U69.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_VOICE_AFOUT_SELECTED",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/RX_VOICE_AFOUT_SELECTED",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "C239.1",
+        "U40.10"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_VOICE_U_AFOUT_LOCAL",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/RX_VOICE_U_AFOUT_LOCAL",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U39.3",
+        "U40.2"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_VOICE_V_AFOUT_LOCAL",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/RX_VOICE_V_AFOUT_LOCAL",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 1,
+      "exact_ref_pads": [
+        "U40.9",
+        "U51.3"
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_CODEC_INJECT",
+      "kicad_net": "/RF_22_AUDIO_CODEC_IO/VOICE_CODEC_INJECT",
+      "routing_class": "GENERAL_CONTROL",
+      "scope_group": "low_level_audio_capture_playback",
+      "remaining_connections": 3,
+      "exact_ref_pads": [
+        "C222.1",
+        "R187.1",
+        "R188.2",
+        "U72.1"
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "fine_via75",
+      "grid_step": 0.05,
+      "via_cost": 75,
+      "ordering": "mps"
+    },
+    {
+      "id": "coarse_via75",
+      "grid_step": 0.1,
+      "via_cost": 75,
+      "ordering": "mps"
+    },
+    {
+      "id": "fine75_inside_out",
+      "grid_step": 0.05,
+      "via_cost": 75,
+      "ordering": "inside_out"
+    }
+  ],
+  "selection": "Only full selected connectivity, independent native DRC/parity, unchanged rules and preservation, and added copper inside ROI qualify geometrically; compare time/vias/length on the Pareto frontier. No electrical acceptance.",
+  "engine_timeout_seconds": 900,
+  "validation_timeout_seconds": 180,
+  "scope_review": {
+    "reviewed_at_utc": "2026-09-16T00:59:20.877Z",
+    "basis": "Read-only KiCad native connectivity with every selected pad resolved through H2 controlled-symbol pin maps and endpoint/instance ledgers. Explicit digital/analog group review; routing class and GENERAL_CONTROL fallback never establish electrical acceptance.",
+    "included_groups": [
+      {
+        "id": "i2s_audio_bus",
+        "nets": [
+          "AUDIO_BCLK",
+          "AUDIO_DIN",
+          "AUDIO_DOUT",
+          "AUDIO_WS",
+          "CODEC_I2S_BCLK",
+          "CODEC_I2S_DIN_LOCAL",
+          "CODEC_I2S_DOUT",
+          "CODEC_I2S_WS"
+        ],
+        "remaining_connections": 8,
+        "reason": "RP2354 I2S clock/data endpoints through reviewed series segments to codec pins; all eight clock/data nets retained.",
+        "missing_electrical_checks": [
+          "clock/data setup/hold and skew",
+          "edge integrity and crosstalk",
+          "ground reference and return continuity",
+          "remote endpoints, voltage compatibility and buffer isolation"
+        ]
+      },
+      {
+        "id": "cc1101_spi_status",
+        "nets": [
+          "CC_CSN_BUFFERED_N",
+          "CC_CSN_DEVICE_N",
+          "CC_CSN_N",
+          "CC_GDO0",
+          "CC_GDO0_BUFFERED",
+          "CC_GDO0_DEVICE",
+          "CC_GDO2",
+          "CC_GDO2_BUFFERED",
+          "CC_GDO2_DEVICE",
+          "CC_MISO",
+          "CC_MOSI",
+          "CC_SCK",
+          "CC_SCLK_BUFFERED",
+          "CC_SCLK_DEVICE",
+          "CC_SI_BUFFERED",
+          "CC_SI_DEVICE",
+          "CC_SO_BUFFERED",
+          "CC_SO_DEVICE"
+        ],
+        "remaining_connections": 24,
+        "reason": "CC1101 SPI and GDO status endpoints through host/return buffers; RF analog feed, enable and TX evidence nets excluded.",
+        "missing_electrical_checks": [
+          "clock/data setup/hold and skew",
+          "edge integrity and crosstalk",
+          "ground reference and return continuity",
+          "remote endpoints, voltage compatibility and buffer isolation",
+          "GDO direction and operating-mode behavior"
+        ]
+      },
+      {
+        "id": "cap_spi",
+        "nets": [
+          "CAP_SPI_MISO",
+          "CAP_SPI_MOSI",
+          "CAP_SPI_PRIMARY_CS_N",
+          "CAP_SPI_SCK",
+          "U214_MISO_BUFFERED",
+          "U214_MISO_CONNECTOR",
+          "U214_MOSI_BUFFERED",
+          "U214_MOSI_CONNECTOR",
+          "U214_NSS_BUFFERED",
+          "U214_NSS_CONNECTOR",
+          "U214_SCK_BUFFERED",
+          "U214_SCK_CONNECTOR"
+        ],
+        "remaining_connections": 16,
+        "reason": "External-cap SPI clock/data/chip-select segments through U214 buffers and connector endpoints; supply/enable paths excluded.",
+        "missing_electrical_checks": [
+          "clock/data setup/hold and skew",
+          "edge integrity and crosstalk",
+          "ground reference and return continuity",
+          "remote endpoints, voltage compatibility and buffer isolation",
+          "connector ingress ESD topology"
+        ]
+      },
+      {
+        "id": "m1_hub_rf_bus",
+        "nets": [
+          "HUB_RF_ALERT_N",
+          "HUB_RF_CS_N",
+          "HUB_RF_MISO",
+          "HUB_RF_MOSI",
+          "HUB_RF_SCK"
+        ],
+        "remaining_connections": 5,
+        "reason": "Five Hub/RF SPI/alert signals between RP2354 and M1 connector; only RF-board endpoints selected.",
+        "missing_electrical_checks": [
+          "clock/data setup/hold and skew",
+          "edge integrity and crosstalk",
+          "ground reference and return continuity",
+          "remote endpoints, voltage compatibility and buffer isolation"
+        ]
+      },
+      {
+        "id": "rf_i2c_controls",
+        "nets": [
+          "AIR_LO_I2C_SCL",
+          "AIR_LO_I2C_SDA",
+          "CAP_I2C_SCL",
+          "CAP_I2C_SDA",
+          "CODEC_I2C_SCL",
+          "CODEC_I2C_SDA",
+          "REAR_I2C_SCL",
+          "REAR_I2C_SDA",
+          "RX_I2C_SCL",
+          "RX_I2C_SDA",
+          "U214_I2C_READY",
+          "U214_I2C_SCL_OUT",
+          "U214_I2C_SDA_OUT"
+        ],
+        "remaining_connections": 33,
+        "reason": "Reviewed AIR LO, cap, codec, rear input and broadcast receiver I2C signal groups with exact pull/connector endpoints; pack admission, pack gauge and PD-local buses excluded.",
+        "missing_electrical_checks": [
+          "I2C capacitance, pull-up sizing and rise/fall time",
+          "device addresses and isolation behavior",
+          "powered-off leakage",
+          "return continuity and connector ESD"
+        ]
+      },
+      {
+        "id": "cap_uart",
+        "nets": [
+          "CAP_GNSS_RX_OR_CC_GDO0",
+          "CAP_GNSS_TX_OR_RF_SW0"
+        ],
+        "remaining_connections": 2,
+        "reason": "Cap GNSS UART-compatible signal endpoints; multiplexed device/role alternatives remain electrical-review inputs.",
+        "missing_electrical_checks": [
+          "clock/data setup/hold and skew",
+          "edge integrity and crosstalk",
+          "ground reference and return continuity",
+          "remote endpoints, voltage compatibility and buffer isolation",
+          "cap-mode pin ownership and alternate GDO/switch function"
+        ]
+      },
+      {
+        "id": "service_swd",
+        "nets": [
+          "RF_RP_DBG0_CONNECTOR",
+          "RF_RP_DBG1_CONNECTOR",
+          "RF_RP_SWCLK",
+          "RF_RP_SWDIO"
+        ],
+        "remaining_connections": 6,
+        "reason": "RF RP2354 SWD clock/data and debug header contacts through series/ESD parts. Reset, boot, reference supply and USB-C CC excluded.",
+        "missing_electrical_checks": [
+          "clock/data setup/hold and skew",
+          "edge integrity and crosstalk",
+          "ground reference and return continuity",
+          "remote endpoints, voltage compatibility and buffer isolation",
+          "debug attachment sequencing and ESD ingress"
+        ]
+      },
+      {
+        "id": "voice_uart",
+        "nets": [
+          "VOICE_UART_RX",
+          "VOICE_UART_TX",
+          "VOICE_U_UART_RX",
+          "VOICE_U_UART_TX",
+          "VOICE_V_UART_RX",
+          "VOICE_V_UART_TX"
+        ],
+        "remaining_connections": 9,
+        "reason": "Host and VHF/UHF module UART control signal segments, excluding enable/PTT/TX-evidence and RF conductors.",
+        "missing_electrical_checks": [
+          "clock/data setup/hold and skew",
+          "edge integrity and crosstalk",
+          "ground reference and return continuity",
+          "remote endpoints, voltage compatibility and buffer isolation",
+          "UART selection, module behavior and shared-bus contention"
+        ]
+      },
+      {
+        "id": "cap_unit_digital",
+        "nets": [
+          "CAP_IRQ",
+          "CAP_PIN10_HOST",
+          "M5_UNIT_SIG0",
+          "M5_UNIT_SIG1",
+          "U214_BUSY_CONNECTOR",
+          "U214_GPS_RX_BUFFERED",
+          "U214_GPS_RX_CONNECTOR",
+          "U214_GPS_TX_BUFFERED",
+          "U214_GPS_TX_CONNECTOR",
+          "U214_IRQ_BUFFERED",
+          "U214_IRQ_CONNECTOR",
+          "UNIT_CONNECTOR_SIG0",
+          "UNIT_CONNECTOR_SIG1"
+        ],
+        "remaining_connections": 19,
+        "reason": "Explicit cap/unit IRQ, busy, UART and general logic contacts with buffer/connector endpoints. GENERAL_CONTROL membership alone is not acceptance.",
+        "missing_electrical_checks": [
+          "clock/data setup/hold and skew",
+          "edge integrity and crosstalk",
+          "ground reference and return continuity",
+          "remote endpoints, voltage compatibility and buffer isolation",
+          "external-unit pin direction and protocol contract"
+        ]
+      },
+      {
+        "id": "rear_encoder_inputs",
+        "nets": [
+          "ENCODER_A",
+          "ENCODER_B",
+          "UI_ENCODER_PUSH_N"
+        ],
+        "remaining_connections": 6,
+        "reason": "Rear mechanical encoder A/B/push contacts and local ESD/M1 endpoints; the RF-board half of the UI input group.",
+        "missing_electrical_checks": [
+          "contact debounce and pull behavior",
+          "ESD ingress topology",
+          "M1 remote endpoint and return continuity"
+        ]
+      },
+      {
+        "id": "rear_input_logic",
+        "nets": [
+          "HEADSET_ABSENT",
+          "HEADSET_SWITCH_STATE",
+          "HEADSET_IO_SPARE_P1",
+          "HEADSET_IO_SPARE_P2",
+          "HEADSET_IO_SPARE_P3",
+          "HEADSET_IO_SPARE_P4",
+          "HEADSET_IO_SPARE_P5",
+          "HEADSET_IO_SPARE_P6",
+          "HEADSET_IO_SPARE_P7",
+          "VOICE_BAND_RESERVE_P1",
+          "VOICE_BAND_RESERVE_P2",
+          "VOICE_BAND_RESERVE_P3",
+          "VOICE_BAND_RESERVE_P4",
+          "VOICE_BAND_RESERVE_P5",
+          "VOICE_BAND_RESERVE_P6",
+          "VOICE_BAND_RESERVE_P7"
+        ],
+        "remaining_connections": 17,
+        "reason": "Reviewed headset insertion/switch-state and reserved expander input contacts, including exact spare-contact nets; audio load paths remain separate.",
+        "missing_electrical_checks": [
+          "input thresholds and pulls",
+          "connector insertion transients and ESD",
+          "reserved-pin disposition",
+          "ground return"
+        ]
+      },
+      {
+        "id": "receiver_status",
+        "nets": [
+          "RX_STATUS_LOCAL_N",
+          "RX_STATUS_N"
+        ],
+        "remaining_connections": 3,
+        "reason": "Digital broadcast receiver status local/host segments through the reviewed return-buffer endpoints.",
+        "missing_electrical_checks": [
+          "status voltage/pull behavior",
+          "powered-off buffer isolation",
+          "ground return"
+        ]
+      },
+      {
+        "id": "low_level_audio_capture_playback",
+        "nets": [
+          "AUDIO_CAPTURE_MIC_SEL",
+          "AUDIO_VMID_MAIN",
+          "CAPTURE_MIC_BIASED",
+          "CAPTURE_RX_BIASED",
+          "CODEC_ADCVREF",
+          "CODEC_ADC_IN_N",
+          "CODEC_ADC_IN_P",
+          "CODEC_ADC_N_AC",
+          "CODEC_ADC_P_AC",
+          "CODEC_CAPTURE_BUFFER_FB",
+          "CODEC_CAPTURE_VMID",
+          "CODEC_DACVREF",
+          "CODEC_TX_AC",
+          "CODEC_VMID",
+          "HEADSET_INTERNAL_MIC_SEL",
+          "HEADSET_MIC_BIAS_FILTERED",
+          "HEADSET_MIC_RAW",
+          "MIC_BIAS_FILTERED",
+          "MIC_RAW",
+          "MIC_SELECTED_RAW",
+          "PAM_AUDIO_IN_N",
+          "PAM_AUDIO_IN_P",
+          "PAM_INPUT_N_AC",
+          "PAM_INPUT_P_AC",
+          "RX_AUDIO_L",
+          "RX_AUDIO_L_AC",
+          "RX_AUDIO_R",
+          "RX_AUDIO_R_AC",
+          "RX_AUDIO_SELECTED",
+          "RX_AUDIO_SOURCE_SEL",
+          "RX_VOICE_AFOUT_AC",
+          "RX_VOICE_AFOUT_BIASED",
+          "SPEAKER_SELECTED_N",
+          "SPEAKER_SELECTED_P",
+          "VOICE_MIC_SELECTED_MAIN",
+          "VOICE_U_MIC_IN",
+          "VOICE_U_MIC_SELECTED",
+          "VOICE_V_MIC_IN",
+          "VOICE_V_MIC_SELECTED",
+          "CAPTURE_SELECTED",
+          "RX_SI4732_MONO",
+          "RX_VOICE_AFOUT_SELECTED",
+          "RX_VOICE_U_AFOUT_LOCAL",
+          "RX_VOICE_V_AFOUT_LOCAL",
+          "VOICE_CODEC_INJECT"
+        ],
+        "remaining_connections": 74,
+        "reason": "Coherent low-level microphone/receiver selection, codec capture/reference/feedback, voice injection and amplifier-input nets. Includes six endpoint-reviewed analog signals falling back to GENERAL_CONTROL. Local analog bias/reference nets are included as small-signal experiment geometry; power rails, BTL speaker outputs, headphone load outputs, RF detector/evidence and safety paths are excluded.",
+        "missing_electrical_checks": [
+          "Electrical acceptance BLOCKED: analog noise floor and audio fidelity",
+          "bias/reference operating points, loading and temperature drift",
+          "amplifier feedback stability and component parasitics",
+          "return-current routing and coupling to digital/switching nets",
+          "paired input symmetry and common-mode behavior",
+          "connector transients, impedance and ESD"
+        ]
+      }
+    ],
+    "excluded_groups": [
+      {
+        "reason": "All RF conductors, power/ground, switching nodes, oscillator, USB/CC/VTREF, safety/PTT/enable/watchdog, reset/boot, RF detector/TX-evidence, current and regulator branches."
+      },
+      {
+        "reason": "SPEAKER_BTL_*, HEADPHONE_*, CODEC_HP_* load outputs and all power-amplifier supply/current paths."
+      },
+      {
+        "reason": "PACK_ADMISSION_*, PACK_GAUGE_I2C_* and PD_LOCAL_I2C_* retained outside the experiment because they belong to power/safety boundaries."
+      },
+      {
+        "reason": "Every unlisted GENERAL_CONTROL net remains excluded; its fallback class does not authorize routing."
+      }
+    ],
+    "electrical_acceptance": "BLOCKED: no SI/skew, analog noise/bias/reference/feedback stability/loading/tempco, paired-input symmetry, ESD, return-current or circuit-function qualification is performed",
+    "production_authorization": false
+  },
+  "experiment_geometry": {
+    "track_width_mm": 0.15,
+    "via_diameter_mm": 0.4,
+    "via_drill_mm": 0.2,
+    "routable_layers": [
+      "F.Cu",
+      "In2.Cu",
+      "In3.Cu",
+      "B.Cu"
+    ],
+    "reserved_reference_layers": [
+      "In1.Cu",
+      "In4.Cu"
+    ],
+    "nominal_geometry_only": true,
+    "production_policy_changed": false
+  }
+}

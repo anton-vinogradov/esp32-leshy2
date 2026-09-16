@@ -23,6 +23,7 @@ else:
 LAYERS = {"F.Cu", "In2.Cu", "In3.Cu", "B.Cu"}
 COPPER = {"segment", "via", "arc"}
 UUID = re.compile(r'\(uuid\s+"([^"\s]+)"\)')
+NET_FIELD = re.compile(r'\(net\s+("(?:\\.|[^"\\])*"|[0-9]+)\s*\)')
 
 
 def forms(text: str) -> list[tuple[str, str]]:
@@ -171,6 +172,30 @@ def _geometry_signature(items: list[tuple]) -> str:
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
+def drc_selected_open(report, uuid_nets, selected):
+    """Independently bind CLI missing-connection findings to native item UUIDs.
+
+    Unknown/malformed findings fail closed; descriptions are localized and are
+    deliberately not parsed. Other nets may remain open in a scoped benchmark.
+    """
+    findings = report.get("unconnected_items")
+    if not isinstance(findings, list):
+        raise ValueError("Native DRC missing unconnected_items")
+    selected_open = 0
+    for finding in findings:
+        items = finding.get("items") if isinstance(finding, dict) else None
+        if not isinstance(items, list) or len(items) < 2:
+            raise ValueError("Malformed DRC missing-connection finding")
+        nets = []
+        for item in items:
+            uid = item.get("uuid") if isinstance(item, dict) else None
+            if not isinstance(uid, str) or uid not in uuid_nets:
+                raise ValueError("DRC missing-connection item is not bound to native copper/pads")
+            nets.append(uuid_nets[uid])
+        selected_open += bool(set(nets) & selected)
+    return selected_open
+
+
 def grade_candidate(baseline: Path, candidate: Path, rows: list[dict], expected_sha256: str) -> dict:
     """Grade additive copper without writing either file or any project settings.
 
@@ -198,6 +223,17 @@ def grade_candidate(baseline: Path, candidate: Path, rows: list[dict], expected_
         old_native, new_native = _native_copper(old, pcbnew), _native_copper(new, pcbnew)
         _check(failures, set(old_native) == set(old_raw) and set(new_native) == set(new_raw),
                "raw_native_copper_inventory")
+        # KiCad may silently reassign a track to the net of a touching pad.
+        # Native connectivity alone would then accept a mislabeled source file.
+        for raw, native in ((old_raw, old_native), (new_raw, new_native)):
+            for uid, (_, block) in raw.items():
+                matches = NET_FIELD.findall(block)
+                if len(matches) != 1 or uid not in native:
+                    failures["raw_native_net_disagreement"] += 1
+                    continue
+                declared = json.loads(matches[0])
+                expected = native[uid][1] if isinstance(declared, str) else native[uid][2]
+                _check(failures, declared == expected, "raw_native_net_disagreement")
         for key, value in old_native.items():
             _check(failures, new_native.get(key) == value, "original_copper_native_changed_or_missing")
         _check(failures, _pads(old) == _pads(new), "native_pad_ref_net_changed")

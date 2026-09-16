@@ -33,22 +33,29 @@ Two other R64 moves were rejected before routing due to baseline collisions. The
 From the repository root, with prepared KRT/Python runtimes from the [pinned profile](../hardware/layout/h6-r2-autorouter-profile.json):
 
 ```sh
-python3 hardware/layout/h6_r2_autorouter_benchmark.py \
-  --case hardware/layout/benchmarks/ui-inputs-service-id-82.json \
-  --adaptive --repeat-best 3 --quiet
+python3 tools/route_board.py \
+  --case hardware/layout/benchmarks/ui-inputs-service-id-82.json
 ```
 
-The script creates separate snapshots and tries the manifest's first established profile. Only if independent checks fail does it add the other 11 settings, select a complete passing candidate and replay it three times. Original-rule restoration, every-net checks, DRC/parity, copper preservation and ROI checks remain intact. `--quiet` returns launch/final summaries only; logs/candidates stay on disk. Repeat operation needs one launch and reading its result, without model parameter decisions between attempts. This is a control contract, **not a measurement of total recurring token use**.
+The wrapper creates separate snapshots and tries the manifest's first established profile. Only if independent checks fail does it add the other 11 settings, select a complete passing candidate and replay it three times. Original-rule restoration, every-net checks, DRC/parity, copper preservation and ROI checks remain intact. It returns one JSON result; logs/candidates stay on disk. Exit code 0 means complete checked geometry with three identical replays, not production readiness. Partial progress appears as `best_partial_resolved`, never credited as `resolved`. Repeat operation needs one launch and reading its result, without model parameter decisions between attempts. This is a control contract, **not a measurement of total recurring token use**.
 
-For geometric research, retain `--sweep --repeat-best 3 --quiet`: minimize vias among all passing settings, then length, then time. Adaptive mode does not promise globally best geometry: it accepts a checked seed without searching alternatives. Nothing is applied to production PCBs. Changed sources require a newly reviewed manifest; stale hashes are intentionally rejected.
+Two `--case` arguments run two manifests serially; overlapping nets on the same board are rejected. `--portfolio` tries eight search-order/direction/grid alternatives without relaxing clearances or copper sizes; `--sweep` explores the earlier twelve settings. `--max-seconds 1800` is a scheduling budget **per case**, not a hard total deadline: an active attempt has its own timeout. Source, checker, candidate and independent DRC hashes are verified; incomplete or stale evidence is rejected. Raw declared-net checking is mandatory: KiCad can normalize an incorrectly assigned track net when loading the board.
+
+On macOS, each invocation starts `caffeinate -i -w <PID>`, verifies its own sleep assertion and releases it on completion, error or cancellation. Display sleep remains allowed; lid closure and explicit sleep are not blocked. Losing the caffeinate process stops the computation with an error. `sleep_prevention` reports its state; persistent power settings are unchanged. Verified with 24 wrapper tests and a separate real assertion creation/release cycle.
+
+Among complete passing settings, minimize vias, then length, then time. Adaptive mode does not promise globally best geometry: it accepts a checked seed without searching alternatives. Nothing is applied to production PCBs. Changed sources require a newly reviewed manifest; stale hashes are intentionally rejected. Prepared engine/Python runtimes from the profile are required; a dependency installer is not yet included.
 
 The failing-seed path was also tested: a manifest copy starts with `coarse_via75`. It failed; without intervention the controller added 11 alternatives, selected the only complete passing profile, and performed three identical replays—15 attempts in 304.9 s. This extension contains 34 attempts in total, including failures; negative results are not hidden.
 
-Replay after a change: `--profiles fine_via75 --repeats 3 --move R64 -0.5 0`, using the default small case. Supply engine/runtime locations through `--engine` and `--engine-python`.
+The research controller `hardware/layout/h6_r2_autorouter_benchmark.py` retains the move experiment: `--profiles fine_via75 --repeats 3 --move R64 -0.5 0`, using the default small case. The strict wrapper does not yet accept changed placements. Supply engine/runtime locations through `--engine` and `--engine-python`.
 
 Repeat usage measurement locally with `python3 hardware/layout/h6_r2_benchmark_usage.py --session <explicit-journal.jsonl> --since <UTC-time>`. It exports aggregates only; conversation text, journal paths and account identifiers are not copied into the public report. Cached input is separated from uncached input/output; counter resets are rejected.
 
 ## Next steps and readiness gate
+
+The next target is several proposed interface/antenna layouts → constrained group placement → routing → mandatory checks → comparison of passing candidates only. This is **a plan, not a working automatic board designer**. Within a chosen variant, mechanical features and interfaces are fixed; critical RF/power islands, crystals and decoupling move only as constrained groups. Changing a radio path's board assignment or layer count requires a separate architecture variant, not unconstrained individual-component moves. Geometric success does not replace power, impedance, return-path, interference or prototype qualification; an unknown mandatory criterion blocks acceptance rather than counting as passed.
+
+The owner considers 2 hours for a complete automatic cycle excellent and 8+ hours acceptable. On the M3 Pro (12 cores, 36 GiB), one sampled active attempt used approximately one core and 2.7 GiB RSS; this is a snapshot, not peak usage. There is headroom to investigate independent parallel searches, but execution is currently serial. Full-cycle timing for both boards and all net classes is unmeasured; small-region timings cannot be extrapolated linearly.
 
 1. Remove the model from recurring decisions: established profile → automatic fallback → checked replays → compact result. Implemented; next measure an isolated repeat with model usage, without concurrent development. Do not read detailed logs when all gates pass. Do not spend tokens micro-optimizing A* seconds.
 2. Test other classes and both executors: KRT and [Freerouting 2.4.1](https://github.com/freerouting/freerouting/releases/tag/v2.4.1). Current automatic policy covers only 342 of 3,085 remaining connections. Ground/power account for 1,724; GPIO results cannot be extrapolated to them, RF or USB. No blanket removal of `manual_only`.
