@@ -41,6 +41,30 @@ def write(path, value):
     Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
 
 
+def expand_seeded_orders(config, cases):
+    """Expand bounded plan seeds to exact immutable net permutations.
+
+    SHA256 ordering is independent of Python RNG/version and process timing.
+    Seeds select only order, never net membership, geometry or checking rules.
+    Replays receive the expanded recipe, not a fresh random decision.
+    """
+    result = copy.deepcopy(config)
+    for kind, section in result["cases"].items():
+        names = [row["kicad_net"] for row in cases[kind]["nets"]]
+        for recipe in section["profiles"]:
+            if "order_seed" not in recipe:
+                continue
+            seed = recipe.pop("order_seed")
+            require(type(seed) is int and 0 <= seed <= 65535, "Invalid order seed")
+            require(recipe.get("ordering") == "original" and recipe.get("net_order") is None,
+                    "Seed order requires original ordering and no explicit permutation")
+            recipe["net_order"] = sorted(names, key=lambda n: (
+                hashlib.sha256(f"route-474-order-v1\0{seed}\0{n}".encode()).digest(), n))
+        require(all("order_seed" not in r for r in section.get("adaptive", [])),
+                "Adaptive failed-first and seeded order are distinct strategies")
+    return result
+
+
 def cohort(case, winner, replays):
     """Assess only this explicitly identified candidate and its three replays.
 
@@ -215,13 +239,15 @@ def main():
                 "Portfolio exceeds bounded search budget")
         names = [r["name"] for r in section["profiles"] + section.get("adaptive", [])]
         require(len(names) == len(set(names)), "Repeated recipe name")
-        for recipe in section["profiles"] + section.get("adaptive", []):
-            backend.Recipe(**recipe)
     for key, maximum in (("engine_timeout_seconds", 1800), ("fine_engine_timeout_seconds", 1800),
                          ("validation_timeout_seconds", 180)):
         require(type(config.get(key)) is int and 1 <= config[key] <= maximum, "Invalid timeout: " + key)
     loaded = load_cases([ROOT / config["cases"][k]["manifest"] for k in ("ui", "rf")])
     cases = {k: row[1] for k, row in zip(("ui", "rf"), loaded)}
+    config = expand_seeded_orders(config, cases)
+    for section in config["cases"].values():
+        for recipe in section["profiles"] + section.get("adaptive", []):
+            backend.Recipe(**recipe)
     require([cases[k]["scope"]["expected_connections"] for k in ("ui", "rf")] == [252, 222], "Wrong milestone scope")
     output = Path(tempfile.mkdtemp(prefix="route-474-", dir=ROOT / "work"))
     cancel, done, explicit_abort = Event(), Event(), Event()
@@ -231,6 +257,7 @@ def main():
     report = {"status": "fail", "targeted": 474, "resolved": 0, "production_ready": False,
               "electrically_qualified": False, "sleep_prevention": {}, "source_pins": pins}
     started = time.monotonic()
+    print(json.dumps({"event": "campaign_started", "folder": str(output.relative_to(ROOT))}), flush=True)
     previous = {sig: signal.getsignal(sig) for sig in (signal.SIGTERM, signal.SIGINT)}
     def stop(*_):
         explicit_abort.set()

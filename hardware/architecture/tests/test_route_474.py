@@ -2,7 +2,7 @@
 import copy
 import unittest
 
-from tools.route_474 import campaign, cohort, failed_first, ResourceBudget, finish_registry
+from tools.route_474 import campaign, cohort, failed_first, ResourceBudget, finish_registry, expand_seeded_orders
 from threading import Event
 
 
@@ -36,6 +36,35 @@ def plans(count=1):
 
 
 class CampaignTests(unittest.TestCase):
+    def test_seed_order_is_exact_stable_and_frozen_for_replays(self):
+        case_set = cases()
+        case_set["ui"]["nets"] = [{"kicad_net": str(i)} for i in range(20)]
+        config = {"cases": plans(2)}
+        for i, recipe in enumerate(config["cases"]["ui"]["profiles"]):
+            recipe.update(order_seed=i, ordering="original")
+        original = copy.deepcopy(config)
+        expanded = expand_seeded_orders(config, case_set)
+        self.assertEqual(config, original)
+        self.assertEqual(expanded, expand_seeded_orders(config, case_set))
+        profiles = expanded["cases"]["ui"]["profiles"]
+        self.assertNotEqual(profiles[0]["net_order"], profiles[1]["net_order"])
+        for profile in profiles:
+            self.assertCountEqual(profile["net_order"], [str(i) for i in range(20)])
+            self.assertNotIn("order_seed", profile)
+        result = campaign(case_set, expanded["cases"], lambda jobs, _: [row(j) for j in jobs])
+        self.assertEqual(result["resolved"], 474)
+        winner = result["cases"]["ui"]["winner"]["recipe"]
+        self.assertTrue(all(r["recipe"] == winner for r in result["cases"]["ui"]["replays"]))
+
+    def test_seed_cannot_hide_scope_or_override_order(self):
+        for mutation in ({"order_seed": True}, {"order_seed": -1}, {"order_seed": 65536},
+                         {"ordering": "mps"}, {"net_order": ["unknown"]}):
+            config = {"cases": plans()}
+            config["cases"]["ui"]["profiles"][0].update(order_seed=1, ordering="original")
+            config["cases"]["ui"]["profiles"][0].update(mutation)
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                expand_seeded_orders(config, cases())
+
     def test_complete_both_boards_and_three_replays(self):
         jobs = []
         def execute(batch, wave):
