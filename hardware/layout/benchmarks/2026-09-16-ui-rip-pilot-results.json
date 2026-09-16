@@ -1,0 +1,40 @@
+{
+  "scope": "Separate UI252 transfer pilot; two profiles, neither accepted",
+  "matrix_summary_sha256": "a388ae383d6bb220ad62f6b4789506be5e410817dc15723e9bdc47278fb0108f",
+  "wall_seconds": 103.189,
+  "driver_sha256": "7fb9fe499449ebf71d202fece4d8a56663b4f39fd47cc4a41d89f079c2b573cc",
+  "matrix_sha256": "e5770cee14c563cd9b5cdf35ded981ee501277b57e6dd23cbbcfdf17caaf5bcb",
+  "geometry_passes": 0,
+  "replay_pass": false,
+  "production_ready": false,
+  "results": [
+    {
+      "profile": "ui-target5",
+      "direction": "forward",
+      "engine_seconds": 92.826,
+      "remaining": 7,
+      "target": 252,
+      "drc_count": 0,
+      "drc_types": [],
+      "geometry_pass": false,
+      "signature": "ef96efa568fa7ae41634bb5df66addb7905fe049e69a1da37d85bb127cfbaa0e",
+      "validation_sha256": "ede9c75dcf243f231cd54b16c2aefd9459b8afdc5d702790ffb899c4cccba977",
+      "inventory_sha256": "6f0ea0306bd2e29123d2bec58c974135d111a029d8298f235faaff002df91bca"
+    },
+    {
+      "profile": "ui-mincut5",
+      "direction": "backward",
+      "engine_seconds": 83.622,
+      "remaining": 7,
+      "target": 252,
+      "drc_count": 2,
+      "drc_types": [
+        "via_dangling"
+      ],
+      "geometry_pass": false,
+      "signature": "16dd84017365fb94815aabe43f060846a1f35c0147b125fcc593de818ef793cf",
+      "validation_sha256": "52d72539239b99ae2a478abe00454f0e6b8dd26ba4416285b5727006ad97fe19",
+      "inventory_sha256": "60962bb406a56b0a3803a739427756e92a7ffdcae439f84d47aaa4fc9a13e1e9"
+    }
+  ]
+}
