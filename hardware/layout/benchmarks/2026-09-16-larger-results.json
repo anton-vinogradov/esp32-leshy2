@@ -1,0 +1,1327 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-16",
+  "candidate_only": true,
+  "production_promoted": false,
+  "electrically_qualified": false,
+  "model_calls_inside_runs": 0,
+  "between_attempt_model_parameter_decisions": 0,
+  "token_saving_multiplier": null,
+  "accounting": {
+    "snapshot": {
+      "requested_start": "2026-09-16T00:20:08Z",
+      "requested_stop": "2026-09-16T00:39:49.341226+00:00",
+      "scope": "one local root-task journal; child-agent inclusion unverified",
+      "not_billing_or_quota": true,
+      "proxies": {
+        "tool_calls": 36,
+        "tool_result_characters": 188042,
+        "assistant_messages": 10,
+        "compactions": 1
+      },
+      "token_delta": {
+        "input_tokens": 3732888,
+        "cached_input_tokens": 3599360,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 23711,
+        "reasoning_output_tokens": 9781,
+        "total_tokens": 3756599
+      },
+      "uncached_input_plus_output_proxy": 157239,
+      "counter_start": "2026-09-16T00:16:23.244Z",
+      "counter_stop": "2026-09-16T00:39:38.545Z"
+    },
+    "scope_notes": [
+      "Includes root-task planning, inspection, development, execution supervision, documentation and measurement before the snapshot, not just router work.",
+      "Does not quantify separate child-agent tokens; 1 agent received 3 bounded assignments, initially without conversation history.",
+      "Excludes work after counter_stop, previous integration turns, and final publication. This is not the full project cost, billing, quota or steady-state routing cost.",
+      "Uncached input + output is an explicit proxy, not a billing conversion. Cached input is already included in input_tokens; reasoning output is already included in output_tokens."
+    ],
+    "agent_proxies": {
+      "distinct_agents": 1,
+      "bounded_assignments": 3
+    }
+  },
+  "execution_notes": [
+    "Full-board obstacles and original copper remain fixed; this does not establish full-board routing from zero copper.",
+    "Second case is a cold rebuild after moving R64 -0.5mm X, not incremental repair; its geometry differs from original despite equal total length.",
+    "Forced-failure case copies ui-inputs-service-id-82.json, moves coarse_via75 to first profile and changes only the case id. Seed failed; controller ran 11 remaining profiles and replayed the winner 3 times without model intervention.",
+    "Adaptive mode accepts a fully checked seed and skips optimization alternatives. Full sweep minimizes vias, length, then time among checked candidates. No quality gates are weakened.",
+    "Timing comparisons between original and moved fixtures are not causal speedup measurements."
+  ],
+  "cases": {
+    "full_sweep": {
+      "case": "ui-inputs-service-id-82",
+      "fixture": null,
+      "engine_commit": "5a7fbcb6ee4deebd1d9ec1d5bd094d8681f502f3",
+      "controller_sha256": "6212baea5d09cd09a1fb141e8d12fc9d5428fbf80eb5ca558dd5acc0ba3811e5",
+      "profile_policy_sha256": null,
+      "grader_sha256": "9b34bfac7983bb891f7f90665abd3407562ee6fbf9c01f00cca59237ff8cc51f",
+      "case_sha256": "c7d4ad7b64fa645aceb699ed6cad921cc8ed56287193c166469196310862bf0b",
+      "profile_sha256": "fd35f5633b9e14af3c253da7b81520119398f48a7a6800109c4e4937d538bf78",
+      "runtime": {
+        "numpy": "2.5.3",
+        "python": "3.12.6 (main, Sep  6 2024, 19:03:47) [Clang 15.0.0 (clang-1500.3.9.4)]",
+        "scipy": "1.18.1",
+        "shapely": "2.1.2"
+      },
+      "baseline_inputs": {
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_dru": "f153eb1131a595ee69f25a39e69b26eedd7b3045f8f6a8b81e86172bd46d3a3e",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pro": "da3ee7fd223b0d7a7d0f4d443996fdef1edfca396e6b4f42165524c1fc5036c9",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "3a029b1e419880b23ae483d1dcb5757cc2b1e1958a5bae78bfa9cfc90d8e9129",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "56f39324ed2fec025abd01749c598d44e8346b187be7948afc516c3d20a92dde",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch": "4a171483c25661211bfd102198ff44a9492dbe93947b4638816d2bf1ebb78396",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "a6d0da18bf1a7669e336c608776142a1130cef9fa5ae91ff6c8c3adfadfadb36",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch": "f8721bca6c5b35067af4eaa15a5fcc06ff434da7ed699fefdfe59644eea140c0",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch": "070ac7857d6c10260ea8ae38d3b86f2ee6d8a8001ec370a575fb83ddddc1d4bb",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "1354eeefe742c0fbd5f4a79dfb202b00ae42b7a82b6465c258284fcd7f4aa963",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "87b5812e879ba11abca135470a681c9909148ff398d7dc9153d50d258adae3b1",
+        "hardware/ecad/kicad/LESHY2-UI-R2/fp-lib-table": "eb057c6d938aff935f19f0b3f640069852d9da6cc0cfa1d02de8f6efdf52fcdb",
+        "hardware/ecad/kicad/LESHY2-UI-R2/sym-lib-table": "44042c7fe8c20f1980c94a8ce204dc596d5c4b1aa10b2c59b78fe28720b44565",
+        "hardware/ecad/libraries/Leshy2.pretty/0451005.MRL.kicad_mod": "5e584061288514cc9e9bf3222f454e629753fa6f3bad43c8ed4d59febeb0f1d3",
+        "hardware/ecad/libraries/Leshy2.pretty/1125R-SMT-4P.kicad_mod": "129ef50b9d030294bda39f45c75fc7647dd99b5ebdf969cb14a585d4f9ce31db",
+        "hardware/ecad/libraries/Leshy2.pretty/B0310J50100AHF.kicad_mod": "b1bd2b6d78bda7bfac05479c2e41a9f65420b30217ed1f08a3291f66e03781a6",
+        "hardware/ecad/libraries/Leshy2.pretty/B3S-1100P.kicad_mod": "b65ab37ad3cb515a1eb6ed8519e45603a00b21d78e9c49f8f7cc000820672c57",
+        "hardware/ecad/libraries/Leshy2.pretty/CMEJ-0413-42-SMT-TR.kicad_mod": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817",
+        "hardware/ecad/libraries/Leshy2.pretty/CP0603Q5425ENTR.kicad_mod": "bf098242fb9348698d3a213851af9b1fcdb66438325a11eb2fcca729a514d195",
+        "hardware/ecad/libraries/Leshy2.pretty/CSD87313DMS.kicad_mod": "06ff826c5489d4990ed03035ed45089b988215727b3880e4cf02fd128a7864f2",
+        "hardware/ecad/libraries/Leshy2.pretty/DC0710J5020AHF.kicad_mod": "74c3e1d33e9562bc043b2cde224d505e10dd13aa57d0e412db24515d02fb50e6",
+        "hardware/ecad/libraries/Leshy2.pretty/DC2337J5010AHF.kicad_mod": "c0acbca80a631dcecf7d23e860d2c0904acacbf2946f088d92553d8070d64555",
+        "hardware/ecad/libraries/Leshy2.pretty/ESP32-C5-WROOM-1U.kicad_mod": "a94cf79a13df2a89fdcce384f4b4c171ce276d4350ddfb570792b69bf82900ac",
+        "hardware/ecad/libraries/Leshy2.pretty/Ebyte-E01-ML01SP4.kicad_mod": "8f287513646bcfa08a1b81a13a355b90f0d2a45df0ba6f60abc7ae00e2f131dd",
+        "hardware/ecad/libraries/Leshy2.pretty/FC-135-Q13FC13500005.kicad_mod": "470f73696b3983380ec36b30bc32126f028fca2b67c4435f17eaa06054dd606e",
+        "hardware/ecad/libraries/Leshy2.pretty/FH34SRJ-40S-0.5SH-99.kicad_mod": "2c1dff1c4c403653e2d573305a9b757cc89b392c887b5f06354b776ed279ae31",
+        "hardware/ecad/libraries/Leshy2.pretty/FTSH-105-01-L-DV-K-P-TR.kicad_mod": "0f490e9dd76f59195e8e5b99fa5a52dde985d338174d90cc93ea9d97cebd7698",
+        "hardware/ecad/libraries/Leshy2.pretty/G-NiceRF-SA818S-Official-Package.kicad_mod": "213e742f749bde5c1a87534bb093157b397b92deb2623f84b29c6a3783fc1c44",
+        "hardware/ecad/libraries/Leshy2.pretty/Infineon-PG-TSNP-8-1.kicad_mod": "5231f237813c169c70d893feb8c6897389f81a3d2d2f9a78dbd08b48a1e53e3b",
+        "hardware/ecad/libraries/Leshy2.pretty/JS102011SCQN.kicad_mod": "500ea51b7770122ee51ac0dfe3704c8f478437175277efa5beb421819de61e3e",
+        "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod": "dbcec95dcfe56d7d1e1bd2631640c065c30b064adc02f4f9810d4fc38ee02a9e",
+        "hardware/ecad/libraries/Leshy2.pretty/NiceRF-LoRa126X.kicad_mod": "de856e4e8128fd247a2276d9024ecdbfe134c9fa4f76d536be12bd2337635ca1",
+        "hardware/ecad/libraries/Leshy2.pretty/PAM8302AAYCR-UDFN3030-8E.kicad_mod": "96a89de357ef4470bf8a34308374c3f818173a38d4728089d1240609d90dd074",
+        "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA31-FN-175-A.kicad_mod": "cce6681aeb3886e47da800b0533f8363bea432db86b05dfd07773f2452a59a8b",
+        "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA32-FN-175-A.kicad_mod": "239e7f24ba43fe1cac3f6bab19d155ee3aaf7e82475849ca7c4d559341bfed8c",
+        "hardware/ecad/libraries/Leshy2.pretty/SJ-43504-SMT-TR.kicad_mod": "4ebc6d1ab89365f5d6a84774b8b32d29261988e2c86870c3da066ed2b85d5aa1",
+        "hardware/ecad/libraries/Leshy2.pretty/Speaker-Wire-Termination-2P.kicad_mod": "149d7e3437a49e8e68944d89d0f82dc4f9938a5aaaa70cd387c6636a3433d286",
+        "hardware/ecad/libraries/Leshy2.pretty/TCA6424ARGJR.kicad_mod": "dc972a13c8b93bff7f6272ec0def51bab5e4b4201f735b6c27db0409632e651a",
+        "hardware/ecad/libraries/Leshy2.pretty/TI-DRL0008A-SOT-5X3-8.kicad_mod": "12059ab6849b2cfe186535f29d2b564ec93f1484dcb48bfb074a3ab4e444f3f4",
+        "hardware/ecad/libraries/Leshy2.pretty/TI-RPW0010A-VQFN-HR-10.kicad_mod": "da6263789dcf1d56001cee951e611e33b14ca762756ab3746c319bcd229e5a8b",
+        "hardware/ecad/libraries/Leshy2.pretty/TPD8E003DQDR.kicad_mod": "e99d58d03e10304f52f42dbd14d8520c2de2c64e646df9f71025fb833ff6f1ab",
+        "hardware/ecad/libraries/Leshy2.pretty/TPUL2G223BQBR.kicad_mod": "f38523d62b5096036135670c5bcabdeb4d14a87dbe4624d992a1eac304ca5044",
+        "hardware/ecad/libraries/Leshy2.pretty/VEMD1060X01.kicad_mod": "f50b784d002036f1346b03a6faa4fb31d07ded6a415701a861a56cccf9a140d2",
+        "hardware/ecad/libraries/Leshy2.pretty/VSMY14940.kicad_mod": "981d8a9e2f51923689c8366addf1fa94a60c270536ed3c7c17e6c39e6046b840",
+        "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TR.kicad_mod": "01ea9c7ef12c60e4c79886124425537d15eb3af5fbd1debeb34f53d1edaaded8",
+        "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TT.kicad_mod": "7f7140c6f6dc5a21c25eb9ea66a2368b783d17bdd3cf5a0037719f7628ee3b38",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/B0310J50100AHF.kicad_mod": "eaa882b17b299176ac7e07a5ca13b8f510ba44307020c10987516b8cec540919",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/CP0603Q5425ENTR.kicad_mod": "89dfe4ff666211c3de823ac6fc5be7301f1d7e8785b44b700565be3efb25fb17",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod": "dadb60f46fb46be2afd795bc2746337c25f8006e082ceb2a27b8ba73176a860e",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/DC2337J5010AHF.kicad_mod": "25d0080800dfc7a657b2bae2be50e543896d34ece202f5b65a36816708040270",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/EC11E18244AU-ENGINEERING-PTH.kicad_mod": "b6150e76202059c2922fb2d8d962560438e18f6b92c773a41795f1e2cf2aecc5",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/FH34SRJ-50S-0.5SH-50.kicad_mod": "e294307633e4a5a125e949d5e557acb1b0b676b9d0dc7d6bc9312cb90270863c",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/Keystone-1048P-POLARITY-CORRECTED.kicad_mod": "baa543ac2faf405763deb2113687ec8a6c6faeb45b53461b99bdb78c9a8aa320",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/NFC_Pickup_Loop_R2.kicad_mod": "8b4322ac89011b33d91063610a00220f38192837b72f93cb58c67ce484ae28c1",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/PCB_TestPoint_Pad_D1.0mm.kicad_mod": "1d542b339d8528bfe6884d51736737822b665a8ba74263b52c12ebfa6e5bb33e",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/PRODTech_PSPMAA0605H_7.1x6.6mm.kicad_mod": "7aea07cf1e6f4f161ab7ae76e6251546afbb2c63d2c6c88c9e7d2a1796a1e856",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/SJ-43515TS-SMT-TR.kicad_mod": "4d467470d674455d643dedbf72001da0c7af23a521947ea2b9d190bbdad077a0",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/Texas_RQF0009A_1.5x2.0mm.kicad_mod": "d24f28e34e0d65508dcd8a4903a4c4f80f8a892ec75c5cab40075ad425baa605",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk.kicad_mod": "98a0ff7cc61bfbbea33bb47eeae879de994bf6b1b2b6d253190f03bf58bc8b98",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/WBC1-1TLC.kicad_mod": "b565d7ca421b2d4137a20b294e5f24f48c7ad1470ca138e96e839ed55b824e15",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/WBC16-1TLC.kicad_mod": "bda6f8dbda7e5b5d3bbfc98fe6be8312f39440d92b9f80bb1788b0112029feec",
+        "hardware/ecad/libraries/leshy2.kicad_sym": "a0a49f1d2be3f8c1876131e7d43bd385eb6754cd2514a6b7fba414a0e9f97842",
+        "hardware/ecad/libraries/leshy2_r2.kicad_sym": "f32823dbb0810f1b2ead1fea6f4865b87266bf15260d8ad9d1848dcfa0513e5e"
+      },
+      "setup_seconds": 0.229,
+      "benchmark_seconds": 310.855,
+      "adaptive": null,
+      "adaptive_fallback_profiles": null,
+      "best_initial_profile": {
+        "grid_step": 0.05,
+        "id": "grid0.05-via75-mps",
+        "ordering": "mps",
+        "via_cost": 75
+      },
+      "replay_pass": true,
+      "runs": [
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via50-mps",
+            "ordering": "mps",
+            "via_cost": 50
+          },
+          "repeat": 1,
+          "seconds": 18.019,
+          "engine_seconds": 14.396,
+          "pass": false,
+          "resolved": 77,
+          "selected_remaining": [
+            82,
+            5
+          ],
+          "new_tracks": 708,
+          "vias": 63,
+          "length_mm": 1634.497398,
+          "geometry_signature": "8856b33d17dd3cdbfde233f7ddf102394982cb0ecf6e4480c2df4b3fa7eee18e",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 4,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via50-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 50
+          },
+          "repeat": 1,
+          "seconds": 15.433,
+          "engine_seconds": 11.804,
+          "pass": false,
+          "resolved": 79,
+          "selected_remaining": [
+            82,
+            3
+          ],
+          "new_tracks": 645,
+          "vias": 75,
+          "length_mm": 1741.147305,
+          "geometry_signature": "e14547e2fad41ae82b1be05f0f7a571f71bbca14489181ad9656408326e1e129",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via75-mps",
+            "ordering": "mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 19.159,
+          "engine_seconds": 15.038,
+          "pass": false,
+          "resolved": 77,
+          "selected_remaining": [
+            82,
+            5
+          ],
+          "new_tracks": 703,
+          "vias": 60,
+          "length_mm": 1635.07306,
+          "geometry_signature": "6b2321f5a40319b4df561846354f8d1e6c7c31be5ac561751ae91854dc70b4cc",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 4,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via75-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 16.239,
+          "engine_seconds": 12.839,
+          "pass": false,
+          "resolved": 79,
+          "selected_remaining": [
+            82,
+            3
+          ],
+          "new_tracks": 626,
+          "vias": 70,
+          "length_mm": 1760.012688,
+          "geometry_signature": "ce985947dab02b5a98927460b9507f0f5d402c1f137ec3c40b8db9307dc1426e",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via125-mps",
+            "ordering": "mps",
+            "via_cost": 125
+          },
+          "repeat": 1,
+          "seconds": 18.058,
+          "engine_seconds": 14.743,
+          "pass": false,
+          "resolved": 79,
+          "selected_remaining": [
+            82,
+            3
+          ],
+          "new_tracks": 594,
+          "vias": 59,
+          "length_mm": 1772.437399,
+          "geometry_signature": "7b754e04800ead33fc2240e4c6c930545b548e485899089c9ff25c67807098ae",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 4,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via125-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 125
+          },
+          "repeat": 1,
+          "seconds": 20.185,
+          "engine_seconds": 16.472,
+          "pass": false,
+          "resolved": 77,
+          "selected_remaining": [
+            82,
+            5
+          ],
+          "new_tracks": 686,
+          "vias": 60,
+          "length_mm": 1807.265099,
+          "geometry_signature": "4cd29159362a0dcac109cea052657a7590122fdf39907f456cccda429493eea3",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 3,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via50-mps",
+            "ordering": "mps",
+            "via_cost": 50
+          },
+          "repeat": 1,
+          "seconds": 19.772,
+          "engine_seconds": 16.163,
+          "pass": false,
+          "resolved": 79,
+          "selected_remaining": [
+            82,
+            3
+          ],
+          "new_tracks": 619,
+          "vias": 69,
+          "length_mm": 1665.026403,
+          "geometry_signature": "087bba0fed6c5747f10b2a4829b4c5d9c7f6d85cca2d2c83192d7fcd4ca9cf9c",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 2,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via50-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 50
+          },
+          "repeat": 1,
+          "seconds": 22.598,
+          "engine_seconds": 18.298,
+          "pass": false,
+          "resolved": 81,
+          "selected_remaining": [
+            82,
+            1
+          ],
+          "new_tracks": 612,
+          "vias": 83,
+          "length_mm": 1750.854519,
+          "geometry_signature": "c6412ca00d088b2e40c2387b9a3d81deb3ee805846e12ceee1ab2084e79751ac",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 3,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via75-mps",
+            "ordering": "mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 19.087,
+          "engine_seconds": 15.561,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "44fe1a17be315615d33822ebdd3a74b015c4c0cbeeff07f78d41b7db2cfd12b5",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via75-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 22.725,
+          "engine_seconds": 19.218,
+          "pass": false,
+          "resolved": 80,
+          "selected_remaining": [
+            82,
+            2
+          ],
+          "new_tracks": 546,
+          "vias": 70,
+          "length_mm": 1755.755996,
+          "geometry_signature": "7e7162187bf6fdb82163b231f50837dd1a7156027d07a6f894f06f587f2730be",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 2,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via125-mps",
+            "ordering": "mps",
+            "via_cost": 125
+          },
+          "repeat": 1,
+          "seconds": 30.662,
+          "engine_seconds": 27.172,
+          "pass": false,
+          "resolved": 79,
+          "selected_remaining": [
+            82,
+            3
+          ],
+          "new_tracks": 533,
+          "vias": 54,
+          "length_mm": 1763.990763,
+          "geometry_signature": "168aeaf17a236d158bcff6fe50555231c9264ada22e69c285b99d5d65c2f4385",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 2,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via125-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 125
+          },
+          "repeat": 1,
+          "seconds": 29.381,
+          "engine_seconds": 25.858,
+          "pass": false,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 585,
+          "vias": 62,
+          "length_mm": 1825.277753,
+          "geometry_signature": "8659a5d91c98d6fd3a3c634edb753bda14d06e75a3e700a17f09639db0bc6139",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 2,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via75-mps-replay1",
+            "ordering": "mps",
+            "replay_of": "grid0.05-via75-mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 19.579,
+          "engine_seconds": 15.719,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "44fe1a17be315615d33822ebdd3a74b015c4c0cbeeff07f78d41b7db2cfd12b5",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via75-mps-replay2",
+            "ordering": "mps",
+            "replay_of": "grid0.05-via75-mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 20.324,
+          "engine_seconds": 16.095,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "44fe1a17be315615d33822ebdd3a74b015c4c0cbeeff07f78d41b7db2cfd12b5",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via75-mps-replay3",
+            "ordering": "mps",
+            "replay_of": "grid0.05-via75-mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 19.298,
+          "engine_seconds": 15.737,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "44fe1a17be315615d33822ebdd3a74b015c4c0cbeeff07f78d41b7db2cfd12b5",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        }
+      ],
+      "evidence": {
+        "path": "work/routing-benchmark-0eqhkma_/summary.json",
+        "sha256": "9b714d0262b47f4de863e677db48757af0f277bf60c50765f445bd407f684f3a"
+      }
+    },
+    "adaptive_moved": {
+      "case": "ui-inputs-service-id-82",
+      "fixture": {
+        "drc_violations": 0,
+        "fixture_board_sha256": "4b0c5b84f2a3d2f9ac01c9697a2cac4a7081beaf84b7e31ee1f7dc6bd2683bce",
+        "move": [
+          "R64",
+          -0.5,
+          0
+        ],
+        "original_board_sha256": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+        "schematic_parity_errors": 0
+      },
+      "engine_commit": "5a7fbcb6ee4deebd1d9ec1d5bd094d8681f502f3",
+      "controller_sha256": "f1e3046a153edf2397786059059c57c20708dd89beebe3d49f238a6fd7b45cd8",
+      "profile_policy_sha256": "77b5b7c48715abd371e0eb8409d975b98c90b6ac3648e5ba9c7f871a5f20b8a1",
+      "grader_sha256": "9b34bfac7983bb891f7f90665abd3407562ee6fbf9c01f00cca59237ff8cc51f",
+      "case_sha256": "c7d4ad7b64fa645aceb699ed6cad921cc8ed56287193c166469196310862bf0b",
+      "profile_sha256": "fd35f5633b9e14af3c253da7b81520119398f48a7a6800109c4e4937d538bf78",
+      "runtime": {
+        "numpy": "2.5.3",
+        "python": "3.12.6 (main, Sep  6 2024, 19:03:47) [Clang 15.0.0 (clang-1500.3.9.4)]",
+        "scipy": "1.18.1",
+        "shapely": "2.1.2"
+      },
+      "baseline_inputs": {
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_dru": "f153eb1131a595ee69f25a39e69b26eedd7b3045f8f6a8b81e86172bd46d3a3e",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "4b0c5b84f2a3d2f9ac01c9697a2cac4a7081beaf84b7e31ee1f7dc6bd2683bce",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pro": "da3ee7fd223b0d7a7d0f4d443996fdef1edfca396e6b4f42165524c1fc5036c9",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "3a029b1e419880b23ae483d1dcb5757cc2b1e1958a5bae78bfa9cfc90d8e9129",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "56f39324ed2fec025abd01749c598d44e8346b187be7948afc516c3d20a92dde",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch": "4a171483c25661211bfd102198ff44a9492dbe93947b4638816d2bf1ebb78396",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "a6d0da18bf1a7669e336c608776142a1130cef9fa5ae91ff6c8c3adfadfadb36",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch": "f8721bca6c5b35067af4eaa15a5fcc06ff434da7ed699fefdfe59644eea140c0",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch": "070ac7857d6c10260ea8ae38d3b86f2ee6d8a8001ec370a575fb83ddddc1d4bb",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "1354eeefe742c0fbd5f4a79dfb202b00ae42b7a82b6465c258284fcd7f4aa963",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "87b5812e879ba11abca135470a681c9909148ff398d7dc9153d50d258adae3b1",
+        "hardware/ecad/kicad/LESHY2-UI-R2/fp-lib-table": "eb057c6d938aff935f19f0b3f640069852d9da6cc0cfa1d02de8f6efdf52fcdb",
+        "hardware/ecad/kicad/LESHY2-UI-R2/sym-lib-table": "44042c7fe8c20f1980c94a8ce204dc596d5c4b1aa10b2c59b78fe28720b44565",
+        "hardware/ecad/libraries/Leshy2.pretty/0451005.MRL.kicad_mod": "5e584061288514cc9e9bf3222f454e629753fa6f3bad43c8ed4d59febeb0f1d3",
+        "hardware/ecad/libraries/Leshy2.pretty/1125R-SMT-4P.kicad_mod": "129ef50b9d030294bda39f45c75fc7647dd99b5ebdf969cb14a585d4f9ce31db",
+        "hardware/ecad/libraries/Leshy2.pretty/B0310J50100AHF.kicad_mod": "b1bd2b6d78bda7bfac05479c2e41a9f65420b30217ed1f08a3291f66e03781a6",
+        "hardware/ecad/libraries/Leshy2.pretty/B3S-1100P.kicad_mod": "b65ab37ad3cb515a1eb6ed8519e45603a00b21d78e9c49f8f7cc000820672c57",
+        "hardware/ecad/libraries/Leshy2.pretty/CMEJ-0413-42-SMT-TR.kicad_mod": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817",
+        "hardware/ecad/libraries/Leshy2.pretty/CP0603Q5425ENTR.kicad_mod": "bf098242fb9348698d3a213851af9b1fcdb66438325a11eb2fcca729a514d195",
+        "hardware/ecad/libraries/Leshy2.pretty/CSD87313DMS.kicad_mod": "06ff826c5489d4990ed03035ed45089b988215727b3880e4cf02fd128a7864f2",
+        "hardware/ecad/libraries/Leshy2.pretty/DC0710J5020AHF.kicad_mod": "74c3e1d33e9562bc043b2cde224d505e10dd13aa57d0e412db24515d02fb50e6",
+        "hardware/ecad/libraries/Leshy2.pretty/DC2337J5010AHF.kicad_mod": "c0acbca80a631dcecf7d23e860d2c0904acacbf2946f088d92553d8070d64555",
+        "hardware/ecad/libraries/Leshy2.pretty/ESP32-C5-WROOM-1U.kicad_mod": "a94cf79a13df2a89fdcce384f4b4c171ce276d4350ddfb570792b69bf82900ac",
+        "hardware/ecad/libraries/Leshy2.pretty/Ebyte-E01-ML01SP4.kicad_mod": "8f287513646bcfa08a1b81a13a355b90f0d2a45df0ba6f60abc7ae00e2f131dd",
+        "hardware/ecad/libraries/Leshy2.pretty/FC-135-Q13FC13500005.kicad_mod": "470f73696b3983380ec36b30bc32126f028fca2b67c4435f17eaa06054dd606e",
+        "hardware/ecad/libraries/Leshy2.pretty/FH34SRJ-40S-0.5SH-99.kicad_mod": "2c1dff1c4c403653e2d573305a9b757cc89b392c887b5f06354b776ed279ae31",
+        "hardware/ecad/libraries/Leshy2.pretty/FTSH-105-01-L-DV-K-P-TR.kicad_mod": "0f490e9dd76f59195e8e5b99fa5a52dde985d338174d90cc93ea9d97cebd7698",
+        "hardware/ecad/libraries/Leshy2.pretty/G-NiceRF-SA818S-Official-Package.kicad_mod": "213e742f749bde5c1a87534bb093157b397b92deb2623f84b29c6a3783fc1c44",
+        "hardware/ecad/libraries/Leshy2.pretty/Infineon-PG-TSNP-8-1.kicad_mod": "5231f237813c169c70d893feb8c6897389f81a3d2d2f9a78dbd08b48a1e53e3b",
+        "hardware/ecad/libraries/Leshy2.pretty/JS102011SCQN.kicad_mod": "500ea51b7770122ee51ac0dfe3704c8f478437175277efa5beb421819de61e3e",
+        "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod": "dbcec95dcfe56d7d1e1bd2631640c065c30b064adc02f4f9810d4fc38ee02a9e",
+        "hardware/ecad/libraries/Leshy2.pretty/NiceRF-LoRa126X.kicad_mod": "de856e4e8128fd247a2276d9024ecdbfe134c9fa4f76d536be12bd2337635ca1",
+        "hardware/ecad/libraries/Leshy2.pretty/PAM8302AAYCR-UDFN3030-8E.kicad_mod": "96a89de357ef4470bf8a34308374c3f818173a38d4728089d1240609d90dd074",
+        "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA31-FN-175-A.kicad_mod": "cce6681aeb3886e47da800b0533f8363bea432db86b05dfd07773f2452a59a8b",
+        "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA32-FN-175-A.kicad_mod": "239e7f24ba43fe1cac3f6bab19d155ee3aaf7e82475849ca7c4d559341bfed8c",
+        "hardware/ecad/libraries/Leshy2.pretty/SJ-43504-SMT-TR.kicad_mod": "4ebc6d1ab89365f5d6a84774b8b32d29261988e2c86870c3da066ed2b85d5aa1",
+        "hardware/ecad/libraries/Leshy2.pretty/Speaker-Wire-Termination-2P.kicad_mod": "149d7e3437a49e8e68944d89d0f82dc4f9938a5aaaa70cd387c6636a3433d286",
+        "hardware/ecad/libraries/Leshy2.pretty/TCA6424ARGJR.kicad_mod": "dc972a13c8b93bff7f6272ec0def51bab5e4b4201f735b6c27db0409632e651a",
+        "hardware/ecad/libraries/Leshy2.pretty/TI-DRL0008A-SOT-5X3-8.kicad_mod": "12059ab6849b2cfe186535f29d2b564ec93f1484dcb48bfb074a3ab4e444f3f4",
+        "hardware/ecad/libraries/Leshy2.pretty/TI-RPW0010A-VQFN-HR-10.kicad_mod": "da6263789dcf1d56001cee951e611e33b14ca762756ab3746c319bcd229e5a8b",
+        "hardware/ecad/libraries/Leshy2.pretty/TPD8E003DQDR.kicad_mod": "e99d58d03e10304f52f42dbd14d8520c2de2c64e646df9f71025fb833ff6f1ab",
+        "hardware/ecad/libraries/Leshy2.pretty/TPUL2G223BQBR.kicad_mod": "f38523d62b5096036135670c5bcabdeb4d14a87dbe4624d992a1eac304ca5044",
+        "hardware/ecad/libraries/Leshy2.pretty/VEMD1060X01.kicad_mod": "f50b784d002036f1346b03a6faa4fb31d07ded6a415701a861a56cccf9a140d2",
+        "hardware/ecad/libraries/Leshy2.pretty/VSMY14940.kicad_mod": "981d8a9e2f51923689c8366addf1fa94a60c270536ed3c7c17e6c39e6046b840",
+        "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TR.kicad_mod": "01ea9c7ef12c60e4c79886124425537d15eb3af5fbd1debeb34f53d1edaaded8",
+        "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TT.kicad_mod": "7f7140c6f6dc5a21c25eb9ea66a2368b783d17bdd3cf5a0037719f7628ee3b38",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/B0310J50100AHF.kicad_mod": "eaa882b17b299176ac7e07a5ca13b8f510ba44307020c10987516b8cec540919",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/CP0603Q5425ENTR.kicad_mod": "89dfe4ff666211c3de823ac6fc5be7301f1d7e8785b44b700565be3efb25fb17",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod": "dadb60f46fb46be2afd795bc2746337c25f8006e082ceb2a27b8ba73176a860e",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/DC2337J5010AHF.kicad_mod": "25d0080800dfc7a657b2bae2be50e543896d34ece202f5b65a36816708040270",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/EC11E18244AU-ENGINEERING-PTH.kicad_mod": "b6150e76202059c2922fb2d8d962560438e18f6b92c773a41795f1e2cf2aecc5",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/FH34SRJ-50S-0.5SH-50.kicad_mod": "e294307633e4a5a125e949d5e557acb1b0b676b9d0dc7d6bc9312cb90270863c",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/Keystone-1048P-POLARITY-CORRECTED.kicad_mod": "baa543ac2faf405763deb2113687ec8a6c6faeb45b53461b99bdb78c9a8aa320",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/NFC_Pickup_Loop_R2.kicad_mod": "8b4322ac89011b33d91063610a00220f38192837b72f93cb58c67ce484ae28c1",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/PCB_TestPoint_Pad_D1.0mm.kicad_mod": "1d542b339d8528bfe6884d51736737822b665a8ba74263b52c12ebfa6e5bb33e",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/PRODTech_PSPMAA0605H_7.1x6.6mm.kicad_mod": "7aea07cf1e6f4f161ab7ae76e6251546afbb2c63d2c6c88c9e7d2a1796a1e856",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/SJ-43515TS-SMT-TR.kicad_mod": "4d467470d674455d643dedbf72001da0c7af23a521947ea2b9d190bbdad077a0",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/Texas_RQF0009A_1.5x2.0mm.kicad_mod": "d24f28e34e0d65508dcd8a4903a4c4f80f8a892ec75c5cab40075ad425baa605",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk.kicad_mod": "98a0ff7cc61bfbbea33bb47eeae879de994bf6b1b2b6d253190f03bf58bc8b98",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/WBC1-1TLC.kicad_mod": "b565d7ca421b2d4137a20b294e5f24f48c7ad1470ca138e96e839ed55b824e15",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/WBC16-1TLC.kicad_mod": "bda6f8dbda7e5b5d3bbfc98fe6be8312f39440d92b9f80bb1788b0112029feec",
+        "hardware/ecad/libraries/leshy2.kicad_sym": "a0a49f1d2be3f8c1876131e7d43bd385eb6754cd2514a6b7fba414a0e9f97842",
+        "hardware/ecad/libraries/leshy2_r2.kicad_sym": "f32823dbb0810f1b2ead1fea6f4865b87266bf15260d8ad9d1848dcfa0513e5e"
+      },
+      "setup_seconds": 3.978,
+      "benchmark_seconds": 134.404,
+      "adaptive": true,
+      "adaptive_fallback_profiles": 0,
+      "best_initial_profile": {
+        "grid_step": 0.05,
+        "id": "fine_via75",
+        "ordering": "mps",
+        "via_cost": 75
+      },
+      "replay_pass": true,
+      "runs": [
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "fine_via75",
+            "ordering": "mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 24.234,
+          "engine_seconds": 20.695,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "acf60eb6536d97870e0c1dd339c5d8e71c9b99664b249b0808d25d70402ceb34",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "fine_via75-replay1",
+            "ordering": "mps",
+            "replay_of": "fine_via75",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 22.37,
+          "engine_seconds": 18.384,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "acf60eb6536d97870e0c1dd339c5d8e71c9b99664b249b0808d25d70402ceb34",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "fine_via75-replay2",
+            "ordering": "mps",
+            "replay_of": "fine_via75",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 39.744,
+          "engine_seconds": 32.695,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "acf60eb6536d97870e0c1dd339c5d8e71c9b99664b249b0808d25d70402ceb34",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "fine_via75-replay3",
+            "ordering": "mps",
+            "replay_of": "fine_via75",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 44.049,
+          "engine_seconds": 38.332,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "acf60eb6536d97870e0c1dd339c5d8e71c9b99664b249b0808d25d70402ceb34",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        }
+      ],
+      "evidence": {
+        "path": "work/routing-benchmark-lg2xa594/summary.json",
+        "sha256": "274e3cb01cc95ca759a564cf88680f58c44b9a0b027e3430dae06221d0d8350a"
+      }
+    },
+    "adaptive_forced_bad_seed": {
+      "case": "ui-inputs-service-id-82-adaptive-fallback-probe",
+      "fixture": null,
+      "engine_commit": "5a7fbcb6ee4deebd1d9ec1d5bd094d8681f502f3",
+      "controller_sha256": "f1e3046a153edf2397786059059c57c20708dd89beebe3d49f238a6fd7b45cd8",
+      "profile_policy_sha256": "77b5b7c48715abd371e0eb8409d975b98c90b6ac3648e5ba9c7f871a5f20b8a1",
+      "grader_sha256": "9b34bfac7983bb891f7f90665abd3407562ee6fbf9c01f00cca59237ff8cc51f",
+      "case_sha256": "b331eee656950bdd59259701bc4cdcc1ac965eea0b9af0f05814075f80c44d09",
+      "profile_sha256": "fd35f5633b9e14af3c253da7b81520119398f48a7a6800109c4e4937d538bf78",
+      "runtime": {
+        "numpy": "2.5.3",
+        "python": "3.12.6 (main, Sep  6 2024, 19:03:47) [Clang 15.0.0 (clang-1500.3.9.4)]",
+        "scipy": "1.18.1",
+        "shapely": "2.1.2"
+      },
+      "baseline_inputs": {
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_dru": "f153eb1131a595ee69f25a39e69b26eedd7b3045f8f6a8b81e86172bd46d3a3e",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pro": "da3ee7fd223b0d7a7d0f4d443996fdef1edfca396e6b4f42165524c1fc5036c9",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "3a029b1e419880b23ae483d1dcb5757cc2b1e1958a5bae78bfa9cfc90d8e9129",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "56f39324ed2fec025abd01749c598d44e8346b187be7948afc516c3d20a92dde",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch": "4a171483c25661211bfd102198ff44a9492dbe93947b4638816d2bf1ebb78396",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "a6d0da18bf1a7669e336c608776142a1130cef9fa5ae91ff6c8c3adfadfadb36",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch": "f8721bca6c5b35067af4eaa15a5fcc06ff434da7ed699fefdfe59644eea140c0",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch": "070ac7857d6c10260ea8ae38d3b86f2ee6d8a8001ec370a575fb83ddddc1d4bb",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "1354eeefe742c0fbd5f4a79dfb202b00ae42b7a82b6465c258284fcd7f4aa963",
+        "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "87b5812e879ba11abca135470a681c9909148ff398d7dc9153d50d258adae3b1",
+        "hardware/ecad/kicad/LESHY2-UI-R2/fp-lib-table": "eb057c6d938aff935f19f0b3f640069852d9da6cc0cfa1d02de8f6efdf52fcdb",
+        "hardware/ecad/kicad/LESHY2-UI-R2/sym-lib-table": "44042c7fe8c20f1980c94a8ce204dc596d5c4b1aa10b2c59b78fe28720b44565",
+        "hardware/ecad/libraries/Leshy2.pretty/0451005.MRL.kicad_mod": "5e584061288514cc9e9bf3222f454e629753fa6f3bad43c8ed4d59febeb0f1d3",
+        "hardware/ecad/libraries/Leshy2.pretty/1125R-SMT-4P.kicad_mod": "129ef50b9d030294bda39f45c75fc7647dd99b5ebdf969cb14a585d4f9ce31db",
+        "hardware/ecad/libraries/Leshy2.pretty/B0310J50100AHF.kicad_mod": "b1bd2b6d78bda7bfac05479c2e41a9f65420b30217ed1f08a3291f66e03781a6",
+        "hardware/ecad/libraries/Leshy2.pretty/B3S-1100P.kicad_mod": "b65ab37ad3cb515a1eb6ed8519e45603a00b21d78e9c49f8f7cc000820672c57",
+        "hardware/ecad/libraries/Leshy2.pretty/CMEJ-0413-42-SMT-TR.kicad_mod": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817",
+        "hardware/ecad/libraries/Leshy2.pretty/CP0603Q5425ENTR.kicad_mod": "bf098242fb9348698d3a213851af9b1fcdb66438325a11eb2fcca729a514d195",
+        "hardware/ecad/libraries/Leshy2.pretty/CSD87313DMS.kicad_mod": "06ff826c5489d4990ed03035ed45089b988215727b3880e4cf02fd128a7864f2",
+        "hardware/ecad/libraries/Leshy2.pretty/DC0710J5020AHF.kicad_mod": "74c3e1d33e9562bc043b2cde224d505e10dd13aa57d0e412db24515d02fb50e6",
+        "hardware/ecad/libraries/Leshy2.pretty/DC2337J5010AHF.kicad_mod": "c0acbca80a631dcecf7d23e860d2c0904acacbf2946f088d92553d8070d64555",
+        "hardware/ecad/libraries/Leshy2.pretty/ESP32-C5-WROOM-1U.kicad_mod": "a94cf79a13df2a89fdcce384f4b4c171ce276d4350ddfb570792b69bf82900ac",
+        "hardware/ecad/libraries/Leshy2.pretty/Ebyte-E01-ML01SP4.kicad_mod": "8f287513646bcfa08a1b81a13a355b90f0d2a45df0ba6f60abc7ae00e2f131dd",
+        "hardware/ecad/libraries/Leshy2.pretty/FC-135-Q13FC13500005.kicad_mod": "470f73696b3983380ec36b30bc32126f028fca2b67c4435f17eaa06054dd606e",
+        "hardware/ecad/libraries/Leshy2.pretty/FH34SRJ-40S-0.5SH-99.kicad_mod": "2c1dff1c4c403653e2d573305a9b757cc89b392c887b5f06354b776ed279ae31",
+        "hardware/ecad/libraries/Leshy2.pretty/FTSH-105-01-L-DV-K-P-TR.kicad_mod": "0f490e9dd76f59195e8e5b99fa5a52dde985d338174d90cc93ea9d97cebd7698",
+        "hardware/ecad/libraries/Leshy2.pretty/G-NiceRF-SA818S-Official-Package.kicad_mod": "213e742f749bde5c1a87534bb093157b397b92deb2623f84b29c6a3783fc1c44",
+        "hardware/ecad/libraries/Leshy2.pretty/Infineon-PG-TSNP-8-1.kicad_mod": "5231f237813c169c70d893feb8c6897389f81a3d2d2f9a78dbd08b48a1e53e3b",
+        "hardware/ecad/libraries/Leshy2.pretty/JS102011SCQN.kicad_mod": "500ea51b7770122ee51ac0dfe3704c8f478437175277efa5beb421819de61e3e",
+        "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod": "dbcec95dcfe56d7d1e1bd2631640c065c30b064adc02f4f9810d4fc38ee02a9e",
+        "hardware/ecad/libraries/Leshy2.pretty/NiceRF-LoRa126X.kicad_mod": "de856e4e8128fd247a2276d9024ecdbfe134c9fa4f76d536be12bd2337635ca1",
+        "hardware/ecad/libraries/Leshy2.pretty/PAM8302AAYCR-UDFN3030-8E.kicad_mod": "96a89de357ef4470bf8a34308374c3f818173a38d4728089d1240609d90dd074",
+        "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA31-FN-175-A.kicad_mod": "cce6681aeb3886e47da800b0533f8363bea432db86b05dfd07773f2452a59a8b",
+        "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA32-FN-175-A.kicad_mod": "239e7f24ba43fe1cac3f6bab19d155ee3aaf7e82475849ca7c4d559341bfed8c",
+        "hardware/ecad/libraries/Leshy2.pretty/SJ-43504-SMT-TR.kicad_mod": "4ebc6d1ab89365f5d6a84774b8b32d29261988e2c86870c3da066ed2b85d5aa1",
+        "hardware/ecad/libraries/Leshy2.pretty/Speaker-Wire-Termination-2P.kicad_mod": "149d7e3437a49e8e68944d89d0f82dc4f9938a5aaaa70cd387c6636a3433d286",
+        "hardware/ecad/libraries/Leshy2.pretty/TCA6424ARGJR.kicad_mod": "dc972a13c8b93bff7f6272ec0def51bab5e4b4201f735b6c27db0409632e651a",
+        "hardware/ecad/libraries/Leshy2.pretty/TI-DRL0008A-SOT-5X3-8.kicad_mod": "12059ab6849b2cfe186535f29d2b564ec93f1484dcb48bfb074a3ab4e444f3f4",
+        "hardware/ecad/libraries/Leshy2.pretty/TI-RPW0010A-VQFN-HR-10.kicad_mod": "da6263789dcf1d56001cee951e611e33b14ca762756ab3746c319bcd229e5a8b",
+        "hardware/ecad/libraries/Leshy2.pretty/TPD8E003DQDR.kicad_mod": "e99d58d03e10304f52f42dbd14d8520c2de2c64e646df9f71025fb833ff6f1ab",
+        "hardware/ecad/libraries/Leshy2.pretty/TPUL2G223BQBR.kicad_mod": "f38523d62b5096036135670c5bcabdeb4d14a87dbe4624d992a1eac304ca5044",
+        "hardware/ecad/libraries/Leshy2.pretty/VEMD1060X01.kicad_mod": "f50b784d002036f1346b03a6faa4fb31d07ded6a415701a861a56cccf9a140d2",
+        "hardware/ecad/libraries/Leshy2.pretty/VSMY14940.kicad_mod": "981d8a9e2f51923689c8366addf1fa94a60c270536ed3c7c17e6c39e6046b840",
+        "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TR.kicad_mod": "01ea9c7ef12c60e4c79886124425537d15eb3af5fbd1debeb34f53d1edaaded8",
+        "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TT.kicad_mod": "7f7140c6f6dc5a21c25eb9ea66a2368b783d17bdd3cf5a0037719f7628ee3b38",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/B0310J50100AHF.kicad_mod": "eaa882b17b299176ac7e07a5ca13b8f510ba44307020c10987516b8cec540919",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/CP0603Q5425ENTR.kicad_mod": "89dfe4ff666211c3de823ac6fc5be7301f1d7e8785b44b700565be3efb25fb17",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod": "dadb60f46fb46be2afd795bc2746337c25f8006e082ceb2a27b8ba73176a860e",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/DC2337J5010AHF.kicad_mod": "25d0080800dfc7a657b2bae2be50e543896d34ece202f5b65a36816708040270",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/EC11E18244AU-ENGINEERING-PTH.kicad_mod": "b6150e76202059c2922fb2d8d962560438e18f6b92c773a41795f1e2cf2aecc5",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/FH34SRJ-50S-0.5SH-50.kicad_mod": "e294307633e4a5a125e949d5e557acb1b0b676b9d0dc7d6bc9312cb90270863c",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/Keystone-1048P-POLARITY-CORRECTED.kicad_mod": "baa543ac2faf405763deb2113687ec8a6c6faeb45b53461b99bdb78c9a8aa320",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/NFC_Pickup_Loop_R2.kicad_mod": "8b4322ac89011b33d91063610a00220f38192837b72f93cb58c67ce484ae28c1",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/PCB_TestPoint_Pad_D1.0mm.kicad_mod": "1d542b339d8528bfe6884d51736737822b665a8ba74263b52c12ebfa6e5bb33e",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/PRODTech_PSPMAA0605H_7.1x6.6mm.kicad_mod": "7aea07cf1e6f4f161ab7ae76e6251546afbb2c63d2c6c88c9e7d2a1796a1e856",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/SJ-43515TS-SMT-TR.kicad_mod": "4d467470d674455d643dedbf72001da0c7af23a521947ea2b9d190bbdad077a0",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/Texas_RQF0009A_1.5x2.0mm.kicad_mod": "d24f28e34e0d65508dcd8a4903a4c4f80f8a892ec75c5cab40075ad425baa605",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk.kicad_mod": "98a0ff7cc61bfbbea33bb47eeae879de994bf6b1b2b6d253190f03bf58bc8b98",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/WBC1-1TLC.kicad_mod": "b565d7ca421b2d4137a20b294e5f24f48c7ad1470ca138e96e839ed55b824e15",
+        "hardware/ecad/libraries/Leshy2_R2.pretty/WBC16-1TLC.kicad_mod": "bda6f8dbda7e5b5d3bbfc98fe6be8312f39440d92b9f80bb1788b0112029feec",
+        "hardware/ecad/libraries/leshy2.kicad_sym": "a0a49f1d2be3f8c1876131e7d43bd385eb6754cd2514a6b7fba414a0e9f97842",
+        "hardware/ecad/libraries/leshy2_r2.kicad_sym": "f32823dbb0810f1b2ead1fea6f4865b87266bf15260d8ad9d1848dcfa0513e5e"
+      },
+      "setup_seconds": 0.172,
+      "benchmark_seconds": 304.91,
+      "adaptive": true,
+      "adaptive_fallback_profiles": 11,
+      "best_initial_profile": {
+        "grid_step": 0.05,
+        "id": "grid0.05-via75-mps",
+        "ordering": "mps",
+        "via_cost": 75
+      },
+      "replay_pass": true,
+      "runs": [
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "coarse_via75",
+            "ordering": "mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 18.764,
+          "engine_seconds": 15.272,
+          "pass": false,
+          "resolved": 77,
+          "selected_remaining": [
+            82,
+            5
+          ],
+          "new_tracks": 703,
+          "vias": 60,
+          "length_mm": 1635.07306,
+          "geometry_signature": "6b2321f5a40319b4df561846354f8d1e6c7c31be5ac561751ae91854dc70b4cc",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 4,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via50-mps",
+            "ordering": "mps",
+            "via_cost": 50
+          },
+          "repeat": 1,
+          "seconds": 18.694,
+          "engine_seconds": 15.143,
+          "pass": false,
+          "resolved": 77,
+          "selected_remaining": [
+            82,
+            5
+          ],
+          "new_tracks": 708,
+          "vias": 63,
+          "length_mm": 1634.497398,
+          "geometry_signature": "8856b33d17dd3cdbfde233f7ddf102394982cb0ecf6e4480c2df4b3fa7eee18e",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 4,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via50-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 50
+          },
+          "repeat": 1,
+          "seconds": 15.626,
+          "engine_seconds": 12.112,
+          "pass": false,
+          "resolved": 79,
+          "selected_remaining": [
+            82,
+            3
+          ],
+          "new_tracks": 645,
+          "vias": 75,
+          "length_mm": 1741.147305,
+          "geometry_signature": "e14547e2fad41ae82b1be05f0f7a571f71bbca14489181ad9656408326e1e129",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via75-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 16.864,
+          "engine_seconds": 13.312,
+          "pass": false,
+          "resolved": 79,
+          "selected_remaining": [
+            82,
+            3
+          ],
+          "new_tracks": 626,
+          "vias": 70,
+          "length_mm": 1760.012688,
+          "geometry_signature": "ce985947dab02b5a98927460b9507f0f5d402c1f137ec3c40b8db9307dc1426e",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via125-mps",
+            "ordering": "mps",
+            "via_cost": 125
+          },
+          "repeat": 1,
+          "seconds": 19.264,
+          "engine_seconds": 15.758,
+          "pass": false,
+          "resolved": 79,
+          "selected_remaining": [
+            82,
+            3
+          ],
+          "new_tracks": 594,
+          "vias": 59,
+          "length_mm": 1772.437399,
+          "geometry_signature": "7b754e04800ead33fc2240e4c6c930545b548e485899089c9ff25c67807098ae",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 4,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.1,
+            "id": "grid0.1-via125-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 125
+          },
+          "repeat": 1,
+          "seconds": 20.818,
+          "engine_seconds": 17.252,
+          "pass": false,
+          "resolved": 77,
+          "selected_remaining": [
+            82,
+            5
+          ],
+          "new_tracks": 686,
+          "vias": 60,
+          "length_mm": 1807.265099,
+          "geometry_signature": "4cd29159362a0dcac109cea052657a7590122fdf39907f456cccda429493eea3",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 3,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via50-mps",
+            "ordering": "mps",
+            "via_cost": 50
+          },
+          "repeat": 1,
+          "seconds": 20.191,
+          "engine_seconds": 16.436,
+          "pass": false,
+          "resolved": 79,
+          "selected_remaining": [
+            82,
+            3
+          ],
+          "new_tracks": 619,
+          "vias": 69,
+          "length_mm": 1665.026403,
+          "geometry_signature": "087bba0fed6c5747f10b2a4829b4c5d9c7f6d85cca2d2c83192d7fcd4ca9cf9c",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 2,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via50-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 50
+          },
+          "repeat": 1,
+          "seconds": 21.244,
+          "engine_seconds": 17.625,
+          "pass": false,
+          "resolved": 81,
+          "selected_remaining": [
+            82,
+            1
+          ],
+          "new_tracks": 612,
+          "vias": 83,
+          "length_mm": 1750.854519,
+          "geometry_signature": "c6412ca00d088b2e40c2387b9a3d81deb3ee805846e12ceee1ab2084e79751ac",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 3,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via75-mps",
+            "ordering": "mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 18.492,
+          "engine_seconds": 15.025,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "44fe1a17be315615d33822ebdd3a74b015c4c0cbeeff07f78d41b7db2cfd12b5",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via75-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 21.395,
+          "engine_seconds": 18.064,
+          "pass": false,
+          "resolved": 80,
+          "selected_remaining": [
+            82,
+            2
+          ],
+          "new_tracks": 546,
+          "vias": 70,
+          "length_mm": 1755.755996,
+          "geometry_signature": "7e7162187bf6fdb82163b231f50837dd1a7156027d07a6f894f06f587f2730be",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 2,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via125-mps",
+            "ordering": "mps",
+            "via_cost": 125
+          },
+          "repeat": 1,
+          "seconds": 29.548,
+          "engine_seconds": 26.091,
+          "pass": false,
+          "resolved": 79,
+          "selected_remaining": [
+            82,
+            3
+          ],
+          "new_tracks": 533,
+          "vias": 54,
+          "length_mm": 1763.990763,
+          "geometry_signature": "168aeaf17a236d158bcff6fe50555231c9264ada22e69c285b99d5d65c2f4385",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 2,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via125-inside_out",
+            "ordering": "inside_out",
+            "via_cost": 125
+          },
+          "repeat": 1,
+          "seconds": 28.564,
+          "engine_seconds": 25.146,
+          "pass": false,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 585,
+          "vias": 62,
+          "length_mm": 1825.277753,
+          "geometry_signature": "8659a5d91c98d6fd3a3c634edb753bda14d06e75a3e700a17f09639db0bc6139",
+          "drc": [
+            "via_dangling"
+          ],
+          "drc_violations": 2,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via75-mps-replay1",
+            "ordering": "mps",
+            "replay_of": "grid0.05-via75-mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 18.419,
+          "engine_seconds": 14.96,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "44fe1a17be315615d33822ebdd3a74b015c4c0cbeeff07f78d41b7db2cfd12b5",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via75-mps-replay2",
+            "ordering": "mps",
+            "replay_of": "grid0.05-via75-mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 18.758,
+          "engine_seconds": 15.347,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "44fe1a17be315615d33822ebdd3a74b015c4c0cbeeff07f78d41b7db2cfd12b5",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        },
+        {
+          "profile": {
+            "grid_step": 0.05,
+            "id": "grid0.05-via75-mps-replay3",
+            "ordering": "mps",
+            "replay_of": "grid0.05-via75-mps",
+            "via_cost": 75
+          },
+          "repeat": 1,
+          "seconds": 17.992,
+          "engine_seconds": 14.469,
+          "pass": true,
+          "resolved": 82,
+          "selected_remaining": [
+            82,
+            0
+          ],
+          "new_tracks": 476,
+          "vias": 64,
+          "length_mm": 1778.561245,
+          "geometry_signature": "44fe1a17be315615d33822ebdd3a74b015c4c0cbeeff07f78d41b7db2cfd12b5",
+          "drc": [],
+          "drc_violations": 0,
+          "parity_errors": 0,
+          "dependencies_unchanged": true,
+          "all_net_regressions": {},
+          "roi_escape_count": 0
+        }
+      ],
+      "evidence": {
+        "path": "work/routing-benchmark-o_tsob2j/summary.json",
+        "sha256": "615203841369ca5a3237cd133292acbcdf7a1c135ee921042f58e49dbb5e5676"
+      }
+    }
+  }
+}

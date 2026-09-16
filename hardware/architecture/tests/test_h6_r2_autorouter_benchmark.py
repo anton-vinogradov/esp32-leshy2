@@ -1,12 +1,37 @@
 """Controller guard tests without an engine, KiCad or network."""
 from pathlib import Path
+import json
 import tempfile
 import unittest
 
 from hardware.layout.h6_r2_autorouter_benchmark import restore_dependencies, select_best, sha
+from hardware.layout.h6_r2_benchmark_profiles import adaptive_fallback, sweep_profiles
 
 
 class BenchmarkControllerTests(unittest.TestCase):
+    def test_larger_case_retains_reviewed_keys_and_exact_scope_counts(self):
+        cases = Path(__file__).resolve().parents[2] / "layout/benchmarks"
+        old = json.loads((cases / "ui-controls-60.json").read_text())
+        large = json.loads((cases / "ui-inputs-service-id-82.json").read_text())
+        self.assertEqual(old["baseline_sha256"], large["baseline_sha256"])
+        by_name = {n["kicad_net"]: n for n in large["nets"]}
+        self.assertEqual(29, len(by_name))
+        self.assertEqual(82, sum(n["remaining_connections"] for n in large["nets"]))
+        self.assertEqual(111, sum(len(n["exact_ref_pads"]) for n in large["nets"]))
+        for net in old["nets"]:
+            self.assertEqual(net, by_name[net["kicad_net"]])
+        self.assertFalse(large["scope_review"]["production_authorization"])
+
+    def test_adaptive_search_keeps_quality_gate_and_deduplicates_seed(self):
+        seed = {"id": "known", "grid_step": 0.05, "via_cost": 75, "ordering": "mps"}
+        self.assertEqual(12, len(sweep_profiles()))
+        # Connectivity alone (or engine success) must not suppress fallback.
+        fallback = adaptive_fallback(seed, [{"geometry_pass": False, "resolved": 82}])
+        self.assertEqual(11, len(fallback))
+        self.assertEqual([], adaptive_fallback(seed, [{"geometry_pass": True}]))
+        self.assertFalse(any(p["grid_step"] == 0.05 and p["via_cost"] == 75
+                             and p["ordering"] == "mps" for p in fallback))
+
     def test_selection_never_rewards_fast_incomplete_candidate(self):
         def result(passed, vias, length, seconds):
             return {"geometry_pass": passed, "validation": {"new_vias": vias,

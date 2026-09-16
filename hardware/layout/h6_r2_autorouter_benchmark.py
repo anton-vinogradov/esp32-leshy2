@@ -18,6 +18,11 @@ import sys
 import tempfile
 import time
 
+if __package__:
+    from .h6_r2_benchmark_profiles import adaptive_fallback, sweep_profiles
+else:
+    from h6_r2_benchmark_profiles import adaptive_fallback, sweep_profiles
+
 ROOT = Path(__file__).resolve().parents[2]
 LAYOUT = ROOT / "hardware/layout"
 KICAD_PYTHON = Path("/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3")
@@ -186,6 +191,8 @@ def worker(request_path):
 
 
 def run(args):
+    if args.adaptive and (args.profiles or args.repeats != 1):
+        raise ValueError("Adaptive search uses the first case profile once, then checked replays")
     experiment_started = time.monotonic()
     case = read(args.case)
     recipe = read(PROFILE)
@@ -228,10 +235,9 @@ def run(args):
     env.update(PYTHONUNBUFFERED="1", PYTHONHASHSEED="0")
     profiles = case["profiles"]
     if args.sweep:
-        profiles = [{"id": f"grid{grid}-via{cost}-{order}", "grid_step": grid,
-                     "via_cost": cost, "ordering": order}
-                    for grid in (0.1, 0.05) for cost in (50, 75, 125)
-                    for order in ("mps", "inside_out")]
+        profiles = sweep_profiles()
+    elif args.adaptive:
+        profiles = [profiles[0]]
     if args.profiles:
         names = set(args.profiles.split(","))
         if names - {p["id"] for p in profiles}:
@@ -242,8 +248,11 @@ def run(args):
                "electrically_qualified": False, "production_promoted": False,
                "engine_commit": revision, "baseline_inputs": baseline_inputs, "runs": []}
     summary["fixture"] = fixture
+    summary["adaptive"] = args.adaptive
+    summary["adaptive_fallback_profiles"] = 0
     summary["setup_seconds"] = round(time.monotonic() - experiment_started, 3)
     summary["controller_sha256"] = sha(__file__)
+    summary["profile_policy_sha256"] = sha(LAYOUT / "h6_r2_benchmark_profiles.py")
     summary["grader_sha256"] = sha(LAYOUT / "h6_r2_route_candidate.py")
     summary["case_sha256"] = sha(output / "case.json")
     summary["profile_sha256"] = sha(PROFILE)
@@ -304,11 +313,17 @@ def run(args):
             summary["benchmark_seconds"] = round(time.monotonic() - experiment_started, 3)
             write(output / "summary.json", summary)
             grade = row.get("validation", {})
-            print(json.dumps({"profile": profile["id"], "repeat": repeat + 1,
-                "seconds": row["end_to_end_seconds"], "engine_seconds": row["engine"]["seconds"],
-                "geometry_pass": row["geometry_pass"], "resolved": grade.get("resolved_connections"),
-                "vias": grade.get("new_vias"), "length_mm": grade.get("new_trace_length_mm"),
-                "drc": grade.get("drc_types"), "roi_escapes": len(grade.get("roi_escaped_objects", []))}), flush=True)
+            if not args.quiet:
+                print(json.dumps({"profile": profile["id"], "repeat": repeat + 1,
+                    "seconds": row["end_to_end_seconds"], "engine_seconds": row["engine"]["seconds"],
+                    "geometry_pass": row["geometry_pass"], "resolved": grade.get("resolved_connections"),
+                    "vias": grade.get("new_vias"), "length_mm": grade.get("new_trace_length_mm"),
+                    "drc": grade.get("drc_types"), "roi_escapes": len(grade.get("roi_escaped_objects", []))}), flush=True)
+        if args.adaptive and profile_index == 0:
+            fallback = adaptive_fallback(profile, summary["runs"])
+            profiles.extend(fallback)
+            initial_profile_count = len(profiles)
+            summary["adaptive_fallback_profiles"] = len(fallback)
         if profile_index + 1 == initial_profile_count and args.repeat_best:
             best = select_best(summary["runs"])
             summary["selection_policy"] = "complete + all geometry gates; minimize vias, then length, then wall time; not electrical qualification"
@@ -325,7 +340,13 @@ def run(args):
             == {summary.get("best_initial_geometry_signature")})
     summary["benchmark_seconds"] = round(time.monotonic() - experiment_started, 3)
     write(output / "summary.json", summary)
-    print(json.dumps({"summary": str(output / "summary.json")}), flush=True)
+    best = select_best(summary["runs"])
+    print(json.dumps({"summary": str(output / "summary.json"), "attempts": len(summary["runs"]),
+        "passing_attempts": sum(bool(r["geometry_pass"]) for r in summary["runs"]),
+        "replay_pass": summary["replay_pass"], "seconds": summary["benchmark_seconds"],
+        "resolved": best["validation"]["resolved_connections"] if best else None,
+        "adaptive_fallback_profiles": summary["adaptive_fallback_profiles"],
+        "electrically_qualified": False, "production_promoted": False}), flush=True)
 
 
 def main():
@@ -337,7 +358,10 @@ def main():
     parser.add_argument("--engine-python", type=Path, default=ROOT / "work/route-batch-Z7Zt8C/venv/bin/python")
     parser.add_argument("--profiles", help="Comma-separated exact profile IDs; default all")
     parser.add_argument("--repeats", type=int, choices=range(1, 4), default=1)
-    parser.add_argument("--sweep", action="store_true", help="Bounded 12-profile parameter sweep")
+    search = parser.add_mutually_exclusive_group()
+    search.add_argument("--sweep", action="store_true", help="Bounded 12-profile parameter sweep")
+    search.add_argument("--adaptive", action="store_true", help="Try first case profile; search only if independent checks fail")
+    parser.add_argument("--quiet", action="store_true", help="Only launch/final summaries; full evidence stays on disk")
     parser.add_argument("--repeat-best", type=int, choices=range(4), default=0)
     parser.add_argument("--max-seconds", type=int, default=1800, help="Stop scheduling new profiles after this budget")
     parser.add_argument("--move", nargs=3, metavar=("REF", "DX_MM", "DY_MM"),
