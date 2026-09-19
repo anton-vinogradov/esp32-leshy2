@@ -27,7 +27,7 @@ and completed results live in the [report index](stage-results.md).
 
 ## Current H6
 
-Current focus: [routing speed and repeatability validation](h6-r2-routing-automation.md). Production routing waits for this gate; experiments use copies. This is an internal H6.0.3 step, not H6 closure or fabrication authorization.
+Current focus: [automatic routing and repeatability](h6-r2-routing-automation.md). The two-block 474-connection geometry milestone passed with three cold replays per block; full-board rebuilds and electrical qualification remain ahead. Experiments use copies and production routing stays paused. This is an internal H6.0.3 step, not H6 closure or fabrication authorization.
 
 | Substage | Status | Exit |
 |---|---|---|

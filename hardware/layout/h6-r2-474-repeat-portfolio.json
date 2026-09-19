@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "purpose": "Cold replay portfolio for the selected UI252 and RF222 geometry profiles; not electrical or production qualification",
+  "engine_timeout_seconds": 900,
+  "fine_engine_timeout_seconds": 1800,
+  "validation_timeout_seconds": 180,
+  "cases": {
+    "ui": {
+      "manifest": "hardware/layout/benchmarks/ui-digital-controls-buses-252.json",
+      "profiles": [
+        {
+          "grid_step": 0.05,
+          "via_cost": 75,
+          "heuristic_weight": 1.3,
+          "max_iterations": 1000000,
+          "dynamic_iterations_grace": 2,
+          "clearance": 0.16,
+          "board_edge_clearance": 0.3,
+          "ordering": "bus",
+          "rip_selected": false,
+          "max_ripup": 3,
+          "blocker_select": "count",
+          "abandon_metric": "stranded",
+          "direction": "forward",
+          "endpoint_reservations_all": true,
+          "pending_pad_protection": true,
+          "name": "ui-bus-pending-dense",
+          "dense_first": true
+        }
+      ],
+      "adaptive": []
+    },
+    "rf": {
+      "manifest": "hardware/layout/benchmarks/rf-digital-audio-geometry-222.json",
+      "profiles": [
+        {
+          "name": "rf-target5",
+          "direction": "backward",
+          "ordering": "mps",
+          "grid_step": 0.05,
+          "via_cost": 75,
+          "rip_selected": true,
+          "max_ripup": 5,
+          "blocker_select": "near-target",
+          "abandon_metric": "stranded",
+          "clearance": 0.16,
+          "board_edge_clearance": 0.3,
+          "heuristic_weight": null,
+          "max_iterations": null,
+          "dynamic_iterations_grace": 0
+        }
+      ],
+      "adaptive": []
+    }
+  }
+}

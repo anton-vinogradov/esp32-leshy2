@@ -24,8 +24,8 @@ from hardware.layout.h6_r2_parallel_jobs import run_jobs, PhaseResult
 from hardware.layout.h6_r2_parallel_process import ProcessRegistry
 from tools.route_board import assess, keep_awake, load_cases
 
-PLAN = ROOT / "hardware/layout/h6-r2-474-portfolio.json"
-PATCH = "f23c065706e02fd003d350f9cd4c308de7b5849981d98a023c10d43850884b03"
+PLAN = ROOT / "hardware/layout/h6-r2-474-repeat-portfolio.json"
+PATCH = "0dec1ef898beec101580f496a7ef48a9042cb45ad77b29b2468e26c3f8a63067"
 
 
 def require(condition, message):
@@ -39,6 +39,35 @@ def sha(path):
 
 def write(path, value):
     Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+
+
+def checked_result_hash(folder, result):
+    """Bind saved proof to the backend return before adding CLI row fields."""
+    payload = (Path(folder) / "checked-result.json").read_bytes()
+    require(json.loads(payload) == result, "Saved checked result differs from backend validation")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def check_accepted_evidence(result):
+    """Recheck each credited cohort against hashes captured during validation.
+
+    Never refresh expected hashes from saved summaries or checked-result files.
+    A missing or changed proof invalidates the campaign before credit is emitted.
+    """
+    paths = (("candidate/validation.json", "validation_sha256"),
+             ("candidate/work/native-drc.json", "drc_report_sha256"),
+             ("candidate/work/native-drc.json.provenance.json", "drc_receipt_sha256"),
+             ("inventory.json", "inventory_sha256"),
+             ("checked-result.json", "checked_result_sha256"))
+    for state in result["cases"].values():
+        if not (state["assessment"] and state["assessment"]["accepted"]):
+            continue
+        require(state["winner"] is not None and len(state["replays"]) == 3,
+                "Accepted evidence requires a winner and three replays")
+        for row in [state["winner"], *state["replays"]]:
+            for relative, key in paths:
+                require(sha(Path(row["folder"]) / relative) == row.get(key),
+                        f"Accepted evidence changed: {row['profile']['id']}/{relative}")
 
 
 def expand_seeded_orders(config, cases):
@@ -224,7 +253,7 @@ def finish_registry(registry, cancel, explicit_abort, report):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--plan", type=Path, default=PLAN)
-    parser.add_argument("--engine-root", type=Path, default=ROOT / "work/npth-via-fix-8mjYlF")
+    parser.add_argument("--engine-root", type=Path, default=ROOT / "work/pending-leaf-VTy6VD")
     parser.add_argument("--engine-python", type=Path, default=ROOT / "work/route-batch-Z7Zt8C/venv/bin/python")
     parser.add_argument("--engine-patch-sha256", default=PATCH)
     parser.add_argument("--workers", type=int, choices=range(2, 9), default=8)
@@ -315,6 +344,7 @@ def main():
                 def validate(job, ctx):
                     check_pins()
                     result = backend.validate(ctx, registry, timeout=config.get("validation_timeout_seconds", 180))
+                    result["checked_result_sha256"] = checked_result_hash(ctx["folder"], result)
                     check_pins()
                     return PhaseResult(result["geometry_pass"], result)
                 observed = run_jobs(jobs, calculate, validate, max_workers=args.workers,
@@ -341,6 +371,7 @@ def main():
                 for ctx in contexts.values():
                     backend.check_context(ctx)
                 check_pins()
+                check_accepted_evidence(result)
                 report.update(result)
             else:
                 report.update(status="preflight_pass", preflight_only=True)

@@ -1,8 +1,13 @@
 """CI orchestration/acceptance negatives; no native tools or router required."""
 import copy
+import json
+from pathlib import Path
+import tempfile
 import unittest
 
-from tools.route_474 import campaign, cohort, failed_first, ResourceBudget, finish_registry, expand_seeded_orders
+from tools.route_474 import (PLAN, campaign, check_accepted_evidence, checked_result_hash,
+                             cohort, failed_first, ResourceBudget, finish_registry,
+                             expand_seeded_orders, sha, write)
 from threading import Event
 
 
@@ -36,6 +41,20 @@ def plans(count=1):
 
 
 class CampaignTests(unittest.TestCase):
+    def test_default_plan_runs_two_initials_and_six_replays(self):
+        plan = json.loads(PLAN.read_text())["cases"]
+        self.assertEqual({kind: len(section["profiles"]) for kind, section in plan.items()},
+                         {"ui": 1, "rf": 1})
+        self.assertTrue(all(not section.get("adaptive") for section in plan.values()))
+        jobs = []
+        def execute(batch, wave):
+            jobs.extend(batch)
+            return [row(job) for job in batch]
+        result = campaign(cases(), plan, execute)
+        self.assertEqual((result["status"], result["resolved"]), ("pass", 474))
+        self.assertEqual(len(jobs), 8)
+        self.assertEqual(sum("replay_of" in job for job in jobs), 6)
+
     def test_seed_order_is_exact_stable_and_frozen_for_replays(self):
         case_set = cases()
         case_set["ui"]["nets"] = [{"kicad_net": str(i)} for i in range(20)]
@@ -170,6 +189,92 @@ class CampaignTests(unittest.TestCase):
         report = {"status": "pass", "resolved": 474}
         finish_registry(Registry(), cancel, abort, report)
         self.assertEqual(report, {"status": "fail", "resolved": 0, "cancelled": True})
+
+
+class AcceptedEvidenceTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.proof_names = ("candidate/validation.json", "candidate/work/native-drc.json",
+                            "candidate/work/native-drc.json.provenance.json", "inventory.json",
+                            "checked-result.json")
+        self.backend_results = {}
+        self.result = campaign(cases(), plans(),
+                               lambda jobs, _: [self.checked_row(job) for job in jobs])
+
+    def checked_row(self, job):
+        attempt = row(job)
+        folder = self.root / job["id"]
+        result = {key: copy.deepcopy(attempt[key]) for key in
+                  ("geometry_pass", "engine", "validation_process", "validation")}
+        for name, key in (("candidate/validation.json", "validation_sha256"),
+                          ("candidate/work/native-drc.json", "drc_report_sha256"),
+                          ("candidate/work/native-drc.json.provenance.json", "drc_receipt_sha256"),
+                          ("inventory.json", "inventory_sha256")):
+            path = folder / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            write(path, {"job": job["id"], "proof": name})
+            result[key] = sha(path)
+        write(folder / "checked-result.json", result)
+        self.backend_results[job["id"]] = copy.deepcopy(result)
+        attempt.update(result, folder=str(folder),
+                       checked_result_sha256=checked_result_hash(folder, result))
+        return attempt
+
+    def accepted_rows(self):
+        return [attempt for state in self.result["cases"].values()
+                for attempt in [state["winner"], *state["replays"]]]
+
+    def test_intact_evidence_for_all_eight_attempts_passes(self):
+        self.assertEqual((self.result["status"], self.result["resolved"]), ("pass", 474))
+        self.assertEqual(len(self.accepted_rows()), 8)
+        check_accepted_evidence(self.result)
+
+    def test_changed_or_missing_proof_rejects_every_winner_and_replay(self):
+        for attempt in self.accepted_rows():
+            for name in self.proof_names:
+                path = Path(attempt["folder"]) / name
+                original = path.read_bytes()
+                for missing in (False, True):
+                    with self.subTest(job=attempt["profile"]["id"], proof=name, missing=missing):
+                        try:
+                            if missing:
+                                path.unlink()
+                            else:
+                                write(path, {"changed": True})
+                            with self.assertRaises((ValueError, OSError)):
+                                check_accepted_evidence(self.result)
+                        finally:
+                            path.write_bytes(original)
+
+    def test_capture_rejects_checked_result_changed_before_hashing(self):
+        attempt = self.accepted_rows()[0]
+        folder = Path(attempt["folder"])
+        write(folder / "checked-result.json", {"geometry_pass": True})
+        with self.assertRaisesRegex(ValueError, "differs from backend"):
+            checked_result_hash(folder, self.backend_results[attempt["profile"]["id"]])
+
+    def test_rewriting_proof_and_its_advertised_digest_does_not_refresh_trust(self):
+        attempt = self.result["cases"]["ui"]["replays"][-1]
+        folder = Path(attempt["folder"])
+        write(folder / "inventory.json", {"status": "pass", "forged": True})
+        saved = copy.deepcopy(self.backend_results[attempt["profile"]["id"]])
+        saved["inventory_sha256"] = sha(folder / "inventory.json")
+        write(folder / "checked-result.json", saved)
+        with self.assertRaises(ValueError):
+            check_accepted_evidence(self.result)
+
+    def test_missing_captured_digest_rejects_even_unchanged_checked_result(self):
+        attempt = self.accepted_rows()[0]
+        del attempt["checked_result_sha256"]
+        with self.assertRaisesRegex(ValueError, "checked-result.json"):
+            check_accepted_evidence(self.result)
+
+    def test_rejected_search_artifacts_do_not_enter_accepted_cohort(self):
+        self.result["cases"]["ui"]["attempts"].append(
+            row({"id": "rejected-without-proof", "kind": "ui", "recipe": {}}, passed=False))
+        check_accepted_evidence(self.result)
 
 
 if __name__ == "__main__":

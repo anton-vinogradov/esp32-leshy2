@@ -1,0 +1,967 @@
+{
+  "schema_version": 1,
+  "artifact": "H6 two-block automatic 474-connection milestone",
+  "recorded_date_local": "2026-09-20",
+  "status": "pass",
+  "command": "python3 tools/route_474.py",
+  "resolved": 474,
+  "targeted": 474,
+  "wall_seconds": 225.129,
+  "production_promoted": false,
+  "electrically_qualified": false,
+  "full_board_cold_rebuild_proven": false,
+  "scope_note": "Selected nets start with zero copper; original unselected copper is retained. This proves two-block geometry and replay stability, not full-PCB or electrical qualification.",
+  "model_decisions_inside_verified_run": 0,
+  "final_proof_hash_recheck": "pass",
+  "engine": {
+    "base_commit": "5a7fbcb6ee4deebd1d9ec1d5bd094d8681f502f3",
+    "patch_sha256": "0dec1ef898beec101580f496a7ef48a9042cb45ad77b29b2468e26c3f8a63067",
+    "binary_sha256": "22ddb80e186d54ec34e7d820fb9b3973421ca2778b80e02f6324a433a0a9859f"
+  },
+  "command_sha256": "71e732c521d0d2f2a864a321f320b77bd5729cae87483c916a2e37db47538820",
+  "plan_sha256": "3252145af4046cc0e9c02b96c1327ea334a7efec39e494c915385034c6c370df",
+  "cases": {
+    "ui": {
+      "manifest": "hardware/layout/benchmarks/ui-digital-controls-buses-252.json",
+      "manifest_sha256": "3c5d8960ce3e808c7e0318fa4cd2266c4279a5539cc0f2c3a53e06f256bf682b",
+      "baseline_sha256": {
+        "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
+        "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "9c4c81fe32c242297b6ed42b6999c8ac63e6f02a766fac0874c88b19b2ae9d3e",
+        "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "8aeda79b6891c94f16e57384c965c272b7dc867c6bc4ecf182998e8a318ef0bc",
+        "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
+        "hardware/ecad/h2-r2-topology-overrides.json": "d70eb63b5c9bc60b35624a53a9fef603597ddaeb3c39609654f6786fde9067b7",
+        "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
+        "hardware/layout/generated/H6-R2-routing-policy-audit.json": "7a21ca393f5a54131e73289d313717118842982e2dd86fa23ab97eb5b8431063",
+        "hardware/layout/h6-r2-manual-copper.json": "9dec0bf735af1994bff6c1330f99e3870f8362246bb5192ca71acc3a26c0e8a4",
+        "hardware/layout/h6-r2-placement-freeze.json": "71f155c7c4031563a6b21d40867a404b4b340d8471921286314498eea1e428cd",
+        "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "963202a1ff8b2ab887b5fec5e860ddb5cf7af09be0c12b3ccc5701c585a475c8",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+        "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3fb5f492f09eefb2e85c678a64e4398f50842e82253ceb0c5277314acde9cf9f",
+        "hardware/layout/generated/H6-R2-current-routing-audit.json": "ddcae9930cae61b011560385bfbd68093bc9f924bfdff45d1366552d82116127"
+      }
+    },
+    "rf": {
+      "manifest": "hardware/layout/benchmarks/rf-digital-audio-geometry-222.json",
+      "manifest_sha256": "11928c2abdc6132648f8a69ca057f5bd6e66a66bd769db40259fb245be8ece04",
+      "baseline_sha256": {
+        "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d975a825d194740650f5139c2d2432324273bd11a00f916c958bb880c114dd18",
+        "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "9c4c81fe32c242297b6ed42b6999c8ac63e6f02a766fac0874c88b19b2ae9d3e",
+        "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "8aeda79b6891c94f16e57384c965c272b7dc867c6bc4ecf182998e8a318ef0bc",
+        "hardware/architecture/devices.json": "99f4346f64096d6872ecafa545bc93bd7d176cddc6e02630f533fd903d6ef54e",
+        "hardware/ecad/h2-r2-topology-overrides.json": "d70eb63b5c9bc60b35624a53a9fef603597ddaeb3c39609654f6786fde9067b7",
+        "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
+        "hardware/layout/generated/H6-R2-routing-policy-audit.json": "7a21ca393f5a54131e73289d313717118842982e2dd86fa23ab97eb5b8431063",
+        "hardware/layout/h6-r2-manual-copper.json": "9dec0bf735af1994bff6c1330f99e3870f8362246bb5192ca71acc3a26c0e8a4",
+        "hardware/layout/h6-r2-placement-freeze.json": "71f155c7c4031563a6b21d40867a404b4b340d8471921286314498eea1e428cd",
+        "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "963202a1ff8b2ab887b5fec5e860ddb5cf7af09be0c12b3ccc5701c585a475c8",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+        "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3fb5f492f09eefb2e85c678a64e4398f50842e82253ceb0c5277314acde9cf9f",
+        "hardware/layout/generated/H6-R2-current-routing-audit.json": "ddcae9930cae61b011560385bfbd68093bc9f924bfdff45d1366552d82116127"
+      }
+    }
+  },
+  "history": [
+    {
+      "label": "initial_portfolio",
+      "local_run_id": "route-474-2u5mokgw",
+      "summary_sha256": "b24c0ad99ba40b232c48dc97def320ef1c7d6740003cc772d1839f8c95678e90",
+      "status": "fail",
+      "resolved": 222,
+      "targeted": 474,
+      "wall_seconds": 875,
+      "model_decisions_inside_run": 0,
+      "attempts": {
+        "rf": [
+          {
+            "id": "rf-search-1",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 108.923
+          },
+          {
+            "id": "rf-search-2",
+            "recipe": "rf-mincut5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 113.455
+          },
+          {
+            "id": "rf-replay-1",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 83.081
+          },
+          {
+            "id": "rf-replay-2",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 82.607
+          },
+          {
+            "id": "rf-replay-3",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 83.38
+          }
+        ],
+        "ui": [
+          {
+            "id": "ui-search-1",
+            "recipe": "ui-back-cost3-total",
+            "pass": false,
+            "remaining": 8,
+            "drc": 1,
+            "engine_seconds": 141.917
+          },
+          {
+            "id": "ui-search-2",
+            "recipe": "ui-back-target3-total",
+            "pass": false,
+            "remaining": 7,
+            "drc": 0,
+            "engine_seconds": 108.026
+          },
+          {
+            "id": "ui-search-3",
+            "recipe": "ui-back-mincut3-total",
+            "pass": false,
+            "remaining": 7,
+            "drc": 1,
+            "engine_seconds": 133.696
+          },
+          {
+            "id": "ui-search-4",
+            "recipe": "ui-back-control-off",
+            "pass": false,
+            "remaining": 4,
+            "drc": 1,
+            "engine_seconds": 108.119
+          },
+          {
+            "id": "ui-search-5",
+            "recipe": "ui-original-forward-cost3",
+            "pass": false,
+            "remaining": 2,
+            "drc": 1,
+            "engine_seconds": 132.673
+          },
+          {
+            "id": "ui-search-6",
+            "recipe": "ui-bus-forward-off",
+            "pass": false,
+            "remaining": 2,
+            "drc": 0,
+            "engine_seconds": 111.348
+          },
+          {
+            "id": "ui-search-7",
+            "recipe": "ui-fine-back-off",
+            "pass": false,
+            "remaining": 5,
+            "drc": 3,
+            "engine_seconds": 270.673
+          },
+          {
+            "id": "ui-search-8",
+            "recipe": "ui-fine-forward-target3",
+            "pass": false,
+            "remaining": 2,
+            "drc": 0,
+            "engine_seconds": 366.299
+          },
+          {
+            "id": "ui-search-9",
+            "recipe": "ui-forward-via50-cost3",
+            "pass": false,
+            "remaining": 5,
+            "drc": 0,
+            "engine_seconds": 130.853
+          },
+          {
+            "id": "ui-search-10",
+            "recipe": "ui-forward-via125-off",
+            "pass": false,
+            "remaining": 5,
+            "drc": 0,
+            "engine_seconds": 113.744
+          },
+          {
+            "id": "ui-search-11",
+            "recipe": "ui-back-mincut5-total",
+            "pass": false,
+            "remaining": 7,
+            "drc": 2,
+            "engine_seconds": 114.678
+          },
+          {
+            "id": "ui-search-12",
+            "recipe": "ui-forward-target5-total",
+            "pass": false,
+            "remaining": 7,
+            "drc": 0,
+            "engine_seconds": 122.425
+          },
+          {
+            "id": "ui-search-13",
+            "recipe": "failed-first-1",
+            "pass": false,
+            "remaining": 7,
+            "drc": 1,
+            "engine_seconds": 88.015
+          },
+          {
+            "id": "ui-search-14",
+            "recipe": "failed-first-2",
+            "pass": false,
+            "remaining": 7,
+            "drc": 2,
+            "engine_seconds": 114.715
+          },
+          {
+            "id": "ui-search-15",
+            "recipe": "failed-first-3",
+            "pass": false,
+            "remaining": 2,
+            "drc": 1,
+            "engine_seconds": 76.255
+          },
+          {
+            "id": "ui-search-16",
+            "recipe": "failed-first-4",
+            "pass": false,
+            "remaining": 3,
+            "drc": 0,
+            "engine_seconds": 292.106
+          }
+        ]
+      }
+    },
+    {
+      "label": "seeded_orders",
+      "local_run_id": "route-474-1w48jd4l",
+      "summary_sha256": "7ffcc79aa01ea02fcdfd67436d02857dbd026aefff818a180f5c0ee5e0ddc809",
+      "status": "fail",
+      "resolved": 222,
+      "targeted": 474,
+      "wall_seconds": 321.002,
+      "model_decisions_inside_run": 0,
+      "attempts": {
+        "rf": [
+          {
+            "id": "rf-search-1",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 96.402
+          },
+          {
+            "id": "rf-replay-1",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 97.509
+          },
+          {
+            "id": "rf-replay-2",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 97.751
+          },
+          {
+            "id": "rf-replay-3",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 98.227
+          }
+        ],
+        "ui": [
+          {
+            "id": "ui-search-1",
+            "recipe": "ui-seed-0",
+            "pass": false,
+            "remaining": 6,
+            "drc": 0,
+            "engine_seconds": 102.314
+          },
+          {
+            "id": "ui-search-2",
+            "recipe": "ui-seed-1",
+            "pass": false,
+            "remaining": 3,
+            "drc": 0,
+            "engine_seconds": 83.085
+          },
+          {
+            "id": "ui-search-3",
+            "recipe": "ui-seed-2",
+            "pass": false,
+            "remaining": 5,
+            "drc": 0,
+            "engine_seconds": 114.17
+          },
+          {
+            "id": "ui-search-4",
+            "recipe": "ui-seed-3",
+            "pass": false,
+            "remaining": 4,
+            "drc": 0,
+            "engine_seconds": 102.553
+          },
+          {
+            "id": "ui-search-5",
+            "recipe": "ui-seed-4",
+            "pass": false,
+            "remaining": 3,
+            "drc": 0,
+            "engine_seconds": 87.736
+          },
+          {
+            "id": "ui-search-6",
+            "recipe": "ui-seed-5",
+            "pass": false,
+            "remaining": 4,
+            "drc": 0,
+            "engine_seconds": 109.719
+          },
+          {
+            "id": "ui-search-7",
+            "recipe": "ui-seed-6",
+            "pass": false,
+            "remaining": 5,
+            "drc": 0,
+            "engine_seconds": 117.677
+          },
+          {
+            "id": "ui-search-8",
+            "recipe": "ui-seed-7",
+            "pass": false,
+            "remaining": 5,
+            "drc": 0,
+            "engine_seconds": 102.976
+          },
+          {
+            "id": "ui-search-9",
+            "recipe": "ui-seed-8",
+            "pass": false,
+            "remaining": 1,
+            "drc": 0,
+            "engine_seconds": 83.191
+          },
+          {
+            "id": "ui-search-10",
+            "recipe": "ui-seed-9",
+            "pass": false,
+            "remaining": 1,
+            "drc": 0,
+            "engine_seconds": 93.51
+          },
+          {
+            "id": "ui-search-11",
+            "recipe": "ui-seed-10",
+            "pass": false,
+            "remaining": 5,
+            "drc": 0,
+            "engine_seconds": 110.244
+          },
+          {
+            "id": "ui-search-12",
+            "recipe": "ui-seed-11",
+            "pass": false,
+            "remaining": 3,
+            "drc": 0,
+            "engine_seconds": 101.345
+          }
+        ]
+      }
+    },
+    {
+      "label": "endpoint_controls",
+      "local_run_id": "route-474-8gqad7mo",
+      "summary_sha256": "68b5e15e376dcce34f03ce24b845b31c0d098194e36d0fa57c74c49480259c19",
+      "status": "fail",
+      "resolved": 222,
+      "targeted": 474,
+      "wall_seconds": 594.815,
+      "model_decisions_inside_run": 0,
+      "attempts": {
+        "rf": [
+          {
+            "id": "rf-search-1",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 78.476
+          },
+          {
+            "id": "rf-replay-1",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 68.319
+          },
+          {
+            "id": "rf-replay-2",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 68.149
+          },
+          {
+            "id": "rf-replay-3",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 68.664
+          }
+        ],
+        "ui": [
+          {
+            "id": "ui-search-1",
+            "recipe": "ui-bus-reserve-all",
+            "pass": false,
+            "remaining": 2,
+            "drc": 0,
+            "engine_seconds": 108.762
+          },
+          {
+            "id": "ui-search-2",
+            "recipe": "ui-bus-dense-first",
+            "pass": false,
+            "remaining": 3,
+            "drc": 0,
+            "engine_seconds": 78.778
+          },
+          {
+            "id": "ui-search-3",
+            "recipe": "ui-bus-reserve-dense",
+            "pass": false,
+            "remaining": 1,
+            "drc": 0,
+            "engine_seconds": 107.693
+          },
+          {
+            "id": "ui-search-4",
+            "recipe": "ui-fine-reserve-all",
+            "pass": false,
+            "remaining": 3,
+            "drc": 1,
+            "engine_seconds": 423.078
+          },
+          {
+            "id": "ui-search-5",
+            "recipe": "ui-fine-reserve-dense",
+            "pass": false,
+            "remaining": 4,
+            "drc": 0,
+            "engine_seconds": 447.268
+          },
+          {
+            "id": "ui-search-6",
+            "recipe": "ui-bus-reserve-dense-no-rip",
+            "pass": false,
+            "remaining": 11,
+            "drc": 2,
+            "engine_seconds": 98.748
+          },
+          {
+            "id": "ui-search-7",
+            "recipe": "ui-original-reserve-dense",
+            "pass": false,
+            "remaining": 8,
+            "drc": 1,
+            "engine_seconds": 121.782
+          },
+          {
+            "id": "ui-search-8",
+            "recipe": "ui-back-reserve-dense",
+            "pass": false,
+            "remaining": 4,
+            "drc": 0,
+            "engine_seconds": 72.945
+          },
+          {
+            "id": "ui-search-9",
+            "recipe": "ui-seed-8-reserve-dense",
+            "pass": false,
+            "remaining": 2,
+            "drc": 0,
+            "engine_seconds": 84.891
+          },
+          {
+            "id": "ui-search-10",
+            "recipe": "ui-seed-9-reserve-dense",
+            "pass": false,
+            "remaining": 4,
+            "drc": 0,
+            "engine_seconds": 91.255
+          }
+        ]
+      }
+    },
+    {
+      "label": "pending_pad_search",
+      "local_run_id": "route-474-f6yg3659",
+      "summary_sha256": "79fe673c10b711038b2a104bd36abe7b0c6704b959e7ec9026d175b990be71c3",
+      "status": "pass",
+      "resolved": 474,
+      "targeted": 474,
+      "wall_seconds": 299.98,
+      "model_decisions_inside_run": 0,
+      "attempts": {
+        "rf": [
+          {
+            "id": "rf-search-1",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 88.566
+          },
+          {
+            "id": "rf-replay-1",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 73.519
+          },
+          {
+            "id": "rf-replay-2",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 72.81
+          },
+          {
+            "id": "rf-replay-3",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 72.662
+          }
+        ],
+        "ui": [
+          {
+            "id": "ui-search-1",
+            "recipe": "ui-bus-pending-dense",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 116.951
+          },
+          {
+            "id": "ui-search-2",
+            "recipe": "ui-seed8-pending-dense",
+            "pass": false,
+            "remaining": 1,
+            "drc": 0,
+            "engine_seconds": 115.249
+          },
+          {
+            "id": "ui-search-3",
+            "recipe": "ui-seed9-pending-dense",
+            "pass": false,
+            "remaining": 5,
+            "drc": 1,
+            "engine_seconds": 125.766
+          },
+          {
+            "id": "ui-search-4",
+            "recipe": "ui-seed8-pending",
+            "pass": false,
+            "remaining": 1,
+            "drc": 0,
+            "engine_seconds": 106.703
+          },
+          {
+            "id": "ui-search-5",
+            "recipe": "ui-seed9-pending",
+            "pass": false,
+            "remaining": 3,
+            "drc": 0,
+            "engine_seconds": 117.309
+          },
+          {
+            "id": "ui-search-6",
+            "recipe": "ui-bus-pending",
+            "pass": false,
+            "remaining": 3,
+            "drc": 0,
+            "engine_seconds": 122.5
+          },
+          {
+            "id": "ui-search-7",
+            "recipe": "ui-mps-pending-dense",
+            "pass": false,
+            "remaining": 2,
+            "drc": 1,
+            "engine_seconds": 124.576
+          },
+          {
+            "id": "ui-replay-1",
+            "recipe": "ui-bus-pending-dense",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 95.554
+          },
+          {
+            "id": "ui-replay-2",
+            "recipe": "ui-bus-pending-dense",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 95.704
+          },
+          {
+            "id": "ui-replay-3",
+            "recipe": "ui-bus-pending-dense",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 95.608
+          }
+        ]
+      }
+    },
+    {
+      "label": "default_command_verified",
+      "local_run_id": "route-474-1i9fcttw",
+      "summary_sha256": "c1af9505816a6e3aeaef95591a04bfc91fbad111d816ef85bfd4c70ebb5fec6c",
+      "status": "pass",
+      "resolved": 474,
+      "targeted": 474,
+      "wall_seconds": 225.129,
+      "model_decisions_inside_run": 0,
+      "attempts": {
+        "rf": [
+          {
+            "id": "rf-search-1",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 59.288
+          },
+          {
+            "id": "rf-replay-1",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 76.007
+          },
+          {
+            "id": "rf-replay-2",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 76.796
+          },
+          {
+            "id": "rf-replay-3",
+            "recipe": "rf-target5",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 76.464
+          }
+        ],
+        "ui": [
+          {
+            "id": "ui-search-1",
+            "recipe": "ui-bus-pending-dense",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 70.904
+          },
+          {
+            "id": "ui-replay-1",
+            "recipe": "ui-bus-pending-dense",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 97.569
+          },
+          {
+            "id": "ui-replay-2",
+            "recipe": "ui-bus-pending-dense",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 97.45
+          },
+          {
+            "id": "ui-replay-3",
+            "recipe": "ui-bus-pending-dense",
+            "pass": true,
+            "remaining": 0,
+            "drc": 0,
+            "engine_seconds": 97.736
+          }
+        ]
+      }
+    }
+  ],
+  "cohorts": {
+    "rf": {
+      "assessment": {
+        "accepted": true,
+        "best_partial_resolved": 222,
+        "case": "rf-digital-audio-geometry-222",
+        "native_drc_failures": 0,
+        "parity_failures": 0,
+        "remaining_targeted": 0,
+        "replay_passed": true,
+        "resolved": 222,
+        "targeted": 222,
+        "timed_out": false
+      },
+      "recipe": {
+        "abandon_metric": "stranded",
+        "blocker_select": "near-target",
+        "board_edge_clearance": 0.3,
+        "clearance": 0.16,
+        "dense_first": false,
+        "direction": "backward",
+        "dynamic_iterations_grace": 0,
+        "endpoint_reservations_all": false,
+        "grid_step": 0.05,
+        "heuristic_weight": null,
+        "max_iterations": null,
+        "max_ripup": 5,
+        "name": "rf-target5",
+        "ordering": "mps",
+        "pending_pad_protection": false,
+        "rip_selected": true,
+        "via_cost": 75,
+        "net_order_sha256": "0a835076b3c272c2179baf743ed449b0ba0b8805f409d9d77749d2daca8e5694"
+      },
+      "geometry_signature": "e1a6447bb255a8237833281ecf967f82cb9bdf7209a7668925661ecbeeb94555",
+      "new_vias": 345,
+      "new_trace_length_mm": 6443.649416,
+      "inventory": {
+        "expected_footprints": 1218,
+        "finding_count": 0,
+        "mechanical_features": 8,
+        "native_footprints": 1218,
+        "schematic_components": 1210
+      },
+      "runs": [
+        {
+          "id": "rf-search-1",
+          "cold_from_original": true,
+          "engine_seconds": 59.288,
+          "validation_seconds": 8.061,
+          "inventory_seconds": 0.899,
+          "proofs": {
+            "candidate_sha256": "cfc396ddbabf0b9d682e5ad8b273cfda2f7080efcb20ea57d00585e9228d0dc5",
+            "validation_sha256": "c6d20002c86bb37d74e0c8d267b8067824103a0d900e4759a3bf99a9747effe7",
+            "inventory_sha256": "11b325183359295174898f46cdde60a202d6a10d4c2f005f78ef1a7234226d43",
+            "drc_report_sha256": "aa9b672e87341cbb814fd8be11bd566e3b4b731b6087041ec5532489089bd2d8",
+            "drc_receipt_sha256": "b7faf54277bd615d122d290071a65c47e3efab1deebf6eab0e164fcb9005a304",
+            "checked_result_sha256": "29bd2787da6825d1f7405c863b1a7dc2a7b3ab699b4b9c1ad8d5d510bf68df40"
+          }
+        },
+        {
+          "id": "rf-replay-1",
+          "cold_from_original": true,
+          "engine_seconds": 76.007,
+          "validation_seconds": 9.259,
+          "inventory_seconds": 0.97,
+          "proofs": {
+            "candidate_sha256": "c217b9127a48b36dbb5e623c350eb19fdbeacfedc6b31035865281c2661b7cad",
+            "validation_sha256": "b4ba8707008213a5c09a8031b1109f37ea783d809e70254f6dbde12e32acedfa",
+            "inventory_sha256": "82161659b9244a8e7908de12ba7c9cc2acec09828afd7a3b6e0065378d85508d",
+            "drc_report_sha256": "aa5d334f936a7e321836c6c38de268b5835246cbdaf2ae98762bad99b68f44a6",
+            "drc_receipt_sha256": "29a247d315a35ac8b5477e10f9e965a15b04cfdf260f42322979fa8942e78e42",
+            "checked_result_sha256": "ccabb398477703fe2a66dbbab503d84e8ed64a286b76daf062e494156d45eddd"
+          }
+        },
+        {
+          "id": "rf-replay-2",
+          "cold_from_original": true,
+          "engine_seconds": 76.796,
+          "validation_seconds": 8.281,
+          "inventory_seconds": 0.95,
+          "proofs": {
+            "candidate_sha256": "5c8376872e3690d101b54afeee262f01c0f2045514d4dfce67d477cc76418475",
+            "validation_sha256": "6af8ff7c86e82a16a1694b85a2fcfca00341ca7d35ab206eeebbd4d6362b8f94",
+            "inventory_sha256": "1cfe7cd5a788c2a5d0334f34eef59a020dcd19304e0654055ac6f8c7ff669c77",
+            "drc_report_sha256": "9f4a412ceb51609d45caad83e311326bedb3371f307246e8daa249b01ea236cf",
+            "drc_receipt_sha256": "5fc9751f2ba4f2895affa397914e70331e6c5f58bd4db6f94173f580e7d6f38d",
+            "checked_result_sha256": "e4ef6921b0a0868abd30041570f5b33fc316c9043ea65044daaba26926d797b0"
+          }
+        },
+        {
+          "id": "rf-replay-3",
+          "cold_from_original": true,
+          "engine_seconds": 76.464,
+          "validation_seconds": 8.628,
+          "inventory_seconds": 0.865,
+          "proofs": {
+            "candidate_sha256": "65fcc30db6636d0c2adcc9789c569ba563f6b5ada03e30ea2c14d9db9ae1d0ed",
+            "validation_sha256": "f5ef3682ec0639805547ceef7cbc714f434ece6f0973015480c29f33c2fb859b",
+            "inventory_sha256": "5fd26e9d7803e3601391eb3643145b07a528a124a1d75ea2f8b67955cc2e0bd6",
+            "drc_report_sha256": "75fe438a0f2eac0269958c51cd384d48625ec40f23f69a4da5f8eaa3fe64799d",
+            "drc_receipt_sha256": "5f97809da6d2e6fe4dddaa815d489da72f79fe26f12de0a921dbacb1fffea247",
+            "checked_result_sha256": "dbec3d7d43b732f4f2d73788017289f44db09f1970ea0159beadc59f8e4e4e0b"
+          }
+        }
+      ]
+    },
+    "ui": {
+      "assessment": {
+        "accepted": true,
+        "best_partial_resolved": 252,
+        "case": "ui-digital-controls-buses-252",
+        "native_drc_failures": 0,
+        "parity_failures": 0,
+        "remaining_targeted": 0,
+        "replay_passed": true,
+        "resolved": 252,
+        "targeted": 252,
+        "timed_out": false
+      },
+      "recipe": {
+        "abandon_metric": "stranded",
+        "blocker_select": "count",
+        "board_edge_clearance": 0.3,
+        "clearance": 0.16,
+        "dense_first": true,
+        "direction": "forward",
+        "dynamic_iterations_grace": 2,
+        "endpoint_reservations_all": true,
+        "grid_step": 0.05,
+        "heuristic_weight": 1.3,
+        "max_iterations": 1000000,
+        "max_ripup": 3,
+        "name": "ui-bus-pending-dense",
+        "ordering": "bus",
+        "pending_pad_protection": true,
+        "rip_selected": false,
+        "via_cost": 75,
+        "net_order_sha256": "a68f8d7078e051a5b9479002ae3c70614b0951b43fa7b991ca4d01c3522cdf68"
+      },
+      "geometry_signature": "935f73a13275c9e52adf484535cc67e73d112db1cb6a78de8b1a40327fe85c15",
+      "new_vias": 322,
+      "new_trace_length_mm": 5765.33834,
+      "inventory": {
+        "expected_footprints": 1218,
+        "finding_count": 0,
+        "mechanical_features": 8,
+        "native_footprints": 1218,
+        "schematic_components": 1210
+      },
+      "runs": [
+        {
+          "id": "ui-search-1",
+          "cold_from_original": true,
+          "engine_seconds": 70.904,
+          "validation_seconds": 3.641,
+          "inventory_seconds": 0.829,
+          "proofs": {
+            "candidate_sha256": "dbdb739f0c5dc19c53bb75737a152be54851d95c0c4b159f95b4957328f56356",
+            "validation_sha256": "d8fbfb21473c0352bbff76195dc36201df2de41da3ae732f12f63274154746aa",
+            "inventory_sha256": "c16d1aa5d0509d9e00d58b519d13e1f32e245a58a386b5c0ff7b6044ea1cadd8",
+            "drc_report_sha256": "dc76268c276b141502b7cd43887e5e587e0518ac888688a7ab5f989df91636de",
+            "drc_receipt_sha256": "44cde1f0d4bdae56fc1b5ee87a8d0379c46d6362ac7b9b4b167b6a408a2707f3",
+            "checked_result_sha256": "d5e5f551ad773fd3bcdd0ebd8273aabe912b4e8bc07c69e0f70023d43e967538"
+          }
+        },
+        {
+          "id": "ui-replay-1",
+          "cold_from_original": true,
+          "engine_seconds": 97.569,
+          "validation_seconds": 3.65,
+          "inventory_seconds": 0.831,
+          "proofs": {
+            "candidate_sha256": "ec5072596d2e936d883334a5fa9d2c921f9706f41da89aa48a765162139916df",
+            "validation_sha256": "b3c570b4b1dc9da8e7ce912a532ed49faba69a399a61ead365c385df1fb1a787",
+            "inventory_sha256": "8128fafdc04b8856ea5056f8c09f6c0b31fb2df261f4776019a7911b2f2b4a48",
+            "drc_report_sha256": "9ee808ba2dc0d65a76ca0680f458c3b89191cf9d4f67d4c4b56a436f80ba64cf",
+            "drc_receipt_sha256": "805252439eb568dedd31e1ef85acf060450c366d7bd930cd683dd25170a8f545",
+            "checked_result_sha256": "cfeaafa95c31e4060bc3ddb5d45572a754889e25f8f9b6b3ad33c2a63342392f"
+          }
+        },
+        {
+          "id": "ui-replay-2",
+          "cold_from_original": true,
+          "engine_seconds": 97.45,
+          "validation_seconds": 3.828,
+          "inventory_seconds": 0.861,
+          "proofs": {
+            "candidate_sha256": "fa5cdaca19bb240ec23b815027a9c1f479b72cfc9dbaa1464d67fcb21c4ded82",
+            "validation_sha256": "f7f168575638cf1db4f1f62c8eb3f8a87d212a4aacace9989ce0372aab30e302",
+            "inventory_sha256": "fdcc8f576a9136b7a11aa3c58cd1a7aaf87c8ccebadaacabda08f214fac9f58b",
+            "drc_report_sha256": "f094e385f69050e500095e30449308920fbf93484587cf2f8a3f5115caad05c6",
+            "drc_receipt_sha256": "21af76a0802aecada23df5660a7b1bfc508a97572dfb079d3df8966af5b58b63",
+            "checked_result_sha256": "0e239bea620d5a980b0ed0e81fa7e4ed06c31971ecf81c11496683650ee80af1"
+          }
+        },
+        {
+          "id": "ui-replay-3",
+          "cold_from_original": true,
+          "engine_seconds": 97.736,
+          "validation_seconds": 3.759,
+          "inventory_seconds": 0.83,
+          "proofs": {
+            "candidate_sha256": "0ad1f3259aff2a0c7d11326ed9aca395bf280152a2ec8dc617e083399e45e353",
+            "validation_sha256": "e687c72f6311c58db485fb697c8603a65c658bcd697fb7078c25a166624d274f",
+            "inventory_sha256": "7d47a32df4728b79612674dec480824de24456bbedf3438c9465815141cc0574",
+            "drc_report_sha256": "4ea5af06ef068c8d389fda320b61d614955616f336f3a1a0641eb8b3ef8aa033",
+            "drc_receipt_sha256": "b733a0074bc1a081d75ccce74b43a07569a2b1e22f7b94b0c42cbdf7da89bc9e",
+            "checked_result_sha256": "7242a7c3aa595680d1ccd32e688da7879979554ff7ed87000002a758a488ad50"
+          }
+        }
+      ]
+    }
+  },
+  "preparation_usage_sample": {
+    "requested_start": "2026-09-19T22:17:00Z",
+    "requested_stop": "2026-09-19T22:32:15.979784+00:00",
+    "scope": "one local root-task journal; child-agent inclusion unverified",
+    "not_billing_or_quota": true,
+    "proxies": {
+      "tool_calls": 37,
+      "tool_result_characters": 70974,
+      "assistant_messages": 8,
+      "compactions": 0
+    },
+    "token_delta": {
+      "input_tokens": 5612799,
+      "cached_input_tokens": 5429120,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 15326,
+      "reasoning_output_tokens": 7677,
+      "total_tokens": 5628125
+    },
+    "uncached_input_plus_output_proxy": 199005,
+    "counter_start": "2026-09-16T04:07:28.785Z",
+    "counter_stop": "2026-09-19T22:31:48.189Z"
+  },
+  "preparation_usage_note": "Observed resumed development/review/documentation/monitoring interval, not isolated repeat cost; later work excluded. Child-agent inclusion unverified. Not billing or quota; amortization not established."
+}
