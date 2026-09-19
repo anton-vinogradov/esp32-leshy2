@@ -1,0 +1,698 @@
+diff --git a/py_router/check_drc.py b/py_router/check_drc.py
+index 843fc0f..5e272c4 100644
+--- a/py_router/check_drc.py
++++ b/py_router/check_drc.py
+@@ -2931,6 +2931,8 @@ def run_drc(pcb_file: str, clearance: float = 0.1, net_patterns: Optional[List[s
+     # on neo6502: three NPTH holes at 0.2126/0.2263/0.2263 mm against an
+     # authored min_hole_clearance of 0.25, clean at 0.20, and clean BEFORE any
+     # ratchet as well, because the key was never consulted in the first place.
++    from obstacle_map import resolve_hole_clearance
++    hole_clearance = max(hole_clearance, resolve_hole_clearance(pcb_data, None))
+     npth_clr = max(clearance, defaults.NPTH_TO_TRACK_CLEARANCE, hole_clearance)
+     # Each entry: (p1, p2, r, net_id, ref, required_clr, copper_exempt).
+     # NPTH (no-copper) pad holes graded at the fab floor -- or the pad's own
+@@ -2941,6 +2943,7 @@ def run_drc(pcb_file: str, clearance: float = 0.1, net_patterns: Optional[List[s
+     # touches the pad -- copper_exempt=(cx, cy, copper half-extent) carries
+     # the landing-disc approximation of that connected-copper exemption.
+     holes = []
++    via_holes = []  # retain the real rule separately from the track fab policy
+     for pad_net, pads in pads_by_net.items():
+         for pad in pads:
+             if pad.drill <= 0:
+@@ -2951,6 +2954,9 @@ def run_drc(pcb_file: str, clearance: float = 0.1, net_patterns: Optional[List[s
+                 holes.append((hp1, hp2, hr, pad_net,
+                               f"{pad.component_ref}.{pad.pad_number}",
+                               max(npth_clr, lc), None))
++                via_holes.append((hp1, hp2, hr, pad_net,
++                                  f"{pad.component_ref}.{pad.pad_number}",
++                                  max(clearance, hole_clearance, lc)))
+             elif max(pad.size_x, pad.size_y) < pad.drill:
+                 # #441: a PLATED pad whose copper ring does NOT span its drill
+                 # (vfo_ctrl's U4 "MH": 0.001mm copper over a 2.5mm drill) leaves
+@@ -3052,23 +3058,13 @@ def run_drc(pcb_file: str, clearance: float = 0.1, net_patterns: Optional[List[s
+     # with a local_clearance override went entirely unseen here -- pinci shipped
+     # 5 such items (0.9/1.3mm overrides, vias 0.76-1.13mm away) that check_drc
+     # reported as clean while kicad-cli flagged every one.
+-    if holes and pcb_data.vias:
+-        for (h1x, h1y), (h2x, h2y), hr, hnet, ref, req_clr, copper_exempt in holes:
+-            # NPTH only (copper_exempt is None), symmetric with the router's
+-            # via keep-out. A PLATED pad's own copper already blocks vias and is
+-            # reported by the pad-via checks, so grading its barrel here would
+-            # double-count the same physical conflict.
+-            if copper_exempt is not None:
+-                continue
+-            # Grade at KICAD's requirement, not the project's NPTH fab floor.
+-            # The hole tuple carries max(npth_clr, local_clearance): the floor is
+-            # a conservative ROUTING policy for tracks (NPTH_TO_TRACK_CLEARANCE),
+-            # not a KiCad DRC rule, so grading vias against it invents items
+-            # kicad-cli never reports (crkbd: 7 phantoms at 0.016-0.023mm, whose
+-            # NPTH pads carry no override at all -- exactly the 0.20-vs-0.127
+-            # gap). Above the floor the value can only have come from the pad
+-            # override, which KiCad does honor.
+-            kicad_req = req_clr if req_clr > npth_clr + 1e-9 else clearance
++    if via_holes and pcb_data.vias:
++        for (h1x, h1y), (h2x, h2y), hr, hnet, ref, kicad_req in via_holes:
++            # NPTH only: plated barrels retain their existing pad-via checks.
++            # Use the declared hole floor and local override even when they
++            # are equal to/below the track-only 0.20 fab policy. Inferring a
++            # local rule from req_clr > npth_clr erased the board's 0.25 floor
++            # and also erased local overrides inside the track-policy band.
+             for via in pcb_data.vias:
+                 # Own-net copper legitimately lands on the pad (mirrors the
+                 # track arm's snet != hnet exemption, #442).
+diff --git a/py_router/cleanup_pipeline.py b/py_router/cleanup_pipeline.py
+index 9b517c9..9db363a 100644
+--- a/py_router/cleanup_pipeline.py
++++ b/py_router/cleanup_pipeline.py
+@@ -331,7 +331,8 @@ def run_post_route_cleanup(results, pcb_data, scope_net_ids, config, *,
+             max_shift=config.grid_step,
+             net_clearances=_nc, board_edge_clearance=_bec,
+             same_net_pad_clearance=getattr(config, 'same_net_pad_clearance',
+-                                           -1.0))  # #581
++                                           -1.0),  # #581
++            config=config)
+         counts['vias_nudged'] = _vn_moved
+         _trace('via_nudge')
+         if _vn_moved:
+diff --git a/py_router/env_knobs.py b/py_router/env_knobs.py
+index 82101db..a4c7169 100644
+--- a/py_router/env_knobs.py
++++ b/py_router/env_knobs.py
+@@ -204,6 +204,10 @@ def refresh() -> None:
+     # window without a bigger base)
+     g['DYNAMIC_ITERATIONS_GRACE'] = _i('KICAD_DYNAMIC_ITERATIONS_GRACE', 0)
+     g['MULTIPOINT_DENSE_FIRST'] = _opt_in('KICAD_MULTIPOINT_DENSE_FIRST')
++    # Keep a multipoint net's still-unescaped pad approaches protected after
++    # Phase 1 has put its main route in routed_net_ids. Soft costs only;
++    # no copper generation or clearance changes. Default off for A/B.
++    g['PENDING_PAD_PROTECTION'] = _opt_in('KICAD_PENDING_PAD_PROTECTION')
+     g['FANOUT_DIRECT'] = _opt_in('KICAD_FANOUT_DIRECT')
+     g['FANOUT_TOWARD_TARGETS'] = _opt_in('KICAD_FANOUT_TOWARD_TARGETS')
+     # '' = follow the --plane-drop param (default auto); '0'/'off' forces the
+diff --git a/py_router/net_queries.py b/py_router/net_queries.py
+index 8811dac..00e1709 100644
+--- a/py_router/net_queries.py
++++ b/py_router/net_queries.py
+@@ -1576,7 +1576,8 @@ def get_all_unrouted_net_ids(pcb_data: PCBData) -> List[int]:
+     return list(unrouted_ids)
+ 
+ 
+-def get_chip_pad_positions(pcb_data: PCBData, net_ids: List[int], min_pads: int = 4) -> List[Tuple[float, float, str]]:
++def get_chip_pad_positions(pcb_data: PCBData, net_ids: List[int], min_pads: int = 4,
++                           *, require_unescaped: bool = False, group_by_net: bool = False):
+     """Pad positions acting as PSEUDO-STUBS for proximity avoidance: pads of
+     fine-pitch chip packages (BGA/QFN/QFP) whose net has NOT yet escaped the
+     pad -- the future escape needs the surrounding space, so routing is
+@@ -1621,6 +1622,9 @@ def get_chip_pad_positions(pcb_data: PCBData, net_ids: List[int], min_pads: int
+         pcb_data: PCB data
+         net_ids: List of unrouted net IDs to get chip pads for
+         min_pads: Minimum pads for a footprint to be considered (default: 4)
++        require_unescaped: Apply the existing endpoint/via XY retirement
++            heuristic regardless of the legacy knob; this is not connectivity.
++        group_by_net: Return {net_id: positions} for source-aware composition.
+ 
+     Returns:
+         List of (x, y, layer) tuples for chip pad positions.
+@@ -1650,7 +1654,7 @@ def get_chip_pad_positions(pcb_data: PCBData, net_ids: List[int], min_pads: int
+                  or detect_package_type(footprint) in ('BGA', 'QFN', 'QFP')))
+ 
+     if not chip_refs:
+-        return []
++        return {} if group_by_net else []
+ 
+     # Same-net attachment points for the "already escaped" test: segment
+     # endpoints and via centers. Rebuilt once per COPPER EPOCH (the
+@@ -1673,7 +1677,7 @@ def get_chip_pad_positions(pcb_data: PCBData, net_ids: List[int], min_pads: int
+              for nid, pts in _raw.items()})
+     attach_points = _apm[1]
+ 
+-    chip_pads = []
++    chip_pads = {} if group_by_net else []
+     for ref in chip_refs:
+         footprint = pcb_data.footprints[ref]
+         for pad in footprint.pads:
+@@ -1690,7 +1694,7 @@ def get_chip_pad_positions(pcb_data: PCBData, net_ids: List[int], min_pads: int
+                 continue
+             # Skip pads that already have an escape (stub end / via in reach)
+             pts = (attach_points.get(pad.net_id)
+-                   if env_knobs.PSEUDO_STUB_RETIRE else None)
++                   if require_unescaped or env_knobs.PSEUDO_STUB_RETIRE else None)
+             if pts is not None and len(pts):
+                 reach = max(pad.size_x, pad.size_y) / 2.0 + 0.05
+                 reach_sq = reach * reach
+@@ -1699,7 +1703,11 @@ def get_chip_pad_positions(pcb_data: PCBData, net_ids: List[int], min_pads: int
+                 dy = pts[:, 1] - py
+                 if bool((dx * dx + dy * dy <= reach_sq).any()):
+                     continue
+-            chip_pads.append((pad.global_x, pad.global_y, pad_layer))
++            position = (pad.global_x, pad.global_y, pad_layer)
++            if group_by_net:
++                chip_pads.setdefault(pad.net_id, []).append(position)
++            else:
++                chip_pads.append(position)
+ 
+     return chip_pads
+ 
+diff --git a/py_router/obstacle_costs.py b/py_router/obstacle_costs.py
+index 2aa4e6e..445a770 100644
+--- a/py_router/obstacle_costs.py
++++ b/py_router/obstacle_costs.py
+@@ -205,7 +205,8 @@ def apply_stub_proximity(obstacles: GridObstacleMap, pcb_data: PCBData,
+                          all_stubs: List[Tuple[float, float]],
+                          config: GridRouteConfig,
+                          ghost_via_groups: Dict[int, List[Tuple[int, int]]] = None,
+-                         layer_map: Dict[str, int] = None):
++                         layer_map: Dict[str, int] = None,
++                         pending_pad_net_ids=None):
+     """Single entry point for the STUB proximity map (foreign stubs/chip pads
+     + ripped-route via ghosts), composing per the active mode.
+ 
+@@ -232,7 +233,19 @@ def apply_stub_proximity(obstacles: GridObstacleMap, pcb_data: PCBData,
+ 
+     ghost_via_groups must already be C1-filtered (re-routed nets dropped) --
+     both modes assume each source appears at most once.
++
++    pending_pad_net_ids are foreign partially routed nets: only their still-
++    unescaped chip pads contribute, never their already-routed real stubs.
++    Keep these owner-keyed in SUM mode. Retirement uses the existing same-net
++    endpoint/via XY proximity heuristic, not layer-aware electrical connectivity.
+     """
++    pending = {}
++    if pending_pad_net_ids:
++        from net_queries import get_chip_pad_positions
++        ids = sorted(set(pending_pad_net_ids) - set(stub_net_ids))
++        pending = get_chip_pad_positions(pcb_data, ids, require_unescaped=True,
++                                          group_by_net=True)
++        all_stubs = list(all_stubs) + [p for pts in pending.values() for p in pts]
+     coord = GridCoord(config.grid_step)
+     ghost_active = (ghost_via_groups and
+                     config.ripped_route_avoidance_cost > 0)
+@@ -313,6 +326,11 @@ def apply_stub_proximity(obstacles: GridObstacleMap, pcb_data: PCBData,
+                 pts_by_net[nid] = pts
+                 groups.append(([coord.to_grid(p[0], p[1]) for p in pts],
+                                stub_radius_grid, src_cost))
++        for nid, pts in pending.items():
++            if pts:
++                pts_by_net[nid] = pts
++                groups.append(([coord.to_grid(p[0], p[1]) for p in pts],
++                               stub_radius_grid, src_cost))
+     if m > 1.0 and layer_map and pts_by_net:
+         surplus = _stub_surplus_arrays(pts_by_net, stub_radius_grid,
+                                        surplus_cost, coord, layer_map)
+diff --git a/py_router/obstacle_map.py b/py_router/obstacle_map.py
+index 5bc4b81..115549e 100644
+--- a/py_router/obstacle_map.py
++++ b/py_router/obstacle_map.py
+@@ -2038,15 +2038,16 @@ def add_drill_hole_obstacles(obstacles: GridObstacleMap, pcb_data: PCBData,
+     # already keeps vias off, and stamping its annulus would strand
+     # zero-annular-ring pads.
+     # block_via_cells_near_drills builds hole_r + clearance + via_drill/2, so
+-    # passing lc + (via_size - via_drill)/2 yields hole_r + lc + via_size/2 --
+-    # the via COPPER edge held `lc` off the hole wall (same idiom as the #448
+-    # slot band above).
++    # passing max(lc, board_floor) + (via_size - via_drill)/2 keeps the via
++    # COPPER off the hole wall. The declared copper-to-hole floor applies
++    # without a pad override too; hole-to-hole alone only protects the drill.
++    # Do not import the track-only NPTH_TO_TRACK_CLEARANCE policy here.
+     _via_override: Dict[float, list] = {}
+     for _pads in pcb_data.pads_by_net.values():
+         for _pad in _pads:
+             if _pad.drill <= 0 or _pad_has_copper(_pad):
+                 continue
+-            _lc = getattr(_pad, 'local_clearance', 0.0) or 0.0
++            _lc = max(_hole_clr, getattr(_pad, 'local_clearance', 0.0) or 0.0)
+             if _lc <= 0:
+                 continue
+             _via_clr = _lc + (config.via_size - config.via_drill) / 2.0
+diff --git a/py_router/pcb_modification.py b/py_router/pcb_modification.py
+index a1f1c41..07e1f0a 100644
+--- a/py_router/pcb_modification.py
++++ b/py_router/pcb_modification.py
+@@ -5719,7 +5719,8 @@ def nudge_grazing_vias(results, pcb_data: PCBData, scope_net_ids=None,
+                        # edge-to-edge clearance from SAME-net SMD pads (the
+                        # sub-grid move must not trade a foreign graze for a
+                        # same-net pad one).
+-                       same_net_pad_clearance: float = -1.0) -> Tuple[int, int, List[Tuple]]:
++                       same_net_pad_clearance: float = -1.0,
++                       config=None) -> Tuple[int, int, List[Tuple]]:
+     """Sub-grid nudge for a VIA that grazes foreign copper or a drill (#280).
+ 
+     Two vias snapped to the routing grid can land a few µm inside clearance
+@@ -5820,13 +5821,17 @@ def nudge_grazing_vias(results, pcb_data: PCBData, scope_net_ids=None,
+     # is all that would otherwise apply. Model it here (#441 ghoul: a GND via sat
+     # 6.5um inside SW13's mounting-hole 0.30 local_clearance -- clear on the 0.20
+     # hole-to-hole rule, so the nudge never saw the graze). Pairwise clearance is
+-    # max(via floor, pad local_clearance).
++    # max(via floor, pad local_clearance, declared copper-to-hole floor).
++    # Resolve once, including the original floor preserved across writebacks;
++    # an explicit config override reaches the same resolver as the router.
++    from obstacle_map import resolve_hole_clearance
++    _hole_clr = resolve_hole_clearance(pcb_data, config)
+     npth_holes = []
+     for fp in pcb_data.footprints.values():
+         for p in fp.pads:
+             if getattr(p, 'pad_type', '') != 'np_thru_hole' or (p.drill or 0) <= 0:
+                 continue
+-            pc = getattr(p, 'local_clearance', 0.0) or 0.0
++            pc = max(_hole_clr, getattr(p, 'local_clearance', 0.0) or 0.0)
+             for hx, hy, hd in pad_drill_circles(p):
+                 npth_holes.append((hx, hy, hd / 2.0, pc))
+     npth_x = _np.asarray([h[0] for h in npth_holes], dtype=float)
+diff --git a/py_router/routing_context.py b/py_router/routing_context.py
+index b9925d0..3619b64 100644
+--- a/py_router/routing_context.py
++++ b/py_router/routing_context.py
+@@ -29,6 +29,14 @@ from net_queries import get_chip_pad_positions
+ from pcb_modification import add_route_to_pcb_data
+ 
+ 
++def _pending_pad_nets(all_unrouted_net_ids, routed_net_ids, excluded_net_ids):
++    """A routed multipoint main is not proof that all of its pads escaped."""
++    if not env_knobs.PENDING_PAD_PROTECTION:
++        return []
++    return sorted(set(all_unrouted_net_ids) & set(routed_net_ids)
++                  - set(excluded_net_ids))
++
++
+ def _add_free_via_positions(obstacles, pcb_data, net_ids: List[int], config):
+     """Add through-hole pads as free via positions (zero-cost layer change).
+ 
+@@ -155,7 +163,9 @@ def build_diff_pair_obstacles(
+     _stub_surplus = apply_stub_proximity(obstacles, pcb_data, stub_proximity_net_ids,
+                                          all_stubs, config,
+                                          ghost_via_groups=_ghost_vias,
+-                                         layer_map=layer_map)
++                                         layer_map=layer_map,
++                                         pending_pad_net_ids=_pending_pad_nets(
++                                             all_unrouted_net_ids, routed_net_ids, (p_net_id, n_net_id)))
+ 
+     # Add track proximity costs (+ ripped-corridor layer ghosts + layer-aware
+     # stub surplus, one composition pass). Congestion v2 stays out of the
+@@ -304,7 +314,9 @@ def build_single_ended_obstacles(
+     _stub_surplus = apply_stub_proximity(obstacles, pcb_data, stub_proximity_net_ids,
+                                          all_stubs, config,
+                                          ghost_via_groups=_ghost_vias,
+-                                         layer_map=layer_map)
++                                         layer_map=layer_map,
++                                         pending_pad_net_ids=_pending_pad_nets(
++                                             all_unrouted_net_ids, routed_net_ids, (net_id,)))
+ 
+     # Add track proximity costs (+ ripped-corridor layer ghosts + layer-aware
+     # stub surplus, one composition pass)
+@@ -404,7 +416,9 @@ def build_incremental_obstacles(
+     all_stubs = unrouted_stubs + chip_pads
+     _stub_surplus = apply_stub_proximity(obstacles, pcb_data,
+                                          stub_proximity_net_ids, all_stubs,
+-                                         config, layer_map=layer_map)
++                                         config, layer_map=layer_map,
++                                         pending_pad_net_ids=_pending_pad_nets(
++                                             all_unrouted_net_ids, routed_net_ids, (net_id,)))
+ 
+     # Add track proximity costs (+ layer-aware stub surplus, #590 history)
+     from history_congestion import add_history_source
+@@ -567,7 +581,9 @@ def prepare_obstacles_inplace(
+     _stub_surplus = apply_stub_proximity(working_obstacles, pcb_data,
+                                          stub_proximity_net_ids, all_stubs,
+                                          config, ghost_via_groups=_ghost_vias,
+-                                         layer_map=layer_map)
++                                         layer_map=layer_map,
++                                         pending_pad_net_ids=_pending_pad_nets(
++                                             all_unrouted_net_ids, routed_net_ids, (net_id,)))
+ 
+     # Add track proximity costs (+ ripped-corridor layer ghosts + layer-aware
+     # stub surplus, one composition pass)
+diff --git a/tests/test_npth_via_declared_floor.py b/tests/test_npth_via_declared_floor.py
+new file mode 100644
+index 0000000..8b825ff
+--- /dev/null
++++ b/tests/test_npth_via_declared_floor.py
+@@ -0,0 +1,184 @@
++#!/usr/bin/env python3
++"""Declared copper-to-NPTH clearance must cover via copper, not only drills.
++
++RF/UI coordinates reproduce two native KiCad hole_clearance failures from
++Leshy2. All fixtures are temporary, reduced boards; no corpus board is edited.
++Run with python3 tests/test_npth_via_declared_floor.py.
++"""
++import copy
++import json
++import math
++import sys
++import tempfile
++import unittest
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path[:0] = [str(ROOT / name) for name in ('py_router', 'py_tools')]
++
++from check_drc import run_drc
++from kicad_parser import parse_kicad_pcb
++from obstacle_map import GridObstacleMap, add_drill_hole_obstacles
++from pcb_modification import nudge_grazing_vias
++from routing_config import GridCoord, GridRouteConfig
++
++
++CASES = (
++    ('RF', (32.375, 27.75), 1.4, (31.55, 28.5), (31.2, 27.75),
++     0.21495515604888737),
++    ('UI', (56.6, 120.75), 0.7, (56.25, 121.45), (55.75, 120.75),
++     0.2326237921249264),
++)
++
++
++class DeclaredNPTHViaFloor(unittest.TestCase):
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.tmp.cleanup)
++        self.serial = 0
++
++    def fixture(self, hole=(10., 10.), drill=1., via=(10.925, 10.),
++                floor=.25, origin=None, local=0., plated=False, foreign=''):
++        self.serial += 1
++        path = Path(self.tmp.name) / f'case-{self.serial}.kicad_pcb'
++        hx, hy = hole
++        vx, vy = via
++        distance = math.hypot(vx - hx, vy - hy)
++        ex, ey = vx + (vx - hx) / distance, vy + (vy - hy) / distance
++        pad_type = 'thru_hole' if plated else 'np_thru_hole'
++        path.write_text(f'''(kicad_pcb (version 20221018)
++ (net 0 "") (net 1 "SIG") (net 2 "FOREIGN")
++ (gr_rect (start 0 0) (end 100 140) (layer "Edge.Cuts") (width 0.1))
++ (footprint "test:hole" (layer "F.Cu") (at {hx} {hy})
++  (property "Reference" "H1" (at 0 -2) (layer "F.SilkS"))
++  (pad "" {pad_type} circle (at 0 0) (size {drill} {drill})
++   (drill {drill}) (layers "*.Cu" "*.Mask") (clearance {local})))
++ (via (at {vx} {vy}) (size 0.4) (drill 0.2)
++  (layers "F.Cu" "B.Cu") (net 1) (uuid "via"))
++ (segment (start {vx} {vy}) (end {ex} {ey}) (width 0.15)
++  (layer "F.Cu") (net 1) (uuid "anchor"))
++ {foreign}
++)''')
++        rules = {} if floor is None else {'min_hole_clearance': floor}
++        project = {'board': {'design_settings': {'rules': rules}}}
++        if origin is not None:
++            project['kicad_routing_tools'] = {
++                'fab_floor_origin': {'min_hole_clearance': origin}}
++        path.with_suffix('.kicad_pro').write_text(json.dumps(project))
++        return path
++
++    @staticmethod
++    def config(explicit=0.):
++        return GridRouteConfig(layers=['F.Cu', 'B.Cu'], grid_step=.025,
++                               track_width=.15, clearance=.16, via_size=.4,
++                               via_drill=.2, hole_to_hole_clearance=.25,
++                               hole_clearance=explicit)
++
++    def blocked(self, path, explicit=0.):
++        pcb = parse_kicad_pcb(str(path))
++        via = pcb.vias.pop()  # its own drill must not mask the NPTH probe
++        cfg = self.config(explicit)
++        obs = GridObstacleMap(2)
++        add_drill_hole_obstacles(obs, pcb, cfg, {1})
++        return obs.is_via_blocked(*GridCoord(cfg.grid_step).to_grid(via.x, via.y))
++
++    @staticmethod
++    def graded(path, explicit=0.):
++        return [item for item in run_drc(
++            str(path), clearance=.16, hole_to_hole_clearance=.25,
++            hole_clearance=explicit, clearance_margin=0., quiet=True,
++            print_summary=False, check_sizes=False) if item['type'] == 'via-hole']
++
++    def nudge(self, path, explicit=0., allowed=True, cap=.05):
++        pcb = parse_kicad_pcb(str(path))
++        via = pcb.vias[0]
++        start = (via.x, via.y)
++        before_segments = copy.deepcopy(pcb.segments)
++        moved, _, _ = nudge_grazing_vias(
++            [{'new_vias': [via] if allowed else []}], pcb, {1},
++            clearance=.16, hole_to_hole=.25, max_shift=cap,
++            config=self.config(explicit))
++        self.assertEqual(pcb.segments, before_segments)
++        shift = math.hypot(via.x - start[0], via.y - start[1])
++        self.assertLessEqual(shift, min(cap, via.size / 4) + 1e-4)
++        pad = pcb.footprints['H1'].pads[0]
++        gap = math.hypot(via.x - pad.global_x, via.y - pad.global_y)
++        gap -= (via.size + pad.drill) / 2
++        return moved, gap, shift
++
++    def test_real_rf_and_ui_coordinates(self):
++        for name, hole, drill, near, far, original_gap in CASES:
++            with self.subTest(board=name):
++                path = self.fixture(hole, drill, near)
++                measured = math.dist(hole, near) - drill / 2 - .2
++                self.assertAlmostEqual(measured, original_gap, places=9)
++                self.assertGreater(measured + .1, .25)  # drill rule already clear
++                self.assertTrue(self.blocked(path))
++                items = self.graded(path)
++                self.assertEqual(len(items), 1)
++                self.assertEqual(items[0]['required_mm'], .25)
++                moved, gap, shift = self.nudge(path)
++                self.assertEqual(moved, 1)
++                self.assertGreaterEqual(gap, .25)
++                self.assertLess(shift, .05)
++                # A cell beyond the declared floor stays routable and untouched.
++                clear = self.fixture(hole, drill, far)
++                self.assertFalse(self.blocked(clear))
++                self.assertEqual(self.graded(clear), [])
++                self.assertEqual(self.nudge(clear)[0], 0)
++
++    def test_original_floor_survives_relaxed_project(self):
++        path = self.fixture(floor=.16, origin=.25)
++        self.assertTrue(self.blocked(path))
++        self.assertEqual(self.graded(path)[0]['required_mm'], .25)
++        self.assertGreaterEqual(self.nudge(path)[1], .25)
++
++    def test_max_of_local_and_declared_floor(self):
++        for floor, local, vx, required in (
++                (.25, .19, 10.925, .25),
++                (.25, .25, 10.925, .25),
++                (.25, .30, 10.975, .30),
++                (None, .19, 10.875, .19),
++                (None, .20, 10.875, .20)):
++            with self.subTest(floor=floor, local=local):
++                path = self.fixture(via=(vx, 10.), floor=floor, local=local)
++                self.assertTrue(self.blocked(path))
++                self.assertEqual(self.graded(path)[0]['required_mm'], required)
++                moved, gap, _ = self.nudge(path)
++                self.assertEqual(moved, 1)
++                self.assertGreaterEqual(gap, required)
++
++    def test_explicit_config_floor(self):
++        path = self.fixture(via=(10.975, 10.), floor=None)
++        self.assertTrue(self.blocked(path, .30))
++        self.assertEqual(self.graded(path, .30)[0]['required_mm'], .30)
++        self.assertGreaterEqual(self.nudge(path, .30)[1], .30)
++
++    def test_no_declared_rule_does_not_import_track_policy(self):
++        path = self.fixture(via=(10.875, 10.), floor=None)
++        # Copper gap .175 clears .16; drill gap .275 clears .25. The .20
++        # track policy must not fabricate a via DRC failure or obstacle.
++        self.assertFalse(self.blocked(path))
++        self.assertEqual(self.graded(path), [])
++        self.assertEqual(self.nudge(path)[0], 0)
++
++    def test_plated_pad_keeps_existing_rule_path(self):
++        path = self.fixture(plated=True)
++        self.assertFalse(self.blocked(path))
++        self.assertEqual(self.graded(path), [])
++        self.assertEqual(self.nudge(path)[0], 0)
++
++    def test_nudge_preserves_scope_budget_and_foreign_copper(self):
++        path = self.fixture()
++        self.assertEqual(self.nudge(path, allowed=False)[0], 0)
++        self.assertEqual(self.nudge(path, cap=.01)[0], 0)
++        foreign = '''(segment (start 11.385 9) (end 11.385 11) (width 0.15)
++ (layer "F.Cu") (net 2) (uuid "foreign"))'''
++        boxed = self.fixture(foreign=foreign)
++        moved, gap, shift = self.nudge(boxed)
++        self.assertEqual((moved, shift), (0, 0))
++        self.assertLess(gap, .25)  # leave unrepairable violation visible
++
++
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/tests/test_pending_pad_protection.py b/tests/test_pending_pad_protection.py
+new file mode 100644
+index 0000000..be3ab3e
+--- /dev/null
++++ b/tests/test_pending_pad_protection.py
+@@ -0,0 +1,179 @@
++"""Pure pending-pad lifecycle tests: fake maps, no route search or native DRC.
++
++Retirement deliberately tests the existing XY attachment/epoch heuristic,
++not electrical connectivity or native clearance authority.
++"""
++import copy
++from pathlib import Path
++import sys
++from types import SimpleNamespace as NS
++import unittest
++from unittest.mock import Mock, patch
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path[:0] = [str(ROOT / "py_router"), str(ROOT / "py_tools"), str(ROOT)]
++import connectivity
++import env_knobs
++import kicad_parser
++import net_queries
++import obstacle_costs
++import routing_context
++from routing_config import GridCoord, GridRouteConfig
++
++
++class FakeMap:
++    def __init__(self):
++        self.batches = []
++        self.groups = []
++
++    def add_stub_proximity_costs_batch(self, points, radius, cost):
++        self.batches.append((list(points), radius, cost))
++
++    def add_stub_proximity_costs_grouped(self, groups, zones):
++        self.groups.append((copy.deepcopy(groups), zones))
++
++
++class PendingPadTests(unittest.TestCase):
++    def setUp(self):
++        for name, value in (("PENDING_PAD_PROTECTION", True), ("FINE_PITCH_PSEUDO_STUBS", False),
++                            ("PSEUDO_STUB_RETIRE", True), ("PROXIMITY_SUM", False),
++                            ("PROXIMITY_SUM_MODE", ""), ("STUB_LAYER_AWARE", False)):
++            guard = patch.object(env_knobs, name, value)
++            guard.start()
++            self.addCleanup(guard.stop)
++        guard = patch.object(kicad_parser, "detect_package_type", return_value="OTHER")
++        guard.start()
++        self.addCleanup(guard.stop)
++        # OTHER-class 11-pad B.Cu package, matching the relevant ESD class.
++        rows = [(1, 0), (1, 2), (1, 4), (2, 6), (2, 7), (3, 8)]
++        rows += [(0, x) for x in (10, 12, 14, 16, 18)]
++        pads = [NS(net_id=nid, global_x=x, global_y=0, size_x=.2, size_y=.5,
++                   layers=["B.Cu"], rotation=90, drill=0) for nid, x in rows]
++        self.main = NS(net_id=1, start_x=0, start_y=0, end_x=2, end_y=0,
++                       width=.15, layer="B.Cu")
++        self.pcb = NS(footprints={"U5": NS(pads=pads)}, segments=[self.main], vias=[],
++                      _copper_epoch=1, pads_by_net={nid: [p for p in pads if p.net_id == nid]
++                                                 for nid in (0, 1, 2, 3)})
++        self.cfg = GridRouteConfig(grid_step=.05, track_width=.15, clearance=.16,
++                                   via_size=.4, via_drill=.2, layers=["F.Cu", "B.Cu"])
++        self.coord = GridCoord(self.cfg.grid_step)
++
++    def pending(self, owner=3):
++        return routing_context._pending_pad_nets([1, 2, 3], [1, 2, 3, 99], [owner])
++
++    def query(self, ids=(1,), **kwargs):
++        return net_queries.get_chip_pad_positions(self.pcb, list(ids), **kwargs)
++
++    def test_default_off_excludes_pending_and_preserves_historical_stamp(self):
++        with patch.object(env_knobs, "PENDING_PAD_PROTECTION", False):
++            pending = self.pending()
++        self.assertEqual([], pending)
++        legacy, explicit = FakeMap(), FakeMap()
++        points = [(9, 1, "B.Cu")]
++        with patch.object(net_queries, "get_chip_pad_positions") as query:
++            obstacle_costs.apply_stub_proximity(legacy, self.pcb, [], points, self.cfg)
++            obstacle_costs.apply_stub_proximity(explicit, self.pcb, [], points, self.cfg,
++                                               pending_pad_net_ids=pending)
++        query.assert_not_called()
++        self.assertEqual(legacy.batches, explicit.batches)
++        self.assertEqual(legacy.groups, explicit.groups)
++
++    def test_pending_intersection_is_sorted_unique_and_excludes_owners(self):
++        self.assertEqual([1, 2], self.pending())
++        self.assertEqual([1], routing_context._pending_pad_nets([3, 1, 1, 2], [9, 3, 1, 2], [2, 3]))
++        self.assertEqual([], routing_context._pending_pad_nets([1], [2], []))
++
++    def test_phase1_main_does_not_retire_its_unattached_leaf(self):
++        self.assertIn(1, self.pending())
++        self.assertEqual([(4, 0, "B.Cu")], self.query(require_unescaped=True))
++        with patch.object(env_knobs, "PSEUDO_STUB_RETIRE", False):
++            self.assertEqual(3, len(self.query()))
++            self.assertEqual([(4, 0, "B.Cu")], self.query(require_unescaped=True))
++
++    def test_copper_epoch_retires_attached_leaf_and_rip_restores_it(self):
++        self.assertEqual([(4, 0, "B.Cu")], self.query(require_unescaped=True))
++        tap = NS(net_id=1, start_x=2, start_y=0, end_x=4, end_y=0, width=.15, layer="B.Cu")
++        self.pcb.segments.append(tap)
++        self.pcb._copper_epoch += 1
++        self.assertEqual([], self.query(require_unescaped=True))
++        self.pcb.segments.remove(tap)
++        self.pcb._copper_epoch += 1
++        self.assertEqual([(4, 0, "B.Cu")], self.query(require_unescaped=True))
++
++    def test_package_filter_and_grouped_empty_type_remain_explicit(self):
++        with patch.object(env_knobs, "FINE_PITCH_PSEUDO_STUBS", True):
++            self.assertEqual([], self.query(require_unescaped=True))
++            self.assertEqual({}, self.query(require_unescaped=True, group_by_net=True))
++        self.assertEqual({1: [(4, 0, "B.Cu")], 2: [(6, 0, "B.Cu"), (7, 0, "B.Cu")]},
++                         self.query((1, 2), require_unescaped=True, group_by_net=True))
++
++    def test_max_adds_only_pending_pads_without_mutating_inputs_or_copper(self):
++        obstacles = FakeMap()
++        stubs = [(20, 0, "B.Cu")]
++        geometry = copy.deepcopy((self.pcb.footprints, self.pcb.segments, self.pcb.vias))
++        with patch.object(connectivity, "get_stub_endpoints") as real_stubs, \
++                patch.object(net_queries, "get_chip_pad_positions", wraps=net_queries.get_chip_pad_positions) as query:
++            obstacle_costs.apply_stub_proximity(obstacles, self.pcb, [], stubs, self.cfg,
++                                               pending_pad_net_ids=[2, 1, 2])
++        query.assert_called_once_with(self.pcb, [1, 2], require_unescaped=True, group_by_net=True)
++        real_stubs.assert_not_called()
++        self.assertEqual([self.coord.to_grid(x, 0) for x in (20, 4, 6, 7)], obstacles.batches[0][0])
++        self.assertEqual(1, len(obstacles.batches))
++        self.assertEqual([], obstacles.groups)
++        self.assertEqual([(20, 0, "B.Cu")], stubs)
++        self.assertEqual(geometry, (self.pcb.footprints, self.pcb.segments, self.pcb.vias))
++
++    def test_sum_preserves_owner_groups_without_reintroducing_complete_stubs(self):
++        obstacles = FakeMap()
++        with patch.object(env_knobs, "PROXIMITY_SUM", True), \
++                patch.object(env_knobs, "PROXIMITY_SUM_MODE", "sum"), \
++                patch.object(connectivity, "get_stub_endpoints", return_value=[]) as real_stubs:
++            obstacle_costs.apply_stub_proximity(obstacles, self.pcb, [2], [], self.cfg,
++                                               pending_pad_net_ids=[2, 1, 1])
++        real_stubs.assert_called_once_with(self.pcb, [2])
++        self.assertEqual([], obstacles.batches)
++        groups, zones = obstacles.groups[0]
++        self.assertIsNone(zones)
++        self.assertEqual([[self.coord.to_grid(x, 0) for x in (6, 7)], [self.coord.to_grid(4, 0)]],
++                         [group[0] for group in groups])
++        self.assertTrue(all(group[2] == self.cfg.cell_cost(self.cfg.stub_proximity_cost) for group in groups))
++
++    def test_pending_protection_does_not_resurrect_routed_via_ghosts(self):
++        ghosts = {1: [(10, 10)], 99: [(30, 30)]}
++        filtered = routing_context.filter_ripped_ghosts(ghosts, self.cfg, [1, 2])
++        self.assertEqual({99: [(30, 30)]}, filtered)
++        obstacles = FakeMap()
++        obstacle_costs.apply_stub_proximity(obstacles, self.pcb, [], [], self.cfg,
++                                           ghost_via_groups=filtered, pending_pad_net_ids=[1])
++        self.assertEqual([[self.coord.to_grid(4, 0)], [(30, 30)]], [row[0] for row in obstacles.batches])
++        self.assertEqual({1: [(10, 10)], 99: [(30, 30)]}, ghosts)
++
++    def test_all_four_builders_pass_foreign_pending_ids(self):
++        class Captured(Exception):
++            pass
++        obstacles = Mock()
++        obstacles.clone_fresh.return_value = obstacles
++        routed, all_ids, layers = [1, 2, 3], [1, 2, 3, 4], {"F.Cu": 0, "B.Cu": 1}
++        calls = (
++            (routing_context.build_diff_pair_obstacles,
++             (obstacles, self.pcb, self.cfg, routed, [], all_ids, 2, 3, None, {}, layers, 0), [1]),
++            (routing_context.build_single_ended_obstacles,
++             (obstacles, self.pcb, self.cfg, routed, [], all_ids, 3, None, {}, layers), [1, 2]),
++            (routing_context.build_incremental_obstacles,
++             (obstacles, self.pcb, self.cfg, 3, all_ids, routed, {}, layers, {}), [1, 2]),
++            (routing_context.prepare_obstacles_inplace,
++             (obstacles, self.pcb, self.cfg, 3, all_ids, routed, {}, layers, {}), [1, 2]),
++        )
++        with patch.multiple(routing_context, add_net_stubs_as_obstacles=Mock(),
++                            add_net_vias_as_obstacles=Mock(), add_net_pads_as_obstacles=Mock(),
++                            get_stub_endpoints=Mock(return_value=[]), get_chip_pad_positions=Mock(return_value=[])), \
++                patch.object(routing_context, "apply_stub_proximity", side_effect=Captured) as apply:
++            for function, args, expected in calls:
++                with self.subTest(builder=function.__name__), self.assertRaises(Captured):
++                    function(*args)
++                self.assertEqual(expected, apply.call_args.kwargs["pending_pad_net_ids"])
++                self.assertEqual([4], apply.call_args.args[2])
++
++
++if __name__ == "__main__":
++    unittest.main()

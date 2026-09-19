@@ -31,6 +31,7 @@ ROOT = Path(__file__).resolve().parents[2]
 STRICT_ARGUMENTS = ["--layers", "F.Cu", "In2.Cu", "In3.Cu", "B.Cu", "--track-width", "0.15",
                     "--via-size", "0.4", "--via-drill", "0.2", "--keep-input-copper", "--no-stub-layer-swap",
                     "--no-fix-drc-settings", "--fab-tier", "standard", "--escalation", "off", "--strict-sizes"]
+PENDING_PAD_PROTECTION_PATCH_SHA256 = "0dec1ef898beec101580f496a7ef48a9042cb45ad77b29b2468e26c3f8a63067"
 
 
 def require(ok, message):
@@ -50,6 +51,9 @@ class Recipe:
     max_ripup: int | None = None
     blocker_select: str | None = None
     abandon_metric: str = "stranded"
+    endpoint_reservations_all: bool = False
+    dense_first: bool = False
+    pending_pad_protection: bool = False
     max_iterations: int | None = None
     dynamic_iterations_grace: int = 0
     board_edge_clearance: float = 0.30
@@ -66,11 +70,14 @@ class Recipe:
                                       (self.abandon_metric, ("stranded", "total-pads"), "abandon_metric")):
             require(value in allowed, "Unsupported recipe " + label)
         for value, allowed, label in ((self.via_cost, (50, 75, 125), "via_cost"),
-                                      (self.max_ripup, (None, 3, 5, 8), "max_ripup"),
+                                      (self.max_ripup, (None, 0, 3, 5, 8), "max_ripup"),
                                       (self.max_iterations, (None, 200000, 1000000), "max_iterations"),
                                       (self.dynamic_iterations_grace, (0, 1, 2), "dynamic_iterations_grace")):
             require(value in allowed and (value is None or type(value) is int), "Unsupported recipe " + label)
         require(type(self.rip_selected) is bool, "rip_selected must be boolean")
+        require(type(self.endpoint_reservations_all) is bool and type(self.dense_first) is bool,
+                "Endpoint reservation/dense-first controls must be boolean")
+        require(type(self.pending_pad_protection) is bool, "pending_pad_protection must be boolean")
         for value, lo, hi in ((self.clearance, 0.16, 0.5), (self.board_edge_clearance, 0.30, 1.0)):
             require(type(value) in (int, float) and math.isfinite(value) and lo <= value <= hi, "Recipe cannot weaken clearance floors")
         require(self.net_order is None or isinstance(self.net_order, (list, tuple))
@@ -178,6 +185,14 @@ def _settings(ctx, case):
            "PYTHONDONTWRITEBYTECODE": "1", "PYTHONPYCACHEPREFIX": str(folder / "python-cache"),
            "KICAD_SMOOTH_ROUTE": "0", "KICAD_INRUN_FLOOR_SYNC": "0",
            "KICAD_DYNAMIC_ITERATIONS_GRACE": str(recipe.dynamic_iterations_grace)}
+    if recipe.endpoint_reservations_all:
+        env["KICAD_FINE_PITCH_PSEUDO_STUBS"] = "0"
+    if recipe.dense_first:
+        env["KICAD_MULTIPOINT_DENSE_FIRST"] = "1"
+    if recipe.pending_pad_protection:
+        require(auth["engine_patch_sha256"] == PENDING_PAD_PROTECTION_PATCH_SHA256,
+                "pending_pad_protection requires the supported pinned engine patch")
+        env["KICAD_PENDING_PAD_PROTECTION"] = "1"
     relative = _relative(case)
     command = [auth["engine_python"], str(Path(auth["engine_root"]) / "py_router/route.py"),
                str(Path(ctx["baseline_root"]) / relative), str(Path(ctx["candidate_root"]) / relative),

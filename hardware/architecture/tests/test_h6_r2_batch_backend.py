@@ -180,6 +180,91 @@ class BatchBackendTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             backend.Recipe("bad-metric", abandon_metric="anything")
 
+    def test_endpoint_controls_require_actual_booleans(self):
+        for field in ("endpoint_reservations_all", "dense_first", "pending_pad_protection"):
+            for value in (0, 1, None, "false", "true"):
+                with self.subTest(field=field, value=value), self.assertRaises(ValueError):
+                    backend.Recipe("bad-toggle", **{field: value})
+
+    def test_endpoint_controls_change_only_explicit_environment_keys(self):
+        context = self.prepare()
+        case = backend.read(self.case_path)
+        base_env, base_command = backend._settings(context, case)
+        keys = {"endpoint_reservations_all": ("KICAD_FINE_PITCH_PSEUDO_STUBS", "0"),
+                "dense_first": ("KICAD_MULTIPOINT_DENSE_FIRST", "1")}
+        for key, _ in keys.values():
+            self.assertNotIn(key, base_env)
+        command_start = base_command.index("--layers")
+        self.assertEqual(backend.STRICT_ARGUMENTS,
+                         base_command[command_start:command_start + len(backend.STRICT_ARGUMENTS)])
+        self.assertEqual(["A", "B"], base_command[base_command.index("--nets") + 1:command_start])
+        self.assertEqual("0.16", base_command[base_command.index("--clearance") + 1])
+        self.assertEqual("0.3", base_command[base_command.index("--board-edge-clearance") + 1])
+        for reserve, dense in ((False, False), (True, False), (False, True), (True, True)):
+            recipe = {**context["recipe"], "endpoint_reservations_all": reserve, "dense_first": dense}
+            env, command = backend._settings({**context, "recipe": recipe}, case)
+            expected = {key: value for field, (key, value) in keys.items() if recipe[field]}
+            with self.subTest(reserve=reserve, dense=dense):
+                self.assertEqual({**base_env, **expected}, env)
+                self.assertEqual(base_command, command)
+        inherited = {key: "unexpected-inherited-value" for key, _ in keys.values()}
+        with patch.dict(backend.os.environ, inherited):
+            backend.engine(context, self.registry)
+        launched_env = self.registry.run.call_args.kwargs["env"]
+        for key in inherited:
+            self.assertNotIn(key, launched_env)
+
+    def test_pending_pad_protection_changes_only_explicit_environment_key(self):
+        self.auth = backend.authority(self.case_path, engine_root=self.root / "engine",
+                                      engine_python=self.root / "engine-python",
+                                      engine_patch_sha256=backend.PENDING_PAD_PROTECTION_PATCH_SHA256)
+        context = self.prepare()
+        case = backend.read(self.case_path)
+        base_env, base_command = backend._settings(context, case)
+        self.assertIs(context["recipe"]["pending_pad_protection"], False)
+        self.assertNotIn("KICAD_PENDING_PAD_PROTECTION", base_env)
+        enabled = {**context, "recipe": {**context["recipe"], "pending_pad_protection": True}}
+        env, command = backend._settings(enabled, case)
+        self.assertEqual({**base_env, "KICAD_PENDING_PAD_PROTECTION": "1"}, env)
+        self.assertEqual(base_command, command)
+        command_start = command.index("--layers")
+        self.assertEqual(["A", "B"], command[command.index("--nets") + 1:command_start])
+        self.assertEqual(backend.STRICT_ARGUMENTS,
+                         command[command_start:command_start + len(backend.STRICT_ARGUMENTS)])
+        self.assertEqual("0.16", command[command.index("--clearance") + 1])
+        self.assertEqual("0.3", command[command.index("--board-edge-clearance") + 1])
+
+    def test_pending_pad_protection_rejects_unsupported_engine_before_spawn(self):
+        with self.assertRaisesRegex(ValueError, "supported pinned engine patch"):
+            self.prepare(backend.Recipe("unsupported-pending-pad", pending_pad_protection=True))
+        self.registry.run.assert_not_called()
+
+    def test_pending_pad_protection_scrubs_inherited_environment(self):
+        self.auth = backend.authority(self.case_path, engine_root=self.root / "engine",
+                                      engine_python=self.root / "engine-python",
+                                      engine_patch_sha256=backend.PENDING_PAD_PROTECTION_PATCH_SHA256)
+        for enabled in (False, True):
+            context = self.prepare(backend.Recipe("pending-pad", pending_pad_protection=enabled))
+            with patch.dict(backend.os.environ, {"KICAD_PENDING_PAD_PROTECTION": "unexpected-inherited-value"}):
+                backend.engine(context, self.registry)
+            launched_env = self.registry.run.call_args.kwargs["env"]
+            with self.subTest(enabled=enabled):
+                if enabled:
+                    self.assertEqual("1", launched_env["KICAD_PENDING_PAD_PROTECTION"])
+                else:
+                    self.assertNotIn("KICAD_PENDING_PAD_PROTECTION", launched_env)
+
+    def test_zero_max_ripup_is_explicit_and_does_not_change_scope(self):
+        context = self.prepare()
+        case = backend.read(self.case_path)
+        base_env, base_command = backend._settings(context, case)
+        env, command = backend._settings({**context, "recipe": {**context["recipe"], "max_ripup": 0}}, case)
+        self.assertEqual(base_env, env)
+        self.assertEqual(base_command + ["--max-ripup", "0"], command)
+        for value in (False, True, -1, 0.0):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                backend.Recipe("bad-ripup", max_ripup=value)
+
     def test_worker_request_tamper_and_stale_native_receipt_block_validation(self):
         context = backend.engine(self.prepare(), self.registry)
         request = Path(context["folder"]) / "worker-request.json"
