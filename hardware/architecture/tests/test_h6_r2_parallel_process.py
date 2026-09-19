@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import subprocess
 import sys
 import tempfile
 import time
@@ -77,6 +78,7 @@ class ParallelProcessTests(unittest.TestCase):
         result = self.registry.run(self.command("success"), self.log, 3)
         evidence = self.wait_ready()
         self.assertEqual(0, result["exit_code"])
+        self.assertIs(True, result["orphaned_descendants"])
         self.assertEqual(evidence["leader"], evidence["group"])
         self.assertNotEqual(os.getpgrp(), evidence["group"])
         self.assert_cleaned(evidence)
@@ -85,6 +87,7 @@ class ParallelProcessTests(unittest.TestCase):
         result = self.registry.run(self.command(), self.log, 0.4)
         evidence = self.wait_ready()
         self.assertEqual("timeout", result["exit_code"])
+        self.assertIs(False, result["orphaned_descendants"])
         self.assertEqual(-signal.SIGKILL, result["returncode"])
         self.assertLess(result["seconds"], 2)
         self.assertEqual(1, self.log.read_text().splitlines().count("TERM"))
@@ -103,6 +106,7 @@ class ParallelProcessTests(unittest.TestCase):
         self.assertEqual(1, sent.count(signal.SIGTERM))
         self.assertEqual(1, sent.count(signal.SIGKILL))
         self.assertEqual("cancelled", result["exit_code"])
+        self.assertIs(False, result["orphaned_descendants"])
         self.assertEqual(1, self.log.read_text().splitlines().count("TERM"))
         self.assert_cleaned(evidence)
 
@@ -136,6 +140,27 @@ class ParallelProcessTests(unittest.TestCase):
                 self.registry.run(self.command(), self.log, 5)
         self.assert_cleaned(self.wait_ready())
 
+    def test_group_probe_error_still_reaps_the_signalled_leader(self):
+        spawned = []
+        real_popen = subprocess.Popen
+
+        def spawn(*args, **kwargs):
+            process = real_popen(*args, **kwargs)
+            spawned.append(process)
+            return process
+
+        command = [sys.executable, "-u", "-c", "import time; time.sleep(60)"]
+        with patch("hardware.layout.h6_r2_parallel_process.subprocess.Popen", side_effect=spawn), \
+             patch("hardware.layout.h6_r2_parallel_process._Group.alive",
+                   side_effect=PermissionError("group probe denied after TERM")):
+            with self.assertRaisesRegex(PermissionError, "group probe denied"):
+                self.registry.run(command, self.log, 0.1)
+        self.assertEqual(1, len(spawned))
+        self.assertEqual(-signal.SIGTERM, spawned[0].returncode)
+        self.assertEqual(0, self.registry.active_count)
+        with self.assertRaises(ChildProcessError):
+            os.waitpid(spawned[0].pid, os.WNOHANG)
+
     def test_pre_cancelled_registry_never_spawns(self):
         self.registry.cancel_all()
         with patch("hardware.layout.h6_r2_parallel_process.subprocess.Popen") as spawn:
@@ -143,14 +168,49 @@ class ParallelProcessTests(unittest.TestCase):
         spawn.assert_not_called()
         self.assertEqual("cancelled", result["exit_code"])
         self.assertIsNone(result["pid"])
+        self.assertIs(False, result["orphaned_descendants"])
 
     def test_nonzero_exit_and_combined_log_preserve_result(self):
         command = [sys.executable, "-u", "-c", "import sys; print('stdout'); print('stderr',file=sys.stderr); sys.exit(7)"]
         result = self.registry.run(command, self.log, 2)
         self.assertEqual(7, result["exit_code"])
         self.assertEqual(7, result["returncode"])
+        self.assertIs(False, result["orphaned_descendants"])
         self.assertEqual({"stdout", "stderr"}, set(self.log.read_text().splitlines()))
         self.assertEqual(0, self.registry.active_count)
+
+    def test_separate_stderr_preserves_stdout_protocol_and_exit_code(self):
+        errors = self.root / "stderr.log"
+        command = [sys.executable, "-u", "-c",
+                   "import sys; print('{\"verdict\":\"pass\"}'); print('diagnostic',file=sys.stderr); sys.exit(7)"]
+        result = self.registry.run(command, self.log, 2, stderr_log=errors)
+        self.assertEqual({"verdict": "pass"}, json.loads(self.log.read_text()))
+        self.assertEqual("diagnostic\n", errors.read_text())
+        self.assertEqual(7, result["exit_code"])
+        self.assertEqual(7, result["returncode"])
+        self.assertIs(False, result["orphaned_descendants"])
+        self.assertEqual(0, self.registry.active_count)
+
+    def test_orphan_flag_preserves_nonzero_leader_result_and_cleanup(self):
+        command = self.command("success")
+        command[3] += "\nsys.exit(7)\n"
+        result = self.registry.run(command, self.log, 3, stderr_log=self.root / "stderr.log")
+        self.assertEqual(7, result["exit_code"])
+        self.assertEqual(7, result["returncode"])
+        self.assertIs(True, result["orphaned_descendants"])
+        self.assert_cleaned(self.wait_ready())
+
+    def test_separate_stderr_open_failure_never_spawns(self):
+        with patch("hardware.layout.h6_r2_parallel_process.subprocess.Popen") as spawn:
+            with self.assertRaises(OSError):
+                self.registry.run(self.command(), self.log, 1,
+                                  stderr_log=self.root / "missing/stderr.log")
+        spawn.assert_not_called()
+        self.assertEqual(0, self.registry.active_count)
+
+    def test_separate_streams_reject_the_same_log_path(self):
+        with self.assertRaisesRegex(ValueError, "must differ"):
+            self.registry.run(self.command(), self.log, 1, stderr_log=self.log)
 
     def test_spawn_or_log_failure_leaves_registry_empty(self):
         with self.assertRaises(OSError):

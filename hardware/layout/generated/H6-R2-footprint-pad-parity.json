@@ -1,9 +1,9 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "artifact": "H6-R2 native/library pad geometry parity",
   "status": "pass",
   "fabrication_ready": false,
-  "scope": "Pad number/multiplicity, transformed XY, size, angle, drill, layers, attribute, shape and roundrect ratio. Does not establish body fit, cutouts, sourcing, nets or complete fabrication readiness.",
+  "scope": "Pad number/multiplicity, transformed XY, size, angle, drill, layers, attribute, offset, trapezoid delta, chamfer, custom anchor/zone mode and canonical effective copper polygons on every pad copper layer. Polygon curves use an explicit 0.001-mm maximum tessellation error; vertices retain integer nanometres. Does not establish mask/paste aperture parity, body fit, cutouts, sourcing, nets or complete fabrication readiness.",
   "coordinate_precision_mm": 0.001,
   "source_library_sha256": {
     "hardware/ecad/libraries/Leshy2.pretty/0451005.MRL.kicad_mod": "5e584061288514cc9e9bf3222f454e629753fa6f3bad43c8ed4d59febeb0f1d3",
@@ -110,6 +110,7 @@
     "kicad-standard/Resistor_SMD.pretty/R_1206_3216Metric.kicad_mod": "c7320668dc81bbb954cb4f15e4e7a766c120059343d43551468c8f7ccc8fde37",
     "kicad-standard/Resistor_SMD.pretty/R_2512_6332Metric.kicad_mod": "abab4bf8eeb3ed03061d8eeb56b542cdac074ce8a0ace0f9b06e933c0b48f297"
   },
+  "copper_polygon_error_mm": 0.001,
   "summary": {
     "native_footprints": 1218,
     "checked_footprints": 1218,

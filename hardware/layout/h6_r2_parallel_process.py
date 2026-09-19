@@ -1,7 +1,8 @@
 """Thread-safe POSIX subprocess groups for bounded parallel phase callbacks.
 
-ProcessRegistry.run(argv, log, timeout, cwd=..., env=...) returns exit_code
-(integer, "timeout", or "cancelled"), returncode, pid and elapsed seconds.
+ProcessRegistry.run(argv, log, timeout, cwd=..., env=..., stderr_log=...) returns
+exit_code (integer, "timeout", or "cancelled"), returncode, pid, elapsed seconds
+and orphaned_descendants. Omit stderr_log to retain merged stdout/stderr.
 Use the same Event with run_jobs and its cancel_running=registry.cancel_all.
 No worker installs signal handlers. Every exit cleans its own process group,
 even when a successful leader leaves children running, and reaps the direct
@@ -9,6 +10,7 @@ Popen child. Orphan descendants are reaped by the OS, not by this Python parent.
 Children that create another session/group escape this ownership boundary:
 nested drivers must clean up those groups themselves when they receive TERM.
 """
+from contextlib import ExitStack
 import math
 import os
 from pathlib import Path
@@ -48,13 +50,18 @@ class _Group:
             return False
 
     def finish(self):
-        self.signal_once()
-        while self.alive() and time.monotonic() < self.deadline:
-            self.process.poll()  # Reap an exited leader while children drain.
-            time.sleep(min(0.02, max(0, self.deadline - time.monotonic())))
-        if self.alive():
-            self.signal_once(hard=True)
-        self.process.wait(timeout=5)
+        try:
+            self.signal_once()
+            while self.alive() and time.monotonic() < self.deadline:
+                self.process.poll()  # Reap an exited leader while children drain.
+                time.sleep(min(0.02, max(0, self.deadline - time.monotonic())))
+            if self.alive():
+                self.signal_once(hard=True)
+        finally:
+            # A group probe may fail after TERM (for example EPERM while the
+            # OS adopts exited descendants). Still reap our direct child;
+            # preserve the cleanup error rather than claim group completion.
+            self.process.wait(timeout=5)
 
 
 class ProcessRegistry:
@@ -95,25 +102,35 @@ class ProcessRegistry:
             except subprocess.TimeoutExpired:
                 pass
 
-    def run(self, command, log, timeout, *, cwd=None, env=None):
+    def run(self, command, log, timeout, *, cwd=None, env=None, stderr_log=None):
         if (isinstance(timeout, bool) or not isinstance(timeout, (int, float))
                 or not math.isfinite(timeout) or timeout <= 0):
             raise ValueError("timeout must be finite and positive")
         if isinstance(command, (str, bytes)) or not command:
             raise ValueError("command must be a nonempty argv sequence")
-        started, group = time.monotonic(), None
-        with Path(log).open("w") as stream:
+        if stderr_log is not None and Path(stderr_log).resolve() == Path(log).resolve():
+            raise ValueError("separate stderr log must differ from stdout log")
+        started, group, orphaned = time.monotonic(), None, False
+        with ExitStack() as streams:
+            stream = streams.enter_context(Path(log).open("w"))
+            errors = (streams.enter_context(Path(stderr_log).open("w"))
+                      if stderr_log is not None else subprocess.STDOUT)
             try:
                 # Registration and cancellation are atomic with respect to
                 # spawning: no child can fall between the registry and cancel_all.
                 with self._lock:
                     if self.cancel_event.is_set():
-                        return {"exit_code": "cancelled", "returncode": None, "pid": None, "seconds": 0.0}
+                        return {"exit_code": "cancelled", "returncode": None, "pid": None,
+                                "seconds": 0.0, "orphaned_descendants": False}
                     process = subprocess.Popen(command, cwd=cwd, env=env, stdin=subprocess.DEVNULL,
-                                               stdout=stream, stderr=subprocess.STDOUT, start_new_session=True)
+                                               stdout=stream, stderr=errors, start_new_session=True)
                     group = _Group(process, self.grace_seconds)
                     self._groups[process.pid] = group
                 code = self._wait(group, started + timeout)
+                # wait() has reaped a normally exited leader. Any remaining
+                # member belongs to its descendants; finish() still owns their
+                # cleanup, while callers can reject this incomplete execution.
+                orphaned = isinstance(code, int) and group.alive()
             finally:
                 if group is not None:
                     try:
@@ -122,4 +139,5 @@ class ProcessRegistry:
                         with self._lock:
                             self._groups.pop(group.process.pid, None)
         return {"exit_code": code, "returncode": process.returncode, "pid": process.pid,
-                "seconds": round(time.monotonic() - started, 3)}
+                "seconds": round(time.monotonic() - started, 3),
+                "orphaned_descendants": orphaned}

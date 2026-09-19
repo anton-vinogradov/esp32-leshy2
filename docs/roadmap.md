@@ -27,7 +27,7 @@ and completed results live in the [report index](stage-results.md).
 
 ## Current H6
 
-Current focus: [automatic routing and repeatability](h6-r2-routing-automation.md). The two-block 474-connection geometry milestone passed with three cold replays per block; full-board rebuilds and electrical qualification remain ahead. Experiments use copies and production routing stays paused. This is an internal H6.0.3 step, not H6 closure or fabrication authorization.
+Current focus: [automatic routing and design acceptance](h6-r2-routing-automation.md). The 474-connection geometry milestone passed; the parallel acceptance command now exposes current power failures, unfinished connections and missing qualification. Next: a bounded circuit-generation pilot, then independent validation against the current project. Experiments use copies and production routing stays paused. This is an internal H6.0.3 step, not H6 closure or fabrication authorization.
 
 | Substage | Status | Exit |
 |---|---|---|

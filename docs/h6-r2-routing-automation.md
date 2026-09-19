@@ -29,6 +29,20 @@ python3 tools/route_board.py \
 
 It tries the established profile, adds alternatives on failure and requires three identical replays. Changed sources need a newly reviewed manifest; stale hashes are rejected. Neither wrapper applies experimental copper to production PCBs.
 
+## Design acceptance before the next rebuild
+
+```sh
+python3 tools/check_design.py
+```
+
+This read-only entrypoint reuses the existing auditors: ten implemented scoped checks and six mandatory, explicitly unqualified coverage domains. Four-native-worker runs took **27–43 s** (latest 43.472 s), with eight total worker slots on this 12-logical-core laptop ([benchmark record](../hardware/layout/benchmarks/2026-09-20-design-acceptance-results.json)); `--jobs` and `--native-jobs` override the limits. It verifies `caffeinate`, guards source membership/content and evidence hashes, and stops owned process groups on cancellation or timeout. It does not generate circuits, edit boards or approve manufacture. Prepared native KiCad Python is required (`--kicad-python` overrides its path).
+
+The current boards correctly receive **`not_accepted`**, not a success badge: four scoped passes, two failures and ten unqualified results. Power prerequisites fail; native connectivity reports **UI 1,226 + RF 1,859 = 3,085** remaining connections, independent of the truncated DRC item lists. Complete pin/state models, routed electrical behavior, assembled geometry, manufacturing parity and prototype measurements remain mandatory. Typed ERC evidence is hash-validated, not rerun by this command. Missing, stale or incomplete evidence cannot become PASS.
+
+Exit codes: **0** = every declared check passes its scope; **1** = design not accepted; **2** = execution/evidence error; **130** = cancellation. Completed runs save scopes, findings, hashes and timing in a unique `work/design-check-*/result.json`; bootstrap failures and cancellation report `report: null`, never an older result. Do not confuse an expected exit 1 on this unfinished design with a failed software regression test. Negative tests include a declared 5-V rail against its fitted 3.222-V divider, omitted components, stale proof, invalid protocol, incomplete coverage, capped DRC, cancellation and orphaned processes.
+
+Development proceeds as **mechanism → current project → independent validation**, repeating that loop before advancing. This first step consolidates acceptance, not full electrical correctness. The next isolated pilot evaluates a ready-made local constraint-based circuit generator on one indicator branch; no generated MPN or schematic is promoted without exact-part and independent checks. No model decisions occur inside the acceptance command; preparation tokens and end-to-end payback remain separate costs.
+
 ## Preparation cost and unsuccessful attempts
 
 The primary cost metric remains **model tokens per complete checked result**. Root-task journal snapshots recorded about **157k**, **909,031** and, during the resumed work, **199,005 uncached-input + output tokens**. These are preparation/development proxies, not billing or isolated repeat-routing costs. The second interval includes price/documentation work; the latest includes development, review, documentation and monitoring. Agent coverage is unverified and later work is excluded. Zero model decisions inside the command does not erase preparation cost. Total recurring usage, savings against the previous method and payback remain unmeasured.

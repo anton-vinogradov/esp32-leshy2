@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "command": "python3 tools/check_design.py",
+  "role": "Historical benchmark summary, not reusable acceptance evidence; full proof remains in the unique local run directory.",
+  "report": "work/design-check-0jijkceb/result.json",
+  "report_sha256": "3bca513fce3dfef59407f631ddaa9c2d717f6c2bdd2098a8f435a7a4740959cc",
+  "scope": "Current Leshy2 read-only acceptance; not a circuit synthesizer or fabrication release.",
+  "summary": {
+    "blocked_checks": [
+      "electrical.power_startup",
+      "electrical.source_triage",
+      "electrical.typed_erc",
+      "mechanical-stack",
+      "microcoax",
+      "native.drc",
+      "coverage.pin-voltage-and-state",
+      "coverage.routed-power-and-loops",
+      "coverage.signal-integrity-and-rf",
+      "coverage.assembled-geometry",
+      "coverage.manufacturing-package",
+      "coverage.prototype-behavior"
+    ],
+    "checks": 16,
+    "engineering_accepted": false,
+    "fabrication_authorized": false,
+    "inputs_unchanged": true,
+    "model_decisions_in_run": 0,
+    "production_promoted": false,
+    "seconds": 43.472,
+    "status": "not_accepted",
+    "verdict_counts": {
+      "fail": 2,
+      "pass": 4,
+      "unqualified": 10
+    }
+  },
+  "runtime": {
+    "kicad_python": "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3",
+    "logical_cpu_count": 12,
+    "native_jobs": 4,
+    "parallel_jobs": 8,
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]"
+  },
+  "caffeinate": {
+    "established": true,
+    "status": "released"
+  },
+  "checks": [
+    {
+      "id": "electrical.power_startup",
+      "verdict": "fail",
+      "seconds": 0.201
+    },
+    {
+      "id": "electrical.source_triage",
+      "verdict": "unqualified",
+      "seconds": 1.308
+    },
+    {
+      "id": "electrical.typed_erc",
+      "verdict": "unqualified",
+      "seconds": 1.196
+    },
+    {
+      "id": "footprint-parity",
+      "verdict": "pass",
+      "seconds": 42.893
+    },
+    {
+      "id": "mechanical-stack",
+      "verdict": "unqualified",
+      "seconds": 42.922
+    },
+    {
+      "id": "microcoax",
+      "verdict": "unqualified",
+      "seconds": 42.933
+    },
+    {
+      "id": "silkscreen",
+      "verdict": "pass",
+      "seconds": 3.179
+    },
+    {
+      "id": "sma-access",
+      "verdict": "pass",
+      "seconds": 2.248
+    },
+    {
+      "id": "native.inventory",
+      "verdict": "pass",
+      "seconds": 1.194
+    },
+    {
+      "id": "native.drc",
+      "verdict": "fail",
+      "seconds": 16.1
+    },
+    {
+      "id": "coverage.pin-voltage-and-state",
+      "verdict": "unqualified",
+      "seconds": 0
+    },
+    {
+      "id": "coverage.routed-power-and-loops",
+      "verdict": "unqualified",
+      "seconds": 0
+    },
+    {
+      "id": "coverage.signal-integrity-and-rf",
+      "verdict": "unqualified",
+      "seconds": 0
+    },
+    {
+      "id": "coverage.assembled-geometry",
+      "verdict": "unqualified",
+      "seconds": 0
+    },
+    {
+      "id": "coverage.manufacturing-package",
+      "verdict": "unqualified",
+      "seconds": 0
+    },
+    {
+      "id": "coverage.prototype-behavior",
+      "verdict": "unqualified",
+      "seconds": 0
+    }
+  ],
+  "source_sha256": {
+    "hardware/architecture/tests/test_check_design.py": "c52fbe2241325ab380fe0b8d37fd0fcef3d1c34a0692501f264eb0847e5c4090",
+    "hardware/architecture/tests/test_h6_r2_acceptance_adapters.py": "09e5fa2981ccd6e7df118f7db513f837dbad6c21a6ddd76d6f32dad6e210bb93",
+    "hardware/architecture/tests/test_h6_r2_footprint_parity.py": "26376189a6ce53d64347067f47137af070446422d1f8c854383c1fa0d98291a4",
+    "hardware/architecture/tests/test_h6_r2_layout_acceptance_adapters.py": "fd131ffc74ebc24266b9bad285b5a50e28ac08d1ba9c6efa0d0f53ff3e1a7b2e",
+    "hardware/architecture/tests/test_h6_r2_parallel_process.py": "ad70106c23c0541f5ca6d6099bae7e1b1807ca3bcd9616966c08f326d647213e",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3fb5f492f09eefb2e85c678a64e4398f50842e82253ceb0c5277314acde9cf9f",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "c19e980a213ecd16f627809c133b8338fd170715977141492cbc941f6a709006",
+    "hardware/layout/h6_r2_acceptance_adapters.py": "36c50f2d3951d59706dea923b86ec6f79dc562fb95de7f363ffef2d4fab83757",
+    "hardware/layout/h6_r2_footprint_parity.py": "84df0bf6b9379022e3e7ff37f91f23213aab33eb0d9158e39701156f1b408de7",
+    "hardware/layout/h6_r2_parallel_process.py": "1026379eb5da97dd1407e32a96a25cb1856ae4505da340158e3957a733bcb0de",
+    "hardware/verification/h6_r2_acceptance_adapters.py": "6e870572448e8181b71a5e51cab3b153d898462f2c500603ccd370268e4067cf",
+    "tools/check_design.py": "68fce39afa20c8cb5b29dae09636ae8e3caa09efbba352a1a52b3d27033e147c"
+  },
+  "source_manifest_note": "Only checker and current PCB hashes are copied here; the full report guards all 919 hardware/tools source files.",
+  "development_concurrency_history": {
+    "caveat": "Representative development runs, not a controlled same-revision statistical speedup test. Check/process hardening changed during this series.",
+    "runs": [
+      {
+        "native_jobs": 1,
+        "seconds": 80.832
+      },
+      {
+        "native_jobs": 2,
+        "seconds": 51.49
+      },
+      {
+        "native_jobs": 4,
+        "seconds": 27.221
+      },
+      {
+        "native_jobs": 4,
+        "seconds": 27.044
+      },
+      {
+        "native_jobs": 4,
+        "seconds": 43.472
+      }
+    ]
+  },
+  "source_file_count": 919,
+  "tests": {
+    "full_suite": {
+      "total": 1776,
+      "skipped": 133,
+      "status": "pass"
+    },
+    "post_suite_cli_and_process": {
+      "total": 40,
+      "status": "pass"
+    },
+    "targeted_under_native_kicad": {
+      "total": 20,
+      "skipped": 0,
+      "status": "pass"
+    }
+  }
+}
