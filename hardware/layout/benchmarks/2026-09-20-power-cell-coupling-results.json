@@ -218,5 +218,27 @@
     "owned_caffeinate_established_and_released_each_run": true, "model_decisions_inside_command": 0,
     "preparation_proxy": {"metric": "Aggregate goal tokensUsed, not billed or uncached tokens", "start": 12045928, "checkpoint": 12818193, "delta": 772265, "scope": "Auxiliary adapter preparation through source review, implementation, independent review, regressions and replay across continuation/context restoration; later receipt/publication excluded", "cache_agent_split_and_payback": "unmeasured"}
   },
-  "remaining": "Declare candidate auxiliary wiring and branch budget ownership, establish applicable source bounds, then whole-cell qualification: actual VIN/RON/bias applicability, divider lifetime, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. The coupled threshold screen is not instantaneous converter-current protection. Eight native power findings and hardware/firmware boundary unchanged."
+  "candidate_topology_followup": {
+    "scope": "Automatic complete in-memory native-ledger overlays, not regenerated native CAD or qualified production circuits",
+    "ready_mechanisms_reused": ["Existing C5 overlay digest/unique-index helpers and exact allowed-delta pattern", "Existing native provenance/typed-pin indexes", "Published selected EDG divider and threshold portfolios", "Existing source-condition admission adapter"],
+    "custom_gap": "Compose reviewed replacement pin roles and generated generic passive values into complete candidate ledgers while preserving every unrelated instance/contact; no new CAD engine or solver",
+    "portfolio": {"divider_groups": 2, "rilm_classes": 3, "monitor_supply_nodes": ["MAIN_RAW_3V3", "3V3_MAIN", "AON_SAFE_3V3"], "candidates": 18, "distinct_candidate_hashes": 18},
+    "per_candidate": {"baseline_instances": 1210, "baseline_contacts": 4317, "changed_instances": 6, "changed_contact_records": 20, "added_instances": 2, "added_contacts": 8, "preserved_instances": 1204, "preserved_contacts": 4297, "fault_bus_contacts": 9},
+    "topology": "U21 PG remains on POWER_FAULT_N; pin4 becomes FLT with explicit no-connect. Five resistor values become generic hypotheses with old exact MPN/symbol/footprint cleared. Old PGTH pair becomes the monitor SENSE divider. TPS3703 CT/MR are open, RESET joins the existing fault bus; add nominal100nF VDD bypass. Existing R266 and every other native fault endpoint unchanged.",
+    "primary_review": {"tps25981_pdf_sha256": "8609249da4eb65da1d5398a4cbd5bc3ace4ca1f1f0205e41fbf3873d8e3f8e91", "tps25981_additional_page": 27, "tps3703_pdf_sha256": "cc65714774e50c97dca9a1bf094489b17350cc70fa16068880e108e320f8a6ea", "tps3703_topology_pages": [4, 15, 16, 17, 27], "reviewed_on": "2026-09-20", "finding": "FLT does not assert for UVP/UVLO/input-OV; it cannot replace PG plus external voltage monitoring. Desired-rail RESET pullup and wired-OR are allowed connections, not arbitrary-load numerical qualification.10pF bench load is not a mandatory added board capacitor."},
+    "report_form": "Guarded baseline digest and compact complete replacement/addition deltas:8instance records and28contact records per variant; full ledgers built/validated in memory",
+    "selected_tests": {"passed": 288, "skipped": 0, "elapsed_s": 66.032, "new_independent_tests": 18},
+    "initial_regression": {"passed": 287, "failed": 1, "elapsed_s": 63.280, "reason": "Source mutation was correctly rejected by the newly earlier provenance guard, but its error message did not match the existing regression contract. Diagnostic wording aligned and complete suite rerun."},
+    "independent_review": "Separate read-only reviewer found no blockers; literal physical pin tables, native fault peers, value/identity separation, unrelated-record preservation, source mutations, altered authority and compact parent portfolio tested. Final18focused tests pass in12.160s.",
+    "fresh_reports": [
+      {"path": "work/main-dc-cell-r2bju6na/result.json", "sha256": "b4f17198c0023a55d7ffab97a8c04bfa9a3b0591794fda1cc2e9f643ec725ac6", "run_body_s": 8.491060, "command_s": 8.525212},
+      {"path": "work/main-dc-cell-me14tfys/result.json", "sha256": "944448f001c28a7f9bbc601d1b820200815524d5f7f16fed468a35454891dd67", "run_body_s": 8.536514, "command_s": 8.568730}
+    ],
+    "source_hashes_per_report": 107, "replay_equal_except_top_and_nested_elapsed_and_owned_caffeinate_metadata": true,
+    "exit_codes": [1, 1], "qualified": false, "actual_auxiliary_total_a": null, "loaded_fault_logic_proven": false,
+    "native_cad_changed": false, "production_mpn_selected": false, "baseline_power_findings_preserved": 8,
+    "owned_caffeinate_established_and_released_each_run": true, "model_decisions_inside_command": 0,
+    "preparation_proxy": {"metric": "Aggregate goal tokensUsed, not billed or uncached tokens", "start": 12831116, "checkpoint": 13407504, "delta": 576388, "scope": "This continuation through source/topology review, implementation, independent mutation tests, complete selected regression and fresh replays; later documentation/publication excluded", "cache_agent_split_and_payback": "unmeasured"}
+  },
+  "remaining": "Establish actual auxiliary-current and loaded fault-bus bounds for explicit candidate supply hypotheses, then whole-cell qualification: actual VIN/RON/bias applicability, divider lifetime, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification before native reconstruction. Existing OVLO/DVDT/ITIMER and converter compensation are retained hypotheses, not recalculated or admitted. The coupled threshold screen is not instantaneous converter-current protection. Eight native power findings and hardware/firmware boundary unchanged."
 }
