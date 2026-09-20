@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "kind": "historical_local_helper_experiment_not_design_acceptance",
+  "date": "2026-09-20",
+  "model": "mlx-community/Qwen3.8-27B-4bit",
+  "revision": "10c35caafbb80f7dc6a7a432cdd11af10a6d4818",
+  "runtime": "LM Studio 0.4.25+1, MLX engine 1.11.0, SDK 1.5.0, one resident model and one active request",
+  "settings": {
+    "thinking": false, "temperature": 0.7, "top_p": 0.8, "top_k": 20,
+    "presence_penalty": 1.5, "client_prompt_plus_output_cap": 8192,
+    "runtime_reported_context": 61696,
+    "context_caveat": "Runtime expands configured context; exact rendered-token budget enforced independently before each request."
+  },
+  "public_self_check_attempt": {
+    "status": "aborted_before_first_complete_answer",
+    "scope": "Three known development cases, not a fresh blind evaluation; expressions replace model-computed numeric evidence; at most two repairs from public validation errors only.",
+    "transport_preflight_failure": "An earlier sandboxed attempt could not connect to localhost; no generation. Preserved separately.",
+    "model_requests": 1, "input_tokens": 909, "output_tokens": 584,
+    "elapsed_seconds": 180.318, "stop_reason": "userStopped",
+    "complete_answers": 0, "repair_requests": 0, "private_grades": 0,
+    "finding": "Verbose nested JSON did not finish before the explicit deadline. No quality improvement demonstrated; incomplete answer rejected."
+  },
+  "pin_skill_test": {
+    "scope": "Three synthetic controlled fixtures transcribed from an independently reviewed TI TXS0102 DCU pin table: correct mapping, swapped A1/A2, and missing applicable package reference. Not a fresh manufacturer-document extraction or production audit.",
+    "skill": "pcb-pinmap-review",
+    "design": "Matched public payloads and decoding; baseline already includes a precise task and response contract. Skill body injected explicitly in one arm only; alternating arm order; one sample per condition; separate private exact grading after all responses persisted.",
+    "requests": 6, "complete_requests": 6, "errors_or_truncations": 0,
+    "output_cap_per_request": 512, "deadline_seconds_per_request": 180,
+    "baseline": {"fully_passing_cases": 3, "cases": 3, "input_tokens": 1775, "output_tokens": 183, "wall_seconds": 86.22058983298484},
+    "skill": {"fully_passing_cases": 3, "cases": 3, "input_tokens": 3665, "output_tokens": 183, "wall_seconds": 113.8688615829451},
+    "observed_extra_input_tokens": 1890,
+    "parent_interventions_between_requests": 0,
+    "model_defaults_unchanged": true,
+    "scoped_caffeinate_released": true,
+    "decision": "No measured skill lift on this small, simple set. Keep the recipe experimental; do not build a broad skill library or replace deterministic pin checks on this evidence."
+  },
+  "verification": {"self_check_harness_tests": 15, "skill_grader_tests": 4, "existing_project_pinmap_regressions": 9, "all_passed": true},
+  "partial_parent_usage_proxy": {
+    "counter_start_utc": "2026-09-20T00:19:46.993Z",
+    "counter_stop_utc": "2026-09-20T00:52:36.065Z",
+    "uncached_input_plus_output": 253273,
+    "tool_calls": 85, "tool_result_characters": 354148, "compactions": 1,
+    "scope": "Root-task research, LM Studio integration, harness/skill preparation, review and test observation. Child inclusion unverified; excludes later documentation, publication and final response. Not isolated inference cost, billing or a team total. Do not add overlapping earlier snapshots."
+  },
+  "parent_token_savings": "UNMEASURED",
+  "new_production_checks_adopted": 0,
+  "board_or_component_changes": false,
+  "evidence_sha256": {
+    "pin_test_freeze": "f56ffa88ff1c7392224257eaaa13b7246e8d2ce3961c7300ef580a99ce4a343f",
+    "pin_responses": "1c7a202848a98774a386f32cdbdc5d3cc36cf6aee633bd5f06c2f8802172062e",
+    "pin_grade": "0d352275cb831fe70880e11f300ad128e8811347f8bee6cf56e0cb584376af70",
+    "skill": "a36a31d9e7d43880a3507b2f2ad4c6b17ed17bcb488643492c5355143973df7b",
+    "aborted_self_check_response": "a7e0072618e25ede03d8e1d3f0b2b214a5d1d829e59fddc561e87d5a710dd678"
+  },
+  "reproducibility_limit": "Prototype skill, runners, raw fixtures/oracles and replies remain in local work/. This compact record is not a portable public test package or a new qualification of the failed original blind-pilot bar.",
+  "research": [
+    "https://python.useinstructor.com/concepts/retrying/",
+    "https://huggingface.co/Qwen/Qwen3.8-27B#best-practices",
+    "https://arxiv.org/abs/2602.12670",
+    "https://arxiv.org/abs/2603.15401",
+    "https://qwenlm.github.io/qwen-code-docs/en/users/features/skills/"
+  ]
+}
