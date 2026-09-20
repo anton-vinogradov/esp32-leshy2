@@ -69,6 +69,17 @@
     "preparation_cost_proxy": {"metric": "raw active-goal counter; not billing or uncached-input-plus-output", "start": 4824072, "checkpoint": 5164960, "delta": 340888, "scope": "This source research/implementation/review through the first 113-test checkpoint; later review/docs/publishing excluded", "cache_and_agent_split": "unavailable", "command_model_calls": 0, "parent_savings_and_payback": "unmeasured"},
     "remaining": "Source numeric coverage never proves full header-bias applicability; startup, protection, monitoring, dynamics, thermal, exact-part supply and physical qualification remain open"
   },
+  "vendor_calculator_screen": {
+    "date": "2026-09-20", "source": "https://www.ti.com/tool/download/SLVRBL3", "version": "01.00.00.0A, 2022-05-18",
+    "zip_sha256": "79a50745cddc74b5897baf5dea091a4d75b8bda33de7f47c78d748a1cb1192fa",
+    "xlsm_sha256": "0a319426218b92c0ff21a017bc30f7dcc727fe6d2239dbcce60e53ea6eb60ad8",
+    "local_evidence": "work/ti-efuse-calculator-PT4eup/findings.json",
+    "decision": "reference_only_not_an_admitted_automatic_checker",
+    "inspected_sheet": "Calculation Sheet",
+    "findings": {"D51_D54": "6595 constant versus 6585 in reviewed datasheet", "F54": "root-sum-square tolerance aggregation, not independent worst-case extrema", "D81_D95": "loss calculation uses typical 6-milliohm RON", "D37": "original cached R2 is 19.1 kohm; artifact-tool render gives #N/A, so headless engine equivalence is not established"},
+    "macros_executed": false, "original_modified": false, "native_excel_recalculation_verified": false,
+    "scope": "Static OOXML formulas/cache plus artifact import/render; no claim that native Excel calculations all fail, no changed-input proof or qualification"
+  },
   "limitations": [
     "All changed models are hypotheses, not available parts or source-qualified replacements",
     "Zero feedback leakage; lifetime drift, line/load/dynamic behavior, current admission, startup, PG and physical measurements remain open",

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "command": "python3 tools/rebuild_indicators.py",
+  "scope": "Source-preserving regeneration of ten existing UI indicator branches; not full driver/load synthesis, placement, routing or physical qualification",
+  "ready_solution_reused": "Prepared EDG 0.5.2 compiler, GenericChipResistor, netlist/BOM exporters; native KiCad reader; existing source snapshot, caffeinate and ProcessRegistry helpers",
+  "custom_gap": "Native-source adapter preserving existing resistor order/value, common AON and separate FAULT boundary; exact generated-pad/name/value comparison and independent replay gate",
+  "coverage": {"branches": 10, "components": 20, "pads": 40, "canonical_nets": 22, "source_hashes": 47, "generated_artifacts_per_worker": 5},
+  "tests": {"new_focused": 24, "combined_passed": 127, "skipped": 0, "combined_seconds": 4.331, "independent_focused_rerun_passed": 24},
+  "independent_export_mutations_rejected": ["red LED replaced with amber", "2.2k resistor exported as 1k", "S3/C5 return names swapped", "two canonical nets aliased to one physical PCB net", "modified installed output serializer/generator"],
+  "other_negative_coverage": ["missing/duplicate components or pads", "LED polarity", "isolated instead of shared AON", "missing/conflicting provenance", "stale sources or artifacts", "5 V instead of allowed stimulus", "false physical or supply approval", "orphan process and SIGTERM cancellation"],
+  "runs": [
+    {"role": "implementation", "report": "work/indicator-rebuild-6lnfqhrq/result.json", "sha256": "4e300146ec2892da6254cdf9a1d6f10f7e73187b169a4253e0daeed18f656d51", "seconds": 2.694, "exit_code": 1},
+    {"role": "independent_root", "report": "work/indicator-rebuild-oo_eca2u/result.json", "sha256": "045d2906bf4a583c8a851b5f6c59831a4992cd9894a5f9f1e039cfbf0b83250b", "seconds": 2.656, "exit_code": 1}
+  ],
+  "replay": {"cold_workers_per_command": 2, "semantic_and_text_equal_within_and_between_commands": true, "canonical_edg_sha256": "6bb4a166c5f238c180f60559c3759b5c07f26341deb6cac21b9c8553a5c2e9ee", "raw_protobuf_byte_identical": false, "comparison_excludes": ["elapsed time", "caffeinate log path", "raw protobuf hashes/byte-equality flag"], "owned_caffeinate_established_and_released_each_run": true},
+  "status": "not_qualified",
+  "mechanics_status": "pass",
+  "production_promoted": false,
+  "supply_checked": false,
+  "hardware_firmware_boundary_changed": false,
+  "preparation_cost_proxy": {
+    "metric": "raw active-goal tokensUsed counter delta; not uncached-input-plus-output or billing",
+    "start_counter": 5313331, "checkpoint_counter": 6026280, "delta": 712949,
+    "scope": "Continuation through ready TI calculator inspection, indicator implementation, independent reviews and root 127-test/real-replay checkpoint; later documentation/publication excluded",
+    "cache_and_agent_split": "unavailable; do not equate aggregate with parent charged usage",
+    "repeat_command_llm_calls": 0,
+    "parent_invocation_and_review_cost": "not isolated",
+    "token_savings_and_payback": "unmeasured"
+  },
+  "limitations": [
+    "Prepared local runtimes required; installer and dependency portability not demonstrated",
+    "Generic generated resistor; fitted exact MPN is comparison metadata, not newly selected or sourcing-approved",
+    "Current/power upper bounds assume zero-to-stimulus combined LED/driver drop; no guaranteed brightness or minimum current",
+    "External shared loads and both VOICE drivers are enumerated but not generated or qualified",
+    "No full source/load state, temperature/aging, transient, PCB or prototype qualification; production routing remains paused"
+  ]
+}

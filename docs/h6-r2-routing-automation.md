@@ -49,6 +49,20 @@ The same command now checks [reviewed RON source conditions](../hardware/verific
 
 Before new research, check existing tools and reusable work first. The current implementation keeps ready [EDG](https://github.com/BerkeleyHCI/PolymorphicBlocks) for resistor selection and reuses our existing interval/native-source checks. The bounded check of [atopile](https://github.com/atopile/atopile) and related tools found no verified drop-in model for these exact source rows; only the missing RON applicability adapter was added. No new solver or migration was justified by this task.
 
+The ready [TI TPS25981 calculator](https://www.ti.com/tool/download/SLVRBL3), version 01.00.00.0A (2022), was also inspected rather than reimplemented. It remains a design reference, not an admitted automatic checker: its current-limit equations use 6595 instead of the 6585 in our reviewed datasheet, its tolerance formula uses root-sum-square rather than worst-case limits, and its loss calculation uses typical RON. Our available spreadsheet engine did not reproduce the original cached R2 selection. Macros were not run, the original workbook was not changed, and native Excel recalculation was not claimed. These findings do not prove that every intended native Excel calculation is broken; they prevent treating this unverified path as acceptance.
+
+## Rebuild the existing indicator network
+
+```sh
+python3 tools/rebuild_indicators.py
+```
+
+This bounded next step uses the prepared EDG 0.5.2 compiler to regenerate a netlist, BOM and compiled model for the **ten UI indicator branches (20 components)** in fresh `work/indicator-rebuild-*` directories. It preserves the fitted 2.2-kΩ nominal/tolerance and LED polarity; it does not select a new brightness target or redesign the external drivers. Nine transmit indicators share AON power; FAULT has a separate source and ground return. The command compares all 40 pads and 22 canonical nets with reviewed source records and an independent native KiCad read, then requires two fresh-process replays. It checks its own `caffeinate` assertion and cleans up owned workers. Prepared EDG, Java and KiCad runtimes are required; CLI overrides are available and no dependencies are downloaded.
+
+The generated resistor is generic; the fitted exact MPN remains a checked source reference, **not a newly selected or supply-approved BOM part**. Shared pullups, hysteresis, both VOICE drivers and other external loads are listed but not generated or electrically qualified. Exit **1** means reconstruction checks passed but hardware remains **not qualified**; **2** means execution/evidence error and **130** cancellation. No production schematic, placement, copper or hardware/firmware boundary is changed. The next useful extension is a source-qualified complete driver/load recipe, not an approval inferred from matching topology.
+
+Two independently invoked commands agree in **2.656–2.694 s**, each including two cold workers. **127 tests pass**, including 24 new focused tests; independent mutations of actual exported part/value/return names are rejected. No LLM calls occur inside the command. [Evidence and preparation-cost scope](../hardware/layout/benchmarks/2026-09-20-indicator-rebuild-results.json); parent-token savings and payback remain unmeasured.
+
 ## Local helper pilot
 
 The first blind Qwen3.8-27B 4-bit MLX run, **with thinking disabled**, finished in 16.2 minutes without intervention between cases. **9/10 proposed rules** passed their hidden counterexamples (46/47 individual probes), but **only 2/10 complete answers** passed: arithmetic, verdicts and evidence provenance failed. One valid control was falsely rejected; one rule missed a changed required voltage. The predeclared eligibility bar was **not met**, and no new production checks were adopted. Parent-token savings remain unmeasured; this evaluates one configuration, not every possible Qwen mode. [Measurements, partial cost proxy and hashes](../hardware/layout/benchmarks/2026-09-20-local-qwen-pilot-results.json). Weights and the experimental environment remain local; design acceptance remains deterministic.
