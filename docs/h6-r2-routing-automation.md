@@ -70,6 +70,18 @@ The [pinned source-condition screen](../hardware/verification/h6_r2_c5_interface
 
 **122 selected regression tests pass (50 candidate/interface tests)**; two fresh Schmitt commands agree in **0.746–0.753 s**, with no LLM calls inside the command. Exact-source changes, wrong pins/rails, extra output loads and out-of-table stimuli fail closed. [Reproduction receipts and preparation-cost scope](../hardware/layout/benchmarks/2026-09-20-design-acceptance-results.json); token payback remains unmeasured. Neither recipe is production-approved; native CAD and firmware are unchanged.
 
+### Existing SPICE engine: conditional EV load probe
+
+```sh
+python3 -B tools/probe_evidence_spice.py --jobs 4
+```
+
+This reuses **ngspice 45.2 bundled with KiCad on the current Mac**, its packaged analog/code-switch models and the unmodified [TI TLV182x PSpice archive](https://www.ti.com/product/TLV1824). No simulator installation, GUI or new solver. The archive stays local; use `--model-archive PATH` for the reviewed `SNOM763.zip` (hash pinned in the script). `--library` selects an existing compatible bundle. The [worker](../tools/ngspice_worker.py) performs only a DC operating point in a fresh process; it rejects file/control commands, parse failures, ignored parameters and external init files. The controller owns timeouts, process groups and `caffeinate`, and hashes the native library/code models as well as inputs.
+
+The [native load fixture](../hardware/verification/h6_r2_ev_load_fixture.py) verifies all nine endpoints of each C5/IR EV line, both M1 contacts, the LED/feedback branches, and the shared diode-OR node. The diagnostic runs 12 stimulus cases plus a known divider, then repeats all 13 in cold processes with four workers. **LED and forward diode paths are deliberately shorted; configurable GPIOs are assumed inputs; other diode branches/leakage are not modeled.** This is a named resistive stress test, not a full EV circuit or a semiconductor worst-case bound. The TI single-channel model is typical and uses artificial behavior outside its valid supply range; power-off qualification is excluded.
+
+Two commands produce matching results; the measured simulation/replay phase takes **0.855–0.857 s**, excluding initial source/fixture loading and report writing. **159 selected regression tests pass**, including 37 new tests. Mutating the actual simulation deck to omit the shared OR load or change the series resistor is rejected by independent branch-current equations even when ngspice converges. The six low-state cases yield **0.1063–0.1418 V** in this conditional stimulus: the older `0…0.1 V` output assumption is not established for the loaded circuit. This is not a measured board failure. CLI exit **1** means the mechanism passed but hardware remains unqualified; **2** execution/evidence error; **130** cancellation. [Receipts, rejected setup attempts and preparation cost](../hardware/layout/benchmarks/2026-09-20-ev-spice-results.json). No native CAD, production parts or firmware changes.
+
 ## Rebuild the existing indicator network
 
 ```sh

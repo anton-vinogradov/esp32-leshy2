@@ -1,0 +1,71 @@
+{
+  "date": "2026-09-20",
+  "scope": "Ready numerical engine + exact native load inventory + conditional resistive stress; not full EV or hardware qualification",
+  "command": "python3 -B tools/probe_evidence_spice.py --jobs 4",
+  "reuse": "Existing KiCad ngspice45.2 shared library, analog.cm/xtradev.cm, unmodified TI TLV182x PSpice model; native ledgers/pin reviews, source guards, ProcessRegistry, keep_awake. No new solver, installation or GUI.",
+  "ready_model": {
+    "url": "https://www.ti.com/lit/zip/SNOM763",
+    "cached_archive": "work/ev-source-WnTYZH/snom763.zip",
+    "archive_sha256": "ba28ca4a4dc6d26071dc21b77db8cdbedabba88ba5fc51080f26ac1ceb83f1d1",
+    "member": "tlv1821.lib", "member_sha256": "d53d28964bcb5aa8ccabd3c826ab6637647c06caa8d1daa7c60b41ed05ddc4b6",
+    "revision": "1.0, 2022-08-29",
+    "authority": "Typical single-channel family model listed on TLV1824 product page; not exact quad-package, tolerance, leakage or power-off qualification. Vendor model not republished in repository."
+  },
+  "runs": [
+    {"report": "work/ev-spice-gimf4sxv/result.json", "sha256": "276cebac6a20cc68f44ce83e1d4f2da3a90b3d311776eaa870b42a72a906f2f5", "seconds": 0.855, "exit_code": 1},
+    {"report": "work/ev-spice-3kvd_rh8/result.json", "sha256": "3fd27f44e5a13f336e88efc260edb935e0a364009fbe6febccf7c0f5ea84d7e6", "seconds": 0.857, "exit_code": 1}
+  ],
+  "timing_scope": "Each runs[].seconds is the runner's simulation/replay phase including keep-awake and final source verification; excludes initial source/model/fixture loading, case construction and report writing, so it is not end-to-end CLI wall time.",
+  "validation": {
+    "mechanism_status": "pass", "status": "not_qualified", "full_EV_qualified": false,
+    "native_cad_changed": false, "firmware_changed": false, "production_parts_adopted": false,
+    "parallel_workers": 4, "cases_per_repeat": 13, "cold_repeats_per_command": 2,
+    "case_grid": "c5/ir x AON2.7/3.3/3.6V x comparator low/high; plus independently known1.65V divider",
+    "stimulus": "Current resistor nominals at initial -1%, ideal rail/common ground, shorted LED/forward-OR paths, configurable GPIOs assumed input; other branch/leakage/dynamic loads omitted explicitly",
+    "fixture_scope": "Exactly9 EV endpoints per channel,2 LEDanode and4threshold endpoints,8ANY endpoints and10diode cathode frontier contacts; identities/physicalpads/M1/source provenance checked",
+    "low_state_output_v": [0.1063277610620809, 0.14177380869871037],
+    "low_cases_above_legacy_0_1v_assumption": 6,
+    "interpretation": "Conditional model counterexample to assuming0..0.1V without load proof, not a measured physical failure or guaranteed worst-case voltage",
+    "fresh_process_reports_equal": "All result fields agree except time, PID and local paths; numeric vectors/branch residuals and request/worker hashes match exactly",
+    "independent_mutations_rejected": ["omit shared OR load in actual engine deck", "replace LEDseries resistor in actual engine deck", "added/removed/rewired native loads", "wrong M1 pad, source, supply or MPN", "unknown model, missing/nonfinite vector", "unsafe command/init file"],
+    "caffeinate_verified_and_released": true,
+    "all_current_source_hashes_rechecked": true,
+    "llm_calls_inside_repeated_command": 0
+  },
+  "tests": {
+    "selected_regression_tests": 159, "new_focused_tests": 37, "seconds": 20.409, "skipped_on_this_host": 0,
+    "status": "pass",
+    "modules": ["test_evidence_spice_probe", "test_h6_ev_load_fixture", "test_ngspice_worker", "test_h6_c5_interface_screen", "test_h6_c5_isolation_candidate", "test_h6_power_domain_crossings", "test_h6_r2_acceptance_adapters", "test_h6_r2_layout_acceptance_adapters", "test_h6_indicator_rebuild"],
+    "independent_fixture_review": {"tests": 9, "seconds": 3.127, "actionable_findings": 0},
+    "independent_runner_review": {"tests": 10, "seconds": 0.308, "actionable_findings": 0},
+    "note": "Native smoke tests require the local prepared library/archive and explicitly skip without them; no cross-platform availability claim. Production DRC not rerun because no native source changed."
+  },
+  "rejected_setup_attempts": [
+    "Exported ngSpice_nospinit before Init segfaulted in native45.2; not used. Final worker refuses init files and uses a process-local no-spinit search location, without HOME/global changes.",
+    "work/ev-spice-bzx_j_dh: native T delay element initially absent from worker allowlist; rejected, then admitted with unit test.",
+    "PSpice ps mode covers include files only; documented psa whole-deck mode required for unchanged inline vendor model.",
+    "work/ev-spice-02mtqy57: analog.cm alone lacked aswitch; parse failed. Final worker explicitly loads packaged xtradev.cm too, hashes both and passes native VSWITCH control."
+  ],
+  "primary_source_limits_reviewed": [
+    {"url": "https://www.ti.com/lit/ds/symlink/tlv1824.pdf", "cached_pdf": "work/ev-source-WnTYZH/tlv1824.pdf", "sha256": "fe6a20ce3d711eefc8c800ed94182645f9e07c4ece03c4cb6e3e5ed3ddc49319", "revision": "SNOSDC8E, July2025", "visually_reviewed_page": 8, "finding": "VOL250mV max at4mA/fulltemperature retains12V supply header; output leakage0.1nA is typical, not max. Neither supplies an all-AON-range0.1V guarantee."},
+    {"url": "https://www.ti.com/lit/ds/symlink/tca9535.pdf", "cached_pdf": "work/ev-source-WnTYZH/tca9535.pdf", "sha256": "cdaa29e68dbf21d55819621aae81544ce85c898a48dbd202b3067d18c87b0ab8", "revision": "SCPS201F, September2026", "visually_reviewed_page": 7, "finding": "Pport leakage rows use VI=VCC/GND; programmable output drive exists. Pin direction metadata does not prove permanent runtime input mode."},
+    {"url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf", "cached_pdf": "work/ev-source-WnTYZH/bat54alt1.pdf", "sha256": "d8f6ee308c74e987d579bed9e4915102dbdd55163e1f4470d767c95b5af71f57", "visually_reviewed_page": 2, "finding": "Forward voltage at discrete currents and reverse leakage at25V/25C; not adopted as arbitrary whole-temperature low-voltage leakage bounds."}
+  ],
+  "source_sha256": {
+    "tools/ngspice_worker.py": "5f72b4be03f1586be29ea6a3177632d551c89a0d6c50bd9c75f1ec249a66a919",
+    "tools/probe_evidence_spice.py": "fb9b68306e11c339fcf2e43929e7b59902134352ad6cfa3a265c2be1dc02b704",
+    "hardware/verification/h6_r2_ev_load_fixture.py": "55e345952dea74b492037cf4f45d2edb17ec18e8464a16f6b854dfd57fd09448",
+    "hardware/architecture/tests/test_ngspice_worker.py": "6b5ca345820e68f641c3595e9e4e25ef13ad60c2aee7182f2de32c52b3cfa2d0",
+    "hardware/architecture/tests/test_evidence_spice_probe.py": "4026e5fdeee5c35f4fb5c3296c3923f2de84100f55fd074eecdafd44eb98fdb2",
+    "hardware/architecture/tests/test_h6_ev_load_fixture.py": "0cfd3c8e14bd80214e5bfbe985cf315e16a81cff5490c332f3e12e6429e844ab"
+  },
+  "runtime_sha256": {
+    "libngspice.0.dylib": "e97c60c90d639b5df96c30748ead6b40306d1860bccb6ea532b8f3e0825adcd6",
+    "analog.cm": "fc2982e20f5f25cc8e797b35470f1ec53c50f16a4de322bfe663d45db868010b",
+    "xtradev.cm": "3f0f48cd65149cb22867c8d841bd83d46bfc1fb182a50eca9664fe32d9e2cd3f"
+  },
+  "preparation_token_proxy": {
+    "raw_goal_counter_start": 7926493, "raw_goal_counter_checkpoint": 8928256, "raw_counter_delta": 1001763,
+    "note": "Aggregate goal counter includes unknown cache/agent attribution; not billed or uncached parent tokens. Work after checkpoint excluded. Numerical repeats use no LLM; cloud-token payback remains unmeasured."
+  }
+}
