@@ -29,10 +29,7 @@ def digest(path):
 @unittest.skipUnless(importlib.util.find_spec('edg') and worker.DEFAULT_LIBRARY.is_file(),
                      'prepared EDG and bundled KiCad ngspice needed')
 class MainLoadedSpiceTests(unittest.TestCase):
-    def test_signed_bias_resistor_load_and_ripple_corners_against_native_spice(self):
-        data = tool.source.load_current()
-        monitor = next(m for m in tool.monitor_hypotheses() if m['id'] == 'tps3703a7330')
-        candidate = tool.synthesize(data, '0.1pct_10ppm', F('.05'), monitor)
+    def check_spice_candidate(self, data, candidate):
         self.assertEqual(candidate['status'], 'conditional_joint_candidate')
         self.assertFalse(candidate['qualified'])
         fb = candidate['feedback']['selected_nominal_ohm_exact']
@@ -113,6 +110,31 @@ class MainLoadedSpiceTests(unittest.TestCase):
         self.assertEqual({str(p): digest(p) for p in worker.runtime_paths()}, runtime_before)
         self.assertEqual(digest(worker.__file__), worker_before)
         self.assertEqual(tool.source.snapshot(data['paths']), data['before'])
+
+    def test_signed_bias_resistor_load_and_ripple_corners_against_native_spice(self):
+        data = tool.source.load_current()
+        monitor = next(m for m in tool.monitor_hypotheses() if m['id'] == 'tps3703a7330')
+        candidate = tool.synthesize(data, '0.1pct_10ppm', F('.05'), monitor)
+        self.check_spice_candidate(data, candidate)
+
+    def test_reselected_native_pairs_against_independent_spice(self):
+        data = tool.source.load_current()
+        report = tool.run()
+        groups = [group for group in report['portfolio']['groups'] if group['monitor'] == 'tps3703a7330']
+        self.assertEqual(len(groups), 2)
+        expected_window = {'0.1pct_10ppm': 2, '0.05pct_10ppm': 1}
+        for group in groups:
+            with self.subTest(resistor_class=group['resistor_class']):
+                index = group['selected_window_index']
+                self.assertEqual(index, expected_window[group['resistor_class']])
+                candidate = group['trials'][index]
+                self.assertEqual(candidate['loaded_diagnostic_status'], 'conditional_static_pass')
+                self.assertFalse(candidate['loaded_diagnostic']['source_applicability'])
+                self.assertEqual(candidate['loaded_diagnostic']['actual_source_bias_bounds_a'],
+                                 {'feedback': None, 'sense': None})
+                self.check_spice_candidate(data, candidate)
+        self.assertEqual(tool.source.snapshot([ROOT / p for p in report['source_sha256']]),
+                         report['source_sha256'])
 
 
 if __name__ == '__main__':

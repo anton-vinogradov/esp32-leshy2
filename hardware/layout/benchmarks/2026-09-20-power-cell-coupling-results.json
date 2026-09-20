@@ -143,5 +143,31 @@
     "model_calls_inside_command": 0,
     "preparation_proxy": {"metric": "Aggregate goal tokensUsed, not billed or uncached tokens", "start": 11191604, "checkpoint": 11567128, "delta": 375524, "scope": "This continuation through source review, implementation, independent review and initial replay checks; later receipt/publication excluded", "cache_agent_split_and_payback": "unmeasured"}
   },
-  "remaining": "Automated reselection under explicit loaded/bias requirements, then actual source bounds and whole-cell qualification: replacement circuit-breaker law, auxiliary loads, actual VIN/RON applicability, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. Eight native power findings and hardware/firmware boundary unchanged."
+  "loaded_reselection_followup": {
+    "scope": "Bounded automatic feedback-impedance reselection within explicit signed-bias DC hypotheses; not a production part choice or complete cell",
+    "ready_mechanism": "Existing pinned EDG nominal selector and exact loaded checker; only fixed portfolio orchestration added, no new solver",
+    "trial_domain": {"monitors": 2, "resistor_classes": 2, "feedback_thevenin_windows_ohm": [[5000, 10000], [500, 1000], [50, 100]], "trials": 12},
+    "selection_policy": "First loaded-pass window from highest to lowest impedance; not exhaustive within-window E192 search or a global optimum",
+    "preserved": ["58 native load cases", "4.25 A step", "3.0..3.3 V demand", "20 mV peak-to-peak ripple", "Native 50 mV distribution unless explicitly overridden", "Original high-impedance failures", "Unknown actual application bias bounds"],
+    "native_selected_pairs": [
+      {"class": "0.1pct_10ppm", "monitor": "tps3703a7330", "window_index": 2, "feedback_top_bottom_ohm": [442, 101], "monitor_top_bottom_ohm": [10.5, 10000], "minimum_voltage_headroom_mv_approx": 0.688400324, "feedback_current_max_ma_approx": 6.061233583, "efuse_current_peak_a_approx": 4.250327764, "converter_output_current_peak_a_approx": 4.256388937},
+      {"class": "0.05pct_10ppm", "monitor": "tps3703a7330", "window_index": 1, "feedback_top_bottom_ohm": [4420, 1010], "monitor_top_bottom_ohm": [10.5, 10000], "minimum_voltage_headroom_mv_approx": 0.691581171, "feedback_current_max_ma_approx": 0.606720195, "efuse_current_peak_a_approx": 4.250327732, "converter_output_current_peak_a_approx": 4.250934447}
+    ],
+    "qualification": false, "source_applicability": false, "actual_application_bias_bounds": null, "production_mpn_selected": false,
+    "verifier_scope": "Full bounded replay protects completeness, demands and first-pass choice; pinned E192 membership rejects physically passing nonmembers. Replay is not an independent solver. Independent exact forward/KCL checks and ngspice validate arithmetic separately.",
+    "selected_tests": {"passed": 242, "skipped": 0, "elapsed_s": 32.227},
+    "independent_spice": {"candidate_circuits": 3, "dc_corners_per_candidate": 768, "dc_corners_total": 2304, "fresh_workers": 96, "parallel_workers": 4, "maximum_assertion_delta_v_or_a": "1e-8", "equation_regression_only": true},
+    "independent_review": "Separate read-only reviewer found no actionable findings;32 focused tests pass without skips in28.062s, including all three SPICE candidate circuits; unchanged demands and false qualification/source authority confirmed",
+    "fresh_reports": [
+      {"distribution_v": "0.05", "path": "work/main-static-pair-g275tody/result.json", "sha256": "4e4e268677722d01a95c50c88c7746992f5018894361c392aec65be4a104e0dc", "run_body_s": 5.361402, "command_s": 5.376015},
+      {"distribution_v": "0.05", "path": "work/main-static-pair-eri__m9_/result.json", "sha256": "2abeb3a4858c1e0fdbb05c2f0684ad6b96c227b63ebb65c371fa8259ef45daa0", "run_body_s": 5.748637, "command_s": 5.762033},
+      {"distribution_v": "0.03", "path": "work/main-static-pair-ltip29jl/result.json", "sha256": "a3d16448cac97632fcf9ee3851a298272ef6921feb30cea94fb54209db1e0eab", "run_body_s": 45.774587, "command_s": 45.788165},
+      {"distribution_v": "0.03", "path": "work/main-static-pair-7b0hvdey/result.json", "sha256": "dc32d6aa5184fad3c5cac44918674fef61cb254e5d4359e5ae0c0e683ded6efc", "run_body_s": 46.380326, "command_s": 46.394450}
+    ],
+    "replay_equal_per_distribution_except_elapsed_and_owned_caffeinate_metadata": true,
+    "source_hashes_per_report": 23, "exit_codes": [1, 1, 1, 1], "exit1_meaning": "Mechanism checks pass; physical design remains not_qualified",
+    "owned_caffeinate_established_and_released_each_run": true, "model_calls_inside_command": 0,
+    "preparation_proxy": {"metric": "Aggregate goal tokensUsed, not billed or uncached tokens", "start": 11591307, "checkpoint": 11815342, "delta": 224035, "scope": "Reselection implementation, parallel review, source checks, regression and replay across continuations since previous publication; later receipt/publication excluded", "cache_agent_split_and_payback": "unmeasured"}
+  },
+  "remaining": "Couple replacement circuit-breaker threshold law and all auxiliary branches, then actual source bounds and whole-cell qualification: actual VIN/RON/bias applicability, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. Circuit-breaker threshold is not an instantaneous converter-current clamp. Eight native power findings and hardware/firmware boundary unchanged."
 }

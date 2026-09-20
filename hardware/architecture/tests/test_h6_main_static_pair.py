@@ -81,6 +81,12 @@ class StaticPairTests(unittest.TestCase):
             with self.subTest(kind=kind, drop=drop), self.assertRaises(ValueError):
                 tool.synthesize(self.data, kind, drop, self.monitors['tps3703a7330'])
 
+    def test_feedback_impedance_window_must_be_positive_ordered_exact(self):
+        for window in ((F(1000), F(500)), (F(0), F(1000)), (500, 1000), (F(500),)):
+            with self.subTest(window=window), self.assertRaises(ValueError):
+                tool.synthesize(self.data, '0.1pct_10ppm', F('.05'), self.monitors['tps3703a7330'],
+                                fb_impedance_ohm=window)
+
     def test_no_match_is_bounded_search_not_infeasibility(self):
         row = tool.synthesize(self.data, '0.1pct_10ppm', F('.05'), self.monitors['tps3703a7330'],
                               solver=lambda *args: {'status': 'preferred_selector_found_no_candidate'})
@@ -91,6 +97,7 @@ class StaticPairTests(unittest.TestCase):
         before = deepcopy(self.data)
         with patch.object(tool.source, 'load_current', return_value=self.data), \
                 patch.object(tool.pair, '_load_edg'), \
+                patch.object(tool, 'portfolio', return_value={}), patch.object(tool, 'verify_portfolio', return_value={}), \
                 patch.object(tool, 'synthesize', return_value={'status': 'continuous_joint_infeasible', 'qualified': False}) as synthesis:
             report = tool.run()
         self.assertEqual(before, self.data)
@@ -105,17 +112,19 @@ class StaticPairTests(unittest.TestCase):
         self.assertIn('iout_a', candidate_scope['missing_source_domains'])
         self.assertFalse(candidate_scope['qualified'])
         self.assertIn('tools/synthesize_main_static_pair.py', report['source_sha256'])
+        self.assertIn('tools/compare_main_current_limit.py', report['source_sha256'])
         self.assertEqual(report['selector']['installed_implementation_sha256'], tool.pair.EDG_SOURCE_SHA256)
 
     def test_changed_installed_runtime_after_all_rows_is_rejected(self):
         completed = []
-        def row(*args):
+        def row(*args, **kwargs):
             completed.append(args[1])
             return {'status': 'continuous_joint_infeasible', 'qualified': False}
         def stale_runtime():
             self.assertEqual(len(completed), 4)
             raise ValueError('unreviewed EDG numerical source after calculation')
         with patch.object(tool.source, 'load_current', return_value=self.data), \
+                patch.object(tool, 'portfolio', return_value={}), patch.object(tool, 'verify_portfolio', return_value={}), \
                 patch.object(tool, 'synthesize', side_effect=row), \
                 patch.object(tool.pair, '_load_edg', side_effect=stale_runtime), \
                 self.assertRaisesRegex(ValueError, 'after calculation'):
@@ -131,6 +140,7 @@ class StaticPairTests(unittest.TestCase):
         with patch.object(tool.source, 'load_current', return_value=self.data), \
                 patch.object(tool.source, 'snapshot', side_effect=changed), \
                 patch.object(tool.pair, '_load_edg'), \
+                patch.object(tool, 'portfolio', return_value={}), patch.object(tool, 'verify_portfolio', return_value={}), \
                 patch.object(tool, 'synthesize', return_value={'status': 'continuous_joint_infeasible', 'qualified': False}), \
                 self.assertRaisesRegex(ValueError, 'Sources changed'):
             tool.run()
@@ -284,6 +294,81 @@ class StaticPairEdgTests(unittest.TestCase):
         self.assertEqual(row['distribution_drop_v_exact'], '3/100')
         self.assertTrue(all(F(value) > 0 for value in row['headroom_v_exact'].values()))
         self.assertFalse(row['qualified'])
+
+
+@unittest.skipUnless(importlib.util.find_spec('edg'), 'prepared EDG runtime needed')
+class ImpedancePortfolioTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.data = tool.source.load_current()
+        cls.monitors = tool.monitor_hypotheses()
+        cls.result = tool.portfolio(cls.data, cls.monitors, F('.05'))
+
+    def test_all_twelve_windows_baseline_failures_and_first_passing_policy(self):
+        report = self.result
+        proof = tool.verify_portfolio(self.data, self.monitors, F('.05'), report)
+        self.assertEqual(report['trial_count'], 12)
+        self.assertEqual(report['windows_ohm_exact'], [['5000', '10000'], ['500', '1000'], ['50', '100']])
+        self.assertEqual([g['selected_window_index'] for g in report['groups']], [None, None, 2, 1])
+        for group in report['groups'][2:]:
+            self.assertEqual(group['trials'][0]['loaded_diagnostic_status'], 'conditional_static_fail')
+            self.assertEqual(group['trials'][0]['feedback']['selected_nominal_ohm_exact'], {'top': '44200', 'bottom': '10100'})
+            selected = group['trials'][group['selected_window_index']]
+            self.assertEqual(selected['loaded_diagnostic_status'], 'conditional_static_pass')
+            self.assertEqual(selected['loaded_diagnostic']['checked_load_cases'], 58)
+            self.assertFalse(selected['loaded_diagnostic']['source_applicability'])
+            self.assertFalse(selected['qualified'])
+        self.assertEqual(proof['complete_fixed_trial_count'], 12)
+        self.assertTrue(proof['e192_membership_checked'])
+        self.assertFalse(proof['qualified'])
+
+    def test_missing_group_window_and_reordered_domain_fail(self):
+        for mutate in (lambda r: r['groups'].pop(), lambda r: r['groups'][0]['trials'].pop(),
+                       lambda r: r['windows_ohm_exact'].reverse()):
+            changed = deepcopy(self.result)
+            mutate(changed)
+            with self.subTest(mutate=mutate), self.assertRaisesRegex(ValueError, 'portfolio domain'):
+                tool.verify_portfolio(self.data, self.monitors, F('.05'), changed)
+
+    def test_skipped_first_passing_window_fails(self):
+        changed = deepcopy(self.result)
+        changed['groups'][3]['selected_window_index'] = 2
+        with self.assertRaisesRegex(ValueError, 'first passing selection'):
+            tool.verify_portfolio(self.data, self.monitors, F('.05'), changed)
+
+    def test_fabricated_pass_or_weakened_bias_budget_fails(self):
+        for mutation in ('pass', 'bias'):
+            changed = deepcopy(self.result)
+            if mutation == 'pass':
+                changed['groups'][2]['trials'][0]['loaded_diagnostic_status'] = 'conditional_static_pass'
+                changed['groups'][2]['trials'][0]['loaded_diagnostic']['status'] = 'conditional_static_pass'
+                changed['groups'][2]['selected_window_index'] = 0
+            else:
+                changed['bias_budgets_a_exact']['feedback'] = ['0', '0']
+            with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'Portfolio differs'):
+                tool.verify_portfolio(self.data, self.monitors, F('.05'), changed)
+
+    def test_weakened_load_or_voltage_demand_cannot_survive_replay(self):
+        for mutation in ('load', 'voltage'):
+            changed = deepcopy(self.result)
+            if mutation == 'load':
+                changed['load_cases_a_exact'] = [[name, '4'] if F(current) == F('4.25') else [name, current]
+                                               for name, current in changed['load_cases_a_exact']]
+            else:
+                changed['invariant_demands']['consumer_max_v'] = '3.4'
+            with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'Portfolio differs'):
+                tool.verify_portfolio(self.data, self.monitors, F('.05'), changed)
+
+    def test_continuous_nominal_cannot_masquerade_as_pinned_e192(self):
+        changed = deepcopy(self.result)
+        trial = changed['groups'][3]['trials'][1]
+        trial['feedback']['selected_nominal_ohm_exact']['top'] = '4421'
+        # This continuous value really passes the declared loaded physics.
+        diagnostic = tool.loaded_diagnostic(self.data, trial, self.monitors[1],
+                                             tool.Interval('-.000001', '.000001'), tool.Interval('-.0000015', '.0000015'))
+        self.assertEqual(diagnostic['status'], 'conditional_static_pass')
+        with self.assertRaisesRegex(ValueError, 'not a pinned E192 member'):
+            tool.verify_portfolio(self.data, self.monitors, F('.05'), changed)
 
 
 if __name__ == '__main__':

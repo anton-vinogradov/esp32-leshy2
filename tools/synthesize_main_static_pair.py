@@ -7,6 +7,7 @@ resistor classes, RON and monitor circuitry are explicit hypotheses, not MPN
 adoption. The RON hypothesis is NOT combined with the old eFuse current law.
 """
 import argparse
+from copy import deepcopy
 from decimal import Decimal, localcontext
 from fractions import Fraction as F
 from itertools import product
@@ -20,6 +21,7 @@ import time
 import synthesize_main_feedback as source
 import compare_main_feedback as compare
 import edg_feedback_pair as pair
+import compare_main_current_limit as preferred_numbers
 from h6_power_corner_math import Interval, resistor_interval, _decimal
 import h6_main_monitor_window as monitor_source
 import h6_ron_source_scope as ron_source
@@ -30,6 +32,8 @@ RON = F('0.0084')
 CLASSES = {'0.1pct_10ppm': '.001', '0.05pct_10ppm': '.0005'}
 RESERVES = tuple(map(F, ('.000001', '.00001', '.00005', '.0001', '.0002', '.0005', '.001', '.002', '.003')))
 SENSE_DIAGNOSTIC_A = {'tps389001': '.0000001', 'tps3703a7330': '.0000015'}
+FB_IMPEDANCE_WINDOWS = ((F(5000), F(10000)), (F(500), F(1000)), (F(50), F(100)))
+PORTFOLIO_POLICY = 'First passing EDG-proposed pair in fixed highest-to-lowest feedback impedance windows; no exhaustive within-window search, global optimum or MPN selection'
 
 
 def decimal(value):
@@ -228,9 +232,14 @@ def loaded_diagnostic(data, row, monitor, fb_bias, sense_bias):
                                        for key in ('feedback_top_current_a', 'monitor_top_current_a')})
 
 
-def synthesize(data, resistor_class, distribution, monitor, solver=select_pair):
+def synthesize(data, resistor_class, distribution, monitor, solver=select_pair, *,
+               fb_impedance_ohm=FB_IMPEDANCE_WINDOWS[0]):
     if resistor_class not in CLASSES or not isinstance(distribution, F) or distribution < 0:
         raise ValueError('Explicit supported resistor class and nonnegative exact distribution required')
+    if (type(fb_impedance_ohm) is not tuple or len(fb_impedance_ohm) != 2 or
+            any(type(value) is not F for value in fb_impedance_ohm) or
+            not 0 < fb_impedance_ohm[0] <= fb_impedance_ohm[1]):
+        raise ValueError('Explicit positive ordered exact feedback impedance window required')
     demand = compare.demands(data)
     current = max(i for _, i in demand['cases'])
     ripple = F(demand['ripple_half_v'])
@@ -252,6 +261,7 @@ def synthesize(data, resistor_class, distribution, monitor, solver=select_pair):
               'distribution_drop_v_exact': str(distribution),
               'continuous_joint_margin_v_exact': str(continuous_margin),
               'factor_interval_exact': [str(F(factors.minimum)), str(F(factors.maximum))],
+              'fb_impedance_ohm_exact': list(map(str, fb_impedance_ohm)),
               'monitor_source': monitor['source'], 'monitor_impedance_ohm_exact': list(map(str, monitor['impedance']))}
     if continuous_margin <= 0:
         return dict(result, status='continuous_joint_infeasible')
@@ -264,7 +274,7 @@ def synthesize(data, resistor_class, distribution, monitor, solver=select_pair):
         maximum = upper - reserve
         if required_min > maximum:
             continue
-        fb_required, fb_impedance = interval(required_min, maximum), interval(5000, 10000)
+        fb_required, fb_impedance = interval(required_min, maximum), interval(*fb_impedance_ohm)
         feedback = solver(data['reference'], fb_required, factors, factors, fb_impedance, interval(0, 0))
         attempt = {'reserve_v_exact': str(reserve), 'feedback_status': feedback['status']}
         attempts.append(attempt)
@@ -299,9 +309,80 @@ def synthesize(data, resistor_class, distribution, monitor, solver=select_pair):
     return dict(result, status='bounded_edg_search_no_pair', attempts=attempts)
 
 
+def trial(data, kind, distribution, monitor, window):
+    row = synthesize(data, kind, distribution, monitor, fb_impedance_ohm=window)
+    sense_magnitude = Decimal(SENSE_DIAGNOSTIC_A[monitor['id']])
+    row['ideal_status'] = row['status']
+    row['loaded_diagnostic'] = loaded_diagnostic(
+        data, row, monitor, Interval('-.000001', '.000001'), Interval(-sense_magnitude, sense_magnitude))
+    row['loaded_diagnostic_status'] = row['loaded_diagnostic']['status']
+    return row
+
+
+def portfolio(data, monitors, distribution, baseline_rows=None):
+    """Fixed finite search policy; EDG remains the only nominal selector."""
+    if monitors != monitor_hypotheses():
+        raise ValueError('Portfolio must use both unchanged declared monitor hypotheses')
+    if baseline_rows is not None and len(baseline_rows) != len(monitors)*len(CLASSES):
+        raise ValueError('Incomplete baseline portfolio rows')
+    groups = []
+    for monitor in monitors:
+        for kind in CLASSES:
+            trials = [deepcopy(baseline_rows[len(groups)]) if index == 0 and baseline_rows is not None
+                      else trial(data, kind, distribution, monitor, window)
+                      for index, window in enumerate(FB_IMPEDANCE_WINDOWS)]
+            selected = next((index for index, row in enumerate(trials)
+                             if row['loaded_diagnostic_status'] == 'conditional_static_pass'), None)
+            groups.append({'monitor': monitor['id'], 'resistor_class': kind, 'qualified': False,
+                           'trials': trials, 'selected_window_index': selected})
+    return {'qualified': False, 'selection_policy': PORTFOLIO_POLICY,
+            'windows_ohm_exact': [list(map(str, window)) for window in FB_IMPEDANCE_WINDOWS],
+            'trial_count': sum(len(group['trials']) for group in groups), 'groups': groups,
+            'invariant_demands': {key: str(value) for key, value in compare.demands(data).items() if key != 'cases'},
+            'load_cases_a_exact': [[name, str(current)] for name, current in data['cases']],
+            'reference_v_exact': [str(F(data['reference'].minimum)), str(F(data['reference'].maximum))],
+            'distribution_drop_v_exact': str(distribution), 'projected_ron_ohm_exact': str(RON),
+            'bias_budgets_a_exact': {'feedback': ['-1/1000000', '1/1000000'],
+                                     'sense': {name: [str(-F(value)), str(F(value))]
+                                               for name, value in SENSE_DIAGNOSTIC_A.items()}},
+            'resistor_class_tolerance_fraction': dict(CLASSES)}
+
+
+def verify_portfolio(data, monitors, distribution, result):
+    """Replay is reproducibility, not a second independent selection solver.
+
+    Every replayed candidate invokes existing independent exact forward and
+    loaded KCL checks. Separately require membership in the pinned EDG E192
+    table, so a physically valid continuous nominal cannot masquerade as E192.
+    """
+    if (result.get('windows_ohm_exact') != [list(map(str, window)) for window in FB_IMPEDANCE_WINDOWS] or
+            type(result.get('trial_count')) is not int or result['trial_count'] != 12 or
+            len(result.get('groups', [])) != 4 or any(len(group.get('trials', [])) != 3 for group in result['groups'])):
+        raise ValueError('Incomplete or reordered fixed portfolio domain')
+    table = preferred_numbers.load_edg_table()
+    for group in result['groups']:
+        for row in group['trials']:
+            if row['ideal_status'] == 'conditional_joint_candidate':
+                for divider in ('feedback', 'monitor_pair'):
+                    for nominal in row[divider]['selected_nominal_ohm_exact'].values():
+                        if type(nominal) is not str or F(nominal) <= 0:
+                            raise ValueError('Explicit positive exact nominal string required')
+                        value = F(nominal)
+                        if value not in preferred_numbers.finite_nominals(value/10, value, table)[1]:
+                            raise ValueError('Portfolio nominal is not a pinned E192 member')
+    expected = portfolio(data, monitors, distribution)
+    if json.dumps(result, sort_keys=True, allow_nan=False) != json.dumps(expected, sort_keys=True, allow_nan=False):
+        raise ValueError('Portfolio differs from full replay: demands, budgets, trials or first passing selection changed')
+    if preferred_numbers.load_edg_table() != table:
+        raise ValueError('Pinned E192 table changed during portfolio validation')
+    return {'qualified': False, 'complete_fixed_trial_count': 12, 'e192_membership_checked': True,
+            'search_replayed': 'same bounded EDG search, not an independent solver or exhaustive E192 optimization',
+            'arithmetic_checked': 'independent exact forward and loaded checks rerun for every replayed candidate'}
+
+
 def run(distribution_override=None):
     started = time.monotonic()
-    extra_paths = [Path(__file__), Path(pair.__file__), Path(compare.__file__),
+    extra_paths = [Path(__file__), Path(pair.__file__), Path(compare.__file__), Path(preferred_numbers.__file__),
                    ROOT/'tools/route_board.py',
                    monitor_source.ROWS_PATH, Path(monitor_source.__file__),
                    ron_source.ROWS_PATH, Path(ron_source.__file__)]
@@ -310,16 +391,10 @@ def run(distribution_override=None):
     distribution = F(str(data['rail']['distribution_drop_v'])) if distribution_override is None else F(
         _decimal(distribution_override, 'distribution hypothesis'))
     monitors = monitor_hypotheses()
-    rows = []
-    for monitor in monitors:
-        sense_magnitude = Decimal(SENSE_DIAGNOSTIC_A[monitor['id']])
-        for kind in CLASSES:
-            row = synthesize(data, kind, distribution, monitor)
-            row['ideal_status'] = row['status']
-            row['loaded_diagnostic'] = loaded_diagnostic(
-                data, row, monitor, Interval('-.000001', '.000001'), Interval(-sense_magnitude, sense_magnitude))
-            row['loaded_diagnostic_status'] = row['loaded_diagnostic']['status']
-            rows.append(row)
+    rows = [trial(data, kind, distribution, monitor, FB_IMPEDANCE_WINDOWS[0])
+            for monitor in monitors for kind in CLASSES]
+    choices = portfolio(data, monitors, distribution, rows)
+    portfolio_verification = verify_portfolio(data, monitors, distribution, choices)
     scope = ron_source.assess_main(data)
     pair._load_edg()  # Re-pin installed numerical sources after every search.
     if source.snapshot(data['paths']) != data['before'] or source.snapshot(extra_paths) != extra_before:
@@ -332,6 +407,7 @@ def run(distribution_override=None):
             'distribution_is_native': distribution_override is None,
             'model_decisions_inside_command': 0,
             'current_limit_model_combined': False, 'ron_source_scope': scope, 'rows': rows,
+            'portfolio': choices, 'portfolio_verification': portfolio_verification,
             'selector': {'name': 'EDG ESeriesRatioUtil + DividerValues', 'version': pair.EDG_VERSION,
                          'series': 192, 'installed_implementation_sha256': dict(pair.EDG_SOURCE_SHA256)},
             'source_sha256': {**data['before'], **extra_before}, 'elapsed_s': round(time.monotonic()-started, 6),
@@ -376,7 +452,9 @@ def main():
             raise ValueError('Persisted report differs')
         print(json.dumps({'status': result['status'], 'report': str(report), 'elapsed_s': result['elapsed_s'],
                           'rows': [[r['monitor'], r['resistor_class'], r['ideal_status'], r['loaded_diagnostic_status']]
-                                   for r in result['rows']]}))
+                                   for r in result['rows']],
+                          'selected_windows': {group['monitor']+'/'+group['resistor_class']: group['selected_window_index']
+                                               for group in result['portfolio']['groups']}}))
         return 1
     except (Exception, KeyboardInterrupt) as error:
         cancelled = isinstance(error, KeyboardInterrupt)
