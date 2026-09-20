@@ -364,5 +364,58 @@
       "cache_agent_split_and_payback": "unmeasured"
     }
   },
-  "remaining": "Establish actual auxiliary-current and loaded fault-bus bounds for explicit candidate supply hypotheses, then whole-cell qualification: actual VIN/RON/bias applicability, divider lifetime, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification before native reconstruction. Existing OVLO/DVDT/ITIMER and converter compensation are retained hypotheses, not recalculated or admitted. The coupled threshold screen is not instantaneous converter-current protection. Eight native power findings and hardware/firmware boundary unchanged."
+  "aon_delivery_followup": {
+    "command": "work/edg-pilot-XSChki/venv/bin/python -B tools/synthesize_main_dc_cell.py",
+    "ready_mechanisms_reused": ["Existing H3 rail_voltage_result and all56 freshly validated profiles", "Exact Fraction affine projection and inverse loss budget", "Existing native/source guards and main_fault_bus.screen"],
+    "external_tools_considered": "TI TPS629203/TPS25961 PSpice transient models and TPS25961 calculator SLVRBM9 exist; not executed here and do not establish the missing guaranteed fitted RON bound",
+    "custom_gap": "Bind native AON configuration to two explicitly conditional delivery envelopes and existing fault screens; no new solver or production contract change",
+    "reviewed_source_fixture": "hardware/verification/h6-aon-delivery-sources.json",
+    "reviewed_source_sha256": "3671acd0f486403f6d9ee971fb6b1911bdc8aaecc255e7c3baf1760892631122",
+    "native_binding": {"source_instances": 4, "source_contacts": 19, "pa30_supply_and_ground_bound": true, "source_and_receiver_project": "LESHY2-RF-R2", "m1_exports_aon_to_ui_not_u127": true},
+    "profile_count_per_envelope": 56,
+    "candidate_variants": 18,
+    "aon_powered_monitor_variants": 6,
+    "envelopes": {
+      "legacy_h3_raw_2pct": {"consumer_v": [3.181696, 3.376], "zero_current_high_compatible_both_divider_groups": true, "qualified": false},
+      "source_conditioned_vset_1pct": {"consumer_v": [3.214696, 3.343], "zero_current_high_compatible_both_divider_groups": true, "qualified": false}
+    },
+    "exact_bounds_preserved_separately_from_h3_rounded_display": true,
+    "original_requirement_fault_screens_preserved_and_rechecked": true,
+    "diagnostic_only_budgets": {"ripple_pp_v": 0.020, "ron_ohm": 0.240, "distribution_drop_v": 0.025, "added_aon_current_a": 0},
+    "actual_aon_voltage_v": null,
+    "actual_fitted_ron_max_ohm": null,
+    "actual_added_aon_current_a": null,
+    "native_current_inventory_qualified": false,
+    "configuration_source_conditions_proven": false,
+    "inverse_ron_scope": "Per-profile necessary ceiling for consumer minimum and PA30 upper input at zero bus current; negative headroom remains infeasible; not full HIGH/LOW proof or a procurement target",
+    "source_finding": "TPS25961 RON240mohm maximum is specified at RILIM34.48k, not fitted240k. Nearby250k gives455mohm typical only. TPS629203 VSET regulation is +/-1% conditional on mode decoding, headroom and other operating prerequisites; R47 fitted TCR and effective passive conditions remain unproved.",
+    "selected_tests": {"passed": 298, "skipped": 0, "elapsed_s": 100.158, "new_aon_tests": 13, "reused_h3_voltage_path_tests": 11},
+    "test_modules": "All17 modules in fault_bus_receiver_followup plus test_h6_aon_delivery_scope and test_h3_r2_voltage_paths",
+    "focused_tests": {"passed": 24, "skipped": 0, "elapsed_s": 13.465},
+    "initial_regression": "First focused integration stopped safely because the reviewed fixture frequency-label edit changed its pinned SHA. Updated the reviewed hash before rerunning; corrected the new test's configuration-flag name before acceptance.",
+    "independent_review": "Found an unconditional original-screen-preserved claim; added exact replay of both original temperature screens for both divider groups plus omission/narrowing/qualification/ref mutation tests. Final separate review:13 tests pass,0 skips,13.754s; no remaining actionable findings.",
+    "documentation_regression": {"module": "test_product_site", "passed": 71, "skipped": 0, "elapsed_s": 26.756},
+    "fresh_reports": [
+      {"path": "work/main-dc-cell-vxczjjev/result.json", "sha256": "937d67a26b273194d1cdd0b8383368b795777c6ab3ea62b6854942acd707428c", "run_body_s": 10.205914, "command_s": 10.238907},
+      {"path": "work/main-dc-cell-iq2az8od/result.json", "sha256": "0d6ef105d9e72efab03bed4a625fb2a1027149ab79609b013d8eeca6d4f844fa", "run_body_s": 10.156038, "command_s": 10.187679}
+    ],
+    "source_hashes_per_report": 111,
+    "replay_equal_except_top_and_nested_elapsed_and_owned_caffeinate_metadata": true,
+    "exit_codes": [1, 1],
+    "exit1_meaning": "Software checks passed; physical design remains not_qualified",
+    "owned_caffeinate_established_and_released_each_run": true,
+    "persistent_caffeinate_still_enabled": true,
+    "model_decisions_inside_command": 0,
+    "baseline_power_findings_preserved": 8,
+    "native_cad_changed": false,
+    "production_mpn_selected": false,
+    "hardware_firmware_boundary_changed": false,
+    "preparation_proxy": {
+      "metric": "Aggregate goal tokensUsed, not billed or uncached tokens",
+      "start": 14205108, "checkpoint": 14876381, "delta": 671273,
+      "scope": "AON source investigation and implementation through regression/replay, including context restoration and agents; later receipt/publication excluded",
+      "cache_agent_split_and_payback": "unmeasured"
+    }
+  },
+  "remaining": "Establish actual AON and auxiliary-current bounds, fitted RON, GPIO modes and loaded fault-bus behavior for explicit candidate supply hypotheses, then whole-cell qualification: actual VIN/bias applicability, divider lifetime, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification before native reconstruction. Existing OVLO/DVDT/ITIMER and converter compensation are retained hypotheses, not recalculated or admitted. The coupled threshold screen is not instantaneous converter-current protection. Eight native power findings and hardware/firmware boundary unchanged."
 }

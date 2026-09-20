@@ -18,6 +18,7 @@ import compare_main_current_limit as current
 import main_auxiliary_scope as auxiliary
 import main_candidate_topology as topology
 import main_fault_bus as fault_bus
+import aon_delivery_scope as aon_delivery
 from route_board import keep_awake
 
 ROOT = static.ROOT
@@ -188,7 +189,7 @@ def validate_combination(static_report, native, table, result):
 
 
 def source_paths():
-    return sorted(set(current.source_paths()) | set(auxiliary.source_paths()) | set(topology.source_paths()) | set(fault_bus.source_paths()) | {
+    return sorted(set(current.source_paths()) | set(auxiliary.source_paths()) | set(topology.source_paths()) | set(fault_bus.source_paths()) | set(aon_delivery.source_paths()) | {
         Path(__file__), Path(static.__file__), Path(static.compare.__file__),
         static.monitor_source.ROWS_PATH, Path(static.monitor_source.__file__),
         static.ron_source.ROWS_PATH, Path(static.ron_source.__file__),
@@ -283,6 +284,7 @@ def run():
     validate_combination(static_report, native, table, result)
     result['auxiliary_scope'] = auxiliary.assess_current(result, source_hashes=before)
     result['candidate_topologies'] = build_topology_portfolio(result, before)
+    result['aon_delivery_scope'] = aon_delivery.assess_current(result, source_hashes=before)
     require(current.load_edg_table() == table, 'installed EDG runtime/table changed')
     require(current.snapshot(source_paths()) == before, 'sources changed during DC screen')
     return {**result, 'schema_version': 1, 'source_sha256': before,

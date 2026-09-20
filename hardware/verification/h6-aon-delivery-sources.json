@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "scope": "conditional fitted AON source applicability, not delivered voltage or current qualification",
+  "qualified": false,
+  "actual_raw_output_v": null,
+  "actual_ron_max_ohm": null,
+  "sources": {
+    "tps629203": {
+      "url": "https://www.ti.com/lit/ds/symlink/tps629203.pdf",
+      "revision": "SLVSGE2 March 2022",
+      "pdf_sha256": "6259170f807fe9c84a89eed09ac613757b27a574d1daf708fa2e36d070dae7f7",
+      "reviewed_pages": [3, 4, 5, 6, 11, 12, 13],
+      "reviewed_on": "2026-09-20"
+    },
+    "tps25961": {
+      "url": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
+      "revision": "SLVSGT8 December 2022",
+      "pdf_sha256": "feb0f7d70a22a80f4056fb481316d5664b4702e2e5bf90d74190e6e3643d067e",
+      "reviewed_pages": [1, 3, 4, 6, 7, 17, 18],
+      "reviewed_on": "2026-09-20"
+    }
+  },
+  "buck": {
+    "source_id": "tps629203",
+    "identity": {
+      "project": "LESHY2-RF-R2",
+      "instance": "aon_buck",
+      "reference": "U13",
+      "device_id": "ti_tps629203_drlr",
+      "mpn": "Texas Instruments TPS629203DRLR"
+    },
+    "pins": [
+      {"contact": "VIN", "physical": "6", "net": "NVDC_SYS", "disposition": "connected"},
+      {"contact": "EN", "physical": "7", "net": "NVDC_SYS", "disposition": "connected"},
+      {"contact": "SW", "physical": "4", "net": "AON_BUCK_SW", "disposition": "connected"},
+      {"contact": "VOS", "physical": "3", "net": "AON_RAW_3V3", "disposition": "connected"},
+      {"contact": "GND", "physical": "5", "net": "POWER_GROUND", "disposition": "connected"},
+      {"contact": "MODE_SCONF", "physical": "8", "net": "AON_MODE_SET", "disposition": "connected"},
+      {"contact": "PG", "physical": "2", "net": "AON_PG_N", "disposition": "connected"},
+      {"contact": "FB_VSET", "physical": "1", "net": null, "disposition": "no_connect"}
+    ],
+    "mode_resistor": {
+      "identity": {
+        "project": "LESHY2-RF-R2", "instance": "aon_mode_res", "reference": "R47",
+        "device_id": "yageo_rc0402fr_0742k2l", "mpn": "Yageo RC0402FR-0742K2L"
+      },
+      "pins": [
+        {"contact": "END_1", "physical": "1", "net": "AON_MODE_SET", "disposition": "connected"},
+        {"contact": "END_2", "physical": "2", "net": "POWER_GROUND", "disposition": "connected"}
+      ],
+      "nominal_ohm": "42200",
+      "initial_tolerance_fraction": "0.01",
+      "maximum_absolute_tcr_ppm_per_c_required": "200",
+      "fitted_tcr_ppm_per_c": null,
+      "tcr_source_bound": false
+    },
+    "selection": {
+      "mode_page": 11,
+      "mode_table": "Table 8-1 option 11 and footnote 1",
+      "mode_resistor_series": "E96",
+      "feedback_mode": "VSET",
+      "switching_mode": "auto PFM/PWM with AEE",
+      "nominal_switching_frequency_ceiling_hz": "2500000",
+      "actual_frequency_max_proven": false,
+      "output_discharge": false,
+      "dynamic_mode_change": false,
+      "vset_page": 13,
+      "vset_table": "Table 8-2 option 18",
+      "vset_condition": "FB/VSET open or resistance at least 249 kohm to ground",
+      "programmed_nominal_v": "3.3",
+      "configuration_sampled_at_startup": true,
+      "configuration_hardware_proven": false
+    },
+    "regulation": {
+      "pages": [5, 6],
+      "selector": "Section 7.5, VO output-voltage regulation, VSET selected",
+      "nominal_v": "3.3",
+      "minimum_fraction": "-0.01",
+      "typical_fraction": null,
+      "maximum_fraction": "0.01",
+      "numeric_domains": {"vin_v": ["3", "17"], "tj_c": ["-40", "125"]},
+      "typical_only_header": {"vin_v": "12", "ta_c": "25"},
+      "regulation_prerequisites_proven": false,
+      "prerequisites": [
+        "Successful startup decoding of the fitted MODE/S-CONF resistor and open FB/VSET, including the specified resistor TCR",
+        "VOS connected to the regulated output and normal closed-loop regulation with adequate input headroom; the VIN operating range alone does not prove 3.3 V regulation at every VIN",
+        "Effective input/output capacitance, output inductance, load, thermal and layout conditions satisfy the recommended operating conditions",
+        "No dropout, current limiting, thermal shutdown or startup/shutdown transition"
+      ],
+      "exclusions": [
+        "This regulation law alone is not a bound on switching ripple, transient excursions or the eFuse-protected/load-terminal voltage",
+        "VIN=12 V and TA=25 C qualify typical values only, not the stated minimum/maximum regulation row",
+        "No application VIN, junction-temperature or delivered AON envelope is established by this source record"
+      ]
+    },
+    "rated_output_current": {
+      "page": 4,
+      "selector": "Section 7.3, IOUT recommended operating condition",
+      "minimum_a": "0",
+      "maximum_a": "0.3",
+      "numeric_domains": {"vin_v": ["3", "17"], "tj_c": ["-40", "125"]},
+      "thermal_and_passive_prerequisites_proven": false,
+      "guaranteed_protection_threshold": false
+    },
+    "passive_recommendations": {
+      "page": 4,
+      "effective_input_capacitance_min_f": "0.000003",
+      "effective_output_capacitance_f": ["0.00001", "0.0001"],
+      "nominal_output_inductance_h": ["0.000001", "0.0000047"],
+      "footnotes": [
+        "Output-capacitance range applies directly at the output; more is allowed with associated series resistance",
+        "1 uH is not recommended for 1 MHz operation",
+        "Larger inductance is allowed but can affect efficiency and transient response"
+      ],
+      "fitted_effective_values_proven": false
+    }
+  },
+  "efuse": {
+    "source_id": "tps25961",
+    "identity": {
+      "project": "LESHY2-RF-R2", "instance": "aon_efuse", "reference": "U14",
+      "device_id": "ti_tps25961_drvr", "mpn": "Texas Instruments TPS25961DRVR"
+    },
+    "pins": [
+      {"contact": "IN", "physical": "6", "net": "AON_RAW_3V3", "disposition": "connected"},
+      {"contact": "EN_UVLO", "physical": "5", "net": "AON_RAW_3V3", "disposition": "connected"},
+      {"contact": "OUT", "physical": "1", "net": "AON_SAFE_3V3", "disposition": "connected"},
+      {"contact": "GND", "physical": "4", "net": "POWER_GROUND", "disposition": "connected"},
+      {"contact": "EP_GND", "physical": "7 (exposed thermal pad)", "net": "POWER_GROUND", "disposition": "connected"},
+      {"contact": "OVLO", "physical": "2", "net": "AON_EFUSE_OVLO", "disposition": "connected"},
+      {"contact": "ILIM", "physical": "3", "net": "AON_EFUSE_ILIM", "disposition": "connected"}
+    ],
+    "rilim": {
+      "identity": {
+        "project": "LESHY2-RF-R2", "instance": "aon_efuse_rilim", "reference": "R46",
+        "device_id": "yageo_rc0402fr_07240kl", "mpn": "Yageo RC0402FR-07240KL"
+      },
+      "pins": [
+        {"contact": "END_1", "physical": "1", "net": "AON_EFUSE_ILIM", "disposition": "connected"},
+        {"contact": "END_2", "physical": "2", "net": "POWER_GROUND", "disposition": "connected"}
+      ],
+      "nominal_ohm": "240000",
+      "initial_tolerance_fraction": "0.01",
+      "tcr_and_lifetime_bounds_proven": false,
+      "fitted_ron_maximum_admitted": false
+    },
+    "electrical_table_header": {
+      "page": 6,
+      "numeric_conditions_unless_overridden": {"tj_c": ["-40", "125"], "vin_v": "12", "ven_uvlo_v": "2", "vovlo_v": "1"},
+      "other_conditions_unless_overridden": {"out": "open", "ilim": "open", "voltage_reference": "GND"}
+    },
+    "ron_rows": [
+      {
+        "id": "rilim_34480_low_vin_max", "page": 6,
+        "minimum_ohm": null, "typical_ohm": "0.132", "maximum_ohm": "0.240",
+        "conditions": {"rilim_ohm": "34480", "iout_a": "1", "vin_v": ["2.7", "4.5"], "vin_upper_inclusive": false, "tj_c": ["-40", "125"]},
+        "rilim_condition_is_nominal_point": true,
+        "rilim_tolerance_interval_proven": false,
+        "remaining_header_conditions_proven": false,
+        "applicable_to_fitted_rilim": false
+      },
+      {
+        "id": "rilim_34480_high_vin_max", "page": 6,
+        "minimum_ohm": null, "typical_ohm": "0.106", "maximum_ohm": "0.177",
+        "conditions": {"rilim_ohm": "34480", "iout_a": "1", "vin_v": ["4.5", "19"], "vin_upper_inclusive": true, "tj_c": ["-40", "125"]},
+        "rilim_condition_is_nominal_point": true,
+        "rilim_tolerance_interval_proven": false,
+        "remaining_header_conditions_proven": false,
+        "applicable_to_fitted_rilim": false
+      },
+      {
+        "id": "rilim_250000_low_vin_typical_only", "page": 6,
+        "minimum_ohm": null, "typical_ohm": "0.455", "maximum_ohm": null,
+        "conditions": {"rilim_ohm": "250000", "iout_a": "0.1", "vin_v": ["2.7", "4.5"], "vin_upper_inclusive": false, "tj_c": ["25", "25"]},
+        "rilim_condition_is_nominal_point": true,
+        "rilim_tolerance_interval_proven": false,
+        "remaining_header_conditions_proven": false,
+        "applicable_to_fitted_rilim": false
+      }
+    ],
+    "current_limit": {
+      "page": 17,
+      "selector": "Equation 5, configured ILIM at least 0.2 A",
+      "nominal_law": {"k_a_ohm": "50000", "configured_current_min_a": "0.2", "relation": "ILIM = K / RILIM"},
+      "guaranteed_fitted_minimum_a": null,
+      "guaranteed_fitted_maximum_a": null,
+      "whole_range_accuracy": {"page": 1, "minimum_fraction": null, "typical_fraction_magnitude": "0.20", "maximum_fraction": null},
+      "ron_scaling": {
+        "page": 18,
+        "selector": "Section 7.3.3.2 note and Table 7-1",
+        "behavior": "RON changes in discrete steps with RILIM; no interpolated maximum is established",
+        "undefined_ron_open_intervals_ohm": [["250000", "500000"], ["111000", "142000"], ["58800", "66700"]]
+      },
+      "limitations": [
+        "The nominal equation and typical whole-range accuracy do not establish a guaranteed fitted current-limit interval",
+        "The fitted initial-tolerance interval stays below 250 kohm; temperature, assembly and lifetime variation are not bounded here",
+        "Changing RILIM to 34.48 kohm would nominally raise ILIM to about 1.45 A, above the buck 0.3 A operating rating; it is not an admitted correction",
+        "This is active current limiting with nonzero response time; p7 current-limit response 30 us is typical, not an instantaneous clamp guarantee"
+      ]
+    }
+  },
+  "limits": [
+    "Native nominal identity and connectivity are review inputs, not proof of fitted component tolerances or physical regulation",
+    "TPS25961 p3 names the grounded exposed thermal pad PAD; 7 is its current native footprint mapping, not a numbered datasheet signal",
+    "Unknown maximum RON at fitted RILIM remains null; neither a typical row nor interpolation may supply a guaranteed bound",
+    "The 0.240 ohm source maximum may be used only as an explicitly unsupported diagnostic assumption for this fitted circuit",
+    "A delivered AON voltage envelope additionally requires actual load, eFuse state and drop, routing, ripple and dynamic evidence",
+    "No MPN adoption, application acceptance or source qualification follows from this record"
+  ]
+}
