@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "scope": "Conditional MAIN current-limit synthesis and coupled voltage/monitor necessary screen; no production selection or electrical qualification",
+  "ready_mechanisms_reused": ["EDG0.5.2 E192 preferred selector", "Existing exact divider bounds and independent corner arithmetic", "Existing H3 report regeneration, native ledger provenance, source hashes and caffeinate ownership"],
+  "custom_gap": "Bind the current RILM selection to immutable native demands and couple monitor thresholds to the loaded local rail; no new solver or model installation",
+  "commands": ["work/edg-pilot-XSChki/venv/bin/python -B tools/compare_main_current_limit.py", "work/edg-pilot-XSChki/venv/bin/python -B tools/compare_main_feedback.py"],
+  "tests": {"selected_passed": 185, "skipped": 0, "elapsed_s": 3.704, "new_current_limit_tests": 16, "new_monitor_tests": 14, "independent_review": "Separate read-only reviewer found no actionable issue; system-Python review skips EDG integration, full prepared-runtime suite includes it"},
+  "current_limit": {
+    "lower_requirement_a": "4.25", "upper_requirement_a_exclusive": "6",
+    "lower_requirement_basis": "Maximum of H0 step, PF03 load plus25% reserve and existing H3 inrush model",
+    "comparison_nominals_ohm": ["1650", "1180", "1100"],
+    "edg_selected_ohm": "1100", "selection_optimized_for_margin": false,
+    "added_diagnostic_stress_current_a_approx": {"1650": [3.012233, 3.988744], "1180": [4.211922, 5.577619], "1100": [4.518216, 5.983302]},
+    "production_recommendation": false,
+    "important_limit": "The first EDG preferred feasible nominal has only16.7mA upper reserve under the named diagnostic stress; do not adopt as a margin-optimized solution",
+    "original_power_findings_preserved": 8, "guarded_source_paths": 95
+  },
+  "monitor_coupling": {
+    "reviewed_transcription": "hardware/verification/h6-main-monitor-sources.json",
+    "variant_count": 7, "reviewed_monitor_models": 3,
+    "selected_voltage_feasible_pairs": ["ideal_feedback", "zero_efuse_loss", "low_loss_sourcing_target"],
+    "selected_pair_monitor_screens": 9, "selected_pair_static_window_failures": 9,
+    "optimistic_continuous_windows": [{"variant": "zero_efuse_loss", "monitor": "candidate_tps389001"}],
+    "interpretation": "Selected-pair failure is separate from the optimistic continuous-ratio screen. The latter ignores discrete values/impedance constraints and is not a built circuit. All claims remain conditioned on declared independent source corners.",
+    "pdf_visual_review": {"TPS2597_SLVSGG5D": [8], "TPS3890_SLVSD65A": [3, 5], "TPS3808E_SNVSCE0B": [3, 6, 7], "TLV840_SNVSBC3C": [6, 7]},
+    "timing_not_admitted": "TPS389001 falling delay is nominal only; TPS3808EG01 max50us is at5%overdrive and specified loading, not an arbitrary-sag or system-response bound"
+  },
+  "replay": {
+    "fresh_runs_per_command": 2, "numeric_results_and_source_hashes_equal": true,
+    "excluded_from_comparison": ["elapsed_s", "command_elapsed_s", "owned caffeinate metadata including unique log path"],
+    "all_exit_codes": [1, 1, 1, 1], "exit1_meaning": "not_qualified; software mechanisms passed their own checks",
+    "owned_caffeinate_established_and_released_each_run": true,
+    "reports": [
+      {"path": "work/main-current-limit-ur1krvgc/result.json", "sha256": "d57adfad04a6ccf709c833f8b267be9d8f00bb6901e74001597f01f32742aa52", "run_body_s": 0.336820},
+      {"path": "work/main-current-limit-ygm146jq/result.json", "sha256": "f566af3941e0890e77a2bc2782efd16717a7d4d2e20f140c7f2fa6d336e7810d", "run_body_s": 0.341483},
+      {"path": "work/feedback-variants-j3d52u6i/result.json", "sha256": "4b12965fd1d31270aa7d10346454355e4e842a12bea7387059ae6ca2dfa0a6cb", "run_body_s": 0.223594, "command_s": 0.236755},
+      {"path": "work/feedback-variants-w5vataqo/result.json", "sha256": "f707cdda5ad21127a3ceed6129b5409ca02544fdca8cf395aeaa952d98a8ff89", "run_body_s": 0.227614, "command_s": 0.242106}
+    ],
+    "time_scope": "Current-limit run body includes source loading/calculation/final hash check, excludes caffeinate setup and report writing; feedback command_s also includes setup but excludes report writing. Neither includes Python interpreter launch."
+  },
+  "preparation_cost_proxy": {
+    "metric": "Aggregate active-goal tokensUsed delta, not billed tokens or uncached input/output",
+    "start": 9793450, "checkpoint": 10053674, "delta": 260224,
+    "scope": "This continuation through implementation, primary-source review, tests and replays; later docs/review/publication excluded",
+    "cached_uncached_agent_split": "unavailable", "model_calls_inside_repeat_commands": 0,
+    "parent_review_cost_savings_and_payback": "unmeasured"
+  },
+  "remaining": "Joint margin-optimized component/cell synthesis, actual-VIN source evidence, supply/logic and timing, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. Eight native power findings and hardware/firmware boundary unchanged."
+}

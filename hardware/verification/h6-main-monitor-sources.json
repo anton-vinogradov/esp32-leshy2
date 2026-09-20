@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "scope": "Offline reviewed threshold bounds for an optimistic static necessary screen, not selected production parts or application qualification",
+  "reviewed_on": "2026-09-20",
+  "rows": [
+    {
+      "id": "fitted_tps25974_pgth",
+      "device": "TPS25974 PGTH",
+      "falling_min_v": "1.071",
+      "rising_max_v": "1.23",
+      "derivation": "Existing reviewed section 6.5 PGTH threshold bounds; same bounds as native power-startup check",
+      "source": {"url": "https://www.ti.com/lit/ds/symlink/tps2597.pdf", "revision": "SLVSGG5D", "pdf_sha256": "7775b948396dd9fa8c527ac4f133555c4db5eb7857a456b9fea1da2087b9b033", "pages": [8]},
+      "conditions": "Existing VIN12 V table conditions; actual low-VIN application remains unqualified",
+      "timing": "No timing admission in this static screen"
+    },
+    {
+      "id": "candidate_tps389001",
+      "device": "TPS389001 adjustable supervisor",
+      "falling_min_v": "1.1385",
+      "rising_max_v": "1.16857",
+      "derivation": "Table 5: nominal VITN1.15 V and VITP1.157 V; section 7.5 separately specifies both thresholds at +/-1%: 1.15*0.99 and 1.157*1.01",
+      "source": {"url": "https://www.ti.com/lit/ds/symlink/tps3890.pdf", "revision": "SLVSD65A", "pdf_sha256": "ee79599730e7606ba9718d9820b411020e3dcd9ff7d44572f8ee63fead15b9d0", "pages": [3, 5]},
+      "conditions": "TJ -40..125 C, VDD1.5..5.5 V, MR=VDD; actual VDD, pullup, loading, SENSE leakage and divider errors unqualified",
+      "timing": "Section7.6 publishes nominal SENSE-falling delay18 us atVDD3.3 V and8 us at5.5 V, CTopen/5%overdrive; no maximum. Not a bounded fault-response solution."
+    },
+    {
+      "id": "candidate_tps3808eg01",
+      "device": "TPS3808EG01 adjustable supervisor",
+      "falling_min_v": "0.3969",
+      "rising_max_v": "0.4234275",
+      "derivation": "Table4 nominal0.405 V; section6.5 G01 row +/-2% (not the other variants'1.5%), maximum hysteresis2.5% of falling trip: 0.405*0.98 and0.405*1.02*1.025",
+      "source": {"url": "https://www.ti.com/lit/ds/symlink/tps3808e.pdf", "revision": "SNVSCE0B", "pdf_sha256": "0ccb3a039bc61a3037f941bab28b0247417c8e98277eb41791cf4299799fee66", "pages": [3, 6, 7]},
+      "conditions": "TA -40..125 C, VDD1.7..6 V, CT/MRopen, RESET100kohm toVDD and50pF; SENSE leakage +/-25nA atVIT is excluded by the ideal-divider screen",
+      "timing": "Section6.6 maximum50 us is conditioned on5%overdrive and declared output load; it does not bound arbitrary near-threshold sag or total system shutdown."
+    }
+  ],
+  "excluded_candidate": {
+    "device": "TLV840 fixed thresholds1.8..5.4 V",
+    "reason": "Its +/-2% threshold error and up to7% hysteresis are wider than the present ideal3.05..3.3 V window, even granting an arbitrary nominal: 3.05*1.02*1.07/0.98 >3.3. No divider-powered implementation is proposed.",
+    "source": {"url": "https://www.ti.com/lit/ds/symlink/tlv840.pdf", "revision": "SNVSBC3C", "pdf_sha256": "a8df9af31101d134061a523a4a83fd6640072efa282c3c988d8ae47d9758cb0f", "pages": [6, 7]}
+  }
+}

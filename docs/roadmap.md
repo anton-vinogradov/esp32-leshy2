@@ -27,7 +27,7 @@ and completed results live in the [report index](stage-results.md).
 
 ## Current H6
 
-Current focus: [automatic routing and design acceptance](h6-r2-routing-automation.md). The 474-connection geometry milestone passed; the parallel acceptance command now exposes current power failures, unfinished connections and missing qualification. Next: a bounded circuit-generation pilot, then independent validation against the current project. Experiments use copies and production routing stays paused. This is an internal H6.0.3 step, not H6 closure or fabrication authorization.
+Current focus: [automatic routing and design acceptance](h6-r2-routing-automation.md). The 474-connection geometry milestone and bounded indicator-generation pilot passed their scopes; electrical qualification remains open. Current work couples MAIN feedback, losses, current protection and monitor thresholds before synthesizing a complete replacement cell. Existing power failures remain visible; no candidate MPN or production schematic is adopted. Experiments use copies and production routing stays paused. This is an internal H6.0.3 step, not H6 closure or fabrication authorization.
 
 | Substage | Status | Exit |
 |---|---|---|

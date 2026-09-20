@@ -17,6 +17,7 @@ from edg_feedback_pair import synthesize_pair
 from h6_passive_synthesis import feedback_top_window
 from h6_power_corner_math import Interval, _decimal
 import h6_ron_source_scope as ron_scope
+import h6_main_monitor_window as monitor
 from route_board import keep_awake
 
 ROOT = source.ROOT
@@ -126,9 +127,17 @@ def compare(data, config, pair_solver=synthesize_pair):
         # Optimistic continuous upper ceiling, not a safe RON procurement target.
         ceiling = feedback_top_window(reference, bottom, top, 0, maximum, Interval(0, 0))
         worst_i = max(i for _, i in demand["cases"])
+        optimistic_local = None
         if ceiling.feasible and ceiling.maximum_ohm is not None and worst_i > 0:
             achievable_min = F(reference.minimum) * (1 + ceiling.maximum_ohm * F(top.minimum) / F(bottom.maximum))
             row["continuous_ron_ceiling_ohm_exact"] = str((achievable_min - F(demand["ripple_half_v"]) - F(demand["consumer_min_v"]) - F(distribution)) / worst_i)
+            optimistic_local = achievable_min - F(demand["ripple_half_v"]) - worst_i * F(ron)
+        selected_local = None
+        if row["selection"]["status"] == "conditional_candidate":
+            selected_local = F(row["selection"]["average_v_exact"][0]) - F(demand["ripple_half_v"]) - worst_i * F(ron)
+        row["monitor_window"] = monitor.assess(
+            floor=F(demand["consumer_min_v"]) + F(distribution),
+            selected_local_min=selected_local, optimistic_local_min_ceiling=optimistic_local)
         rows.append(row)
     return {"variants": rows, "invariant_demands": {
         **{key: str(value) for key, value in demand.items() if key != "cases"},
@@ -138,7 +147,7 @@ def compare(data, config, pair_solver=synthesize_pair):
 def run():
     start = time.monotonic()
     extra_paths = [VARIANTS, Path(__file__), ROOT / "tools/edg_feedback_pair.py", ROOT / "tools/route_board.py",
-                   ron_scope.ROWS_PATH, Path(ron_scope.__file__)]
+                   ron_scope.ROWS_PATH, Path(ron_scope.__file__), monitor.ROWS_PATH, Path(monitor.__file__)]
     extra_before = source.snapshot(extra_paths)
     data = source.load_current()
     result = compare(data, json.loads(VARIANTS.read_text()))
