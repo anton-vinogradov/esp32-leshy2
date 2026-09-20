@@ -75,6 +75,7 @@ def load_current():
     if not cases or len({name for name, _ in cases}) != len(cases) or any(a < 0 for _, a in cases):
         raise ValueError("missing, duplicate or negative MAIN load cases")
     return dict(paths=paths, before=before, rail=rail, policy=contract["policy"],
+                efuse_mpn=observed["main_efuse"]["mpn"],
                 reference=Interval(spec["vfb_v"]["minimum"], spec["vfb_v"]["maximum"]),
                 bottom=domains["bottom"], factors=domains["top"], cases=cases,
                 bottom_nominal=Decimal(str(resistors["bottom"]["resistance_ohm"])))

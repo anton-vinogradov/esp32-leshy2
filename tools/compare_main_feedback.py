@@ -16,6 +16,7 @@ import synthesize_main_feedback as source
 from edg_feedback_pair import synthesize_pair
 from h6_passive_synthesis import feedback_top_window
 from h6_power_corner_math import Interval, _decimal
+import h6_ron_source_scope as ron_scope
 from route_board import keep_awake
 
 ROOT = source.ROOT
@@ -136,10 +137,12 @@ def compare(data, config, pair_solver=synthesize_pair):
 
 def run():
     start = time.monotonic()
-    extra_paths = [VARIANTS, Path(__file__), ROOT / "tools/edg_feedback_pair.py", ROOT / "tools/route_board.py"]
+    extra_paths = [VARIANTS, Path(__file__), ROOT / "tools/edg_feedback_pair.py", ROOT / "tools/route_board.py",
+                   ron_scope.ROWS_PATH, Path(ron_scope.__file__)]
     extra_before = source.snapshot(extra_paths)
     data = source.load_current()
     result = compare(data, json.loads(VARIANTS.read_text()))
+    result["ron_source_scope"] = ron_scope.assess_main(data)
     if source.snapshot(data["paths"]) != data["before"] or source.snapshot(extra_paths) != extra_before:
         raise ValueError("source changed during variant comparison")
     result.update(schema_version=1, status="not_qualified", qualified=False,

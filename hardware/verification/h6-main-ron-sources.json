@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "scope": "Reviewed RON table rows only; not application, supply or replacement-cell qualification",
+  "screening_tj_c": ["-40", "125"],
+  "temperature_basis": "Explicit candidate screening envelope; not a calculation or measurement of eFuse junction temperature",
+  "rows": [
+    {
+      "id": "fitted_tps25974_low_vin_max",
+      "mpn": "Texas Instruments TPS25974LRPWR",
+      "parameter": "RON",
+      "value": "18.3",
+      "unit": "mohm",
+      "bound_kind": "max",
+      "conditions": {"vin_v": ["2.7", "4"], "iout_a": ["3", "3"], "tj_c": ["25", "25"]},
+      "unmodeled_header_conditions": ["EN/UVLO 2 V", "OVLO 0 V", "RILM 715 ohm", "dVdt, ITIMER, PGTH and PG open; voltages relative to GND", "OUT open header is superseded by the RON row's 3-A load; operating-state applicability still needs review"],
+      "source": {"url": "https://www.ti.com/lit/ds/symlink/tps2597.pdf", "revision": "SLVSGG5D May 2025", "pdf_sha256": "7775b948396dd9fa8c527ac4f133555c4db5eb7857a456b9fea1da2087b9b033", "page": 7, "reviewed_on": "2026-09-20"}
+    },
+    {
+      "id": "candidate_tps259814_full_tj_max",
+      "mpn": "Texas Instruments TPS259814LRPWR",
+      "parameter": "RON",
+      "value": "8.4",
+      "unit": "mohm",
+      "bound_kind": "max",
+      "conditions": {"vin_v": ["2.7", "16"], "iout_a": ["3", "3"], "tj_c": ["-40", "125"]},
+      "unmodeled_header_conditions": ["EN/UVLO 2 V", "OVLO 0 V", "RILM 611 ohm", "dVdt, ITIMER, FLT and PG open; voltages relative to GND", "OUT open header is superseded by the RON row's 3-A load; operating-state applicability still needs review"],
+      "source": {"url": "https://www.ti.com/lit/gpn/TPS25981", "revision": "SLVSGG6D September 2026", "pdf_sha256": "8609249da4eb65da1d5398a4cbd5bc3ace4ca1f1f0205e41fbf3873d8e3f8e91", "page": 8, "reviewed_on": "2026-09-20"}
+    }
+  ]
+}

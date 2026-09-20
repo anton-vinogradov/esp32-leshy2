@@ -44,6 +44,31 @@
     "visually_reviewed_pages": [5, 6, 16],
     "result": "VIN12 V table conditions retained; VFB 591..609 mV is not promoted to full application qualification at VIN6..8.4 V"
   },
+  "ron_source_scope_followup": {
+    "reviewed_rows": "hardware/verification/h6-main-ron-sources.json",
+    "mechanism": "Existing MAIN command plus narrow source-condition adapter; no solver, PCB or fitted-MPN replacement",
+    "ready_solution_check": {
+      "checked_on": "2026-09-20",
+      "reuse": "Prepared EDG selector, existing Decimal Interval and native MAIN identity/evidence validators",
+      "primary_projects_checked": ["https://github.com/BerkeleyHCI/PolymorphicBlocks", "https://github.com/atopile/atopile", "https://www.electrace.net/docs/checks"],
+      "bounded_result": "Existing general constraint/declared-limit checks are reusable; no verified drop-in model for these exact RON source rows was found. Installed EDG 0.5.2 parts search found no TPS25974/TPS25981 model. This is not an exhaustive claim about all products.",
+      "custom_gap": "Pinned source transcription and per-parameter VIN/IOUT/Tj containment; independent of conditional synthesis and never physical acceptance"
+    },
+    "tests": {"total_passed": 113, "skipped": 0, "new_adversarial": 22, "independent_review": "new 22 tests rerun separately; no remaining actionable findings"},
+    "source_review": {"pdf_skill_visual_pages": {"TPS2597_SLVSGG5D": [7], "TPS25981_SLVSGG6D": [8, 42]}, "revision_change": "TPS25981 Rev C to D changes certification wording, not the reviewed RON row", "repeat_mode": "offline reviewed transcription, not live PDF re-audit"},
+    "current_result": {"checked_cases_per_part": 58, "fitted_missing_domains": ["iout_a", "tj_c"], "candidate_missing_domains": ["iout_a"], "qualified": false, "supply_checked": false, "replacement_adopted": false},
+    "replay": {
+      "fresh_processes": 2, "same_numeric_and_source_evidence": true, "exit_codes": [1, 1],
+      "excluded": ["elapsed_s", "command_elapsed_s", "caffeinate.log"],
+      "caffeinate_established_and_released": true,
+      "runs": [
+        {"report": "work/feedback-variants-_y8lsq3a/result.json", "sha256": "aeddba6b3341b55098daca3b5ecd3b9a9c1af825384600258d35a6789412ebfb", "compute_s": 0.25156, "command_s": 0.270556},
+        {"report": "work/feedback-variants-ekz4bbh7/result.json", "sha256": "ee4e1d2a4a56988ec48b6a134545cef90f98976f998d8caf3618ccb607ac2bb2", "compute_s": 0.237183, "command_s": 0.251188}
+      ]
+    },
+    "preparation_cost_proxy": {"metric": "raw active-goal counter; not billing or uncached-input-plus-output", "start": 4824072, "checkpoint": 5164960, "delta": 340888, "scope": "This source research/implementation/review through the first 113-test checkpoint; later review/docs/publishing excluded", "cache_and_agent_split": "unavailable", "command_model_calls": 0, "parent_savings_and_payback": "unmeasured"},
+    "remaining": "Source numeric coverage never proves full header-bias applicability; startup, protection, monitoring, dynamics, thermal, exact-part supply and physical qualification remain open"
+  },
   "limitations": [
     "All changed models are hypotheses, not available parts or source-qualified replacements",
     "Zero feedback leakage; lifetime drift, line/load/dynamic behavior, current admission, startup, PG and physical measurements remain open",
