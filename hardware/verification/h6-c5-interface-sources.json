@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "scope": "Offline reviewed interface transcriptions; not delivered rail, GPIO configuration, all-state or production qualification",
+  "buffer": {
+    "device_id": "ti_sn74lvc1g17_dckr",
+    "mpn": "SN74LVC1G17DCKR",
+    "operating_vcc_v": ["1.65", "5.5"],
+    "temperature_c": ["-40", "125"],
+    "input_voltage_v": ["0", "5.5"],
+    "powered_off_input_supply_v": ["0", "0"],
+    "output_test_current_ua": "100",
+    "voh_drop_max_v": "0.1",
+    "vol_max_v": "0.1",
+    "source": {
+      "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+      "revision": "SCES351Y, October 2025",
+      "pdf_sha256": "c76fa723fac4502423967a1aa087dd669106b52b8de620c024b26e56f5d59309",
+      "selector": "pp.3,5,6,10: DCK pin map, recommended conditions, 100-uA VOH/VOL rows, section7.3 powered-off input/output feature",
+      "reviewed_on": "2026-09-20"
+    }
+  },
+  "receiver": {
+    "device_id": "esp32_c5_wroom_1u_n8r8",
+    "mpn": "ESP32-C5-WROOM-1U-N8R8",
+    "recommended_vcc_v": ["3.0", "3.6"],
+    "recommended_temperature_c": ["-40", "85"],
+    "dc_table_vcc_v": ["3.3", "3.3"],
+    "dc_table_temperature_c": ["25", "25"],
+    "vih_factor": "0.75",
+    "vil_factor": "0.25",
+    "input_above_supply_v": "0.3",
+    "input_below_ground_v": "-0.3",
+    "input_current_max_na": "50",
+    "source": {
+      "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+      "revision": "v1.3",
+      "pdf_sha256": "fa50f329237226d09c5b53460e65d8a2561c58fb5fb08945c12990a2c61f8e9e",
+      "selector": "pp.32-33, tables6-2/6-3 and footnotes; DC characteristics at3.3V25C, section values preliminary",
+      "reviewed_on": "2026-09-20"
+    }
+  },
+  "explicit_static_assumptions": [
+    "C5 GPIO is configured as input with internal pulls disabled; pin-role metadata alone does not prove runtime configuration",
+    "Total static receiver-side load is no larger than the buffer's 100-uA characterization load; the 50-nA C5 entry is not a complete board-load proof",
+    "Use the conservative 100-uA VOH/VOL endpoints for the smaller static load; no full output I-V sweep is inferred",
+    "Buffer output stays between common ground and its supply in steady state; overshoot, ground offset and supply transitions are not bounded"
+  ],
+  "unresolved": [
+    "C5 DC table does not establish the complete declared MAIN voltage and temperature envelope",
+    "Loaded EV comparator/pullup/LED/TCA levels versus Schmitt input thresholds are not yet bounded",
+    "Powered-off input tolerance does not establish actual pin voltage, output leakage, discharge or transition behavior",
+    "Firmware input/pull configuration, all power sequences, propagation and prototype measurements remain open"
+  ]
+}

@@ -335,5 +335,73 @@
       "raw_counter_delta": 461589,
       "note": "Aggregate counter includes unknown cache/agent attribution and checkpoint integration; not billed or uncached parent tokens. Repeated commands make no LLM calls; preparation payback remains unmeasured."
     }
+  },
+  "c5_schmitt_source_conditions_followup": {
+    "date": "2026-09-20",
+    "role": "Experimental ledger recipe and offline source-applicability checks; no native CAD or production qualification",
+    "command": "python3 -B -m hardware.verification.h6_r2_c5_isolation_candidate --variant main_schmitt",
+    "reuse": "Same recipe/guard/caffeine command, exact existing part types, existing power-domain evaluator and finite Interval validation. Ready EDG DigitalLink already checks supplied digital models; this adapter guards the concrete missing source applicability. No new solver or compiler wrapper.",
+    "runs": [
+      {"variant": "aon_open_drain", "report": "work/c5-isolation-candidate-2ih3t_mn/result.json", "sha256": "ae931cbe5a863ad3f46e0b7a9703094102ccb22b215ef3ee76169e664bc624ab", "seconds": 0.644, "exit_code": 1},
+      {"variant": "main_schmitt", "report": "work/c5-isolation-candidate-mkbynamy/result.json", "sha256": "84a0f2c2ff8e97dcd9708c43a4e84c8ef440425c08bfffc20244238dbedea9b0", "seconds": 0.753, "exit_code": 1},
+      {"variant": "main_schmitt", "report": "work/c5-isolation-candidate-lam9h6cf/result.json", "sha256": "4717a34930fd8b2ae0dddb89b740607e1f3aa802aea64927a30a566a7b3cd3d6", "seconds": 0.746, "exit_code": 1}
+    ],
+    "validation": {
+      "mechanics_status": "pass", "status": "not_qualified", "qualified": false,
+      "native_candidate_generated": false, "production_promoted": false, "fabrication_authorized": false,
+      "main_schmitt_raw_crossings_before_after": [12, 12],
+      "reviewed_scan_delta": "Exactly two Schmitt.A findings retain all sources and gain input-tolerance evidence; all other fields identical to raw scan. Findings are not removed or qualified.",
+      "unknown_supply_ownership_before_after": [20, 20],
+      "unreviewed_connected_endpoints_before_after": [974, 978],
+      "unreviewed_delta": "Only four added bypass-capacitor contacts; no passive review fabricated",
+      "instances_before_after": [1210, 1214], "nets_before_after": [789, 791],
+      "added_components": 4, "added_contact_rows": 14,
+      "changed_original_contacts": ["c5.GPIO23 net only", "c5.GPIO24 net only"],
+      "preserved_original_components": 1210, "preserved_other_original_contact_rows": 4315,
+      "in_memory_replays_per_command": 2,
+      "fresh_process_semantic_comparison": "pass; complete Schmitt reports equal except elapsed time and caffeine log path",
+      "main_schmitt_candidate_semantic_sha256": "55ce00bd0851924d8adff48dd00f5ed6b03f2149d1f8b64f554d06b61aa99927",
+      "current_source_hashes_rechecked_after_commands": true,
+      "caffeinate_established_and_released_by_all_commands": true,
+      "model_decisions_inside_command": 0
+    },
+    "static_source_screen": {
+      "transcription": "hardware/verification/h6-c5-interface-sources.json",
+      "source_review_reuse": "Previously visually reviewed TI SCES351Y and preliminary C5-module v1.3 source pages/hashes above; repeated command validates offline transcription, not a fresh PDF audit",
+      "reference_voltage_v": "3.3", "reference_temperature_c": "25",
+      "high_and_low_margins_v_exact": "29/40",
+      "upper_and_lower_voltage_margins_v_exact": "3/10",
+      "conditional_total_static_load_budget_ua": "100",
+      "known_receiver_input_current_ua_exact": "1/20",
+      "actual_declared_main_nominal_v": "3.222",
+      "actual_declared_main_voltage_envelope_v": ["3.0", "3.3"],
+      "full_envelope_status": "source_conditions_uncovered",
+      "gpio_runtime_mode_proven": false, "actual_off_pin_voltage_bounded": false,
+      "authority": "Static comparisons under explicit premises only: input with pulls disabled, common ground and output within supply, bounded total load. Not complete loaded-EV, leakage, sequencing, firmware or physical validation."
+    },
+    "tests": {
+      "selected_regression_tests": 122, "candidate_interface_tests": 50,
+      "seconds": 17.977, "skipped": 0, "status": "pass",
+      "modules": ["test_h6_c5_interface_screen", "test_h6_c5_isolation_candidate", "test_h6_power_domain_crossings", "test_h6_r2_acceptance_adapters", "test_h6_r2_layout_acceptance_adapters", "test_h6_indicator_rebuild"],
+      "independent_interface_review": {"tests": 14, "seconds": 0.891, "actionable_findings": 0},
+      "independent_integration_review": {"tests": 36, "seconds": 10.853, "actionable_findings": 0},
+      "native_drc_rerun": false,
+      "native_drc_scope": "No CAD, placement, copper, netlist or production checker inputs changed in this experiment; prior full-board failures are not claimed resolved."
+    },
+    "source_sha256": {
+      "hardware/verification/h6_r2_c5_isolation_candidate.py": "b48777791f9cd69c8f391e7c5145372df22486e63db339a22153e5832f39f5f3",
+      "hardware/verification/h6_r2_c5_interface_screen.py": "11ae2607e30338722ea7d84190964d2b8484be0290a44676461394150aa40d17",
+      "hardware/verification/h6-c5-interface-sources.json": "3463219b5a093aa51ba624c871ba982bebab7e519fd346b225b30c1cbf4b6d1c",
+      "hardware/architecture/tests/test_h6_c5_isolation_candidate.py": "f679f1c4453a4162f92453ca5f1781aab72a92ad220eee200b96398f08a87208",
+      "hardware/architecture/tests/test_h6_c5_interface_screen.py": "bcb65766da91cbc4d1d38022d23a8379570e2855dfc804f6eb509672818792a6"
+    },
+    "preparation_token_proxy": {
+      "raw_preparation_start_before_interruption": 7393100,
+      "raw_current_goal_turn_start": 7796823,
+      "raw_goal_counter_checkpoint": 7892108,
+      "raw_preparation_delta": 499008,
+      "raw_current_goal_turn_delta": 95285,
+      "note": "Aggregate goal counter includes unknown cache/agent attribution, not billed or uncached parent tokens; current-turn and multi-turn preparation scopes are separate. Publication work after checkpoint excluded. No LLM calls inside repeated command; savings/payback still unmeasured."
+    }
   }
 }
