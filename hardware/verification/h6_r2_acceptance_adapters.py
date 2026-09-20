@@ -3,7 +3,7 @@
 
 These adapters reuse the existing electrical auditors without running KiCad or
 rewriting their evidence. A failed bounded prerequisite is distinct from a
-missing qualification. None of the three current partial reviews proves the
+missing qualification. None of the current partial reviews proves the
 complete electrical design, even when its evidence is internally consistent.
 """
 
@@ -16,10 +16,17 @@ from pathlib import Path
 from hardware.verification import h6_r2_electrical_semantics as semantics
 from hardware.verification import h6_r2_electrical_source_triage as triage
 from hardware.verification import h6_r2_power_startup as power
+from hardware.verification import h6_r2_power_domain_crossings as crossings
 
 
 ROOT = Path(__file__).resolve().parents[2]
 CHECKS = {
+    "electrical.power_domain_crossings": {
+        "title": "AON-only potential live-to-unpowered input paths",
+        "runtime": "python",
+        "scope": "Native direct-drive/pullup exposure in the commanded AON-live/MAIN-off snapshot; no measured rail state, loaded pin voltage or damage claim.",
+        "sources": ["hardware/verification/h6_r2_power_domain_crossings.py"],
+    },
     "electrical.power_startup": {
         "title": "Native AON/MAIN power prerequisites",
         "runtime": "python",
@@ -49,6 +56,8 @@ def source_paths(check_id: str) -> list[Path]:
         paths.update(ROOT / path for path in power.INPUTS.values())
         paths.update(ROOT / "hardware/verification" / filename for filename in
                      ("h6_power_corner_math.py", "h3_r2_current_scope.py"))
+    elif check_id == "electrical.power_domain_crossings":
+        paths.update(crossings.source_paths())
     else:
         paths.update(semantics.source_paths())
         paths.add(semantics.OUTPUT)
@@ -165,7 +174,19 @@ def _power_startup() -> tuple[str, list[str], dict]:
     }
 
 
+def _power_domain_crossings() -> tuple[str, list[str], dict]:
+    result = crossings.build()
+    crossings.validate_result(result)
+    findings = [f"{row['finding_kind']}: {row['receiver']['project']}:{row['receiver']['reference']} "
+                f"{row['receiver']['contact']} on {row['net']}" for row in result["crossings"]]
+    if result["unknown_supply_ownership"]:
+        findings.append(f"{len(result['unknown_supply_ownership'])} exposed input supply-domain assignments remain unknown.")
+    findings.append("This commanded-state connectivity screen does not qualify rail states, input voltages, leakage or the complete circuit.")
+    return "unqualified", findings, {"evidence_status": "recomputed_and_validated", **result}
+
+
 _RUNNERS = {
+    "electrical.power_domain_crossings": _power_domain_crossings,
     "electrical.power_startup": _power_startup,
     "electrical.source_triage": _source_triage,
     "electrical.typed_erc": _typed_erc,

@@ -184,5 +184,75 @@
       "skipped": 0,
       "status": "pass"
     }
+  },
+  "power_domain_crossings_followup": {
+    "date": "2026-09-20",
+    "role": "Historical development receipt, not reusable design qualification; no production schematic, PCB, MPN or firmware boundary changes.",
+    "reuse": "Existing H3 commanded-state policy, exact reviewed pin types, native contact ledgers and check_design runner. Ready EDG static digital checks do not infer native power-off states or missing exact-pin tolerance; no new electrical solver.",
+    "command": "python3 -B tools/check_design.py",
+    "report": "work/design-check-8vncdkv9/result.json",
+    "report_sha256": "390410f77a2e64c5778c305c71b9f91adde72b4e18eb58e54d42f46a0a424af2",
+    "execution": {
+      "exit_code": 1,
+      "seconds": 25.839,
+      "checks": 17,
+      "verdict_counts": {"pass": 4, "fail": 2, "unqualified": 11},
+      "status": "not_accepted",
+      "inputs_unchanged": true,
+      "source_file_count": 939,
+      "engineering_accepted": false,
+      "fabrication_authorized": false,
+      "model_decisions_in_run": 0,
+      "native_jobs": 4,
+      "parallel_jobs": 8,
+      "caffeinate_established_and_released": true,
+      "remaining_native_connections": {"UI": 1226, "RF": 1859}
+    },
+    "screen": {
+      "seconds": 0.241,
+      "potential_crossings": 12,
+      "unknown_supply_ownership": 20,
+      "unreviewed_connected_endpoint_entries": 974,
+      "electrical_instances": 1210,
+      "joined_nets": 789,
+      "physical_rail_state_proven": false,
+      "pin_voltage_bounded": false,
+      "damage_or_numerical_incompatibility_proven": false,
+      "scope": "Assumed AON-live/commanded-MAIN-off; direct drives, direct rail connections and one-resistor paths only. Configurable GPIO output states, multisupply ownership, analog loading and diode/LED chains remain unresolved. Unreviewed entries include passive and connector contacts, not only GPIOs."
+    },
+    "tests": {
+      "new_regressions": 25,
+      "combined_regressions": {"total": 97, "skipped": 0, "seconds": 10.833, "status": "pass"},
+      "independent_review": {"tests": 36, "seconds": 4.901, "status": "pass", "actionable_findings": 0}
+    },
+    "preserved_failed_attempt": {
+      "report": "work/design-check-506c1qpo/result.json",
+      "report_sha256": "9b4952a1a9ea3fd15df8bec1942e27fcade8af75a156a90ec98643e90528aeb1",
+      "exit_code": 2,
+      "seconds": 26.132,
+      "failure": "Native UI KiCad DRC aborted with -6 inside sandbox; same complete command subsequently finished outside sandbox. No global font/environment changes; exact abort cause not established."
+    },
+    "c5_native_confirmation": {
+      "inputs": ["U14 pad21/GPIO23 = EV_N1_C5", "U14 pad23/GPIO24 = EV_N7_IR"],
+      "supply": "U14 pad2 = 3V3_MAIN; R88/R124 pullups = AON_SAFE_3V3",
+      "fresh_native_schematic_export": "work/indicator-drivers-UNoMWU/UI-native.xml",
+      "export_sha256": "5e68956d54761de1cc67c4fae0289df14cd9111e303c985534f0098ee31cbf01",
+      "datasheet": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+      "cached_source": "work/drawing-review/c5.pdf",
+      "source_sha256": "fa50f329237226d09c5b53460e65d8a2561c58fb5fb08945c12990a2c61f8e9e",
+      "revision_and_selector": "v1.3 pp.32–33, tables 6-1 through 6-3; visually reviewed",
+      "interpretation": "Operating DC input levels at 3.3 V/25 C are not evidence of absolute input tolerance at VDD=0. No powered-off input allowance was adopted."
+    },
+    "checker_sha256": {
+      "hardware/verification/h6_r2_power_domain_crossings.py": "d9f266b32f0913da34ca796733e448291347db3e2f993562067646dc0acf1abc",
+      "hardware/verification/h6_r2_acceptance_adapters.py": "6a61eb02323f3d4e93924ed4a8e882f8bccbf75341272841b3286d70a1e3826c",
+      "hardware/architecture/tests/test_h6_power_domain_crossings.py": "3d79a3eb9c802b9d90507270a3d94223a48fb92632b094028558a147f21a20e6"
+    },
+    "preparation_token_proxy": {
+      "raw_goal_counter_start": 6050831,
+      "raw_goal_counter_checkpoint": 6886348,
+      "raw_counter_delta": 835517,
+      "note": "Aggregate goal counter across preparation and continuation, including unknown cache/agent attribution. Not billed or uncached parent tokens. Zero model decisions inside the repeated command does not yet establish preparation payback."
+    }
   }
 }
