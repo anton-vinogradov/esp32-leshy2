@@ -169,5 +169,33 @@
     "owned_caffeinate_established_and_released_each_run": true, "model_calls_inside_command": 0,
     "preparation_proxy": {"metric": "Aggregate goal tokensUsed, not billed or uncached tokens", "start": 11591307, "checkpoint": 11815342, "delta": 224035, "scope": "Reselection implementation, parallel review, source checks, regression and replay across continuations since previous publication; later receipt/publication excluded", "cache_agent_split_and_payback": "unmeasured"}
   },
-  "remaining": "Couple replacement circuit-breaker threshold law and all auxiliary branches, then actual source bounds and whole-cell qualification: actual VIN/RON/bias applicability, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. Circuit-breaker threshold is not an instantaneous converter-current clamp. Eight native power findings and hardware/firmware boundary unchanged."
+  "known_branch_dc_cell_followup": {
+    "command": "work/edg-pilot-XSChki/venv/bin/python -B tools/synthesize_main_dc_cell.py",
+    "scope": "Necessary DC threshold screen for selected divider branches only; unknown auxiliaries are not zero and no complete cell is admitted",
+    "ready_mechanisms_reused": ["Published EDG static-divider portfolio", "Existing exact current inverse/forward and pinned E192 enumeration", "Current native demand and power-finding loaders", "Existing source/runtime guards and scoped caffeinate"],
+    "candidate_law": {"part_hypothesis": "TPS259814LRPWR", "equation_constant_a_ohm": "6585", "gain_tolerance_fraction": "0.10", "configured_domain": "6585/Rmax > 5 A, strict", "source_revision": "SLVSGG6D", "pdf_sha256": "8609249da4eb65da1d5398a4cbd5bc3ace4ca1f1f0205e41fbf3873d8e3f8e91", "reviewed_pages": [1, 7, 8, 22], "actual_vin_accuracy_admitted": false, "instantaneous_clamp": false},
+    "requirements": "Protected floor=max(step+Imon,max, PF03reserve+1.25*Imon,max, oldinrush+Imon,max); strict threshold ceiling=6-Ifb,max. Branch maxima are conservatively independent. Old inrush is a DC proxy, not a new startup proof.",
+    "rilm_classes_in_order": ["1pct_100ppm", "0.1pct_10ppm", "0.05pct_10ppm"],
+    "both_original_rilm_budgets_required": true,
+    "results": [
+      {"divider_class": "0.1pct_10ppm", "protected_floor_a_approx": 4.250331009293, "strict_ceiling_a_approx": 5.993938766417, "complete_e192_sets_ohm": [[1260], [1240, 1260, 1270], [1240, 1260, 1270]], "selected_ohm": [1260, 1270, 1270], "worst_margin_ma_approx": [8.823929705, 162.467631219, 165.385058712]},
+      {"divider_class": "0.05pct_10ppm", "protected_floor_a_approx": 4.250330975441, "strict_ceiling_a_approx": 5.999393279805, "complete_e192_sets_ohm": [[1260], [1240, 1260, 1270], [1240, 1260, 1270]], "selected_ohm": [1260, 1270, 1270], "worst_margin_ma_approx": [14.278443093, 167.922144608, 170.839572100]}
+    ],
+    "selected_tests": {"passed": 254, "skipped": 0, "elapsed_s": 41.062, "new_dc_tests": 12},
+    "independent_oracle": "Wider E19210..9990ohm enumeration with direct exact Fraction expansion of initial tolerance, both ordered affine stresses and TCR; no inverse/forward implementation reuse. All six candidate sets and exact max-min scores agree. Existing2304 SPICE divider corners retained.",
+    "independent_review": "Separate read-only source/physics/code review found no actionable findings;11 focused tests and a separate CLI run pass their software checks, all103source hashes and installed EDG pins verified",
+    "negative_checks": ["Wrong part current law", "Exact configured-current boundary", "Missing stress budget or candidate", "Changed selection/demands", "Unknown auxiliary substituted by zero/qualification", "Erased baseline findings", "Repository/runtime changes before publication"],
+    "full_dc_cell_proven": false, "source_applicability": false, "divider_lifetime_covered": false, "dynamic_protection_proven": false, "production_mpn_selected": false,
+    "unknown_auxiliary_bounds": ["monitor_vdd", "monitor_reset_pullup", "replacement_efuse_iq", "other_new_auxiliaries"],
+    "upstream_efuse_iq": "Supply node is known raw_converter_output. Reviewed max610uA is at VIN12V, not an application bound; current_max_a remains null.",
+    "baseline_power_findings_preserved": 8, "source_hashes_per_report": 103,
+    "fresh_reports": [
+      {"path": "work/main-dc-cell-agc8slxm/result.json", "sha256": "a9a323e63a218fd0c080a691f509c881d582636be76e040772bcd003095125c2", "run_body_s": 5.653296, "command_s": 5.682363},
+      {"path": "work/main-dc-cell-bx5y5q0m/result.json", "sha256": "2c5512c35488c90184c38f6505a2e500eda382c8b387672dc290f747c736fbba", "run_body_s": 5.992175, "command_s": 6.022099}
+    ],
+    "replay_equal_except_top_and_nested_elapsed_and_owned_caffeinate_metadata": true,
+    "exit_codes": [1, 1], "owned_caffeinate_established_and_released_each_run": true, "model_decisions_inside_command": 0,
+    "preparation_proxy": {"metric": "Aggregate goal tokensUsed, not billed or uncached tokens", "start": 11849290, "checkpoint": 12033034, "delta": 183744, "scope": "This continuation through implementation, source review, independent oracle/review, regression and replay; later receipt/publication excluded", "cache_agent_split_and_payback": "unmeasured"}
+  },
+  "remaining": "Bind actual auxiliary supply/return paths and bounds, then whole-cell qualification: actual VIN/RON/bias applicability, divider lifetime, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. The coupled threshold screen is not instantaneous converter-current protection. Eight native power findings and hardware/firmware boundary unchanged."
 }
