@@ -91,7 +91,7 @@ class StaticPairTests(unittest.TestCase):
         before = deepcopy(self.data)
         with patch.object(tool.source, 'load_current', return_value=self.data), \
                 patch.object(tool.pair, '_load_edg'), \
-                patch.object(tool, 'synthesize', return_value={'qualified': False}) as synthesis:
+                patch.object(tool, 'synthesize', return_value={'status': 'continuous_joint_infeasible', 'qualified': False}) as synthesis:
             report = tool.run()
         self.assertEqual(before, self.data)
         self.assertEqual(synthesis.call_count, 4)
@@ -111,7 +111,7 @@ class StaticPairTests(unittest.TestCase):
         completed = []
         def row(*args):
             completed.append(args[1])
-            return {'qualified': False}
+            return {'status': 'continuous_joint_infeasible', 'qualified': False}
         def stale_runtime():
             self.assertEqual(len(completed), 4)
             raise ValueError('unreviewed EDG numerical source after calculation')
@@ -131,7 +131,7 @@ class StaticPairTests(unittest.TestCase):
         with patch.object(tool.source, 'load_current', return_value=self.data), \
                 patch.object(tool.source, 'snapshot', side_effect=changed), \
                 patch.object(tool.pair, '_load_edg'), \
-                patch.object(tool, 'synthesize', return_value={'qualified': False}), \
+                patch.object(tool, 'synthesize', return_value={'status': 'continuous_joint_infeasible', 'qualified': False}), \
                 self.assertRaisesRegex(ValueError, 'Sources changed'):
             tool.run()
 
@@ -173,6 +173,91 @@ class StaticPairTests(unittest.TestCase):
         response = json.loads(stream.getvalue())
         self.assertIsNone(response['report'])
         self.assertIn('unreviewed EDG', response['error'])
+
+
+class LoadedPairTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.data = tool.source.load_current()
+        cls.monitor = next(row for row in tool.monitor_hypotheses() if row['id'] == 'tps3703a7330')
+        cls.row = tool.synthesize(cls.data, '0.1pct_10ppm', F('.05'), cls.monitor, solver=nominal_fixture)
+
+    def test_point_kcl_and_feedback_branch_bypasses_efuse(self):
+        point = tool.loaded_point(*map(F, (1, 4, 1, 0, 2, 3, 0, 1, 1)))
+        self.assertEqual(point['raw_v'], 5)
+        self.assertEqual(point['local_v'], F(10, 3))
+        self.assertEqual(point['sense_v'], 2)
+        self.assertEqual(point['monitor_top_current_a'], F(2, 3))
+        self.assertEqual(point['efuse_current_a'], F(5, 3))
+        self.assertEqual(point['converter_current_a'], F(8, 3))
+        changed = tool.loaded_point(*map(F, (1, 8, 2, 0, 2, 3, 0, 1, 1)))
+        self.assertEqual(point['local_v'], changed['local_v'])
+        self.assertEqual(point['efuse_current_a'], changed['efuse_current_a'])
+        self.assertEqual(point['converter_current_a']-changed['converter_current_a'], F(1, 2))
+
+    def test_ripple_changes_feedback_branch_by_total_resistance(self):
+        base = tool.loaded_point(*map(F, (1, 4, 1, 0, 2, 3, 0, 1, 1)))
+        point = tool.loaded_point(*map(F, (1, 4, 1, 0, 2, 3, 0, 1, 1)), raw_ripple_v=F('.01'))
+        self.assertEqual(point['raw_v']-base['raw_v'], F('.01'))
+        self.assertEqual(point['feedback_top_current_a']-base['feedback_top_current_a'], F('.002'))
+
+    def test_signed_injection_is_preserved_not_clamped(self):
+        point = tool.loaded_point(*map(F, (1, 4, 1, 0, 2, 3, -2, 1, 1)))
+        self.assertEqual(point['local_v'], F(13, 3))
+        self.assertEqual(point['monitor_top_current_a'], F(-1, 3))
+        empty = tool.loaded_point(*map(F, (1, 4, 1, 0, 2, 3, -2, 0, 1)))
+        self.assertGreater(empty['local_v'], empty['raw_v'])
+        self.assertEqual(empty['efuse_current_a'], F(-1, 6))
+
+    def test_point_domains_fail_closed(self):
+        valid = list(map(F, (1, 4, 1, 0, 2, 3, 0, 1, 1)))
+        for index, bad in ((0, 1.0), (2, F(0)), (7, F(-1)), (8, F(-1))):
+            values = valid.copy()
+            values[index] = bad
+            with self.subTest(index=index, bad=bad), self.assertRaises(ValueError):
+                tool.loaded_point(*values)
+
+    def test_unknown_bias_is_not_an_implicit_zero(self):
+        unknown = tool.loaded_diagnostic(self.data, self.row, self.monitor, None, tool.Interval(0, 0))
+        self.assertEqual(unknown['status'], 'not_evaluated_unknown_bias')
+        self.assertFalse(unknown['source_applicability'])
+        self.assertFalse(unknown['qualified'])
+        with self.assertRaises(ValueError):
+            tool.loaded_diagnostic(self.data, self.row, self.monitor, [0, 0], tool.Interval(0, 0))
+
+    def test_explicit_zero_bias_adds_both_branches_without_moving_feedback_load(self):
+        before = deepcopy(self.data)
+        result = tool.loaded_diagnostic(self.data, self.row, self.monitor, tool.Interval(0, 0), tool.Interval(0, 0))
+        self.assertEqual(result['status'], 'conditional_static_pass')
+        self.assertEqual(result['checked_load_cases'], 58)
+        self.assertEqual([r['name'] for r in result['cases']], [name for name, _ in self.data['cases']])
+        peak = next(r for r in result['cases'] if F(r['native_load_a_exact']) == F('4.25'))
+        efuse = F(peak['bounds_exact']['efuse_current_a'][1])
+        source = F(peak['bounds_exact']['converter_current_a'][1])
+        self.assertGreater(efuse, F('4.25'))
+        self.assertGreater(source, efuse)
+        self.assertEqual(before, self.data)
+        self.assertFalse(result['source_applicability'])
+        self.assertFalse(result['qualified'])
+        self.assertEqual(result['actual_source_bias_bounds_a'], {'feedback': None, 'sense': None})
+
+    def test_declared_signed_bias_rejects_original_candidate(self):
+        result = tool.loaded_diagnostic(self.data, self.row, self.monitor,
+                                        tool.Interval('-.000001', '.000001'), tool.Interval('-.0000015', '.0000015'))
+        self.assertEqual(result['status'], 'conditional_static_fail')
+        self.assertIn('raw_upper', result['failed_checks'])
+        self.assertIn('monitor_rising_sense', result['failed_checks'])
+        self.assertAlmostEqual(float(F(result['raw_v_exact'][1])), 3.3390990249767154)
+        self.assertEqual(result['checked_load_cases'], 58)
+        self.assertEqual(self.row['status'], 'conditional_joint_candidate')
+        self.assertFalse(result['qualified'])
+
+    def test_reverse_branch_operating_domain_is_not_accepted(self):
+        result = tool.loaded_diagnostic(self.data, self.row, self.monitor,
+                                        tool.Interval(0, 0), tool.Interval('-.001', '-.001'))
+        self.assertFalse(result['physical_operating_domain'])
+        self.assertIn('unsupported_reverse_current_or_nonpositive_voltage', result['failed_checks'])
+        self.assertLess(F(result['branch_current_a_exact']['monitor_top_current_a'][0]), 0)
 
 
 @unittest.skipUnless(importlib.util.find_spec('edg'), 'prepared EDG runtime needed')

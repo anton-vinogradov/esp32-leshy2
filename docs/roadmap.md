@@ -27,7 +27,7 @@ and completed results live in the [report index](stage-results.md).
 
 ## Current H6
 
-Current focus: [automatic routing and design acceptance](h6-r2-routing-automation.md). The 474-connection geometry milestone and bounded indicator-generation pilot passed their scopes; electrical qualification remains open. Automatic MAIN current-margin selection and joint static feedback/monitor synthesis now work within their declared models. Next: qualify the complete cell, including loading/leakage, the correct replacement protection law, source applicability and dynamics. Existing power failures remain visible; no candidate MPN or production schematic is adopted. Experiments use copies and production routing stays paused. This is an internal H6.0.3 step, not H6 closure or fabrication authorization.
+Current focus: [automatic routing and design acceptance](h6-r2-routing-automation.md). The 474-connection geometry milestone and bounded indicator-generation pilot passed their scopes; electrical qualification remains open. Automatic MAIN current-margin selection and joint static feedback/monitor synthesis now work within their declared models; loaded signed-bias checks reject the initial divider pairs under explicit stress hypotheses, with equations independently checked by ngspice. Next: automate reselection and establish actual source bounds, replacement protection and dynamics before qualifying the complete cell. Existing power failures remain visible; no candidate MPN or production schematic is adopted. Experiments use copies and production routing stays paused. This is an internal H6.0.3 step, not H6 closure or fabrication authorization.
 
 | Substage | Status | Exit |
 |---|---|---|

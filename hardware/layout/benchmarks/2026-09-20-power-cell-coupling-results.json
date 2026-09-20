@@ -118,5 +118,30 @@
     "discarded_prior_run": {"report": "work/design-check-2qpgp95i/result.json", "exit_code": 2, "reason": "New test_h6_main_static_pair.py appeared during execution; membership guard rejected the run, then checks were rerun with frozen inputs"},
     "scope": "Historical input-guarded run before this receipt update; no claim of complete design acceptance"
   },
-  "remaining": "Complete cell synthesis beyond bounded current-margin and static-divider pilots: divider loading/leakage, the replacement circuit-breaker law and response, actual-VIN/source evidence, supply/logic and timing, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. Eight native power findings and hardware/firmware boundary unchanged."
+  "loaded_bias_followup": {
+    "scope": "Signed-bias and shared divider-loading post-validation; hypothetical DC diagnosis, not semiconductor or whole-cell qualification",
+    "ready_mechanisms": ["Existing exact signed-divider forward kernel", "Existing native H3 load envelopes", "Bundled ngspice worker and bounded parallel process registry"],
+    "custom_gap": "Bind monitor branch loading through RON while FB branch bypasses it; preserve shared corners and explicitly unknown application bias bounds",
+    "native_load_cases": 58, "shared_corners_per_case": 256,
+    "load_policy": "Full new divider branches conservatively added to all existing envelopes; no unquantified old allowance subtracted",
+    "bias_stress_a": {"feedback": ["-0.000001", "0.000001"], "tps3703_sense": ["-0.0000015", "0.0000015"], "tps3890_sense": ["-0.0000001", "0.0000001"]},
+    "actual_application_bias_bounds": null, "qualified": false, "source_applicable": false,
+    "native_distribution_result": {"ideal_pairs": 2, "loaded_diagnostic_failures": 2, "failed_checks": ["raw_upper", "monitor_rising_sense"], "raw_max_v_approx": {"0.1pct_10ppm": 3.339099025, "0.05pct_10ppm": 3.336402428}},
+    "alternate_distribution_result": {"ideal_pairs": 3, "loaded_diagnostic_failures": 3},
+    "selected_tests": {"passed": 234, "skipped": 0, "elapsed_s": 5.675},
+    "independent_spice": {"dc_corners": 768, "fresh_workers": 32, "parallel_workers": 4, "vectors_per_worker": 120, "maximum_assertion_delta_v_or_a": "1e-8", "equation_regression_only": true, "initial_standalone_test_s": 0.955},
+    "independent_review": "Separate reviewer confirmed shared-corner equations, node/branch placement, ripple and bias signs, unknown-vs-zero handling, source metadata and prepublication guards;24 focused tests including the SPICE regression passed",
+    "fresh_reports": [
+      {"distribution_v": "0.05", "path": "work/main-static-pair-peygg3aa/result.json", "sha256": "5cfcbb6c121bc17a5bd2405a0288254e37c5ea13f6346c5e779de87cd74e7fac", "run_body_s": 1.021447, "command_s": 1.034412},
+      {"distribution_v": "0.05", "path": "work/main-static-pair-cbcpi2_6/result.json", "sha256": "21d3a21d9aa980197e52177e091fe17a1882375e3a8686a7851826deb499fffa", "run_body_s": 1.097169, "command_s": 1.110675},
+      {"distribution_v": "0.03", "path": "work/main-static-pair-ldcuuj_s/result.json", "sha256": "7a48f79b39d5733ef570ba5e873210cf4115b16d9fc8e784ee59a176a40bc052", "run_body_s": 7.803807, "command_s": 7.817590},
+      {"distribution_v": "0.03", "path": "work/main-static-pair-bbvcrdo6/result.json", "sha256": "4bd56bb6e996cdb7da9924e7b0ce725cc83f3a7c587cee7fa5f47267284bce13", "run_body_s": 7.739656, "command_s": 7.752907}
+    ],
+    "source_hashes_per_report": 22, "installed_edg_numerical_pins": 3,
+    "replay_equal_per_distribution_except_elapsed_and_owned_caffeinate_metadata": true,
+    "exit_codes": [1, 1, 1, 1], "owned_caffeinate_established_and_released_each_run": true,
+    "model_calls_inside_command": 0,
+    "preparation_proxy": {"metric": "Aggregate goal tokensUsed, not billed or uncached tokens", "start": 11191604, "checkpoint": 11567128, "delta": 375524, "scope": "This continuation through source review, implementation, independent review and initial replay checks; later receipt/publication excluded", "cache_agent_split_and_payback": "unmeasured"}
+  },
+  "remaining": "Automated reselection under explicit loaded/bias requirements, then actual source bounds and whole-cell qualification: replacement circuit-breaker law, auxiliary loads, actual VIN/RON applicability, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. Eight native power findings and hardware/firmware boundary unchanged."
 }

@@ -9,6 +9,7 @@ adoption. The RON hypothesis is NOT combined with the old eFuse current law.
 import argparse
 from decimal import Decimal, localcontext
 from fractions import Fraction as F
+from itertools import product
 import json
 import math
 from pathlib import Path
@@ -28,6 +29,7 @@ ROOT = source.ROOT
 RON = F('0.0084')
 CLASSES = {'0.1pct_10ppm': '.001', '0.05pct_10ppm': '.0005'}
 RESERVES = tuple(map(F, ('.000001', '.00001', '.00005', '.0001', '.0002', '.0005', '.001', '.002', '.003')))
+SENSE_DIAGNOSTIC_A = {'tps389001': '.0000001', 'tps3703a7330': '.0000015'}
 
 
 def decimal(value):
@@ -118,6 +120,114 @@ def checked_corners(selection, reference, required, factors, impedance):
     return tuple(map(F, checked['average_v_exact']))
 
 
+def loaded_point(vref, rf_top, rf_bottom, i_fb, rm_top, rm_bottom, i_sense,
+                 load, ron, raw_ripple_v=F(0)):
+    """One exact DC/KCL point; positive bias flows into each IC input.
+
+    Feedback is upstream of the eFuse; only monitor top-branch current joins
+    the protected load. Ripple shifts the FB node and branch current too.
+    Signed algebraic results are preserved, never clamped into physicality.
+    """
+    values = (vref, rf_top, rf_bottom, i_fb, rm_top, rm_bottom, i_sense, load, ron, raw_ripple_v)
+    if any(not isinstance(value, F) for value in values):
+        raise ValueError('Exact Fraction circuit inputs required')
+    if min(vref, rf_top, rf_bottom, rm_top, rm_bottom) <= 0 or min(load, ron) < 0:
+        raise ValueError('Positive reference/resistors and nonnegative load/RON required')
+    raw = vref*(1+rf_top/rf_bottom) + i_fb*rf_top + raw_ripple_v
+    total = rm_top+rm_bottom
+    local = ((raw-ron*load)*total - ron*i_sense*rm_bottom) / (total+ron)
+    sense = rm_bottom*(local-i_sense*rm_top)/total
+    monitor_current = (local+i_sense*rm_bottom)/total
+    feedback_current = vref/rf_bottom+i_fb+raw_ripple_v/(rf_top+rf_bottom)
+    efuse_current = load+monitor_current
+    return {'raw_v': raw, 'local_v': local, 'sense_v': sense,
+            'feedback_top_current_a': feedback_current, 'monitor_top_current_a': monitor_current,
+            'efuse_current_a': efuse_current, 'converter_current_a': efuse_current+feedback_current}
+
+
+def loaded_diagnostic(data, row, monitor, fb_bias, sense_bias):
+    """Post-check existing EDG nominals; never synthesize from missing bounds.
+
+    All native load envelopes remain intact; full new branch currents are
+    conservatively added. Existing member allowances may therefore be counted
+    twice. This diagnostic does not prove replacement current admission.
+    """
+    result = {'qualified': False, 'source_applicability': False,
+              'actual_source_bias_bounds_a': {'feedback': None, 'sense': None},
+              'load_accounting': '58 native envelopes unchanged + full candidate branches; possible double counting, no allowance subtracted',
+              'excluded_loads': 'Monitor VDD/output pull-up, converter input IQ and other replacement auxiliaries remain unknown',
+              'bias_basis': 'Signed hypotheses only: FB has no reviewed input-bias row; SENSE max is one-sided at 5 V, not an application signed bound'}
+    primary = monitor['source'].get('source', monitor['source'])
+    result['reviewed_bias_sources'] = {
+        'feedback': {'url': 'https://www.ti.com/lit/ds/symlink/tps566231.pdf', 'revision': 'SLUSDQ7B',
+                     'pdf_sha256': '59b851cec004a536641b4b360b7f9fd42580cfc817639592c1d1e032fbf5ab76',
+                     'pages': [5, 6], 'reviewed_on': '2026-09-20', 'input_bias_row': None,
+                     'conditions': 'No FB input-bias row published; VFB table VIN=12 V, TJ=-40..125 C'},
+        'sense': {**{key: primary[key] for key in ('url', 'revision', 'pdf_sha256')},
+                  'page': 5 if monitor['id'] == 'tps389001' else 6, 'reviewed_on': '2026-09-20',
+                  'minimum_a': None, 'typical_a': '.00000001' if monitor['id'] == 'tps389001' else '.000001',
+                  'maximum_a': '.0000001' if monitor['id'] == 'tps389001' else '.0000015', 'test_vsense_v': '5',
+                  'application_signed_bound_established': False}}
+    if fb_bias is None or sense_bias is None:
+        return dict(result, status='not_evaluated_unknown_bias')
+    if not isinstance(fb_bias, Interval) or not isinstance(sense_bias, Interval):
+        raise ValueError('Explicit signed bias intervals or unknown None required')
+    result['hypothetical_bias_a_exact'] = {
+        name: [str(F(value.minimum)), str(F(value.maximum))]
+        for name, value in (('feedback', fb_bias), ('sense', sense_bias))}
+    if row['status'] != 'conditional_joint_candidate':
+        return dict(result, status='not_evaluated_no_selected_pair')
+    demand = compare.demands(data)
+    ripple = F(demand['ripple_half_v'])
+    if ripple >= F(data['reference'].minimum):
+        raise ValueError('Ripple outside reviewed corner-current monotonicity domain')
+    factors = tuple(map(F, row['factor_interval_exact']))
+    rf = [F(row['feedback']['selected_nominal_ohm_exact'][name]) for name in ('top', 'bottom')]
+    rm = [F(row['monitor_pair']['selected_nominal_ohm_exact'][name]) for name in ('top', 'bottom')]
+    distribution = F(row['distribution_drop_v_exact'])
+    endpoints = lambda value: tuple(dict.fromkeys((F(value.minimum), F(value.maximum))))
+    corners = list(product(endpoints(data['reference']), *(tuple(r*f for f in factors) for r in rf),
+                           endpoints(fb_bias), *(tuple(r*f for f in factors) for r in rm),
+                           endpoints(sense_bias), (-ripple, ripple)))
+    cases, all_points = [], []
+    for name, load in demand['cases']:
+        points = [loaded_point(*corner[:7], load, RON, corner[7]) for corner in corners]
+        all_points.extend(points)
+        bounds = {key: [str(min(p[key] for p in points)), str(max(p[key] for p in points))]
+                  for key in ('local_v', 'sense_v', 'efuse_current_a', 'converter_current_a')}
+        cases.append({'name': name, 'native_load_a_exact': str(load), 'bounds_exact': bounds})
+    factor_interval = interval(*factors)
+    fb_voltage = source.forward(rf[0], data['reference'], interval(rf[1]*factors[0], rf[1]*factors[1]),
+                                factor_interval, fb_bias)
+    raw = (fb_voltage[0]-ripple, fb_voltage[1]+ripple)
+    if raw != (min(p['raw_v'] for p in all_points), max(p['raw_v'] for p in all_points)):
+        raise ValueError('Loaded KCL raw envelope differs from existing exact divider forward check')
+    monitor_threshold = lambda v: source.forward(rm[0], interval(v, v),
+        interval(rm[1]*factors[0], rm[1]*factors[1]), factor_interval, sense_bias)
+    falling = monitor_threshold(monitor['falling'])[0]
+    margins = {'consumer_lower': min(p['local_v'] for p in all_points)-distribution-F(demand['consumer_min_v']),
+               'raw_lower': raw[0]-F(demand['raw_min_v']),
+               'raw_upper': F(demand['consumer_max_v'])-raw[1],
+               'monitor_falling': falling-distribution-F(demand['consumer_min_v']),
+               'monitor_rising_sense': min(p['sense_v'] for p in all_points)-monitor['rising']}
+    if 'ov_falling' in monitor:
+        # Conservative no-load upper envelope: no guaranteed eFuse drop credit.
+        margins['monitor_ov_release'] = monitor_threshold(monitor['ov_falling'])[0]-raw[1]
+    physical = all(min(p[key] for key in ('raw_v', 'local_v', 'sense_v')) > 0 and
+                   min(p[key] for key in ('feedback_top_current_a', 'monitor_top_current_a',
+                                         'efuse_current_a', 'converter_current_a')) >= 0 for p in all_points)
+    failures = [key for key, margin in margins.items() if margin <= 0]
+    if not physical:
+        failures.append('unsupported_reverse_current_or_nonpositive_voltage')
+    return dict(result, status='conditional_static_pass' if not failures else 'conditional_static_fail',
+                checked_load_cases=len(cases), corners_per_case=len(corners), cases=cases,
+                physical_operating_domain=physical, failed_checks=failures,
+                headroom_v_exact={key: str(value) for key, value in margins.items()},
+                raw_v_exact=list(map(str, raw)),
+                branch_current_a_exact={key: [str(min(p[key] for p in all_points)), str(max(p[key] for p in all_points))]
+                                       for key in ('feedback_top_current_a', 'monitor_top_current_a')})
+
+
 def synthesize(data, resistor_class, distribution, monitor, solver=select_pair):
     if resistor_class not in CLASSES or not isinstance(distribution, F) or distribution < 0:
         raise ValueError('Explicit supported resistor class and nonnegative exact distribution required')
@@ -200,13 +310,22 @@ def run(distribution_override=None):
     distribution = F(str(data['rail']['distribution_drop_v'])) if distribution_override is None else F(
         _decimal(distribution_override, 'distribution hypothesis'))
     monitors = monitor_hypotheses()
-    rows = [synthesize(data, kind, distribution, monitor) for monitor in monitors for kind in CLASSES]
+    rows = []
+    for monitor in monitors:
+        sense_magnitude = Decimal(SENSE_DIAGNOSTIC_A[monitor['id']])
+        for kind in CLASSES:
+            row = synthesize(data, kind, distribution, monitor)
+            row['ideal_status'] = row['status']
+            row['loaded_diagnostic'] = loaded_diagnostic(
+                data, row, monitor, Interval('-.000001', '.000001'), Interval(-sense_magnitude, sense_magnitude))
+            row['loaded_diagnostic_status'] = row['loaded_diagnostic']['status']
+            rows.append(row)
     scope = ron_source.assess_main(data)
     pair._load_edg()  # Re-pin installed numerical sources after every search.
     if source.snapshot(data['paths']) != data['before'] or source.snapshot(extra_paths) != extra_before:
         raise ValueError('Sources changed during coupled synthesis')
     return {'schema_version': 1, 'status': 'not_qualified', 'qualified': False,
-            'scope': 'Coupled zero-leakage static feedback/monitor pair only; not a complete power cell',
+            'scope': 'Ideal zero-leakage pair selection plus separate signed-bias loaded post-validation; not a complete power cell',
             'invariant_demands': {key: str(value) for key, value in compare.demands(data).items() if key != 'cases'},
             'load_cases_a_exact': [[name, str(current)] for name, current in data['cases']],
             'checked_load_cases': len(data['cases']), 'projected_ron_ohm_exact': str(RON),
@@ -220,10 +339,12 @@ def run(distribution_override=None):
                 '8.4 mohm is projected from the TPS259814 reviewed 3 A row to 4.25 A, not a qualified maximum there',
                 'New RON is NOT combined with the fitted TPS25974 current-limit equation; candidate current admission is unproved',
                 'Both resistor classes are hypotheses; no selected MPN, stock/supply, solder/lifetime drift or availability qualification',
-                'Zero feedback/SENSE leakage and zero response delay; monitor supply, output loading and safety wiring are unqualified',
+                'Ideal selection uses zero leakage; signed loaded checks use declared diagnostic hypotheses, not actual source bounds',
+                'Zero response delay; monitor VDD/output loading, bias-source energy paths and safety wiring are unqualified',
                 'VFB table VIN=12 V does not qualify actual VIN=6..8.4 V; ripple, distribution, compensation/stability and thermal remain open',
                 'UV/OV recovery checks are static only; startup, delays, current limiting and routed behavior remain open',
-                'New divider loading is reported but not admitted; 58 source load cases do not qualify a whole replacement cell',
+                'Full branch loading is added conservatively without subtracting existing native allowances; replacement current admission remains unproved',
+                '58 native load cases do not qualify a whole replacement cell or a battery/input-power budget',
                 'EDG no-match is bounded search, not discrete infeasibility; the first positive pair is not an optimum']}
 
 
@@ -254,7 +375,8 @@ def main():
         if json.loads(report.read_text()) != result:
             raise ValueError('Persisted report differs')
         print(json.dumps({'status': result['status'], 'report': str(report), 'elapsed_s': result['elapsed_s'],
-                          'rows': [[r['monitor'], r['resistor_class'], r['status']] for r in result['rows']]}))
+                          'rows': [[r['monitor'], r['resistor_class'], r['ideal_status'], r['loaded_diagnostic_status']]
+                                   for r in result['rows']]}))
         return 1
     except (Exception, KeyboardInterrupt) as error:
         cancelled = isinstance(error, KeyboardInterrupt)
