@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "scope": "Counterfactual MAIN feedback/series-loss diagnostics, not qualified parts or production variants",
+  "series": 192,
+  "parallel_impedance_ohm": ["5000", "10000"],
+  "impedance_basis": "Explicit search window around the fitted divider's roughly 8.14 kohm Thevenin resistance; not a TI qualification or a bias-current constraint",
+  "variants": [
+    {"id": "current", "reference": "current", "resistors": "current", "efuse_ron_ohm": "current", "distribution_drop_v": "current"},
+    {"id": "ideal_resistors_only", "reference": "current", "resistors": "ideal", "efuse_ron_ohm": "current", "distribution_drop_v": "current"},
+    {"id": "ideal_reference_only", "reference": "ideal", "resistors": "current", "efuse_ron_ohm": "current", "distribution_drop_v": "current"},
+    {"id": "ideal_feedback", "reference": "ideal", "resistors": "ideal", "efuse_ron_ohm": "current", "distribution_drop_v": "current"},
+    {"id": "zero_efuse_loss", "reference": "current", "resistors": "current", "efuse_ron_ohm": "0", "distribution_drop_v": "current"},
+    {"id": "zero_distribution_loss", "reference": "current", "resistors": "current", "efuse_ron_ohm": "current", "distribution_drop_v": "0"},
+    {"id": "low_loss_sourcing_target", "reference": "current", "resistors": "current", "efuse_ron_ohm": "0.020", "distribution_drop_v": "0.030"}
+  ]
+}

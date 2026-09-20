@@ -76,7 +76,8 @@ def load_current():
         raise ValueError("missing, duplicate or negative MAIN load cases")
     return dict(paths=paths, before=before, rail=rail, policy=contract["policy"],
                 reference=Interval(spec["vfb_v"]["minimum"], spec["vfb_v"]["maximum"]),
-                bottom=domains["bottom"], factors=domains["top"], cases=cases)
+                bottom=domains["bottom"], factors=domains["top"], cases=cases,
+                bottom_nominal=Decimal(str(resistors["bottom"]["resistance_ohm"])))
 
 
 def choose_edg(window):

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "scope": "Seven explicit counterfactual MAIN feedback/series-loss models; no physical qualification, production MPN selection or PCB change",
+  "command": "python tools/compare_main_feedback.py",
+  "runtime": "Prepared local EDG 0.5.2 Python; ready ESeriesRatioUtil/DividerValues; no JVM or LLM calls in the solver",
+  "configuration": "hardware/verification/h6-main-feedback-variants.json",
+  "test_result": {"targeted_passed": 91, "targeted_skipped": 0, "new_tests": 25},
+  "invariant_requirements": {"load_cases": 58, "peak_declared_resistive_snapshot_a": "4.25", "consumer_min_v": "3.0", "consumer_max_v": "3.3", "ripple_allowance_pp_v": "0.020"},
+  "conditional_infeasible": ["current", "ideal_resistors_only", "ideal_reference_only", "zero_distribution_loss"],
+  "conditional_candidates_not_production_solutions": [
+    {"hypothesis": "ideal_feedback", "top_ohm": "46400", "bottom_ohm": "10400"},
+    {"hypothesis": "zero_efuse_loss", "top_ohm": "48700", "bottom_ohm": "11500"},
+    {"hypothesis": "low_loss_sourcing_target", "efuse_ron_ohm": "0.020", "distribution_drop_v": "0.030", "top_ohm": "44200", "bottom_ohm": "10200", "conditional_lower_margin_mv_approx": "8.50"}
+  ],
+  "replay": {
+    "fresh_processes": 3,
+    "equal_numerical_results_and_source_hashes": true,
+    "excluded_from_comparison": ["elapsed_s", "command_elapsed_s", "unique caffeinate log path"],
+    "all_exit_codes": [1, 1, 1],
+    "exit_1_meaning": "not_qualified, not a software-test failure",
+    "caffeinate_established_and_released_each_run": true,
+    "runs": [
+      {"report": "work/feedback-variants-1mshlbj7/result.json", "sha256": "d05b07365ce9f2808594ed5b6f9c5e73e00d6177381ff64e8f867766966e5020", "compute_s": 0.252274, "command_s": 0.271398},
+      {"report": "work/feedback-variants-ql6fe6jl/result.json", "sha256": "e369dda995853f2c698a270e639cd5a0b65c6c4abb6d03020d83f9a1cbcc482c", "compute_s": 0.231282, "command_s": 0.246091},
+      {"report": "work/feedback-variants-u_ow5mvn/result.json", "sha256": "aab23f3ff05149dfe05e351c6401557afd3e868c56c23eeb7f64bec1bfce1075", "compute_s": 0.243878, "command_s": 0.259234}
+    ]
+  },
+  "preparation_cost_proxy": {
+    "metric": "raw active-goal tokensUsed counter delta, not uncached-input-plus-output or billing",
+    "start_counter": 4436460,
+    "checkpoint_counter": 4806339,
+    "delta": 369879,
+    "checkpoint_utc": "2026-09-20 01:32:54",
+    "cached_uncached_and_agent_split": "unavailable; do not equate this aggregate with parent charged usage",
+    "scope": "This continuation through implementation, source research, reviews and tests; subsequent publication excluded",
+    "repeat_command_model_calls": 0,
+    "parent_invocation_and_result_review_cost": "not isolated",
+    "token_savings_or_payback": "unmeasured"
+  },
+  "primary_recheck": {
+    "url": "https://www.ti.com/lit/gpn/TPS566231",
+    "revision": "SLUSDQ7B",
+    "sha256": "59b851cec004a536641b4b360b7f9fd42580cfc817639592c1d1e032fbf5ab76",
+    "visually_reviewed_pages": [5, 6, 16],
+    "result": "VIN12 V table conditions retained; VFB 591..609 mV is not promoted to full application qualification at VIN6..8.4 V"
+  },
+  "limitations": [
+    "All changed models are hypotheses, not available parts or source-qualified replacements",
+    "Zero feedback leakage; lifetime drift, line/load/dynamic behavior, current admission, startup, PG and physical measurements remain open",
+    "Parallel impedance is an explicit search constraint, not a complete divider-current, power or loop-stability check",
+    "No-match is not an exhaustive infeasibility proof; EDG uses a conservative shared tolerance enclosure and first-fit search",
+    "Continuous-ratio RON ceilings have no spare margin and are not safe procurement targets",
+    "H6 and production routing remain open; hardware/firmware boundary unchanged"
+  ]
+}
