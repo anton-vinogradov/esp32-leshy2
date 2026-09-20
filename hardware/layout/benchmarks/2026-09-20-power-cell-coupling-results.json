@@ -73,5 +73,50 @@
       "cache_agent_split_and_payback": "unmeasured"
     }
   },
-  "remaining": "Joint component/cell synthesis beyond the bounded current-limit optimum, actual-VIN source evidence, supply/logic and timing, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. Eight native power findings and hardware/firmware boundary unchanged."
+  "static_pair_followup": {
+    "command": "work/edg-pilot-XSChki/venv/bin/python -B tools/synthesize_main_static_pair.py",
+    "optional_counterfactual_argument": "--distribution-drop-v .03",
+    "scope": "Constructed zero-leakage static feedback/monitor pair, not complete cell qualification or global optimization",
+    "ready_mechanism": "Same pinned EDG ESeriesRatioUtil/DividerValues search; inverse-center initial-decade retry for near-unity transfers; existing exact forward checker and current H3 source loader",
+    "invariant_load_cases": 58, "native_distribution_drop_v": "0.05",
+    "explicit_hypotheses": ["RON8.4mohm projected beyond reviewed3A row", "0.1%/10ppm and0.05%/10ppm resistor classes", "Zero FB/SENSE leakage and response time"],
+    "native_distribution_candidate_0_1pct": {
+      "monitor": "TPS3703A7330DSER diagnostic only", "feedback_top_bottom_ohm": [44200, 10100],
+      "monitor_top_bottom_ohm": [10.5, 10000],
+      "headroom_mv_approx": {"consumer_lower": 71.331670, "raw_upper": 5.189419, "uv_falling": 0.704119, "uv_rising": 2.840728, "ov_recovery": 187.059720}
+    },
+    "alternate_distribution_result": "At30mV and0.05%/10ppm, TPS389001 also fits with20k/12k monitor; at native50mV both declared classes are continuously infeasible for TPS389001. No-match at30mV/0.1% is only bounded EDG search, not infeasibility proof.",
+    "qualified": false, "production_mpn_selected": false, "current_limit_model_combined": false,
+    "divider_load_admitted_to_current_budget": false,
+    "selected_tests": {"passed": 207, "skipped": 0, "elapsed_s": 4.168, "new_static_pair_tests": 15},
+    "independent_review": "Separate reviewer recomputed Cartesian rational corners without the implementation's divider checker: feedback, all58 loads, UV and OV agree. Source/runtime changes are rejected before exclusive report publication.",
+    "pdf_visual_review": {"TPS3703_SBVS249B": [3, 6, 7, 28, 31]},
+    "source_hashes_per_report": 22, "installed_edg_numerical_pins": 3,
+    "fresh_reports": [
+      {"distribution_v": "0.05", "path": "work/main-static-pair-m_oslrva/result.json", "sha256": "bd5a2a9d1db7460c5febf66b0ba900b6703e524454073d7f5a4082cdda4c8eee", "run_body_s": 0.402654, "command_s": 0.416152},
+      {"distribution_v": "0.05", "path": "work/main-static-pair-jroq1no2/result.json", "sha256": "b3026f82d92750d72532dee1389017809ab7fff4ac76133eccd1c28bdcd9e32b", "run_body_s": 0.462595, "command_s": 0.478005},
+      {"distribution_v": "0.03", "path": "work/main-static-pair-40wb0viy/result.json", "sha256": "6b492ef5de86d893e5c33389578d0067c5a8177854ccf5b35127527fc0ce9b27", "run_body_s": 6.724474, "command_s": 6.737739},
+      {"distribution_v": "0.03", "path": "work/main-static-pair-zwo69p6d/result.json", "sha256": "a64ed986c6e044ae0e4cef080664c881f30c799ee547a856f2dde541b7f78693", "run_body_s": 7.262787, "command_s": 7.277953}
+    ],
+    "replay_equal_per_distribution_except_elapsed_and_owned_caffeinate_metadata": true,
+    "exit_codes": [1, 1, 1, 1], "owned_caffeinate_established_and_released_each_run": true,
+    "model_calls_inside_command": 0,
+    "preparation_proxy": {
+      "metric": "Aggregate goal tokensUsed, not billed or uncached tokens",
+      "start": 10583157, "checkpoint": 11177500, "delta": 594343,
+      "scope": "Continuation since prior receipt checkpoint, including parallel research/review, whole-project acceptance and context overhead; earlier static-pair work is inside prior receipt interval; later publication excluded",
+      "cache_agent_split_and_payback": "unmeasured"
+    }
+  },
+  "whole_project_recheck": {
+    "command": "python3 -B tools/check_design.py --jobs 4 --native-jobs 4",
+    "report": "work/design-check-xhm9liaq/result.json", "sha256": "5bf3cefbece2b1640cc8ce67386e105d7be6cc62d04158cb32b3340960532d41",
+    "elapsed_s": 26.351, "status": "not_accepted", "exit_code": 1,
+    "counts": {"pass": 4, "fail": 2, "unqualified": 12}, "inputs_unchanged_during_run": true,
+    "native_remaining_connections": {"UI": 1226, "RF": 1859}, "drc_violations": 0, "schematic_parity_findings": 0,
+    "power_findings_preserved": 8, "engineering_accepted": false,
+    "discarded_prior_run": {"report": "work/design-check-2qpgp95i/result.json", "exit_code": 2, "reason": "New test_h6_main_static_pair.py appeared during execution; membership guard rejected the run, then checks were rerun with frozen inputs"},
+    "scope": "Historical input-guarded run before this receipt update; no claim of complete design acceptance"
+  },
+  "remaining": "Complete cell synthesis beyond bounded current-margin and static-divider pilots: divider loading/leakage, the replacement circuit-breaker law and response, actual-VIN/source evidence, supply/logic and timing, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. Eight native power findings and hardware/firmware boundary unchanged."
 }
