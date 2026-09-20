@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "tools"))
 import synthesize_main_feedback as source
+import edg_feedback_pair as edg_runtime
 from h6_passive_synthesis import NominalWindow
 from h6_power_corner_math import ResistanceDriftBudget, resistor_interval, efuse_current_interval
 import h3_r2_inrush_watchdog as inrush
@@ -58,7 +59,8 @@ def decimal_text(value):
 
 def source_paths():
     h3 = source.h3
-    return sorted({Path(__file__), Path(source.__file__), Path(power.__file__), Path(inrush.__file__),
+    return sorted({Path(__file__), Path(source.__file__), Path(edg_runtime.__file__),
+        Path(power.__file__), Path(inrush.__file__),
         ROOT / "tools/route_board.py", ROOT / "hardware/verification/h6_passive_synthesis.py",
         *(ROOT / p for p in power.INPUTS.values()), *inrush.SOURCES, *crossings.source_paths(),
         h3.CONTRACT, h3.LOADS, h3.STATES, h3.METHODS, h3.H0, h3.INSTANCES, h3.NETS,
@@ -205,10 +207,108 @@ def compare(data, chooser=source.choose_edg):
         for name, value in nominal.items() for budget, stresses in BUDGETS.items()]}
 
 
-def run(chooser=source.choose_edg):
+def load_edg_table():
+    """Reuse the existing pre-import implementation pins, not a local E-series copy."""
+    _, series, _, _ = edg_runtime._load_edg()
+    return tuple(sorted(F(str(value)) for value in series.SERIES[192]))
+
+
+def finite_nominals(minimum, maximum, table):
+    """Complete exact decimal scaling of the supplied, trusted E192 table.
+
+    Bounds are open/closed. The finite domain is declared by the inverse
+    intersection, not by a guessed resistor range or EDG's first-fit order.
+    """
+    require(type(table) is tuple and len(table) == 192
+            and all(type(v) is F and 1 <= v < 10 for v in table)
+            and tuple(sorted(set(table))) == table and table[0] == 1,
+            "invalid complete E192 table")
+    minimum, maximum = exact(minimum), exact(maximum)
+    if minimum >= maximum:
+        return [], []
+    require(minimum > 0, "finite positive inverse domain required")
+
+    def decade(value):
+        exponent = len(str(value.numerator)) - len(str(value.denominator))
+        while F(10) ** exponent > value:
+            exponent -= 1
+        while F(10) ** (exponent + 1) <= value:
+            exponent += 1
+        return exponent
+
+    first, last = decade(minimum), decade(maximum)
+    require(last-first < 64, "inverse domain exceeds declared 64-decade resource limit")
+    decades = list(range(first, last+1))
+    values = sorted(v * F(10) ** exponent for exponent in decades for v in table
+                    if minimum < v * F(10) ** exponent <= maximum)
+    require(len(values) == len(set(values)), "duplicate scaled E192 nominal")
+    return decades, values
+
+
+def portfolio(data, table):
+    """Maximize the worst exact current margin over both named budgets only.
+
+    The inverse intersection defines a finite E192 domain. Every nominal is
+    rechecked with the independent forward spread kernel before scoring.
+    Nothing here optimizes unknown physics or selects a production resistor.
+    """
+    spec, required, ceiling = data["spec"], data["required_lower_a"], data["strict_upper_a"]
+    require(exact(ceiling) == 6, "fixed comparison ceiling is strictly 6 A continuous")
+    require(bool(BUDGETS), "at least one named budget required")
+    windows = {name: inverse(required, ceiling, spec, stresses) for name, stresses in BUDGETS.items()}
+    minimum = max(w.minimum_ohm for w in windows.values())
+    maximum = min(w.maximum_ohm for w in windows.values())
+    decades, nominals = finite_nominals(minimum, maximum, table)
+    candidates = []
+    for nominal in nominals:
+        checks = [{"budget": name, **forward(nominal, spec, stresses, required, ceiling)}
+                  for name, stresses in BUDGETS.items()]
+        require(all(check["numerical_constraints_met"] for check in checks),
+                "portfolio nominal failed independent forward check")
+        score = min(F(check[key]) for check in checks
+                    for key in ("lower_margin_a_exact", "strict_upper_margin_a_exact"))
+        candidates.append({"nominal_ohm": decimal_text(nominal),
+                           "minimum_margin_a_exact": str(score), "checks": checks, "qualified": False})
+    best = max(candidates, key=lambda row: (F(row["minimum_margin_a_exact"]),
+                                           -F(row["nominal_ohm"]))) if candidates else None
+    return {"status": "conditional_candidate" if best else "no_candidate_in_declared_finite_domain",
+            "qualified": False,
+            "scope": "Complete finite pinned EDG E192 inverse-window intersection; not an all-physical optimum",
+            "objective": "maximize min(Ilo-required, ceiling-Ihi) across every named budget",
+            "tie_break": "lowest nominal resistance among equal exact scores",
+            "budgets": list(BUDGETS),
+            "budget_windows_ohm_exact": {name: [str(w.minimum_ohm), str(w.maximum_ohm)]
+                                         for name, w in windows.items()},
+            "domain": {"nominal_ohm_exact": [str(minimum), str(maximum)],
+                       "minimum_exclusive": True, "maximum_inclusive": True,
+                       "mantissa_count": len(table), "decade_exponents": decades,
+                       "continuous_feasible": minimum < maximum},
+            "candidate_count": len(candidates), "candidates": candidates,
+            "selected_nominal_ohm": best["nominal_ohm"] if best else None,
+            "minimum_margin_a_exact": best["minimum_margin_a_exact"] if best else None}
+
+
+def validate_portfolio(data, result, table):
+    """Regenerate complete membership and forward scores from trusted inputs.
+
+    Do not validate just the selected row: omitted better candidates, changed
+    budget coverage, invented scores and extra authority flags must also fail.
+    """
+    require(json.dumps(result, sort_keys=True, allow_nan=False)
+            == json.dumps(portfolio(data, table), sort_keys=True, allow_nan=False),
+            "portfolio membership, scores, selection or scope differs from exact replay")
+
+
+def run(chooser=source.choose_edg, table_loader=load_edg_table):
     started = time.monotonic()
     data = load_current()
+    table = table_loader()
     result = compare(data, chooser)
+    result["portfolio_selection"] = portfolio(data, table)
+    # Recheck installed numerical sources as well as repository inputs, and do
+    # not trust the proposal's candidate list or stated objective value.
+    require(table_loader() == table, "EDG preferred table changed during comparison")
+    validate_portfolio(data, result["portfolio_selection"], table)
     require(snapshot(source_paths()) == data["source_sha256"], "sources changed during comparison")
     return {**result, "schema_version": 1, "status": "not_qualified", "qualified": False,
         "production_mpn_selected": False, "startup_proven": False, "gate_closed": False,
@@ -219,8 +319,9 @@ def run(chooser=source.choose_edg):
         "diagnostic_stress_budgets": {name: [{"name": b.name, "fraction": str(b.fraction),
             "absolute_ohm": str(b.absolute_ohm)} for b in values] for name, values in BUDGETS.items()},
         "baseline_power_review": data["baseline_power_review"],
-        "selector": {"name": "EDG E192", "version": "0.5.2", "source_sha256": source.EDG_SELECTOR_SHA256},
-        "selection_policy": "EDG preferred-number feasibility only; not maximum-margin optimization or a production recommendation",
+        "selector": {"name": "EDG E192", "version": "0.5.2", "source_sha256": source.EDG_SELECTOR_SHA256,
+                     "installed_implementation_sha256": edg_runtime.EDG_SOURCE_SHA256},
+        "selection_policy": "First-fit EDG comparison retained separately; portfolio maximizes worst exact current margin across both budgets only within the declared complete finite E192 domain, not a production recommendation",
         "source_sha256": data["source_sha256"], "model_decisions_inside_command": 0,
         "elapsed_s": round(time.monotonic()-started, 6),
         "limitations": [
@@ -250,7 +351,9 @@ def main():
             stream.write(json.dumps(result, indent=2, allow_nan=False) + "\n")
         require(json.loads(path.read_text()) == result, "persisted report differs")
         print(json.dumps({"status": result["status"], "qualified": False, "report": str(path),
-                          "selected": {r["budget"]: r["selected_nominal_ohm"] for r in result["selections"]}}))
+                          "selected": {r["budget"]: r["selected_nominal_ohm"] for r in result["selections"]},
+                          "portfolio_selected": result["portfolio_selection"]["selected_nominal_ohm"],
+                          "minimum_margin_a_exact": result["portfolio_selection"]["minimum_margin_a_exact"]}))
         return 1
     except (Exception, KeyboardInterrupt) as exc:
         print(json.dumps({"status": "execution_error", "qualified": False, "error": str(exc), "report": None}))

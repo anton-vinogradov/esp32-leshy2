@@ -45,5 +45,33 @@
     "cached_uncached_agent_split": "unavailable", "model_calls_inside_repeat_commands": 0,
     "parent_review_cost_savings_and_payback": "unmeasured"
   },
-  "remaining": "Joint margin-optimized component/cell synthesis, actual-VIN source evidence, supply/logic and timing, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. Eight native power findings and hardware/firmware boundary unchanged."
+  "current_limit_max_min_followup": {
+    "supersedes": "First-fit-only selection policy above; historical measurements are retained, not rewritten",
+    "ready_mechanism": "Pinned EDG0.5.2 E192 table plus existing exact inverse and independent forward spread kernel; no new solver",
+    "domain": "Complete finite intersection of both named inverse windows; open lower nominal bound, closed upper nominal bound",
+    "nominals_ohm": [1100, 1110, 1130, 1140, 1150],
+    "objective": "Maximize minimum of lower and upper current margins across both named budgets; exact ties choose lowest nominal",
+    "selected_ohm": 1130,
+    "minimum_margin_a_exact": "6974713829/47039361452",
+    "minimum_margin_ma_approx": 148.273990,
+    "first_fit_minimum_margin_ma_approx": 16.698232,
+    "qualified": false, "production_mpn_selected": false,
+    "selected_tests": {"passed": 192, "skipped": 0, "elapsed_s": 3.722, "current_limit_tests": 23},
+    "independent_review": "Separate reviewer enumerated wider decades from the pinned E192 table and independently recomputed rational affine corners; same complete domain and optimum; no actionable findings",
+    "fresh_reports": [
+      {"path": "work/main-current-limit-5llaaruz/result.json", "sha256": "08b41e22877193568faa53e682f024bfb7cdaf34a7b8fe1aecd3afdc21f88ba3", "run_body_s": 0.341642},
+      {"path": "work/main-current-limit-sdqlo2gh/result.json", "sha256": "5b6bba643a63cfaf245e9474b3617c8c9b1482874d30b7e438f1e6e623845de0", "run_body_s": 0.335723}
+    ],
+    "replay_equal_except_elapsed_and_owned_caffeinate_metadata": true,
+    "source_hashes_equal": 96, "exit_codes": [1, 1],
+    "owned_caffeinate_established_and_released_each_run": true,
+    "model_calls_inside_command": 0,
+    "preparation_proxy": {
+      "metric": "Aggregate goal tokensUsed, not billed or uncached tokens",
+      "start": 10096063, "checkpoint": 10583157, "delta": 487094,
+      "scope": "Combined continuations since previous publication; includes parallel static-pair research and context overhead, so not isolated optimization cost; subsequent documentation/publication excluded",
+      "cache_agent_split_and_payback": "unmeasured"
+    }
+  },
+  "remaining": "Joint component/cell synthesis beyond the bounded current-limit optimum, actual-VIN source evidence, supply/logic and timing, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. Eight native power findings and hardware/firmware boundary unchanged."
 }
