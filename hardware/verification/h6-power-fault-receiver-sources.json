@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "scope": "conditional receiver admissibility, not loaded voltage proof",
+  "qualified": false,
+  "sources": {
+    "tca6424a": {
+      "url": "https://www.ti.com/lit/ds/symlink/tca6424a.pdf",
+      "revision": "SCPS193D January 2023",
+      "pdf_sha256": "7dd55469c1d7d6883daf324ea856a71c728a40c85c74eee6354325d7b6e82ebb",
+      "reviewed_pages": [4, 5, 6, 7, 18],
+      "reviewed_on": "2026-09-20"
+    },
+    "mspm0c1106": {
+      "url": "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf",
+      "revision": "SLASFJ6B January 2026",
+      "pdf_sha256": "d8cfef2a8183591392cd4b15f8f5974a8bb3f1fd5271a3a4f62491dd7db8f675",
+      "reviewed_pages": [12, 24, 41, 49, 50],
+      "reviewed_on": "2026-09-20"
+    }
+  },
+  "receivers": [
+    {
+      "id": "main_slow_io_p07",
+      "project": "LESHY2-RF-R2",
+      "device_id": "tca6424argjr",
+      "mpn": "TCA6424ARGJR",
+      "instance": "slow_io",
+      "reference": "U106",
+      "contact": "P07",
+      "physical": "8",
+      "net": "POWER_FAULT_N",
+      "source_id": "tca6424a",
+      "pin_function": {
+        "page": 4,
+        "selector": "Table 5-1, P07",
+        "kind": "configurable_push_pull_gpio",
+        "power_on_default": "input",
+        "gpio_mode_proven": false
+      },
+      "supplies": [
+        {"contact": "VCCP", "physical": "27", "net": "3V3_MAIN", "operating_v": ["1.65", "5.5"]},
+        {"contact": "VCCI", "physical": "31", "net": "3V3_MAIN", "operating_v": ["1.65", "5.5"]}
+      ],
+      "threshold_supply_contact": "VCCP",
+      "ground_contacts": [
+        {"contact": "GND", "physical": "25", "pads": ["25"], "net": "POWER_GROUND"},
+        {"contact": "EPAD", "physical": "exposed center pad", "pads": ["33"], "net": "POWER_GROUND"}
+      ],
+      "operating_temperature": {"axis": "ta_c", "range": ["-40", "85"]},
+      "input_limits": {
+        "page": 6,
+        "selector": "Section 6.3, ADDR and P27-P00 VIH/VIL rows",
+        "vih_factor": "0.7",
+        "vil_factor": "0.3",
+        "input_high_max": {"law": "fixed", "v": "5.5"},
+        "input_lower_min_v": "-0.5"
+      },
+      "leakage_rows": [
+        {
+          "parameter": "IIH",
+          "page": 7,
+          "unit": "A",
+          "minimum": null,
+          "typical": null,
+          "maximum": "0.000001",
+          "numeric_domains": {"vccp_v": ["1.65", "5.5"], "vcci_v": ["1.65", "5.5"], "ta_c": ["-40", "85"]},
+          "input_voltage_condition": {"relation": "equal_supply", "supply_contact": "VCCP"},
+          "signed_interval_proven": false,
+          "full_input_voltage_range_proven": false
+        },
+        {
+          "parameter": "IIL",
+          "page": 7,
+          "unit": "A",
+          "minimum": null,
+          "typical": null,
+          "maximum": "0.000001",
+          "numeric_domains": {"vccp_v": ["1.65", "5.5"], "vcci_v": ["1.65", "5.5"], "ta_c": ["-40", "85"]},
+          "input_voltage_condition": {"relation": "equal_ground", "ground_contact": "GND"},
+          "signed_interval_proven": false,
+          "full_input_voltage_range_proven": false
+        }
+      ],
+      "off_state_proven": false,
+      "gpio_mode_proven": false,
+      "limitations": [
+        "Section 8.3.1 p18 permits a configured input above VCC while remaining no higher than 5.5 V relative to ground; this is not an explicit VCC=0 leakage or input-mode-retention guarantee",
+        "P-port IIH and IIL maxima are endpoint test conditions, not a signed leakage interval over a loaded bus voltage range",
+        "EPAD physical wording comes from the native ledger; pad 33 is the current native footprint mapping, not a numbered datasheet signal"
+      ]
+    },
+    {
+      "id": "aon_safety_pa30",
+      "project": "LESHY2-RF-R2",
+      "device_id": "ti_mspm0c1106_sdgs20r",
+      "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+      "instance": "safety_controller",
+      "reference": "U127",
+      "contact": "PA30",
+      "physical": "3",
+      "net": "POWER_FAULT_N",
+      "source_id": "mspm0c1106",
+      "pin_function": {
+        "pages": [12, 24],
+        "selector": "Figure 6-8 DGS20 and Table 6-2 PA30/PINCM46",
+        "kind": "SDIO",
+        "gpio_iomux_pf": "1",
+        "analog_input_mux_present": false,
+        "gpio_mode_proven": false
+      },
+      "supplies": [
+        {"contact": "VDD", "physical": "6", "net": "AON_SAFE_3V3", "operating_v": ["1.62", "3.6"]}
+      ],
+      "threshold_supply_contact": "VDD",
+      "ground_contacts": [
+        {"contact": "VSS", "physical": "7", "pads": ["7"], "net": "POWER_GROUND"}
+      ],
+      "operating_temperature": {"axis": "ta_c", "range": ["-40", "125"]},
+      "maximum_junction_temperature_c": "130",
+      "input_limits": {
+        "page": 49,
+        "selector": "Section 7.10.1, all I/O except ODIO and Reset VIH/VIL rows",
+        "vih_factor": "0.7",
+        "vil_factor": "0.3",
+        "input_high_max": {"law": "supply_plus", "supply_contact": "VDD", "offset_v": "0.3"},
+        "input_lower_min_v": "-0.3"
+      },
+      "leakage_rows": [
+        {
+          "parameter": "Ilkg",
+          "pages": [49, 50],
+          "selector": "SDIO high-Z leakage row and footnotes 2, 3, 4",
+          "unit": "A",
+          "minimum": null,
+          "typical": null,
+          "maximum": "0.00000005",
+          "numeric_domains": {"vdd_v": ["1.62", "3.6"], "ta_c": ["-40", "125"]},
+          "input_voltage_conditions": [
+            {"relation": "equal_supply", "supply_contact": "VDD"},
+            {"relation": "equal_ground", "ground_contact": "VSS"}
+          ],
+          "header_conditions": {"pin_mode": "input", "internal_pullup": "disabled", "internal_pulldown": "disabled", "measurement": "individual_pin", "analog_input_mux": "absent"},
+          "signed_interval_proven": false,
+          "full_input_voltage_range_proven": false
+        }
+      ],
+      "absolute_maximum_not_operating_proof": {
+        "page": 41,
+        "selector": "Section 7.1, common-tolerance input voltage row",
+        "input_lower_min_v": "-0.3",
+        "input_high_max": {"law": "supply_plus_capped", "supply_contact": "VDD", "offset_v": "0.3", "cap_v": "4.1"},
+        "functional_operation_proven": false,
+        "off_state_leakage_proven": false
+      },
+      "off_state_proven": false,
+      "gpio_mode_proven": false,
+      "limitations": [
+        "PA30 is SDIO, not a 5-V-tolerant ODIO pin; its I2C alternate function does not change the documented buffer type",
+        "Ilkg maximum is stated only with VSS or VDD applied; the source gives no signed minimum or full loaded-input-voltage interval",
+        "The p41 absolute maximum is a stress limit, not functional operation or an Ioff guarantee at VDD=0",
+        "Internal pull resistance 40 kohm is typical only and is not admitted as a guaranteed bus load"
+      ]
+    }
+  ],
+  "limits": [
+    "Only the two native receivers are described; shared open-drain output drivers and pullup loading are not qualified here",
+    "Source temperature domains are not an assumed application temperature envelope",
+    "Evaluate threshold and input-voltage laws against the actual receiver supplies; no equality between AON and MAIN is assumed",
+    "Receiver admissibility does not prove actual loaded bus voltage, GPIO configuration, powered-off behavior or whole-net current bounds",
+    "Unknown signed leakage and off-state limits remain unknown, never implicit zero or an extrapolated symmetric interval"
+  ]
+}

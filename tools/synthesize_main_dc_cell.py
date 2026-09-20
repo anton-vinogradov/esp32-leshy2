@@ -17,6 +17,7 @@ import synthesize_main_static_pair as static
 import compare_main_current_limit as current
 import main_auxiliary_scope as auxiliary
 import main_candidate_topology as topology
+import main_fault_bus as fault_bus
 from route_board import keep_awake
 
 ROOT = static.ROOT
@@ -187,7 +188,7 @@ def validate_combination(static_report, native, table, result):
 
 
 def source_paths():
-    return sorted(set(current.source_paths()) | set(auxiliary.source_paths()) | set(topology.source_paths()) | {
+    return sorted(set(current.source_paths()) | set(auxiliary.source_paths()) | set(topology.source_paths()) | set(fault_bus.source_paths()) | {
         Path(__file__), Path(static.__file__), Path(static.compare.__file__),
         static.monitor_source.ROWS_PATH, Path(static.monitor_source.__file__),
         static.ron_source.ROWS_PATH, Path(static.ron_source.__file__),
@@ -204,10 +205,24 @@ def build_topology_portfolio(result, source_hashes):
     reviewed = auxiliary.load_reviewed()
     idd = next(row for row in reviewed['rows'] if row['id'] == 'tps3703_idd')
     supplies = ('MAIN_RAW_3V3', '3V3_MAIN', 'AON_SAFE_3V3')
-    candidates = []
+    candidates, fault_screens = [], {}
+    pullup = result['auxiliary_scope']['native_fault_pullup']
+    nominal, tolerance = F(pullup['nominal_ohm']), F(pullup['initial_tolerance_fraction'])
+    resistance = [str(nominal * (1-tolerance)), str(nominal * (1+tolerance))]
+    aon = result['auxiliary_scope']['live_aon_hypothesis_v']
     for group in result['groups']:
         scope = next(row for row in result['auxiliary_scope']['groups']
                      if row['divider_class'] == group['divider_class'])
+        bus_axes = {'main_v': scope['protected_voltage_v_exact'], 'aon_v': aon,
+                    'resistance_ohm': resistance}
+        # The earlier -40..125 C numerical hypothesis is not a board thermal
+        # requirement. Retain its uncovered source scope; also screen the
+        # receiver-source intersection explicitly, never silently narrow it.
+        fault_screens[group['divider_class']] = {
+            'common_source_temperature_hypothesis': fault_bus.screen(
+                **bus_axes, temperature_c=['-40', '85']),
+            'prior_temperature_hypothesis': fault_bus.screen(
+                **bus_axes, temperature_c=result['auxiliary_scope']['temperature_hypothesis_c'])}
         for threshold in group['rilm_portfolios']:
             for supply in supplies:
                 identity = {'divider_class': group['divider_class'],
@@ -217,6 +232,10 @@ def build_topology_portfolio(result, source_hashes):
                     continue
                 candidate = topology.build_candidate(baseline, group, threshold, supply)
                 receipt = candidate['validation']
+                fault = fault_bus.assess_candidate(candidate, **bus_axes, temperature_c=['-40', '85'])
+                require({k: v for k, v in fault.items() if k != 'binding'} ==
+                        fault_screens[group['divider_class']]['common_source_temperature_hypothesis'],
+                        'candidate fault screen differs from shared numeric scope')
                 touched = set(receipt['changed_instances']) | set(receipt['added_instances'])
                 numeric_scope = next(row for row in scope['monitor_supply_scopes']
                                      if row['supply_node_hypothesis'] == supply)
@@ -234,6 +253,8 @@ def build_topology_portfolio(result, source_hashes):
                     'pin_delta': [row for row in candidate['pins'] if row['instance'] in touched],
                     'monitor_current_accounting': auxiliary.classify_branch(supply, 'POWER_GROUND'),
                     'monitor_idd_scope': source_scope,
+                    'fault_bus_screen_ref': group['divider_class'],
+                    'fault_bus_binding': fault['binding'],
                     'actual_auxiliary_total_a': None,
                     'output_bus': {'net': 'POWER_FAULT_N', 'existing_pullup_node': '3V3_MAIN',
                                    'new_pullup_added': False, 'loaded_logic_proven': False},
@@ -245,6 +266,7 @@ def build_topology_portfolio(result, source_hashes):
             'baseline_digest': baseline['baseline_digest'],
             'candidate_count': sum(row['status'] == 'nonproduction_topology_candidate' for row in candidates),
             'variants_considered': len(candidates), 'monitor_supply_nodes': list(supplies),
+            'fault_bus_screens': fault_screens,
             'candidates': candidates, 'native_cad_changed': False,
             'production_mpn_selected': False, 'model_decisions_inside_command': 0}
 

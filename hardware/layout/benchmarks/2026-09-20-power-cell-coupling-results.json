@@ -240,5 +240,129 @@
     "owned_caffeinate_established_and_released_each_run": true, "model_decisions_inside_command": 0,
     "preparation_proxy": {"metric": "Aggregate goal tokensUsed, not billed or uncached tokens", "start": 12831116, "checkpoint": 13407504, "delta": 576388, "scope": "This continuation through source/topology review, implementation, independent mutation tests, complete selected regression and fresh replays; later documentation/publication excluded", "cache_agent_split_and_payback": "unmeasured"}
   },
+  "fault_bus_receiver_followup": {
+    "scope": "Exact receiver/supply binding and conditional released-bus KCL; not actual driver/leakage or full electrical qualification",
+    "ready_mechanisms_reused": [
+      "Existing native typed indexes and guarded candidate overlays",
+      "Existing exact Fraction interval arithmetic",
+      "Existing isolated KiCad ngspice worker and process registry"
+    ],
+    "custom_gap": "EDG digital checks do not infer native GPIO modes, powered-off states or missing source conditions; only an exact-pin/source applicability and signed-current adapter added",
+    "reviewed_fixture": {
+      "path": "hardware/verification/h6-power-fault-receiver-sources.json",
+      "sha256": "9a4657ddb6e24c730eb6a1edd1c1de09a73ffdcbeb7c46e83de2ec4d080b7f2d",
+      "primary_pdf_visual_review": true
+    },
+    "receivers": [
+      "U106 TCA6424A P07/8, VCCP27 and VCCI31 to 3V3_MAIN",
+      "U127 MSPM0C1106 PA30/3 SDIO, VDD6 to AON_SAFE_3V3"
+    ],
+    "applied_candidates": 18,
+    "contacts_bound_per_candidate": 9,
+    "arithmetic": "Positive I draws from bus: Vbus=MAIN-R*I. At every MAIN/AON/R corner require max(.7MAIN,.7AON)<=Vbus<=min(5.5,AON+.3). Intersection of allowed signed-current intervals is sufficient for a uniform independent bound, not necessary for voltage-correlated current.",
+    "source_coverage": "Explicit common-source TA[-40,85] hypothesis covers threshold numeric axes; original TA[-40,125] remains uncovered by TCA6424A. Neither is a changed board requirement. Endpoint-only source leakage rows are not extrapolated or symmetrized.",
+    "actual_total_signed_current_a": null,
+    "gpio_modes_proven": false,
+    "off_state_proven": false,
+    "loaded_voltage_proven": false,
+    "qualified": false,
+    "current_results": [
+      {
+        "divider_class": "0.1pct_10ppm",
+        "main_v_approx": [
+          3.120887916687171,
+          3.2919747209636503
+        ],
+        "uniform_current_interval_ua_approx": [
+          29.492396056934368,
+          59.49385313734366
+        ],
+        "zero_current_high_incompatible_corners": 4
+      },
+      {
+        "divider_class": "0.05pct_10ppm",
+        "main_v_approx": [
+          3.1194929850233475,
+          3.293283991576257
+        ],
+        "uniform_current_interval_ua_approx": [
+          29.624645613763306,
+          59.35574109142054
+        ],
+        "zero_current_high_incompatible_corners": 4
+      }
+    ],
+    "finding": "AON requirement allows2.7V, giving PA30 recommended input ceiling3.0V; all current MAIN hypotheses exceed it in the zero-current diagnostic. This is conditional envelope incompatibility, not measured board damage or a recommendation to rely on leakage. Verify actual AON delivery/correlation or repair interface.",
+    "selected_tests": {
+      "passed": 274,
+      "skipped": 0,
+      "elapsed_s": 82.685,
+      "new_tests": 16
+    },
+    "test_modules": [
+      "test_h6_power_corner_math",
+      "test_h6_power_domain_crossings",
+      "test_h6_edg_feedback_pair",
+      "test_h6_feedback_command",
+      "test_h6_feedback_variants",
+      "test_h6_current_limit_command",
+      "test_h6_ron_source_scope",
+      "test_h6_main_monitor_window",
+      "test_h6_main_static_pair",
+      "test_h6_main_loaded_spice",
+      "test_h6_main_auxiliary_scope",
+      "test_h6_main_dc_cell",
+      "test_h6_main_dc_cell_independent",
+      "test_h6_main_candidate_topology",
+      "test_h6_main_fault_bus",
+      "test_h6_main_fault_bus_spice",
+      "test_ngspice_worker"
+    ],
+    "independent_ngspice": {
+      "vectors": 93,
+      "workers": 4,
+      "elapsed_s": 0.174,
+      "skipped": 0,
+      "scope": "Ideal resistor/current-source KCL, not semiconductor model. Literal threshold oracle, corner/nominal/boundary and +/-1nA witnesses; hashes and cleanup verified."
+    },
+    "initial_regression": "Overbroad physical-pad uniqueness guard rejected legitimate aliases elsewhere in the full native boards. Scoped to participating instances; global unique endpoint/instance/reference guards retained. Focused and complete selected suites rerun successfully.",
+    "independent_review": "Separate read-only reviewer found no blockers in source binding, arithmetic, all18 integration, unknowns and qualification claims;9 focused arithmetic tests pass.",
+    "documentation_regression": {"module": "test_product_site", "passed": 71, "skipped": 0, "elapsed_s": 27.425},
+    "fresh_reports": [
+      {
+        "path": "work/main-dc-cell-5w67dei4/result.json",
+        "sha256": "543413a99f3770e3b99716cf546b583c3b82ec32522a2ac22133be167b1bd448",
+        "run_body_s": 10.243023,
+        "command_s": 10.275369
+      },
+      {
+        "path": "work/main-dc-cell-mzva2h9f/result.json",
+        "sha256": "6c0d9ff974e5fd23d518ec9945305a45f37943c4c1ef9aaef6e1fcd9708ef19d",
+        "run_body_s": 10.173847,
+        "command_s": 10.206535
+      }
+    ],
+    "source_hashes_per_report": 109,
+    "replay_equal_except_top_and_nested_elapsed_and_owned_caffeinate_metadata": true,
+    "exit_codes": [
+      1,
+      1
+    ],
+    "exit1_meaning": "Software checks passed; physical design remains not_qualified",
+    "owned_caffeinate_established_and_released_each_run": true,
+    "model_decisions_inside_command": 0,
+    "baseline_power_findings_preserved": 8,
+    "native_cad_changed": false,
+    "production_mpn_selected": false,
+    "hardware_firmware_boundary_changed": false,
+    "preparation_proxy": {
+      "metric": "Aggregate goal tokensUsed, not billed or uncached tokens",
+      "start": 13424398,
+      "checkpoint": 14179942,
+      "delta": 755544,
+      "scope": "Source/mode investigation and this implementation through regression/replay, including context restoration and agents; later publication excluded",
+      "cache_agent_split_and_payback": "unmeasured"
+    }
+  },
   "remaining": "Establish actual auxiliary-current and loaded fault-bus bounds for explicit candidate supply hypotheses, then whole-cell qualification: actual VIN/RON/bias applicability, divider lifetime, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification before native reconstruction. Existing OVLO/DVDT/ITIMER and converter compensation are retained hypotheses, not recalculated or admitted. The coupled threshold screen is not instantaneous converter-current protection. Eight native power findings and hardware/firmware boundary unchanged."
 }
