@@ -3,6 +3,7 @@
 import copy
 import json
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from hardware.verification import h6_r2_acceptance_adapters as adapters
@@ -20,6 +21,33 @@ def power_result(checks):
 
 
 class ElectricalAcceptanceTests(unittest.TestCase):
+    def firmware_result(self, **changes):
+        result = {"status": "pass", "qualified": False, "runtime_driver_implemented": False,
+                  "gpio_modes_proven": False, "pull_modes_proven": False, "errors": [], **changes}
+        module = SimpleNamespace(build=lambda: result)
+        with patch.object(adapters, "_snapshot", return_value={"guarded": "unchanged"}), \
+             patch.object(adapters, "firmware_evidence_checker", return_value=module):
+            return adapters.run_check("electrical.firmware_evidence_binding")
+
+    def test_exact_firmware_binding_cannot_qualify_runtime_or_circuit(self):
+        result = self.firmware_result()
+        self.assertEqual("unqualified", result["verdict"])
+        self.assertFalse(result["details"]["gate_closed"])
+        self.assertFalse(result["details"]["runtime_driver_implemented"])
+
+    def test_wrong_physical_to_logical_mapping_is_a_failed_prerequisite(self):
+        result = self.firmware_result(status="fail", errors=["P17/raw15 is not P12/logical12"])
+        self.assertEqual("fail", result["verdict"])
+        self.assertIn("P17", result["findings"][0])
+
+    def test_firmware_binding_claim_inflation_and_hidden_errors_are_rejected(self):
+        for mutation in ({"qualified": True}, {"runtime_driver_implemented": True},
+                         {"gpio_modes_proven": True}, {"pull_modes_proven": True},
+                         {"errors": ["ignored mismatch"]}, {"status": "fail"},
+                         {"status": "invented"}, {"errors": "not a list"}):
+            with self.subTest(mutation=mutation):
+                self.assertEqual("fail", self.firmware_result(**mutation)["verdict"])
+
     def test_current_evidence_is_checked_without_native_execution(self):
         with patch.object(adapters.semantics, "build", side_effect=AssertionError("native build forbidden")), \
              patch.object(adapters.semantics, "command", side_effect=AssertionError("native command forbidden")):
@@ -75,6 +103,12 @@ class ElectricalAcceptanceTests(unittest.TestCase):
             result = adapters.run_check("electrical.typed_erc")
         self.assertEqual("unqualified", result["verdict"])
         self.assertEqual("missing_required_data", result["details"]["evidence_status"])
+
+    def test_missing_firmware_checkout_cannot_clear_binding(self):
+        with patch.object(adapters, "_snapshot", side_effect=FileNotFoundError("firmware checker")):
+            result = adapters.run_check("electrical.firmware_evidence_binding")
+        self.assertEqual("unqualified", result["verdict"])
+        self.assertFalse(result["details"]["gate_closed"])
 
     def test_input_change_during_validation_is_rejected(self):
         with patch.object(adapters, "_snapshot", side_effect=[{"input": "before"}, {"input": "after"}]), \

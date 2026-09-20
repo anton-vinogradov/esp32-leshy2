@@ -11,6 +11,8 @@ from __future__ import annotations
 
 from collections import Counter
 import hashlib
+import importlib.util
+import os
 from pathlib import Path
 
 from hardware.verification import h6_r2_electrical_semantics as semantics
@@ -20,7 +22,15 @@ from hardware.verification import h6_r2_power_domain_crossings as crossings
 
 
 ROOT = Path(__file__).resolve().parents[2]
+FIRMWARE_ROOT = ROOT.parent / "esp32-leshy2-firmware"
+FIRMWARE_EVIDENCE_CHECKER = FIRMWARE_ROOT / "tools/check_evidence_register.py"
 CHECKS = {
+    "electrical.firmware_evidence_binding": {
+        "title": "Native evidence ports versus firmware logical bits",
+        "runtime": "python",
+        "scope": "Current H2 native-ledger TCA9535 port/pad/net to firmware logical-bit binding with source provenance; not a fresh KiCad export or runtime/electrical qualification.",
+        "sources": [],
+    },
     "electrical.power_domain_crossings": {
         "title": "AON-only potential live-to-unpowered input paths",
         "runtime": "python",
@@ -48,11 +58,37 @@ CHECKS = {
 }
 
 
+def firmware_evidence_checker():
+    if not FIRMWARE_EVIDENCE_CHECKER.is_file():
+        raise FileNotFoundError(FIRMWARE_EVIDENCE_CHECKER)
+    if FIRMWARE_EVIDENCE_CHECKER.resolve() != FIRMWARE_EVIDENCE_CHECKER:
+        raise ValueError("firmware evidence checker cannot traverse a symlink")
+    spec = importlib.util.spec_from_file_location("leshy2_firmware_evidence_check", FIRMWARE_EVIDENCE_CHECKER)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def firmware_source_paths():
+    """Include missing dependency membership so a new checkout cannot hide it."""
+    paths = {FIRMWARE_EVIDENCE_CHECKER}
+    if FIRMWARE_EVIDENCE_CHECKER.is_file():
+        paths.update(firmware_evidence_checker().source_paths())
+    for path in paths:
+        if not (path.is_relative_to(ROOT) or path.is_relative_to(FIRMWARE_ROOT)):
+            raise ValueError("firmware evidence source escapes the two repositories")
+        if path.resolve() != path:
+            raise ValueError("firmware evidence source cannot traverse a symlink")
+    return sorted(paths)
+
+
 def source_paths(check_id: str) -> list[Path]:
     """Discover actual source inventory, never trust a saved audit's file list."""
     metadata = CHECKS[check_id]
     paths = {Path(__file__), *(ROOT / path for path in metadata["sources"])}
-    if check_id == "electrical.power_startup":
+    if check_id == "electrical.firmware_evidence_binding":
+        paths.update(firmware_source_paths())
+    elif check_id == "electrical.power_startup":
         paths.update(ROOT / path for path in power.INPUTS.values())
         paths.update(ROOT / "hardware/verification" / filename for filename in
                      ("h6_power_corner_math.py", "h3_r2_current_scope.py"))
@@ -70,7 +106,7 @@ def source_paths(check_id: str) -> list[Path]:
 
 
 def _snapshot(check_id: str) -> dict[str, str]:
-    return {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+    return {os.path.relpath(path, ROOT): hashlib.sha256(path.read_bytes()).hexdigest()
             for path in source_paths(check_id)}
 
 
@@ -185,7 +221,26 @@ def _power_domain_crossings() -> tuple[str, list[str], dict]:
     return "unqualified", findings, {"evidence_status": "recomputed_and_validated", **result}
 
 
+def _firmware_evidence_binding() -> tuple[str, list[str], dict]:
+    result = firmware_evidence_checker().build()
+    if (result.get("status") not in {"pass", "fail", "unqualified"}
+            or result.get("qualified") is not False
+            or result.get("runtime_driver_implemented") is not False
+            or result.get("gpio_modes_proven") is not False
+            or result.get("pull_modes_proven") is not False
+            or not isinstance(result.get("errors"), list)
+            or any(not isinstance(s, str) or not s for s in result["errors"])
+            or (result["status"] == "pass" and result["errors"])
+            or (result["status"] == "fail" and not result["errors"])):
+        raise ValueError("firmware evidence checker scope/result is invalid")
+    findings = list(result["errors"])
+    findings.append("Port-to-logical-bit binding does not prove target register setup/readback, GPIO pulls, bus behavior or loaded voltages.")
+    return "fail" if result["status"] == "fail" else "unqualified", findings, {
+        **result, "evidence_status": "recomputed_and_validated", "gate_closed": False}
+
+
 _RUNNERS = {
+    "electrical.firmware_evidence_binding": _firmware_evidence_binding,
     "electrical.power_domain_crossings": _power_domain_crossings,
     "electrical.power_startup": _power_startup,
     "electrical.source_triage": _source_triage,

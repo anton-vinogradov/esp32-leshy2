@@ -2,6 +2,36 @@
   "schema_version": 1,
   "date": "2026-09-20",
   "command": "python3 tools/check_design.py",
+  "firmware_evidence_binding_2026_09_20": {
+    "reuse": "Current H2 ledgers/provenance, existing firmware policy checker, host C test target and design-acceptance runner; no new electrical solver or target driver.",
+    "fixed": "U111 P17/pad20/raw15 EV9 maps to preserved logical ABI bit12; old firmware policy incorrectly named P12/pad15/raw10, now a service request.",
+    "coverage": "All16 TCA ports/pads/nets, exact device/address/supply, raw0x81ff/logical0x11ff/input0xe3ff masks; current H2 ledger binding, not a fresh native export.",
+    "scope": "Host-only adapter and declaration correction. No board wiring, target source list, compiled safety core, old build receipt or physical behavior changed. Runtime GPIO/pull/readback and electrical qualification remain open.",
+    "report": "work/design-check-k_yo8ywx/result.json",
+    "report_sha256": "70aedd6f78943f217a2c95b507c95f641cf312a94a5543b406743ee10f9140cc",
+    "seconds": 26.864,
+    "checks": 18,
+    "verdict_counts": {"pass": 4, "fail": 2, "unqualified": 12},
+    "inputs_unchanged_during_run": true,
+    "binding_status": "pass",
+    "binding_acceptance_verdict": "unqualified",
+    "native_opens": {"UI": 1226, "RF": 1859},
+    "native_drc_violations_and_schematic_parity": 0,
+    "caffeinate_established_and_released": true,
+    "fw_source_files_guarded_for_entire_run": 6,
+    "tests": {
+      "hardware_selected": 91, "hardware_seconds": 13.047, "hardware_skipped": 0,
+      "firmware_make_test": "pass;35 H3 +12 focused +203 regression cases;18 documented environment-dependent skips in the last group",
+      "exhaustive_host_test": "Every65536 raw input word, and each65536 configuration/polarity word independently; bit flips and8 retained safety scenarios",
+      "independent_review": "42 HW integration tests,12 FW focused tests,20 historical receipt tests; strict C17/Wconversion clean after explicit bounded cast",
+      "rejected_attempt": "Putting the host-only decoder in safety_core correctly invalidated old S3/C5 scoped build evidence. Refactored into a separate unintegrated peripheral adapter; compiled core and receipts restored byte-identical, not rebound to new hashes."
+    },
+    "llm_calls_inside_repeated_commands": 0,
+    "preparation_token_proxy": {
+      "raw_goal_counter_start": 8947660, "raw_goal_counter_checkpoint": 9687117, "raw_counter_delta": 739457,
+      "note": "Aggregate goal counter includes unknown cache/agent attribution; not billed or uncached parent tokens. Publication after checkpoint excluded. Future savings/payback remain unmeasured."
+    }
+  },
   "role": "Historical benchmark summary, not reusable acceptance evidence; full proof remains in the unique local run directory.",
   "report": "work/design-check-0jijkceb/result.json",
   "report_sha256": "3bca513fce3dfef59407f631ddaa9c2d717f6c2bdd2098a8f435a7a4740959cc",

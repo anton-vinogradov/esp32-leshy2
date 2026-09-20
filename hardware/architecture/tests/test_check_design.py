@@ -103,6 +103,41 @@ class AssessmentTests(unittest.TestCase):
 
 
 class InputTests(unittest.TestCase):
+    def test_cross_repository_dependencies_are_guarded_for_whole_run(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            parent = Path(tmp).resolve()
+            root = parent / 'hardware-repo'
+            (root / 'tools').mkdir(parents=True)
+            (root / 'tools/check.py').write_text('checker')
+            firmware = parent / 'esp32-leshy2-firmware'
+            firmware.mkdir()
+            path = firmware / 'contract.json'
+            missing = source_snapshot(root, [path])
+            self.assertEqual('missing', missing['../esp32-leshy2-firmware/contract.json'])
+            path.write_text('initial')
+            initial = source_snapshot(root, [path])
+            self.assertNotEqual(missing, initial)
+            path.write_text('changed after worker finished')
+            self.assertNotEqual(initial, source_snapshot(root, [path]))
+            path.unlink()
+            self.assertEqual(missing, source_snapshot(root, [path]))
+
+    def test_cross_repository_symlinks_and_other_roots_are_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            parent = Path(tmp).resolve()
+            root = parent / 'hardware-repo'
+            (root / 'tools').mkdir(parents=True)
+            (root / 'tools/check.py').write_text('checker')
+            firmware = parent / 'esp32-leshy2-firmware'
+            firmware.mkdir()
+            outside = parent / 'other-file'
+            outside.write_text('other')
+            link = firmware / 'contract.json'
+            link.symlink_to(outside)
+            for path in (link, outside):
+                with self.subTest(path=path), self.assertRaises(ValueError):
+                    source_snapshot(root, [path])
+
     def test_changes_additions_deletions_and_tools_are_guarded(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

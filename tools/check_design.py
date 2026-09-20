@@ -105,7 +105,7 @@ def registry():
     return result
 
 
-def source_snapshot(root=ROOT):
+def source_snapshot(root=ROOT, external_sources=None):
     """Guard inputs AND membership, including new/deleted files, not just PCBs.
 
     Auditors separately prove freshness of any consumed derived evidence. This
@@ -130,7 +130,22 @@ def source_snapshot(root=ROOT):
                     paths.append(path)
     if not paths:
         raise ValueError('No design inputs found')
-    return {str(p.relative_to(root)): sha(p) for p in sorted(paths)}
+    result = {str(p.relative_to(root)): sha(p) for p in sorted(paths)}
+    if external_sources is None:
+        if root == ROOT:
+            from hardware.verification.h6_r2_acceptance_adapters import firmware_source_paths
+            external_sources = firmware_source_paths()
+        else:
+            external_sources = []
+    # The new cross-repository checker is guarded for the WHOLE command, not
+    # only while its worker runs. Missing files are evidence, never a PASS.
+    for path in external_sources:
+        if not path.is_relative_to(root) and not path.is_relative_to(root.parent / 'esp32-leshy2-firmware'):
+            raise ValueError('External acceptance source escapes authorized repositories')
+        if path.resolve() != path:
+            raise ValueError('External acceptance source cannot traverse a symlink')
+        result[os.path.relpath(path, root)] = sha(path) if path.is_file() else 'missing'
+    return result
 
 
 def assess(specs, rows, inputs_unchanged):
