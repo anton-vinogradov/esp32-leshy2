@@ -166,6 +166,37 @@ class DcCellTests(unittest.TestCase):
                 self.assertFalse((Path(folder)/'result.json').exists())
             self.assertIsNone(json.loads(stream.getvalue())['report'])
 
+    def test_integrated_auxiliary_scope_preserves_unknowns_and_native_pin_conflict(self):
+        report = cell.run()
+        scope = report['auxiliary_scope']
+        self.assertFalse(scope['qualified'])
+        self.assertFalse(scope['source_applicability'])
+        self.assertFalse(scope['full_inventory_known'])
+        self.assertIsNone(scope['actual_auxiliary_total_a'])
+        self.assertFalse(scope['replacement_interface']['drop_in_allowed'])
+        pins = scope['replacement_interface']['pins']
+        self.assertEqual(len(pins), 10)
+        fourth = next(pin for pin in pins if pin['physical'] == '4')
+        self.assertEqual((fourth['native_function'], fourth['candidate_function']), ('PGTH', 'FLT'))
+        self.assertTrue(fourth['role_or_type_changed'])
+        pullup = scope['native_fault_pullup']
+        self.assertEqual(pullup['supply_node'], '3V3_MAIN')
+        self.assertFalse(pullup['counted_again'])
+        self.assertFalse(pullup['native_budget_coverage_proven'])
+        self.assertIsNone(pullup['actual_current_max_a'])
+        self.assertEqual(len(scope['groups']), 2)
+        for group in scope['groups']:
+            supplies = group['monitor_supply_scopes']
+            self.assertEqual([s['numeric_domains_covered'] for s in supplies], [True, True, True, False])
+            for check in supplies + group['reset_leakage_scopes'] + [group['efuse_iq_scope']]:
+                self.assertFalse(check['parameter_maximum_admitted'])
+                self.assertIsNone(check['actual_current_max_a'])
+            self.assertIn('vin_v', group['efuse_iq_scope']['uncovered_axes'])
+        self.assertEqual(len(report['baseline_power_review']['findings']), 8)
+        self.assertIn('tools/main_auxiliary_scope.py', report['source_sha256'])
+        self.assertIn('hardware/verification/h6-main-auxiliary-sources.json', report['source_sha256'])
+        self.assertEqual(cell.current.snapshot(cell.source_paths()), report['source_sha256'])
+
 
 if __name__ == '__main__':
     unittest.main()

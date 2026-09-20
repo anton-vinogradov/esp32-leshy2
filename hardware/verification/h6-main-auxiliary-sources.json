@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "scope": "Reviewed auxiliary source conditions and replacement pin roles; not a candidate schematic, MPN adoption or full-cell qualification",
+  "sources": {
+    "tps25981": {"url": "https://www.ti.com/lit/ds/symlink/tps25981.pdf", "revision": "SLVSGG6D September 2026", "pdf_sha256": "8609249da4eb65da1d5398a4cbd5bc3ace4ca1f1f0205e41fbf3873d8e3f8e91", "reviewed_pages": [4, 5, 7], "reviewed_on": "2026-09-20"},
+    "tps3703": {"url": "https://www.ti.com/lit/ds/symlink/tps3703.pdf", "revision": "SBVS249B November 2020", "pdf_sha256": "cc65714774e50c97dca9a1bf094489b17350cc70fa16068880e108e320f8a6ea", "reviewed_pages": [4, 5, 6, 7, 14, 15, 17], "reviewed_on": "2026-09-20"}
+  },
+  "replacement_interface": {
+    "native_instance": "main_efuse",
+    "native_mpn": "Texas Instruments TPS25974LRPWR",
+    "candidate_mpn": "Texas Instruments TPS259814LRPWR",
+    "source_id": "tps25981",
+    "pins": [
+      {"physical": "1", "name": "EN_UVLO", "type": "analog_input"},
+      {"physical": "2", "name": "OVLO", "type": "analog_input"},
+      {"physical": "3", "name": "PG", "type": "open_drain_output"},
+      {"physical": "4", "name": "FLT", "type": "open_drain_output"},
+      {"physical": "5", "name": "IN", "type": "power_input"},
+      {"physical": "6", "name": "OUT", "type": "power_output"},
+      {"physical": "7", "name": "DVDT", "type": "analog_output"},
+      {"physical": "8", "name": "GND", "type": "ground"},
+      {"physical": "9", "name": "ILM", "type": "analog_output"},
+      {"physical": "10", "name": "ITIMER", "type": "analog_output"}
+    ],
+    "semantic_limits": ["Candidate PG reports power FET fully ON, not the old externally set PGTH voltage threshold", "Pin 4 is FLT output, not PGTH input; old divider must not be retained there by positional substitution", "Same-number roles do not qualify timing, levels, package geometry or full replacement compatibility"]
+  },
+  "monitor_interface": {
+    "mpn": "Texas Instruments TPS3703A7330DSER",
+    "source_id": "tps3703",
+    "pins": {"SENSE": "1", "VDD": "2", "CT": "3", "RESET": "4", "GND": "5", "MR": "6"},
+    "notes": ["RESET permits a pullup to the desired logic rail and wired OR; this is not an unpowered leakage guarantee", "RESET is explicitly undefined below VPOR; supply from MAIN cannot independently prove fault assertion when MAIN is off", "CT tied to VDD needs a pullup resistor; MR below VDD adds supply current, with only typical internal resistance", "Startup tSD is 300 us nominal only; do not add it to tD,max and claim a guaranteed startup maximum"]
+  },
+  "rows": [
+    {
+      "id": "tps259814_iq_on", "mpn": "Texas Instruments TPS259814LRPWR",
+      "parameter": "IQ_ON", "unit": "A", "minimum": null, "typical": "0.000417", "maximum": "0.000610",
+      "source_id": "tps25981", "page": 7, "supply_pin": "5", "return_pin": "8",
+      "numeric_domains": {"vin_v": ["12", "12"], "tj_c": ["-40", "125"]},
+      "header_conditions": {"state": "on", "out_load": "open", "en_uvlo_v": "2", "ovlo_v": "0", "rilm_ohm": "611", "dvdt": "open", "itimer": "open", "flt": "open", "pg": "open"},
+      "limitation": "No interpolation from VIN12 to actual ~3.3 V; no inclusion assumption for changed external control/programming loads"
+    },
+    {
+      "id": "tps3703_idd", "mpn": "Texas Instruments TPS3703A7330DSER",
+      "parameter": "IDD", "unit": "A", "minimum": null, "typical": "0.0000045", "maximum": "0.000007",
+      "source_id": "tps3703", "page": 6, "supply_pin": "2", "return_pin": "5",
+      "numeric_domains": {"vdd_v": ["1.7", "5.5"], "ta_c": ["-40", "125"]},
+      "header_conditions": {"ct": "open", "mr": "open", "reset_pullup": "10000_ohm_to_vdd", "reset_load_f": "0.00000000001"},
+      "limitation": "Typical 4.5 uA is at TJ25 C and VDD3.3 V, not across the maximum's numeric domains. Pullup sink current belongs to its own rail, separate from IDD; actual header setup must be bound before admission"
+    },
+    {
+      "id": "tps3703_reset_leakage", "mpn": "Texas Instruments TPS3703A7330DSER",
+      "parameter": "RESET_LEAKAGE", "unit": "A", "minimum": null, "typical": null, "maximum": "0.000000300",
+      "source_id": "tps3703", "page": 6, "supply_pin": "4", "return_pin": "5",
+      "numeric_domains": {"vdd_v": ["5.5", "5.5"], "reset_v": ["5.5", "5.5"], "ta_c": ["-40", "125"]},
+      "header_conditions": {"ct": "open", "mr": "open", "reset_pullup": "10000_ohm_to_vdd", "reset_load_f": "0.00000000001"},
+      "limitation": "This one-sided maximum is not an application signed-current interval or an off-state guarantee"
+    }
+  ],
+  "exact_supply_nodes": {
+    "MAIN_RAW_3V3": "main_converter_output_bypass",
+    "3V3_MAIN": "main_protected_output",
+    "AON_SAFE_3V3": "aon_output",
+    "NVDC_SYS": "converter_input"
+  },
+  "reference_ground": "POWER_GROUND",
+  "native_fault_pullup": {"instance": "power_fault_pullup", "reference": "R266", "device_id": "yageo_rc0402fr_0710kl", "nominal_ohm": "10000", "initial_tolerance_fraction": "0.01", "supply_physical": "1", "signal_physical": "2", "supply_node": "3V3_MAIN", "signal_node": "POWER_FAULT_N", "accounting": "Existing native branch, not a newly added candidate load; no subtraction or duplicate addition without explicit replacement accounting"},
+  "limits": ["Offline pinned transcription, not a PDF parser", "Numeric domain coverage does not establish header or whole-circuit applicability", "Unknown bounds and supply nodes are null, never implicit zero", "MAIN raw and protected nodes must remain distinct despite aggregate native rail aliases", "No native CAD, part selection, startup, thermal or physical qualification"]
+}

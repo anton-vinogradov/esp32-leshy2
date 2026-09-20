@@ -197,5 +197,26 @@
     "exit_codes": [1, 1], "owned_caffeinate_established_and_released_each_run": true, "model_decisions_inside_command": 0,
     "preparation_proxy": {"metric": "Aggregate goal tokensUsed, not billed or uncached tokens", "start": 11849290, "checkpoint": 12033034, "delta": 183744, "scope": "This continuation through implementation, source review, independent oracle/review, regression and replay; later receipt/publication excluded", "cache_agent_split_and_payback": "unmeasured"}
   },
-  "remaining": "Bind actual auxiliary supply/return paths and bounds, then whole-cell qualification: actual VIN/RON/bias applicability, divider lifetime, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. The coupled threshold screen is not instantaneous converter-current protection. Eight native power findings and hardware/firmware boundary unchanged."
+  "auxiliary_scope_followup": {
+    "scope": "Strict pin/source/supply-node admission adapter; no new solver, wiring adoption or complete-cell qualification",
+    "ready_mechanisms_reused": ["Existing native pin/net provenance and exact resistor parser", "Existing Fraction/Interval arithmetic and loaded DC envelopes", "Pinned EDG current aggregation assessed but not treated as unknown-load authority"],
+    "custom_gap": "EDG sink defaults can silently represent missing current as zero; aggregate rail aliases merge raw/protected MAIN. Preserve explicit unknown inventory, exact physical supply nodes and complete source conditions before any current admission.",
+    "reviewed_fixture": {"path": "hardware/verification/h6-main-auxiliary-sources.json", "sha256": "4477fc5c57b8cfeabbd5f6a7cbb5dad121ebab945fa2b68597f15b5111881b6a", "primary_pdf_visual_review": true},
+    "native_findings": {"replacement_pin_4": "U21 PGTH input versus TPS259814 FLT output; positional replacement forbidden", "replacement_pg_pin_3": "Gate-on indication is not proof of the old external PGTH rail threshold", "fault_pullup": "R266 is 10kohm/1%, protected 3V3_MAIN to POWER_FAULT_N, not AON; native budget coverage unproven"},
+    "source_findings": ["TPS3703 7uA maximum covers live raw/protected/AON numeric hypotheses, but CT/MR/RESET conditions are not bound", "TPS259814 610uA at VIN12V is not a 3.3V application bound", "TPS3703 RESET leakage at VDD/VRESET5.5V is not a 3.3V or powered-off bound"],
+    "live_aon_voltage_source": "Guarded H3 rails.AON_SAFE_3V3 load_min_v/load_max_v, not a duplicated constant",
+    "actual_auxiliary_total_a": null, "full_inventory_known": false, "qualified": false,
+    "conditional_threshold_results_unchanged": true, "baseline_power_findings_preserved": 8,
+    "selected_tests": {"passed": 270, "skipped": 0, "elapsed_s": 48.795, "new_auxiliary_tests": 15, "new_integrated_tests": 1},
+    "independent_review": "Separate read-only reviewer found no blockers;15 focused tests pass without skips. Native R266 value/nets, live H3 AON domain, full 10-pin replacement roles, missing header/off-state coverage and retained unknown currents reviewed;105 source hashes and installed EDG pins verified.",
+    "fresh_reports": [
+      {"path": "work/main-dc-cell-j8wv7zvq/result.json", "sha256": "cb4e35aa7a38c666ed7156385495ca014bd47538b967d384ffd53086256b26ee", "run_body_s": 6.289488, "command_s": 6.322654},
+      {"path": "work/main-dc-cell-b59k9vcq/result.json", "sha256": "0e9ded5edd22d95e7d6353f2f681a96268eecedf66beee7e0067c9f537ee8823", "run_body_s": 6.254526, "command_s": 6.285570}
+    ],
+    "source_hashes_per_report": 105, "replay_equal_except_top_and_nested_elapsed_and_owned_caffeinate_metadata": true,
+    "exit_codes": [1, 1], "exit1_meaning": "Software mechanism passes; physical cell remains explicitly not_qualified",
+    "owned_caffeinate_established_and_released_each_run": true, "model_decisions_inside_command": 0,
+    "preparation_proxy": {"metric": "Aggregate goal tokensUsed, not billed or uncached tokens", "start": 12045928, "checkpoint": 12818193, "delta": 772265, "scope": "Auxiliary adapter preparation through source review, implementation, independent review, regressions and replay across continuation/context restoration; later receipt/publication excluded", "cache_agent_split_and_payback": "unmeasured"}
+  },
+  "remaining": "Declare candidate auxiliary wiring and branch budget ownership, establish applicable source bounds, then whole-cell qualification: actual VIN/RON/bias applicability, divider lifetime, supply/logic, startup/dynamics/thermal, exact Standard PCBA sourcing and physical qualification. The coupled threshold screen is not instantaneous converter-current protection. Eight native power findings and hardware/firmware boundary unchanged."
 }
