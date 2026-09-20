@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "kind": "historical_local_helper_experiment_not_design_acceptance",
+  "date": "2026-09-20",
+  "status": "predeclared_quality_bar_not_met",
+  "model": {
+    "repository": "mlx-community/Qwen3.8-27B-4bit",
+    "revision": "10c35caafbb80f7dc6a7a432cdd11af10a6d4818",
+    "download_bytes": 16081489363,
+    "upstream_lfs_hashes_verified": true,
+    "mlx_lm_version": "0.31.3",
+    "mlx_version": "0.32.2",
+    "hardware": "Apple M3 Pro, 12 CPU cores, 18 GPU cores, 36 GiB unified memory"
+  },
+  "protocol": {
+    "independent_cases": 10,
+    "positive_controls": 2,
+    "hidden_assertion_probes": 47,
+    "temperature": 0,
+    "thinking_enabled": false,
+    "context_token_cap": 8192,
+    "output_token_cap": 1536,
+    "output_cap_amended_before_inference": "Raised from 768 after tokenizer-only sizing; pretty reference JSON needed up to 979 tokens. No response-based retry.",
+    "case_timeout_seconds": 180,
+    "model_loads": 1,
+    "concurrent_requests": 1,
+    "human_repairs_or_interventions_between_cases": 0,
+    "network_denied_during_inference": true,
+    "model_saw_private_oracle": false,
+    "model_had_tools_or_executable_output": false
+  },
+  "observed": {
+    "complete_responses": 10,
+    "truncated_or_failed_responses": 0,
+    "fully_passing_cases": 2,
+    "correct_primary_verdicts": 7,
+    "rules_passing_all_hidden_probes": 9,
+    "passing_hidden_probes": 46,
+    "unsafe_consistent_primary_verdicts": 0,
+    "positive_controls_with_correct_primary_verdict": 1,
+    "fully_passing_positive_controls": 0,
+    "wall_seconds": 971.3318326249719,
+    "local_input_tokens": 9728,
+    "local_generation_tokens_including_stop": 6269,
+    "generation_tokens_per_second_range": [6.94471937276996, 8.06091483744244],
+    "peak_mlx_allocated_bytes": 16444433358,
+    "global_swapout_delta_bytes": 0,
+    "global_swapin_delta_bytes": 105086976,
+    "memory_caveat": "Host-wide counters, not isolated attribution. Earlier smoke increased global swap-out by about 2.97 GB; existing swap remained. MLX allocation is not whole-process physical footprint."
+  },
+  "decision": {
+    "eligible_for_supervised_checker_authoring_by_predeclared_bar": false,
+    "new_production_checks_adopted": 0,
+    "board_or_component_changes": false,
+    "hardware_firmware_boundary_changed": false,
+    "parent_token_savings": "UNMEASURED",
+    "reason": "Arithmetic errors, incorrect verdicts, incomplete evidence provenance and one incomplete rule. Correct formulas did not imply correct reported numbers. Finite probe success is not a general correctness proof.",
+    "scope": "First non-thinking configuration only; not a claim that every Qwen configuration fails. Model proposals cannot authorize electrical acceptance."
+  },
+  "partial_parent_usage_proxy": {
+    "counter_start_utc": "2026-09-19T23:37:12.592Z",
+    "counter_stop_utc": "2026-09-19T23:59:39.962Z",
+    "uncached_input_plus_output": 212591,
+    "scope": "Mixed root-task preparation, coordination, concurrent acceptance/publication and UI discussion. Child coverage unverified. Excludes later evaluation, analysis, UI setup and performance work. Not isolated pilot cost, billing, a team total or demonstrated savings. Do not sum overlapping snapshots."
+  },
+  "evidence_sha256": {
+    "public_prompts": "40a52c8c1ea8318958dd384cb3ba3c057a9cd80b3b96707be3951ed9358a0238",
+    "private_oracle": "870440fe28948a3ff2aac3192526a674e55000dce61c82419b556a524451f1ce",
+    "pre_inference_protocol_amendment": "b91f15c5e3fad87f1ab57fff5c553be32f37cab47de2cd67982e8cf539d6bf86",
+    "inference_runner": "9cb252869afe9f982ed7dfe857a04319f3cefea0bc07ec7cc8354de55094a590",
+    "grader": "67215515666ce3a59c5f32666276efbc210d224a9db731e0eda8f0f6ed51c590",
+    "inference_report": "cfb33535dc8bcde4d9de3e113e78df352bc3db486d02780ee37e2e032f0b8804",
+    "grade": "19b1b47ad46cdb988a32513e2956dd3100e097678aa707cafaeffd2dfb3cf576"
+  },
+  "reproducibility_limit": "Raw prompts, oracle, runner, outputs, package receipts and weights remain local under work/. This compact record is not a portable installer, reproducible public test package or current engineering evidence."
+}

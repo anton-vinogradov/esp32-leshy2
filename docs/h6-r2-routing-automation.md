@@ -43,6 +43,10 @@ Exit codes: **0** = every declared check passes its scope; **1** = design not ac
 
 Development proceeds as **mechanism → current project → independent validation**, repeating that loop before advancing. This first step consolidates acceptance, not full electrical correctness. The next isolated pilot evaluates a ready-made local constraint-based circuit generator on one indicator branch; no generated MPN or schematic is promoted without exact-part and independent checks. No model decisions occur inside the acceptance command; preparation tokens and end-to-end payback remain separate costs.
 
+## Local helper pilot
+
+The first blind Qwen3.8-27B 4-bit MLX run, **with thinking disabled**, finished in 16.2 minutes without intervention between cases. **9/10 proposed rules** passed their hidden counterexamples (46/47 individual probes), but **only 2/10 complete answers** passed: arithmetic, verdicts and evidence provenance failed. One valid control was falsely rejected; one rule missed a changed required voltage. The predeclared eligibility bar was **not met**, and no new production checks were adopted. Parent-token savings remain unmeasured; this evaluates one configuration, not every possible Qwen mode. [Measurements, partial cost proxy and hashes](../hardware/layout/benchmarks/2026-09-20-local-qwen-pilot-results.json). Weights and the experimental environment remain local; design acceptance remains deterministic.
+
 ## Preparation cost and unsuccessful attempts
 
 The primary cost metric remains **model tokens per complete checked result**. Root-task journal snapshots recorded about **157k**, **909,031** and, during the resumed work, **199,005 uncached-input + output tokens**. These are preparation/development proxies, not billing or isolated repeat-routing costs. The second interval includes price/documentation work; the latest includes development, review, documentation and monitoring. Agent coverage is unverified and later work is excluded. Zero model decisions inside the command does not erase preparation cost. Total recurring usage, savings against the previous method and payback remain unmeasured.
