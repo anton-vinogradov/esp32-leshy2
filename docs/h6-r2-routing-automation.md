@@ -53,6 +53,16 @@ Before new research, check existing tools and reusable work first. The current i
 
 The ready [TI TPS25981 calculator](https://www.ti.com/tool/download/SLVRBL3), version 01.00.00.0A (2022), was also inspected rather than reimplemented. It remains a design reference, not an admitted automatic checker: its current-limit equations use 6595 instead of the 6585 in our reviewed datasheet, its tolerance formula uses root-sum-square rather than worst-case limits, and its loss calculation uses typical RON. Our available spreadsheet engine did not reproduce the original cached R2 selection. Macros were not run, the original workbook was not changed, and native Excel recalculation was not claimed. These findings do not prove that every intended native Excel calculation is broken; they prevent treating this unverified path as acceptance.
 
+### C5 isolation experiment — not a native schematic change
+
+```sh
+python3 -B -m hardware.verification.h6_r2_c5_isolation_candidate
+```
+
+This applies a four-component recipe to a deep copy of the current ledgers: an existing-type triple open-drain buffer, two MAIN pullups and a bypass capacitor. Only C5 GPIO23/24 change nets; all other original components and contacts must remain identical. The source-guarded command repeats construction and validation, verifies its own `caffeinate`, and saves a fresh local report. Exit **1** means the topology experiment passed but remains unqualified; **2** means execution/evidence error, **130** cancellation. It does not export native CAD, modify either board, accept an MPN or change firmware.
+
+The candidate is **not selected for production**: [SN74LVC3G07 Rev.K](https://www.ti.com/lit/ds/symlink/sn74lvc3g07.pdf), p.3, limits input transition time to 10 ns/V at 3.3±0.3 V; actual shared EV edges and powered-on output leakage into the MAIN-off domain are unproven. Fewer graph warnings do not resolve these conditions. A next alternative is two MAIN-powered, already-used-type [SN74LVC1G17 Schmitt buffers](https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf); its Rev.Y §7.3 explicitly covers input/output voltage with VCC=0, but complete loaded levels and sequencing still require verification. This alternative has not yet been constructed or accepted.
+
 ## Rebuild the existing indicator network
 
 ```sh

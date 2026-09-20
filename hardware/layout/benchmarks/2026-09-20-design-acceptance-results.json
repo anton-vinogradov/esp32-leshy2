@@ -254,5 +254,86 @@
       "raw_counter_delta": 835517,
       "note": "Aggregate goal counter across preparation and continuation, including unknown cache/agent attribution. Not billed or uncached parent tokens. Zero model decisions inside the repeated command does not yet establish preparation payback."
     }
+  },
+  "c5_isolation_candidate_followup": {
+    "date": "2026-09-20",
+    "role": "Historical experimental-topology receipt, not native CAD or electrical qualification.",
+    "command": "python3 -B -m hardware.verification.h6_r2_c5_isolation_candidate",
+    "reuse": "Clone current exact part templates and reuse the existing native-contact, source/state, domain-crossing and caffeine mechanisms. No exact G07/Schmitt model was found in the prepared EDG parts; no new electrical solver or compiler wrapper was added.",
+    "runs": [
+      {
+        "report": "work/c5-isolation-candidate-dge3jtz5/result.json",
+        "sha256": "021bed3831ff1fa98467ac4b2bc7f193118ffe71c00d328f347b69367c90e26b",
+        "seconds": 0.579,
+        "exit_code": 1
+      },
+      {
+        "report": "work/c5-isolation-candidate-9y2m32ir/result.json",
+        "sha256": "5804ce31883438566c17e93f19ed3871b853f76292f8bcf716a7e8d1d4b79a9c",
+        "seconds": 0.581,
+        "exit_code": 1
+      }
+    ],
+    "validation": {
+      "mechanics_status": "pass",
+      "status": "not_qualified",
+      "native_candidate_generated": false,
+      "production_promoted": false,
+      "fabrication_authorized": false,
+      "crossings_before_after": [12, 10],
+      "unknown_supply_ownership_before_after": [20, 20],
+      "instances_before_after": [1210, 1214],
+      "nets_before_after": [789, 791],
+      "added_components": 4,
+      "added_contact_rows": 14,
+      "changed_original_contacts": ["c5.GPIO23 net only", "c5.GPIO24 net only"],
+      "preserved_original_components": 1210,
+      "preserved_other_original_contact_rows": 4315,
+      "original_U118_and_shared_AON_observers_preserved": true,
+      "in_memory_replays_per_command": 2,
+      "fresh_process_semantic_comparison": "pass; all result fields match except elapsed time and owned caffeine log path",
+      "candidate_semantic_sha256": "4606a344ce8ad6f40cf73488f4ea666a94558e0e572387e0ab3f1d3475f5cf9b",
+      "input_hashes_rechecked_after_both_commands": true,
+      "caffeinate_established_and_released_by_both_commands": true,
+      "model_decisions_inside_command": 0
+    },
+    "tests": {"new_tests": 22, "combined_tests": 119, "skipped": 0, "seconds": 14.794, "status": "pass",
+      "independent_bounded_review": {"tests": 22, "seconds": 3.939, "actionable_findings": 0, "status": "pass"}},
+    "selection": {
+      "status": "not_selected_slew_and_output_leakage_unqualified",
+      "authority": "Primary-source engineering review, explicitly recorded as unresolved requirements; not a computed slew or analog leakage result.",
+      "open": ["EV input slew with shared loads", "powered-on G07 output leakage into MAIN-off domain", "actual MAIN discharge and C5 pad voltage", "loaded logic levels and propagation", "all power sequences", "placement, routing, production sourcing and prototype behavior"],
+      "next_alternative_not_yet_constructed": "Two MAIN-powered SN74LVC1G17DCKR Schmitt buffers of an already-fitted type; no production adoption or circuit qualification."
+    },
+    "primary_source_review": [
+      {
+        "mpn_reference": "SN74LVC3G07DCUR",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc3g07.pdf",
+        "cached_pdf": "work/c5-isolation-source-YpxVkS/sn74lvc3g07.pdf",
+        "sha256": "d27ddfa682e90b63653f0a447456875daee23541d4e818315f9c4095f4eccf9a",
+        "revision": "SCES365K, November 2013",
+        "visually_reviewed_pages": [1, 2, 3],
+        "finding": "DCU pins/function match the candidate. Input transition limit is 10 ns/V at VCC=3.3+/-0.3 V. The VCC=0 Ioff row is not a powered-on output-leakage guarantee for this AON-powered candidate."
+      },
+      {
+        "mpn_reference": "SN74LVC1G17DCKR",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+        "cached_pdf": "work/c5-isolation-source-YpxVkS/sn74lvc1g17.pdf",
+        "sha256": "c76fa723fac4502423967a1aa087dd669106b52b8de620c024b26e56f5d59309",
+        "revision": "SCES351Y, October 2025",
+        "visually_reviewed_pages": [3, 4, 5, 6, 10, 11],
+        "finding": "DCK NC1/A2/GND3/Y4/VCC5 matches existing reviewed map. Section7.3 permits input/output voltages at VCC=0. Schmitt operation is a promising alternative, not proof of current application levels, leakage or sequencing. Test-point current rows were not broadened into an unqualified whole-range model."
+      }
+    ],
+    "source_sha256": {
+      "hardware/verification/h6_r2_c5_isolation_candidate.py": "7e45aada2a8c9fb3f50d9e0ec4715c72764ff9e3fc371f3f78f6d4308b377fa8",
+      "hardware/architecture/tests/test_h6_c5_isolation_candidate.py": "a5654553c7d44d26d2acebc17d032347e4042bd80c515e57158d2c8f909a87c1"
+    },
+    "preparation_token_proxy": {
+      "raw_goal_counter_start": 6886348,
+      "raw_goal_counter_checkpoint": 7347937,
+      "raw_counter_delta": 461589,
+      "note": "Aggregate counter includes unknown cache/agent attribution and checkpoint integration; not billed or uncached parent tokens. Repeated commands make no LLM calls; preparation payback remains unmeasured."
+    }
   }
 }
